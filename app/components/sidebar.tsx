@@ -216,7 +216,9 @@ export function SideBarTail(props: {
   return (
     <div className={styles["sidebar-tail"]}>
       <div className={styles["sidebar-actions"]}>{primaryAction}</div>
-      <div className={styles["sidebar-actions"]}>{secondaryAction}</div>
+      <div className={`${styles["sidebar-actions"]} ${styles["right-flex-1"]}`}>
+        {secondaryAction}
+      </div>
     </div>
   );
 }
@@ -346,6 +348,7 @@ export function SideBar(props: { className?: string }) {
         }
         secondaryAction={
           <IconButton
+            className={styles.add_btn}
             icon={<AddIcon />}
             text={shouldNarrow ? undefined : Locale.Home.NewChat}
             onClick={() => {
