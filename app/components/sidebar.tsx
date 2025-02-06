@@ -255,6 +255,20 @@ export function SideBar(props: { className?: string }) {
         shouldNarrow={shouldNarrow}
       >
         <div className={styles["sidebar-header-bar"]}>
+          {/* <IconButton
+            icon={<DiscoveryIcon />}
+            text={shouldNarrow ? undefined : Locale.Discovery.Name}
+            className={styles["sidebar-bar-button"]}
+            onClick={() => setshowDiscoverySelector(true)}
+            shadow
+          /> */}
+          <IconButton
+            icon={<DiscoveryIcon />}
+            text={shouldNarrow ? undefined : Locale.Exporter.Model}
+            className={styles["sidebar-bar-button"]}
+            onClick={() => setshowDiscoverySelector(true)}
+            shadow
+          />
           <IconButton
             icon={<MaskIcon />}
             text={shouldNarrow ? undefined : Locale.Mask.Name}
@@ -279,13 +293,6 @@ export function SideBar(props: { className?: string }) {
               shadow
             />
           )}
-          <IconButton
-            icon={<DiscoveryIcon />}
-            text={shouldNarrow ? undefined : Locale.Discovery.Name}
-            className={styles["sidebar-bar-button"]}
-            onClick={() => setshowDiscoverySelector(true)}
-            shadow
-          />
         </div>
         {showDiscoverySelector && (
           <Selector
