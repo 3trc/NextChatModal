@@ -64,11 +64,11 @@ export const DEFAULT_CONFIG = {
   models: DEFAULT_MODELS as any as LLMModel[],
 
   modelConfig: {
-    model: "deepseek-r1:14b" as ModelType,
+    model: "phi4:latest" as ModelType,
     providerName: "OpenAI" as ServiceProvider,
     temperature: 0.5,
     top_p: 1,
-    max_tokens: 4000,
+    max_tokens: 16384,
     presence_penalty: 0,
     frequency_penalty: 0,
     sendMemory: true,
@@ -145,7 +145,7 @@ export const ModalConfigValidator = {
     return x as ModelType;
   },
   max_tokens(x: number) {
-    return limitNumber(x, 0, 512000, 1024);
+    return limitNumber(x, 0, 16384, 1024);
   },
   presence_penalty(x: number) {
     return limitNumber(x, -2, 2, 0);
