@@ -68,7 +68,7 @@
   .masks {
     flex-grow: 1;
     width: 100%;
-    overflow: auto;
+    // overflow: auto;
     align-items: center;
     padding-top: 20px;
 
@@ -86,14 +86,15 @@
 
     .mask-row {
       display: flex;
+      flex-wrap: wrap;
       // justify-content: center;
-      margin-bottom: 10px;
+      // margin-bottom: 10px;
 
-      @for $i from 1 to 10 {
-        &:nth-child(#{$i * 2}) {
-          margin-left: 50px;
-        }
-      }
+      // @for $i from 1 to 10 {
+      //   &:nth-child(#{$i * 2}) {
+      //     margin-left: 50px;
+      //   }
+      // }
 
       .mask {
         display: flex;
@@ -104,7 +105,7 @@
         background-color: var(--white);
         border-radius: 10px;
         margin-right: 10px;
-        max-width: 8em;
+        // max-width: 8em;
         transform: scale(1);
         cursor: pointer;
         transition: all ease 0.3s;
