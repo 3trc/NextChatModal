@@ -765,7 +765,7 @@ const cn = {
     NotShow: "不再展示",
     ConfirmNoShow: "确认禁用？禁用后可以随时在设置中重新启用。",
     Title: "挑选一个专家",
-    SubTitle: "现在开始，与专家背后的灵魂思维碰撞",
+    SubTitle: "现在开始，Perfma专家协助你解决问题",
     More: "查看全部",
   },
 
