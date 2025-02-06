@@ -28,7 +28,6 @@ import { isIOS, useMobileScreen } from "../utils";
 import dynamic from "next/dynamic";
 import { Selector, showConfirm } from "./ui-lib";
 import clsx from "clsx";
-import { isMcpEnabled } from "../mcp/actions";
 
 const DISCOVERY = [
   { name: Locale.Plugin.Name, path: Path.Plugins },
@@ -235,7 +234,8 @@ export function SideBar(props: { className?: string }) {
   useEffect(() => {
     // 检查 MCP 是否启用
     const checkMcpStatus = async () => {
-      const enabled = await isMcpEnabled();
+      // const enabled = await isMcpEnabled();
+      const enabled = false;
       setMcpEnabled(enabled);
       console.log("[SideBar] MCP enabled:", enabled);
     };
