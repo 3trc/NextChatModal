@@ -189,11 +189,11 @@
 }
 
 .chat-item:hover {
-  background-color: var(--hover-color);
+  background-color: var(--second);
 }
 
 .chat-item-selected {
-  border-color: var(--primary);
+  background-color: var(--actived);
 }
 
 .chat-item-title {

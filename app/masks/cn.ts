@@ -58,6 +58,21 @@ export const CN_MASKS: BuiltinMask[] = [
   //   builtin: true,
   //   createdAt: 1688899480510,
   // },
+  ...CUSTOM_MODEL_LIST.map(
+    (model) =>
+      ({
+        avatar: "1f916",
+        name: model.split("/")[1],
+        context: [],
+        modelConfig: {
+          model: model,
+          historyMessageCount: 0,
+        },
+        lang: "cn",
+        builtin: true,
+        createdAt: 1688899480511,
+      }) as BuiltinMask,
+  ),
   {
     avatar: "1f638",
     name: "文案写手",
@@ -84,21 +99,6 @@ export const CN_MASKS: BuiltinMask[] = [
     builtin: true,
     createdAt: 1688899480511,
   },
-  ...CUSTOM_MODEL_LIST.map(
-    (model) =>
-      ({
-        avatar: "1f638",
-        name: model.split("/")[1],
-        context: [],
-        modelConfig: {
-          model: model,
-          historyMessageCount: 0,
-        },
-        lang: "cn",
-        builtin: true,
-        createdAt: 1688899480511,
-      }) as BuiltinMask,
-  ),
   // {
   //   avatar: "1f978",
   //   name: "机器学习",

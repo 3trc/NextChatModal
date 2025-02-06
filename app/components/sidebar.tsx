@@ -266,7 +266,9 @@ export function SideBar(props: { className?: string }) {
             icon={<ModelIcon />}
             text={shouldNarrow ? undefined : Locale.Exporter.Model}
             className={styles["sidebar-bar-button"]}
-            onClick={() => setshowDiscoverySelector(true)}
+            onClick={() => {
+              navigate(Path.Masks, { state: { fromHome: true } });
+            }}
             shadow
           />
           <IconButton
