@@ -60,15 +60,15 @@ export const DEFAULT_CONFIG = {
   dontShowMaskSplashScreen: false, // dont show splash screen when create chat
   hideBuiltinMasks: false, // dont add builtin masks
 
-  customModels: "phi4:latest,deepseek-r1:14b,deepseek-r1:32b",
+  customModels: "mistral-small:24b,phi4:latest,deepseek-r1:14b,deepseek-r1:32b",
   models: DEFAULT_MODELS as any as LLMModel[],
 
   modelConfig: {
-    model: "phi4:latest" as ModelType,
+    model: "mistral-small:24b" as ModelType,
     providerName: "OpenAI" as ServiceProvider,
-    temperature: 0.5,
+    temperature: 0.15,
     top_p: 1,
-    max_tokens: 16384,
+    max_tokens: 32768,
     presence_penalty: 0,
     frequency_penalty: 0,
     sendMemory: true,
@@ -145,7 +145,7 @@ export const ModalConfigValidator = {
     return x as ModelType;
   },
   max_tokens(x: number) {
-    return limitNumber(x, 0, 16384, 1024);
+    return limitNumber(x, 0, 32768, 1024);
   },
   presence_penalty(x: number) {
     return limitNumber(x, -2, 2, 0);
