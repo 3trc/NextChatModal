@@ -100,6 +100,10 @@ if (mode !== "export") {
         source: "/api/proxy/alibaba/:path*",
         destination: "https://dashscope.aliyuncs.com/api/:path*",
       },
+      {
+        source: "/api/openai/:path*",
+        destination: "https://openrouter.ai/api/:path*",
+      },
     ];
 
     return {
