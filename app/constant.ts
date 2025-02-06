@@ -469,9 +469,12 @@ const CUSTOM_MODEL_LIST = [
   "deepseek/deepseek-chat",
   "deepseek/deepseek-r1:nitro",
   "deepseek/deepseek-r1",
+  "deepseek/deepseek-r1:free",
   "anthropic/claude-3.5-sonnet",
   "anthropic/claude-3.5-sonnet:beta",
   "openai/gpt-4o-mini",
+  "google/gemini-flash-1.5",
+  "mistralai/mistral-small-24b-instruct-2501",
 ];
 
 const openaiModels = [
