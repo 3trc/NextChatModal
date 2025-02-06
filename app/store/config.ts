@@ -38,6 +38,15 @@ export enum Theme {
 
 const config = getClientConfig();
 
+const CUSTOM_MODEL_LIST = [
+  "deepseek/deepseek-chat",
+  "deepseek/deepseek-r1:nitro",
+  "deepseek/deepseek-r1",
+  "anthropic/claude-3.5-sonnet",
+  "anthropic/claude-3.5-sonnet:beta",
+  "openai/gpt-4o-mini",
+];
+
 export const DEFAULT_CONFIG = {
   lastUpdate: Date.now(), // timestamp, to merge state
 
@@ -60,11 +69,11 @@ export const DEFAULT_CONFIG = {
   dontShowMaskSplashScreen: false, // dont show splash screen when create chat
   hideBuiltinMasks: false, // dont add builtin masks
 
-  customModels: "mistral-small:24b,phi4:latest,deepseek-r1:14b,deepseek-r1:32b",
+  customModels: CUSTOM_MODEL_LIST.join(","),
   models: DEFAULT_MODELS as any as LLMModel[],
 
   modelConfig: {
-    model: "mistral-small:24b" as ModelType,
+    model: CUSTOM_MODEL_LIST[0] as ModelType,
     providerName: "OpenAI" as ServiceProvider,
     temperature: 0.15,
     top_p: 1,
