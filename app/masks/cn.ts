@@ -1,5 +1,17 @@
 import { BuiltinMask } from "./typing";
 
+const CUSTOM_MODEL_LIST = [
+  "deepseek/deepseek-chat",
+  "deepseek/deepseek-r1:nitro",
+  "deepseek/deepseek-r1",
+  "deepseek/deepseek-r1:free",
+  "anthropic/claude-3.5-sonnet",
+  "anthropic/claude-3.5-sonnet:beta",
+  "openai/gpt-4o-mini",
+  "google/gemini-flash-1.5",
+  "mistralai/mistral-small-24b-instruct-2501",
+];
+
 export const CN_MASKS: BuiltinMask[] = [
   // {
   //   avatar: "1f5bc-fe0f",
@@ -72,6 +84,20 @@ export const CN_MASKS: BuiltinMask[] = [
     builtin: true,
     createdAt: 1688899480511,
   },
+  ...CUSTOM_MODEL_LIST.map(
+    (model) =>
+      ({
+        avatar: "1f638",
+        name: model.split("/")[1],
+        context: [],
+        modelConfig: {
+          model: model,
+        },
+        lang: "cn",
+        builtin: true,
+        createdAt: 1688899480511,
+      }) as BuiltinMask,
+  ),
   // {
   //   avatar: "1f978",
   //   name: "机器学习",
