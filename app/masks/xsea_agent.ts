@@ -2,7 +2,7 @@ import { BuiltinMask } from "./typing";
 
 export const XSEA_AGENTS: BuiltinMask[] = [
   {
-    avatar: "1f4dA",
+    avatar: "1f4da",
     name: "XSea知识库",
     context: [
       {
