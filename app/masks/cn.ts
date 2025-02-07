@@ -55,7 +55,7 @@ export const CN_MASKS: BuiltinMask[] = [
         context: [],
         modelConfig: {
           model: model,
-          historyMessageCount: 0,
+          max_tokens: 20000,
         },
         lang: "cn",
         builtin: true,

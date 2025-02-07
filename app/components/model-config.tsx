@@ -197,7 +197,7 @@ export function ModelConfigList(props: {
       >
         <InputRange
           aria={Locale.Settings.HistoryCount.Title}
-          title={props.modelConfig.historyMessageCount.toString()}
+          title={props.modelConfig.historyMessageCount?.toString()}
           value={props.modelConfig.historyMessageCount}
           min="0"
           max="64"
