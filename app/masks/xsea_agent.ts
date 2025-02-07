@@ -34,6 +34,7 @@ export const XSEA_AGENTS: BuiltinMask[] = [
     lang: "cn",
     builtin: true,
     createdAt: 1688899480511,
+    hideContext: true,
   },
   {
     avatar: "🔄",
