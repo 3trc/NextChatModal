@@ -43,6 +43,25 @@ export default class XSeaSimplifier {
     };
   }
 
+  public async ScriptPaging(
+    productId: string,
+    pageNum = 1,
+    pageSize = 10,
+    search = "",
+  ) {
+    const res = await http.post(`xsea/script/tree/listScriptDirectory`, {
+      workspaceId: productId,
+      name: search,
+    });
+    const list = res.data.object ?? [];
+    const allScripts = list.filter((item: any) => item.type !== "FOLDER");
+    const scriptsMeta = allScripts.map((item: any) => ({
+      id: item.id,
+      name: item.name,
+    }));
+    return scriptsMeta;
+  }
+
   public async GoalPaging(
     planId: string,
     pageNum = 1,

@@ -4,7 +4,7 @@ import XSeaSimplifier from "../simplifier/xseaSimplifier";
 export async function GET() {
   try {
     const xsea = new XSeaSimplifier();
-    return NextResponse.json(await xsea.GoalPaging("841402405221584896"), {
+    return NextResponse.json(await xsea.ScriptPaging("822351567109226496"), {
       status: 200,
       headers: {
         "Content-Type": "application/json",
