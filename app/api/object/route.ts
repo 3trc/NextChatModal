@@ -4,12 +4,19 @@ import XSeaSimplifier from "../simplifier/xseaSimplifier";
 export async function GET() {
   try {
     const xsea = new XSeaSimplifier();
-    return NextResponse.json(await xsea.ScriptPaging("822351567109226496"), {
-      status: 200,
-      headers: {
-        "Content-Type": "application/json",
+    return NextResponse.json(
+      await xsea.TestRecordPaging(
+        "822351567109226496",
+        "841633132873814016",
+        "841666697531527168",
+      ),
+      {
+        status: 200,
+        headers: {
+          "Content-Type": "application/json",
+        },
       },
-    });
+    );
   } catch (error) {
     return NextResponse.json(
       {
