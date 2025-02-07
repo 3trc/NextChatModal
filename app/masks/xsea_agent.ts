@@ -6,7 +6,7 @@ export const XSEA_AGENTS: BuiltinMask[] = [
     name: "XSea知识库",
     context: [
       {
-        id: "writer-0",
+        id: "",
         role: "user",
         content: "你好",
         date: "",
