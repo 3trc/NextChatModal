@@ -5,11 +5,7 @@ export async function GET() {
   try {
     const xsea = new XSeaSimplifier();
     return NextResponse.json(
-      await xsea.TestRecordPaging(
-        "822351567109226496",
-        "841633132873814016",
-        "841666697531527168",
-      ),
+      await xsea.TestReportPaging("841633132873814016"),
       {
         status: 200,
         headers: {

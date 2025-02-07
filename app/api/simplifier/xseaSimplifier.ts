@@ -113,4 +113,28 @@ export default class XSeaSimplifier {
       })),
     };
   }
+
+  public async TestReportPaging(
+    planId: string,
+    pageNum = 1,
+    pageSize = 10,
+    search = "",
+  ) {
+    const res = await http.post(`xsea/plan/testReport/page`, {
+      planId,
+      pageNum,
+      pageSize,
+      name: search,
+    });
+    const data = res.data.object ?? {};
+    return {
+      total: data.total,
+      pageNum: data.pageNum,
+      pageSize: data.pageSize,
+      list: (data.list ?? []).map((item: any) => ({
+        id: item.id,
+        name: item.name,
+      })),
+    };
+  }
 }
