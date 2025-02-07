@@ -465,15 +465,19 @@ export const VISION_MODEL_REGEXES = [
 
 export const EXCLUDE_VISION_MODEL_REGEXES = [/claude-3-5-haiku-20241022/];
 
-const CUSTOM_MODEL_LIST = [
-  "deepseek/deepseek-chat",
+export const CUSTOM_MODEL_LIST = [
+  "anthropic/claude-3.5-sonnet",
+  "anthropic/claude-3.5-sonnet:beta",
+  "openai/gpt-4o-2024-08-06",
+  "openai/gpt-4o-2024-11-20",
+  "google/gemini-flash-1.5",
+  "google/gemini-2.0-flash-001",
   "deepseek/deepseek-r1:nitro",
   "deepseek/deepseek-r1",
   "deepseek/deepseek-r1:free",
-  "anthropic/claude-3.5-sonnet",
-  "anthropic/claude-3.5-sonnet:beta",
-  "openai/gpt-4o-mini",
-  "google/gemini-flash-1.5",
+  "deepseek/deepseek-chat",
+  "mistralai/mistral-nemo",
+  "mistralai/codestral-2501",
   "mistralai/mistral-small-24b-instruct-2501",
 ];
 
