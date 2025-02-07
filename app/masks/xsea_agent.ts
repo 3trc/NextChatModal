@@ -2,7 +2,7 @@ import { BuiltinMask } from "./typing";
 
 export const XSEA_AGENTS: BuiltinMask[] = [
   {
-    avatar: "1f4da",
+    avatar: "📚",
     name: "XSea-知识库",
     context: [
       {
@@ -21,7 +21,7 @@ export const XSEA_AGENTS: BuiltinMask[] = [
     createdAt: 1688899480511,
   },
   {
-    avatar: "1f4da",
+    avatar: "🔄",
     name: "压测-Agent",
     context: [
       {
@@ -40,7 +40,7 @@ export const XSEA_AGENTS: BuiltinMask[] = [
     createdAt: 1688899480511,
   },
   {
-    avatar: "2699",
+    avatar: "🔄",
     name: "创建脚本-Agent",
     context: [
       {
@@ -59,7 +59,7 @@ export const XSEA_AGENTS: BuiltinMask[] = [
     createdAt: 1688899480511,
   },
   {
-    avatar: "2699",
+    avatar: "🔄",
     name: "创建目标-Agent",
     context: [
       {
@@ -78,7 +78,7 @@ export const XSEA_AGENTS: BuiltinMask[] = [
     createdAt: 1688899480511,
   },
   {
-    avatar: "2699",
+    avatar: "🔄",
     name: "产品列表-Agent",
     context: [
       {
@@ -97,7 +97,7 @@ export const XSEA_AGENTS: BuiltinMask[] = [
     createdAt: 1688899480511,
   },
   {
-    avatar: "2699",
+    avatar: "🔄",
     name: "计划列表-Agent",
     context: [
       {
@@ -116,7 +116,7 @@ export const XSEA_AGENTS: BuiltinMask[] = [
     createdAt: 1688899480511,
   },
   {
-    avatar: "2699",
+    avatar: "🔄",
     name: "脚本列表-Agent",
     context: [
       {
@@ -135,7 +135,7 @@ export const XSEA_AGENTS: BuiltinMask[] = [
     createdAt: 1688899480511,
   },
   {
-    avatar: "2699",
+    avatar: "🔄",
     name: "目标列表-Agent",
     context: [
       {
