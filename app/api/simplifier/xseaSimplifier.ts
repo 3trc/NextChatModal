@@ -74,6 +74,23 @@ export default class XSeaSimplifier {
     return scriptsMeta;
   }
 
+  public async ScriptCreate(productId: string, name: string, type = "JMETER") {
+    const res = await http.post(`xsea/script/add`, {
+      workspaceId: productId,
+      name,
+      type,
+      scriptTypeVO: type,
+      createType: type,
+      parentId: "-1",
+      level: 1,
+    });
+    const data = res.data.object;
+    return {
+      id: data,
+      name,
+    };
+  }
+
   public async GoalPaging(
     planId: string,
     pageNum = 1,
