@@ -29,6 +29,47 @@ class XSeaContextStack {
       target.name = name;
     }
   }
+
+  private cleanTop(key: string) {
+    this.setTop(key, "", "");
+  }
+
+  public envId(id: string, name: string) {
+    this.setTop("envId", id, name);
+  }
+
+  public productId(id: string, name: string) {
+    this.setTop("productId", id, name);
+    this.cleanTop("scriptId");
+    this.cleanTop("planId");
+    this.cleanTop("goalId");
+    this.cleanTop("testRecordId");
+    this.cleanTop("testReportId");
+  }
+
+  public scriptId(id: string, name: string) {
+    this.setTop("scriptId", id, name);
+  }
+
+  public planId(id: string, name: string) {
+    this.setTop("planId", id, name);
+    this.cleanTop("goalId");
+    this.cleanTop("testRecordId");
+    this.cleanTop("testReportId");
+  }
+
+  public goalId(id: string, name: string) {
+    this.setTop("goalId", id, name);
+    this.cleanTop("testRecordId");
+  }
+
+  public testRecordId(id: string, name: string) {
+    this.setTop("testRecordId", id, name);
+  }
+
+  public testReportId(id: string, name: string) {
+    this.setTop("testReportId", id, name);
+  }
 }
 
 interface XSeaContext {
