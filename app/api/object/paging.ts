@@ -12,7 +12,16 @@ export function pagingParams(request: NextRequest) {
   return { search, pageNum, pageSize };
 }
 
-export function pagingFactory(paging: (params: any, searchParams: any) => any) {
+export function pagingFactory(
+  paging: (
+    params: any,
+    searchParams: {
+      search: string;
+      pageNum: number;
+      pageSize: number;
+    },
+  ) => any,
+) {
   return async (request: NextRequest, { params }: { params: any }) => {
     try {
       const searchParams = pagingParams(request);
