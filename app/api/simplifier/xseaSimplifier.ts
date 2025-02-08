@@ -1,4 +1,5 @@
 import http from "./http";
+import dayjs from "dayjs";
 
 export default class XSeaSimplifier {
   public async ProductPaging(pageNum = 1, pageSize = 10, search = "") {
@@ -55,14 +56,14 @@ export default class XSeaSimplifier {
     };
   }
 
-  public async PlanCreate(productId: string, name: string, remark?: string) {
+  public async PlanCreate(productId: string, name: string, purpose: string) {
     const res = await http.post(`xsea/plan/v2/addPlan`, {
       workspaceId: productId,
       name,
-      planPurpose: remark,
+      planPurpose: purpose,
       planRange: {
-        start: "",
-        end: "",
+        start: dayjs().format("YYYY-MM-DD"),
+        end: dayjs().add(1, "weeks").format("YYYY-MM-DD"),
       },
       version: "1.0",
     });
