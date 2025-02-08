@@ -5,7 +5,7 @@ export async function GET() {
   try {
     const xsea = new XSeaSimplifier();
     return NextResponse.json(
-      await xsea.ProductCreate("鸡毛聚合2", "聚合接口创建"),
+      await xsea.ScriptCreate("977785836752531456", "鸡毛聚合接口脚本"),
       {
         status: 200,
         headers: {
