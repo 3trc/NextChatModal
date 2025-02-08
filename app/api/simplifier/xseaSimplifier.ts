@@ -2,6 +2,32 @@ import http from "./http";
 import dayjs from "dayjs";
 
 class XSeaContextStack {
+  private tasks = [
+    "创建产品",
+    "选择产品",
+
+    "创建脚本",
+    "选择脚本",
+    "分析脚本",
+    "优化/调整脚本",
+    "调试/执行脚本",
+
+    "创建计划",
+    "选择计划",
+
+    "创建目标",
+    "选择目标",
+    "分析目标",
+    "优化/调整目标",
+    "调试/执行目标",
+
+    "调试/执行压测",
+
+    "分析压测记录",
+
+    "选择压测报告",
+  ];
+
   private readonly stack = [
     [
       { key: "envId", id: "", name: "", symbol: "环境" },
