@@ -13,16 +13,19 @@ function pagingParams(request: NextRequest) {
   return { search, pageNum, pageSize };
 }
 
-export async function GET(request: NextRequest) {
+export async function GET(
+  request: NextRequest,
+  { params }: { params: { productId: string } },
+) {
   try {
-    const params = pagingParams(request);
+    const pgParams = pagingParams(request);
     const xsea = new XSeaSimplifier();
     return NextResponse.json(
       await xsea.PlanPaging(
-        "822351567109226496",
-        params.pageNum,
-        params.pageSize,
-        params.search,
+        params.productId,
+        pgParams.pageNum,
+        pgParams.pageSize,
+        pgParams.search,
       ),
       {
         status: 200,
