@@ -105,6 +105,7 @@ export default class XSeaSimplifier {
     const scriptsMeta = allScripts.map((item: any) => ({
       id: item.id,
       name: item.name,
+      url: `/${this.envId}/product/business/${productId}/script?scriptId=${item.id}`,
     }));
     return scriptsMeta;
   }
@@ -123,6 +124,7 @@ export default class XSeaSimplifier {
     return {
       id: data,
       name,
+      url: `/${this.envId}/product/business/${productId}/script?scriptId=${data}`,
     };
   }
 
