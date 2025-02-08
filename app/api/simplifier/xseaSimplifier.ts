@@ -146,6 +146,7 @@ export default class XSeaSimplifier {
       list: (data.list ?? []).map((item: any) => ({
         id: item.id,
         name: item.name,
+        url: `/${this.envId}/product/business/${item.workspaceId}/plan/target?id=${planId}&goalId=${item.id}`,
       })),
     };
   }
@@ -172,6 +173,9 @@ export default class XSeaSimplifier {
     return {
       id: data,
       name,
+      url: `/${
+        this.envId
+      }/product/business/${""}/plan/target?id=${planId}&goalId=${data}`,
     };
   }
 
