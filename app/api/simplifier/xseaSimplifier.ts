@@ -55,6 +55,24 @@ export default class XSeaSimplifier {
     };
   }
 
+  public async PlanCreate(productId: string, name: string, remark?: string) {
+    const res = await http.post(`xsea/plan/v2/addPlan`, {
+      workspaceId: productId,
+      name,
+      planPurpose: remark,
+      planRange: {
+        start: "",
+        end: "",
+      },
+      version: "1.0",
+    });
+    const data = res.data.object;
+    return {
+      id: data,
+      name,
+    };
+  }
+
   public async ScriptPaging(
     productId: string,
     pageNum = 1,
