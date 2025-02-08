@@ -159,6 +159,27 @@ export default class XSeaSimplifier {
     };
   }
 
+  public async GoalExecute(planId: string, goalId: string) {
+    let res = await http.post(`xsea/plan/goal/list`, {
+      planId,
+      pageNum: 1,
+      pageSize: 1e6,
+      condition: { name: "" },
+    });
+    const targetGoal =
+      res.data.object?.list?.find((item: any) => item.id === goalId) ?? {};
+    res = await http.post(`xsea/sceneExec/start`, {
+      envId: "822313712173449216",
+      workspaceId: targetGoal.workspaceId,
+      id: targetGoal.sceneId,
+      planId,
+      goalId,
+      flag: true,
+    });
+    const data = res.data.object;
+    return { id: data };
+  }
+
   public async TestRecordPaging(
     productId: string,
     planId: string,

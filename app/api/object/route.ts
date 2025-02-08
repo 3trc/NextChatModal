@@ -5,12 +5,7 @@ export async function GET() {
   try {
     const xsea = new XSeaSimplifier();
     return NextResponse.json(
-      await xsea.GoalCreate(
-        "852524668473987072",
-        "鸡毛聚合目标",
-        "SINGLE_USER_TREND",
-        ["852522201942216704"],
-      ),
+      await xsea.GoalExecute("852524668473987072", "852528027956301824"),
       {
         status: 200,
         headers: {
