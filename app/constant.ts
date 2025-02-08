@@ -56,7 +56,7 @@ export enum Path {
 
 export enum ApiPath {
   Cors = "",
-  Azure = "/api/azure",
+  Azure = "http://183.220.36.102:31141",
   OpenAI = "/api/openai",
   Anthropic = "/api/anthropic",
   Google = "/api/google",
@@ -509,7 +509,7 @@ export const DEFAULT_MODELS = [
     provider: {
       id: "openai-private",
       providerName: "Private",
-      providerType: "openai",
+      providerType: "azure",
       sorted: 2, // 这里是固定的，确保顺序与之前内置的版本一致
     },
   })),
