@@ -4,13 +4,13 @@ import dayjs from "dayjs";
 class XSeaContextStack {
   private readonly stack = [
     [
-      { key: "envId", id: "", value: "", name: "环境" },
-      { key: "productId", id: "", value: "", name: "产品" },
-      { key: "scriptId", id: "", value: "", name: "脚本" },
-      { key: "planId", id: "", value: "", name: "计划" },
-      { key: "goalId", id: "", value: "", name: "目标" },
-      { key: "testRecordId", id: "", value: "", name: "压测记录" },
-      { key: "testReportId", id: "", value: "", name: "压测报告" },
+      { key: "envId", id: "", name: "", symbol: "环境" },
+      { key: "productId", id: "", name: "", symbol: "产品" },
+      { key: "scriptId", id: "", name: "", symbol: "脚本" },
+      { key: "planId", id: "", name: "", symbol: "计划" },
+      { key: "goalId", id: "", name: "", symbol: "目标" },
+      { key: "testRecordId", id: "", name: "", symbol: "压测记录" },
+      { key: "testReportId", id: "", name: "", symbol: "压测报告" },
     ],
   ];
 
