@@ -12,6 +12,8 @@ interface XSeaContext {
 }
 
 export default class XSeaSimplifier {
+  public constructor(private readonly envId: string = "822313712173449216") {}
+
   public async ProductPaging(pageNum = 1, pageSize = 10, search = "") {
     const res = await http.post(`xsea/workspace/list`, {
       pageNum,
@@ -26,6 +28,7 @@ export default class XSeaSimplifier {
       list: (data.list ?? []).map((item: any) => ({
         id: item.id,
         name: item.name,
+        url: `/${this.envId}/product/business/${item.id}/overview?tab=0`,
       })),
     };
   }
@@ -39,6 +42,7 @@ export default class XSeaSimplifier {
     return {
       id: data.id,
       name: data.productName,
+      url: `/${this.envId}/product/business/${data.id}/overview?tab=0`,
     };
   }
 
@@ -62,6 +66,7 @@ export default class XSeaSimplifier {
       list: (data.list ?? []).map((item: any) => ({
         id: item.id,
         name: item.name,
+        url: `/${this.envId}/product/business/${productId}/plan/detail?id=${item.id}`,
       })),
     };
   }
@@ -81,6 +86,7 @@ export default class XSeaSimplifier {
     return {
       id: data,
       name,
+      url: `/${this.envId}/product/business/${productId}/plan/detail?id=${data}`,
     };
   }
 
