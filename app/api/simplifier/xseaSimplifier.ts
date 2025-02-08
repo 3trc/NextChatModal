@@ -134,6 +134,31 @@ export default class XSeaSimplifier {
     };
   }
 
+  public async GoalCreate(
+    planId: string,
+    name: string,
+    type: string,
+    sceneScriptIds: string[],
+  ) {
+    const res = await http.post(`xsea/plan/goal/save`, {
+      planId,
+      name,
+      type,
+      sceneScriptIds,
+      syncLoops: false,
+      syncModelConf: false,
+      syncRps: false,
+      syncScriptConf: true,
+      syncThinkTime: false,
+      syncTransactionPercent: false,
+    });
+    const data = res.data.object;
+    return {
+      id: data,
+      name,
+    };
+  }
+
   public async TestRecordPaging(
     productId: string,
     planId: string,
