@@ -17,4 +17,16 @@ export const MASS_MODELS: BuiltinMask[] = [
         createdAt: 1688899480511,
       }) as BuiltinMask,
   ),
+  {
+    avatar: "🤖",
+    name: "mistral-small:24b-instruct-2501-q4_K_M",
+    context: [],
+    modelConfig: {
+      model: "mistral-small:24b-instruct-2501-q4_K_M",
+      max_tokens: 20000,
+    },
+    lang: "cn",
+    builtin: true,
+    createdAt: 1688899480511,
+  },
 ];
