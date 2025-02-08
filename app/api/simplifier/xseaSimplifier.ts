@@ -19,6 +19,16 @@ class XSeaContextStack {
       JSON.parse(JSON.stringify(this.stack[this.stack.length - 1 - offset])),
     );
   }
+
+  private setTop(key: string, id: string, name: string) {
+    const target = this.stack[this.stack.length - 1].find(
+      (item) => item.key === key,
+    );
+    if (target) {
+      target.id = id;
+      target.name = name;
+    }
+  }
 }
 
 interface XSeaContext {
