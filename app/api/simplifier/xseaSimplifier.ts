@@ -1,11 +1,23 @@
 import http from "./http";
 import dayjs from "dayjs";
 
+class XSeaContextStack {
+  private keys = [
+    { key: "envId", id: "", value: "", name: "环境" },
+    { key: "productId", id: "", value: "", name: "产品" },
+    { key: "scriptId", id: "", value: "", name: "脚本" },
+    { key: "planId", id: "", value: "", name: "计划" },
+    { key: "goalId", id: "", value: "", name: "目标" },
+    { key: "testRecordId", id: "", value: "", name: "压测记录" },
+    { key: "testReportId", id: "", value: "", name: "压测报告" },
+  ];
+}
+
 interface XSeaContext {
   envId: string;
   productId: string;
-  planId: string;
   scriptId: string;
+  planId: string;
   goalId: string;
   testRecordId: string;
   testReportId: string;
