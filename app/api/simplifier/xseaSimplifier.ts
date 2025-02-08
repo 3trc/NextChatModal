@@ -199,7 +199,12 @@ export default class XSeaSimplifier {
       flag: true,
     });
     const data = res.data.object;
-    return { id: data };
+    return {
+      id: data,
+      url: `/${
+        this.envId
+      }/product/business/${""}/plan/targetExecute?sceneExecId=${data}`,
+    };
   }
 
   public async TestRecordPaging(
