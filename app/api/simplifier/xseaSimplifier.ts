@@ -1,6 +1,16 @@
 import http from "./http";
 import dayjs from "dayjs";
 
+interface XSeaContext {
+  envId: string;
+  productId: string;
+  planId: string;
+  scriptId: string;
+  goalId: string;
+  testRecordId: string;
+  testReportId: string;
+}
+
 export default class XSeaSimplifier {
   public async ProductPaging(pageNum = 1, pageSize = 10, search = "") {
     const res = await http.post(`xsea/workspace/list`, {
