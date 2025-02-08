@@ -5,7 +5,11 @@ export async function GET() {
   try {
     const xsea = new XSeaSimplifier();
     return NextResponse.json(
-      await xsea.GoalExecute("852524668473987072", "852528027956301824"),
+      await xsea.GoalExecute(
+        "822313712173449216",
+        "852524668473987072",
+        "852528027956301824",
+      ),
       {
         status: 200,
         headers: {

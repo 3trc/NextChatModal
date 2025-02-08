@@ -159,7 +159,7 @@ export default class XSeaSimplifier {
     };
   }
 
-  public async GoalExecute(planId: string, goalId: string) {
+  public async GoalExecute(envId: string, planId: string, goalId: string) {
     let res = await http.post(`xsea/plan/goal/list`, {
       planId,
       pageNum: 1,
@@ -169,11 +169,11 @@ export default class XSeaSimplifier {
     const targetGoal =
       res.data.object?.list?.find((item: any) => item.id === goalId) ?? {};
     res = await http.post(`xsea/sceneExec/start`, {
-      envId: "822313712173449216",
-      workspaceId: targetGoal.workspaceId,
-      id: targetGoal.sceneId,
+      envId,
       planId,
       goalId,
+      id: targetGoal.sceneId,
+      workspaceId: targetGoal.workspaceId,
       flag: true,
     });
     const data = res.data.object;
