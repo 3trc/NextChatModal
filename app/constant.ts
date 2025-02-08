@@ -482,19 +482,35 @@ export const CUSTOM_MODEL_LIST = [
   "mistralai/mistral-small-24b-instruct-2501",
 ];
 
-const openaiModels = [...CUSTOM_MODEL_LIST];
+export const PRIVATE_MODEL_LIST = [
+  "mistral-small:24b-instruct-2501-q4_K_M",
+  "phi4:latest",
+  "deepseek-r1:14b",
+  "deepseek-r1:32b",
+];
 
 let seq = 1000; // 内置的模型序号生成器从1000开始
 export const DEFAULT_MODELS = [
-  ...openaiModels.map((name) => ({
+  ...CUSTOM_MODEL_LIST.map((name) => ({
     name,
     available: true,
     sorted: seq++, // Global sequence sort(index)
     provider: {
-      id: "openai",
+      id: "openai-maas",
       providerName: "MAAS",
       providerType: "openai",
       sorted: 1, // 这里是固定的，确保顺序与之前内置的版本一致
+    },
+  })),
+  ...PRIVATE_MODEL_LIST.map((name) => ({
+    name,
+    available: true,
+    sorted: seq++, // Global sequence sort(index)
+    provider: {
+      id: "openai-private",
+      providerName: "Private",
+      providerType: "openai",
+      sorted: 2, // 这里是固定的，确保顺序与之前内置的版本一致
     },
   })),
   // ...openaiModels.map((name) => ({
