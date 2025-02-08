@@ -476,6 +476,7 @@ export const CUSTOM_MODEL_LIST = [
   "deepseek/deepseek-r1",
   "deepseek/deepseek-r1:free",
   "deepseek/deepseek-chat",
+  "deepseek/deepseek-r1-distill-qwen-32b",
   "mistralai/mistral-nemo",
   "mistralai/codestral-2501",
   "mistralai/mistral-small-24b-instruct-2501",
