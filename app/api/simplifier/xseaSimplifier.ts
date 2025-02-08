@@ -19,6 +19,18 @@ export default class XSeaSimplifier {
     };
   }
 
+  public async ProductCreate(name: string, remark?: string) {
+    const res = await http.post(`paas/products`, {
+      productName: name,
+      productDesc: remark,
+    });
+    const data = res.data.object ?? {};
+    return {
+      id: data.id,
+      name: data.productName,
+    };
+  }
+
   public async PlanPaging(
     productId: string,
     pageNum = 1,
