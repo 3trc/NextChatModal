@@ -73,7 +73,7 @@ export const DEFAULT_CONFIG = {
     presence_penalty: undefined as unknown as number,
     frequency_penalty: undefined as unknown as number,
     sendMemory: true,
-    historyMessageCount: 4,
+    historyMessageCount: 1e6,
     compressMessageLengthThreshold: 1000,
     compressModel: "",
     compressProviderName: "",
