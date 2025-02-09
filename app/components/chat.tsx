@@ -1781,6 +1781,7 @@ function _Chat() {
               }}
             >
               {messages
+                .filter((message) => message.role !== "system")
                 // TODO
                 // .filter((m) => !m.isMcpResponse)
                 .map((message, i) => {
