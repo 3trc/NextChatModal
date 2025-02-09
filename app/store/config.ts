@@ -64,11 +64,12 @@ export const DEFAULT_CONFIG = {
   models: DEFAULT_MODELS as any as LLMModel[],
 
   modelConfig: {
-    model: "anthropic/claude-3.5-sonnet" as ModelType,
+    model:
+      "MFDoom/deepseek-r1-tool-calling:14b-qwen-distill-q4_K_M" as ModelType,
     providerName: "OpenAI" as ServiceProvider,
     temperature: undefined as unknown as number,
     top_p: undefined as unknown as number,
-    max_tokens: undefined as unknown as number,
+    max_tokens: 131072 as unknown as number,
     presence_penalty: undefined as unknown as number,
     frequency_penalty: undefined as unknown as number,
     sendMemory: true,
