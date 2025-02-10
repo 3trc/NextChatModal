@@ -1001,6 +1001,7 @@ function _Chat() {
   const inputRef = useRef<HTMLTextAreaElement>(null);
   const [userInput, setUserInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [sendButtonLoading, setSendButtonLoading] = useState(false);
   const { submitKey, shouldSubmit } = useSubmitHandler();
   const scrollRef = useRef<HTMLDivElement>(null);
   const isScrolledToBottom = scrollRef?.current
@@ -1112,7 +1113,8 @@ function _Chat() {
       matchCommand.invoke();
       return;
     }
-    setIsLoading(true);
+
+    setSendButtonLoading(true);
     const mask = chatStore.currentSession().mask;
     const fullMask = CN_MASKS.find((item) => item.name === mask.name);
     mask.userMessageHook = fullMask?.userMessageHook;
@@ -1120,6 +1122,9 @@ function _Chat() {
     if (mask.userMessageHook) {
       await mask.userMessageHook(userInput);
     }
+    setSendButtonLoading(false);
+
+    setIsLoading(true);
     chatStore
       .onUserInput(userInput, attachImages)
       .then(() => setIsLoading(false));
