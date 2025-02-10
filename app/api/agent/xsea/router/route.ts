@@ -67,7 +67,7 @@ export async function GET(request: NextRequest, { params }: { params: any }) {
       记录: "知识库",
       其他: "知识库",
     },
-  };
+  } as any;
   try {
     const searchParams = request.nextUrl.searchParams;
     const userContent = (params?.content || searchParams.get("content")) ?? "";
@@ -112,8 +112,11 @@ export async function GET(request: NextRequest, { params }: { params: any }) {
       { role: "user", content: userContent },
     ]);
     const [actionIndex, entityIndex] = JSON.parse(result.content as string);
+    const action = actions[actionIndex - 1] ?? "其他";
+    const entity = entities[entityIndex - 1] ?? "其他";
+    const intention = agentsMap[action]?.[entity] ?? "知识库";
     return NextResponse.json(
-      { actionIndex, entityIndex },
+      { intention, action, entity, userContent },
       {
         status: 200,
         headers: {
