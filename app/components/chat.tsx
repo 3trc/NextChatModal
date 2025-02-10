@@ -1102,7 +1102,7 @@ function _Chat() {
     }
   };
 
-  const doSubmit = (userInput: string) => {
+  const doSubmit = async (userInput: string) => {
     if (userInput.trim() === "" && isEmpty(attachImages)) return;
     const matchCommand = chatCommands.match(userInput);
     if (matchCommand.matched) {
@@ -1112,7 +1112,10 @@ function _Chat() {
       return;
     }
     setIsLoading(true);
-    console.log(userInput, chatStore.currentSession().mask);
+    const mask = chatStore.currentSession().mask;
+    if (mask.userMessageHook) {
+      await mask.userMessageHook(userInput);
+    }
     chatStore
       .onUserInput(userInput, attachImages)
       .then(() => setIsLoading(false));
