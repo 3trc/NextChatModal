@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import model from "../modal";
+import model from "../model";
 
 export async function GET(request: NextRequest, { params }: { params: any }) {
   const actions = ["创建", "选择", "解释", "优化", "执行", "放弃", "其他"];
