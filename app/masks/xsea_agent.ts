@@ -9,13 +9,33 @@ export const XSEA_AGENTS: BuiltinMask[] = [
       {
         id: "",
         role: "system",
-        content: "",
+        content:
+          "你是用户消息的意图分析器，你需要对于用户的意图进行分类，你需要关注两个维度，1.行为是什么，2.实体是什么",
+        date: "",
+      },
+      {
+        id: "",
+        role: "system",
+        content: "行为有 1.创建 2.选择 2.分析 3.执行 4.其他",
+        date: "",
+      },
+      {
+        id: "",
+        role: "system",
+        content: "实体有 1.产品 2.脚本 3.计划 4.目标 5.压测记录 6.报告 7.其他",
+        date: "",
+      },
+      {
+        id: "",
+        role: "system",
+        content:
+          "接下来用户会问你问题，你不需要回答用户问题，你只需要输出用户的意图，选择对应的 行为 和 实体 的序号，如用户问，我想“执行那个目标”，你应该输出 “3,4”",
         date: "",
       },
     ],
     modelConfig: {
-      model: "mistral-small:24b-instruct-2501-q4_K_M",
-      max_tokens: 32768,
+      model: "MFDoom/deepseek-r1-tool-calling:32b-qwen-distill-q4_K_M",
+      max_tokens: 131072,
     },
     lang: "cn",
     builtin: true,
