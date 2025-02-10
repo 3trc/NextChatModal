@@ -1,5 +1,5 @@
 import { NextRequest } from "next/server";
-import model from "./model";
+import model from "../../../model";
 
 export async function POST(request: NextRequest, { params }: { params: any }) {
   const stream = new TransformStream();
