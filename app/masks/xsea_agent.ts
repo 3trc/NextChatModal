@@ -22,7 +22,7 @@ export const XSEA_AGENTS: BuiltinMask[] = [
       {
         id: "",
         role: "system",
-        content: "实体有 1.产品 2.脚本 3.计划 4.目标 5.压测记录 6.报告 7.其他",
+        content: "实体有 1.产品 2.脚本 3.计划 4.目标 5.记录 6.报告 7.其他",
         date: "",
       },
       {
