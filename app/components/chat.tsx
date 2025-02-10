@@ -2100,7 +2100,7 @@ function _Chat() {
                   className={styles["chat-input"]}
                   placeholder={Locale.Chat.Input(submitKey)}
                   onInput={(e) => onInput(e.currentTarget.value)}
-                  value={userInput}
+                  value={sendButtonLoading ? "" : userInput}
                   onKeyDown={onInputKeyDown}
                   onFocus={scrollToBottom}
                   onClick={scrollToBottom}
