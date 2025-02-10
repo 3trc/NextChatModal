@@ -5,6 +5,8 @@ const model = new ChatOllama({
   model: "phi4:latest",
   numCtx: 16384,
   keepAlive: "10000h",
+  streaming: true,
+  stop: ["<|im_start|>", "<|im_end|>", "<|im_sep|>"],
 });
 
 export default model;
