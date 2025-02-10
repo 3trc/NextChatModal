@@ -64,7 +64,8 @@ export const DEFAULT_CONFIG = {
   models: DEFAULT_MODELS as any as LLMModel[],
 
   modelConfig: {
-    model: "mistral-small:24b-instruct-2501-q4_K_M" as ModelType,
+    model:
+      "MFDoom/deepseek-r1-tool-calling:32b-qwen-distill-q4_K_M" as ModelType,
     providerName: "OpenAI" as ServiceProvider,
     temperature: undefined as unknown as number,
     top_p: undefined as unknown as number,

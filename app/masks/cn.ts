@@ -3,8 +3,8 @@ import { BuiltinMask } from "./typing";
 import { XSEA_AGENTS } from "./xsea_agent";
 
 export const CN_MASKS: BuiltinMask[] = [
-  ...MASS_MODELS,
   ...XSEA_AGENTS,
+  ...MASS_MODELS,
   // {
   //   avatar: "1f638",
   //   name: "文案写手",
