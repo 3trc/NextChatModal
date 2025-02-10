@@ -55,7 +55,7 @@ export const XSEA_AGENTS: BuiltinMask[] = [
     ],
     modelConfig: {
       model: "phi4:latest",
-      max_tokens: 131072,
+      max_tokens: 16384,
     },
     lang: "cn",
     builtin: true,
