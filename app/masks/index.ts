@@ -1,4 +1,5 @@
 import { Mask } from "../store/mask";
+import { CN_MASKS } from "./cn";
 
 import { type BuiltinMask } from "./typing";
 export { type BuiltinMask } from "./typing";
@@ -31,7 +32,7 @@ if (typeof window != "undefined") {
     })
     .then((masks) => {
       const { cn = [], tw = [], en = [] } = masks;
-      return [...cn, ...tw, ...en].map((m) => {
+      return [...CN_MASKS].map((m) => {
         BUILTIN_MASKS.push(BUILTIN_MASK_STORE.add(m));
       });
     });
