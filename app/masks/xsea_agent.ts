@@ -34,7 +34,7 @@ export const XSEA_AGENTS: BuiltinMask[] = [
       },
     ],
     modelConfig: {
-      model: "MFDoom/deepseek-r1-tool-calling:32b-qwen-distill-q4_K_M",
+      model: "MFDoom/deepseek-r1-tool-calling:14b-qwen-distill-q4_K_M",
       max_tokens: 131072,
     },
     lang: "cn",
