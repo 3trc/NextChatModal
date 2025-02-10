@@ -1114,15 +1114,21 @@ function _Chat() {
       return;
     }
 
-    setSendButtonLoading(true);
     const mask = chatStore.currentSession().mask;
     const fullMask = CN_MASKS.find((item) => item.name === mask.name);
     mask.userMessageHook = fullMask?.userMessageHook;
     mask.assistantMessageHook = fullMask?.assistantMessageHook;
     if (mask.userMessageHook) {
-      await mask.userMessageHook(userInput);
+      setSendButtonLoading(true);
+      try {
+        await mask.userMessageHook(userInput);
+      } catch (error) {
+        setSendButtonLoading(false);
+        console.error(error);
+        return;
+      }
+      setSendButtonLoading(false);
     }
-    setSendButtonLoading(false);
 
     setIsLoading(true);
     chatStore
