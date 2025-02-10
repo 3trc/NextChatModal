@@ -1104,43 +1104,50 @@ function _Chat() {
     }
   };
 
-  const doSubmit = async (userInput: string) => {
-    if (userInput.trim() === "" && isEmpty(attachImages)) return;
-    const matchCommand = chatCommands.match(userInput);
-    if (matchCommand.matched) {
-      setUserInput("");
-      setPromptHints([]);
-      matchCommand.invoke();
-      return;
-    }
-
-    const mask = chatStore.currentSession().mask;
-    const fullMask = CN_MASKS.find((item) => item.name === mask.name);
-    mask.userMessageHook = fullMask?.userMessageHook;
-    mask.assistantMessageHook = fullMask?.assistantMessageHook;
-    if (mask.userMessageHook) {
-      setSendButtonLoading(true);
-      try {
-        await mask.userMessageHook(userInput);
-      } catch (error) {
-        setSendButtonLoading(false);
-        console.error(error);
+  const doSubmit = useCallback(
+    async (userInput: string) => {
+      if (
+        (userInput.trim() === "" && isEmpty(attachImages)) ||
+        sendButtonLoading
+      )
+        return;
+      const matchCommand = chatCommands.match(userInput);
+      if (matchCommand.matched) {
+        setUserInput("");
+        setPromptHints([]);
+        matchCommand.invoke();
         return;
       }
-      setSendButtonLoading(false);
-    }
 
-    setIsLoading(true);
-    chatStore
-      .onUserInput(userInput, attachImages)
-      .then(() => setIsLoading(false));
-    setAttachImages([]);
-    chatStore.setLastInput(userInput);
-    setUserInput("");
-    setPromptHints([]);
-    if (!isMobileScreen) inputRef.current?.focus();
-    setAutoScroll(true);
-  };
+      const mask = chatStore.currentSession().mask;
+      const fullMask = CN_MASKS.find((item) => item.name === mask.name);
+      mask.userMessageHook = fullMask?.userMessageHook;
+      mask.assistantMessageHook = fullMask?.assistantMessageHook;
+      if (mask.userMessageHook) {
+        setSendButtonLoading(true);
+        try {
+          await mask.userMessageHook(userInput);
+        } catch (error) {
+          setSendButtonLoading(false);
+          console.error(error);
+          return;
+        }
+        setSendButtonLoading(false);
+      }
+
+      setIsLoading(true);
+      chatStore
+        .onUserInput(userInput, attachImages)
+        .then(() => setIsLoading(false));
+      setAttachImages([]);
+      chatStore.setLastInput(userInput);
+      setUserInput("");
+      setPromptHints([]);
+      if (!isMobileScreen) inputRef.current?.focus();
+      setAutoScroll(true);
+    },
+    [sendButtonLoading],
+  );
 
   const onPromptSelect = (prompt: RenderPrompt) => {
     setTimeout(() => {
