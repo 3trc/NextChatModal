@@ -124,6 +124,7 @@ import { getModelProvider } from "../utils/model";
 import { RealtimeChat } from "@/app/components/realtime-chat";
 import clsx from "clsx";
 import { getAvailableClientsCount } from "../mcp/actions";
+import { CN_MASKS } from "../masks/cn";
 
 const localStorage = safeLocalStorage();
 
@@ -1113,6 +1114,9 @@ function _Chat() {
     }
     setIsLoading(true);
     const mask = chatStore.currentSession().mask;
+    const fullMask = CN_MASKS.find((item) => item.name === mask.name);
+    mask.userMessageHook = fullMask?.userMessageHook;
+    mask.assistantMessageHook = fullMask?.assistantMessageHook;
     if (mask.userMessageHook) {
       await mask.userMessageHook(userInput);
     }
