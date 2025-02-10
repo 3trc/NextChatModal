@@ -20,6 +20,14 @@ export const XSEA_AGENTS: BuiltinMask[] = [
     lang: "cn",
     builtin: true,
     createdAt: 1688899480511,
+    userMessageHook: (message, context) => {
+      console.log("userMessageHook", message, context);
+      return Promise.resolve(context);
+    },
+    assistantMessageHook: (message, context) => {
+      console.log("assistantMessageHook", message, context);
+      return Promise.resolve(context);
+    },
   },
   {
     avatar: "🤔",
