@@ -1,3 +1,4 @@
+import axios from "axios";
 import { XSEA_Knowledge } from "./knowledge/xsea";
 import { BuiltinMask } from "./typing";
 
@@ -20,8 +21,11 @@ export const XSEA_AGENTS: BuiltinMask[] = [
     lang: "cn",
     builtin: true,
     createdAt: 1688899480511,
-    userMessageHook: (message) => {
-      console.log("userMessageHook", message);
+    userMessageHook: async (message) => {
+      const res = await axios.get(`/api/agent/xsea/router`, {
+        params: { content: message },
+      });
+      console.log("userMessageHook", message, res);
     },
     assistantMessageHook: (message) => {
       console.log("assistantMessageHook", message);
