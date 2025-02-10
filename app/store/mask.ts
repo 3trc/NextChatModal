@@ -20,6 +20,9 @@ export type Mask = {
   plugin?: string[];
   enableArtifacts?: boolean;
   enableCodeFold?: boolean;
+
+  userMessageHook?: (message: string, context: any[]) => Promise<any[]>;
+  assistantMessageHook?: (message: string, context: any[]) => Promise<any[]>;
 };
 
 export const DEFAULT_MASK_STATE = {

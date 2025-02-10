@@ -1112,6 +1112,7 @@ function _Chat() {
       return;
     }
     setIsLoading(true);
+    console.log(userInput, chatStore.currentSession().mask);
     chatStore
       .onUserInput(userInput, attachImages)
       .then(() => setIsLoading(false));
