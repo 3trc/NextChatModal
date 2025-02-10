@@ -4,7 +4,7 @@ import { BuiltinMask } from "./typing";
 export const XSEA_AGENTS: BuiltinMask[] = [
   {
     avatar: "🤖",
-    name: "XSea-Agent",
+    name: "XSea智能体",
     context: [
       {
         id: "",
