@@ -1980,9 +1980,10 @@ function _Chat() {
                               key={message.streaming ? "loading" : "done"}
                               content={getMessageTextContent(message)}
                               loading={
-                                (message.preview || message.streaming) &&
-                                message.content.length === 0 &&
-                                !isUser
+                                message.content === "……" ||
+                                ((message.preview || message.streaming) &&
+                                  message.content.length === 0 &&
+                                  !isUser)
                               }
                               //   onContextMenu={(e) => onRightClick(e, message)} // hard to use
                               onDoubleClickCapture={() => {
