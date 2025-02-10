@@ -3,6 +3,25 @@ import { BuiltinMask } from "./typing";
 
 export const XSEA_AGENTS: BuiltinMask[] = [
   {
+    avatar: "🤖",
+    name: "XSea-Agent",
+    context: [
+      {
+        id: "",
+        role: "system",
+        content: ``.trim(),
+        date: "",
+      },
+    ],
+    modelConfig: {
+      model: "phi4:latest",
+      max_tokens: 16384,
+    },
+    lang: "cn",
+    builtin: true,
+    createdAt: 1688899480511,
+  },
+  {
     avatar: "🤔",
     name: "意图识别",
     context: [
