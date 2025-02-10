@@ -8,6 +8,8 @@ const model = new ChatOllama({
 });
 
 export async function GET(request: NextRequest, { params }: { params: any }) {
+  const actions = ["创建", "选择", "解释", "优化", "执行", "放弃", "其他"];
+  const entities = ["产品", "脚本", "计划", "压测", "记录", "其他"];
   try {
     const searchParams = request.nextUrl.searchParams;
     const userContent = (params?.content || searchParams.get("content")) ?? "";
