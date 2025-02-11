@@ -38,6 +38,7 @@ import { collectModelsWithDefaultModel } from "../utils/model";
 import { createEmptyMask, Mask } from "./mask";
 import { executeMcpAction, getAllTools } from "../mcp/actions";
 import { extractMcpJson, isMcpJson } from "../mcp/utils";
+import { CN_MASKS } from "../masks/cn";
 
 const localStorage = safeLocalStorage();
 
@@ -325,6 +326,15 @@ export const useChatStore = createPersistStore(
           currentSessionIndex: 0,
           sessions: [session].concat(state.sessions),
         }));
+      },
+
+      newSessionX(maskName: string, context: any) {
+        const targetMask = CN_MASKS.find((mask) => mask.name === maskName);
+        if (targetMask) {
+          this.newSession(targetMask as Mask);
+        } else {
+          alert("目标Agent不存在，请联系管理员");
+        }
       },
 
       nextSession(delta: number) {

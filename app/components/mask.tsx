@@ -601,7 +601,7 @@ export function MaskPage() {
                     icon={<AddIcon />}
                     text={Locale.Mask.Item.Chat}
                     onClick={() => {
-                      chatStore.newSession(m);
+                      chatStore.newSessionX("选择脚本", {});
                       navigate(Path.Chat);
                     }}
                   />
