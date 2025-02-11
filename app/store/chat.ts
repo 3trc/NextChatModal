@@ -305,8 +305,10 @@ export const useChatStore = createPersistStore(
         });
       },
 
-      newSession(mask?: Mask) {
+      newSession(mask?: Mask, messages: ChatMessage[] = []) {
         const session = createEmptySession();
+
+        session.messages.push(...messages);
 
         if (mask) {
           const config = useAppConfig.getState();
@@ -339,31 +341,28 @@ export const useChatStore = createPersistStore(
         const prevMask = this.currentSession().mask;
         const prevMessages = this.currentSession().messages;
         if (consequent === "FULL") {
-          targetMask.context.unshift(...prevMessages, {
+          prevMessages.push({
             id: "",
             role: "system",
             content: `The above dialogue is the user's dialogue content in the previous scene, The user was doing ${prevMask.name} before chatting, which is of secondary priority. You do not need to pay attention to the characters, constraints, etc., you only need to pay attention to the valuable conclusive information in the previous scene. The first priority is the information below.`,
             date: "",
           });
-          console.log("targetMask", targetMask);
         } else if (consequent === "NAME") {
-          targetMask.context.unshift(
-            ...prevMessages.map((message) => ({
-              ...message,
-              isMcpResponse: true,
-            })),
-            {
-              id: "",
-              role: "system",
-              content: `The user was doing ${prevMask.name} before chatting, You need to pay attention to the following content.`,
-              date: "",
-            },
-          );
-          console.log("targetMask", targetMask);
+          prevMessages.push({
+            id: "",
+            role: "system",
+            content: `The user was doing ${prevMask.name} before chatting, You need to pay attention to the following content.`,
+            date: "",
+            isMcpResponse: true,
+          });
+        } else {
+          prevMessages.forEach((message) => {
+            message.isMcpResponse = true;
+          });
         }
 
         if (targetMask) {
-          this.newSession(targetMask);
+          this.newSession(targetMask, prevMessages);
         } else {
           alert("目标Agent不存在，请联系管理员");
         }
