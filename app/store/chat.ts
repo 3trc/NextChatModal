@@ -333,6 +333,7 @@ export const useChatStore = createPersistStore(
       newSessionX(
         maskName: string,
         consequent: "NAME" | "FULL" | "NONE" = "NONE",
+        active = true,
       ) {
         const targetMask: Mask = JSON.parse(
           JSON.stringify(CN_MASKS.find((mask) => mask.name === maskName)),
