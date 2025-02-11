@@ -125,6 +125,7 @@ import { RealtimeChat } from "@/app/components/realtime-chat";
 import clsx from "clsx";
 import { getAvailableClientsCount } from "../mcp/actions";
 import { CN_MASKS } from "../masks/cn";
+import XSeaSelector from "./xseaSelector";
 
 const localStorage = safeLocalStorage();
 
@@ -2004,7 +2005,7 @@ function _Chat() {
                                 getMessageTextContent(message) ?? ""
                               ).trim();
                               if (content.startsWith("<")) {
-                                return <span>UI组件</span>;
+                                return <XSeaSelector message={content} />;
                               } else {
                                 return (
                                   <Markdown
