@@ -1739,6 +1739,11 @@ function _Chat() {
             </div>
           </div>
           <div className="window-actions">
+            <div className={styles.route_selector}>
+              <span>公海产品</span>
+              <span>/</span>
+              <span>公海计划</span>
+            </div>
             <div className="window-action-button">
               <IconButton
                 icon={<ReloadIcon />}
