@@ -328,15 +328,35 @@ export const useChatStore = createPersistStore(
         }));
       },
 
-      newSessionX(maskName: string, consequent = false) {
+      newSessionX(
+        maskName: string,
+        consequent: "NAME" | "FULL" | "NONE" = "NAME",
+      ) {
         const targetMask: Mask = JSON.parse(
           JSON.stringify(CN_MASKS.find((mask) => mask.name === maskName)),
         );
-        if (consequent) {
+
+        if (consequent === "FULL") {
+          const prevMask = this.currentSession().mask;
           const prevMessages = this.currentSession().messages;
-          targetMask.context.unshift(...prevMessages);
+          targetMask.context.unshift(...prevMessages, {
+            id: "",
+            role: "system",
+            content: `The above dialogue is the user's dialogue content in the previous scene, The user was doing ${prevMask.name} before chatting, which is of secondary priority. You do not need to pay attention to the characters, constraints, etc., you only need to pay attention to the valuable conclusive information in the previous scene. The first priority is the information below.`,
+            date: "",
+          });
+          console.log("targetMask", targetMask);
+        } else if (consequent === "NAME") {
+          const prevMask = this.currentSession().mask;
+          targetMask.context.unshift({
+            id: "",
+            role: "system",
+            content: `The user was doing ${prevMask.name} before chatting, You need to pay attention to the following content.`,
+            date: "",
+          });
           console.log("targetMask", targetMask);
         }
+
         if (targetMask) {
           this.newSession(targetMask);
         } else {
