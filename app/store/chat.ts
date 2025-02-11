@@ -328,10 +328,17 @@ export const useChatStore = createPersistStore(
         }));
       },
 
-      newSessionX(maskName: string, context: any) {
-        const targetMask = CN_MASKS.find((mask) => mask.name === maskName);
+      newSessionX(maskName: string, consequent = false) {
+        const targetMask: Mask = JSON.parse(
+          JSON.stringify(CN_MASKS.find((mask) => mask.name === maskName)),
+        );
+        if (consequent) {
+          const prevMessages = this.currentSession().messages;
+          targetMask.context.unshift(...prevMessages);
+          console.log("targetMask", targetMask);
+        }
         if (targetMask) {
-          this.newSession(targetMask as Mask);
+          this.newSession(targetMask);
         } else {
           alert("目标Agent不存在，请联系管理员");
         }
