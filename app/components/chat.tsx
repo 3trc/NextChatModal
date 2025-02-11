@@ -1999,25 +1999,38 @@ function _Chat() {
                             </div>
                           )}
                           <div className={styles["chat-message-item"]}>
-                            <Markdown
-                              key={message.streaming ? "loading" : "done"}
-                              content={getMessageTextContent(message)}
-                              loading={
-                                message.content === "……" ||
-                                ((message.preview || message.streaming) &&
-                                  message.content.length === 0 &&
-                                  !isUser)
+                            {(() => {
+                              const content = (
+                                getMessageTextContent(message) ?? ""
+                              ).trim();
+                              if (content.startsWith("<")) {
+                                return <span>UI组件</span>;
+                              } else {
+                                return (
+                                  <Markdown
+                                    key={message.streaming ? "loading" : "done"}
+                                    content={getMessageTextContent(message)}
+                                    loading={
+                                      message.content === "……" ||
+                                      ((message.preview || message.streaming) &&
+                                        message.content.length === 0 &&
+                                        !isUser)
+                                    }
+                                    //   onContextMenu={(e) => onRightClick(e, message)} // hard to use
+                                    onDoubleClickCapture={() => {
+                                      if (!isMobileScreen) return;
+                                      setUserInput(
+                                        getMessageTextContent(message),
+                                      );
+                                    }}
+                                    fontSize={fontSize}
+                                    fontFamily={fontFamily}
+                                    parentRef={scrollRef}
+                                    defaultShow={i >= messages.length - 6}
+                                  />
+                                );
                               }
-                              //   onContextMenu={(e) => onRightClick(e, message)} // hard to use
-                              onDoubleClickCapture={() => {
-                                if (!isMobileScreen) return;
-                                setUserInput(getMessageTextContent(message));
-                              }}
-                              fontSize={fontSize}
-                              fontFamily={fontFamily}
-                              parentRef={scrollRef}
-                              defaultShow={i >= messages.length - 6}
-                            />
+                            })()}
                             {getMessageImages(message).length == 1 && (
                               <img
                                 className={styles["chat-message-item-image"]}
