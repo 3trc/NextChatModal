@@ -5,6 +5,7 @@ export const GET = pagingFactory(async (params, searchParams) => {
   const xsea = new XSeaSimplifier();
   return await xsea.ScriptPaging(
     params.productId,
+    searchParams.type,
     searchParams.pageNum,
     searchParams.pageSize,
     searchParams.search,

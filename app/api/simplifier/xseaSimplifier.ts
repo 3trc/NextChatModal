@@ -189,6 +189,7 @@ export default class XSeaSimplifier {
 
   public async ScriptPaging(
     productId: string,
+    type?: string,
     pageNum = 1,
     pageSize = 10,
     search = "",
@@ -196,6 +197,7 @@ export default class XSeaSimplifier {
     const res = await http.post(`xsea/script/tree/listScriptDirectory`, {
       workspaceId: productId,
       name: search,
+      type,
     });
     const list = res.data.object ?? [];
     const allScripts = list.filter((item: any) => item.type !== "FOLDER");

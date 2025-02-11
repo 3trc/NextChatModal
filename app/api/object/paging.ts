@@ -9,7 +9,8 @@ export function pagingParams(request: NextRequest) {
   const pageSize = searchParams.has("pageSize")
     ? Number(searchParams.get("pageSize"))
     : 10;
-  return { search, pageNum, pageSize };
+  const type = searchParams.has("type") ? searchParams.get("type")! : undefined;
+  return { search, pageNum, pageSize, type };
 }
 
 export function pagingFactory(
@@ -19,6 +20,7 @@ export function pagingFactory(
       search: string;
       pageNum: number;
       pageSize: number;
+      type?: string;
     },
   ) => any,
 ) {

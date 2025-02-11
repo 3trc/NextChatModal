@@ -45,7 +45,7 @@ const XSeaSelector = (props: { message: string }) => {
         res = await axios.get(
           `/api/object/xsea/product/${workspaceId}/script`,
           {
-            params: newFilter,
+            params: { ...newFilter, type: "JMETER" },
           },
         );
         setPage(res.data);
@@ -54,7 +54,7 @@ const XSeaSelector = (props: { message: string }) => {
         res = await axios.get(
           `/api/object/xsea/product/${workspaceId}/script`,
           {
-            params: newFilter,
+            params: { ...newFilter, type: "GATLING" },
           },
         );
         setPage(res.data);
@@ -63,7 +63,7 @@ const XSeaSelector = (props: { message: string }) => {
         res = await axios.get(
           `/api/object/xsea/product/${workspaceId}/script`,
           {
-            params: newFilter,
+            params: { ...newFilter, type: "SHELL" },
           },
         );
         setPage(res.data);
