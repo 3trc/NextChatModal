@@ -204,7 +204,12 @@ export default class XSeaSimplifier {
       name: item.name,
       url: `/${this.envId}/product/business/${productId}/script?scriptId=${item.id}`,
     }));
-    return scriptsMeta;
+    return {
+      pageNum: 1,
+      pageSize: scriptsMeta.length,
+      list: scriptsMeta,
+      total: scriptsMeta.length,
+    };
   }
 
   public async ScriptCreate(productId: string, name: string, type = "JMETER") {
