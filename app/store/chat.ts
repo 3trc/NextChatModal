@@ -332,28 +332,37 @@ export const useChatStore = createPersistStore(
 
       newSessionX(
         maskName: string,
-        consequent: "NAME" | "FULL" | "NONE" = "NAME",
+        consequent: "NAME" | "FULL" | "NONE" = "NONE",
       ) {
         const targetMask: Mask = JSON.parse(
           JSON.stringify(CN_MASKS.find((mask) => mask.name === maskName)),
         );
 
         const prevMask = this.currentSession().mask;
-        const prevMessages = this.currentSession().messages;
+        const prevMessages: ChatMessage[] = JSON.parse(
+          JSON.stringify(this.currentSession().messages),
+        );
         if (consequent === "FULL") {
+          prevMessages.forEach((message) => {
+            message.isMcpResponse = false;
+          });
           prevMessages.push({
             id: "",
             role: "system",
             content: `The above dialogue is the user's dialogue content in the previous scene, The user was doing ${prevMask.name} before chatting, which is of secondary priority. You do not need to pay attention to the characters, constraints, etc., you only need to pay attention to the valuable conclusive information in the previous scene. The first priority is the information below.`,
             date: "",
+            isMcpResponse: false,
           });
         } else if (consequent === "NAME") {
+          prevMessages.forEach((message) => {
+            message.isMcpResponse = true;
+          });
           prevMessages.push({
             id: "",
             role: "system",
             content: `The user was doing ${prevMask.name} before chatting, You need to pay attention to the following content.`,
             date: "",
-            isMcpResponse: true,
+            isMcpResponse: false,
           });
         } else {
           prevMessages.forEach((message) => {

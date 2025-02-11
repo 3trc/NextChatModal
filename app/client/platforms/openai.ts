@@ -195,7 +195,9 @@ export class ChatGPTApi implements LLMApi {
     let requestPayload: RequestPayload | DalleRequestPayload;
 
     const isDalle3 = _isDalle3(options.config.model);
-    const isO1OrO3 = options.config.model.startsWith("o1") || options.config.model.startsWith("o3");
+    const isO1OrO3 =
+      options.config.model.startsWith("o1") ||
+      options.config.model.startsWith("o3");
     if (isDalle3) {
       const prompt = getMessageTextContent(
         options.messages.slice(-1)?.pop() as any,
@@ -213,7 +215,9 @@ export class ChatGPTApi implements LLMApi {
     } else {
       const visionModel = isVisionModel(options.config.model);
       const messages: ChatOptions["messages"] = [];
-      for (const v of options.messages) {
+      for (const v of options.messages.filter(
+        (message: any) => !message.isMcpResponse,
+      )) {
         const content = visionModel
           ? await preProcessImageContent(v.content)
           : getMessageTextContent(v);
