@@ -2,22 +2,33 @@
 
 import React from "react";
 import styles from "./xseaSelector.module.scss";
+import { Table } from "antd";
 
 const XSeaSelector = (props: { message: string }) => {
   return (
     <div className={styles.com}>
-      <ul className={styles.list}>
-        <li>
-          <input type="checkbox" />
-          <span>脚本1</span>
-        </li>
-        <li>
-          <input type="checkbox" />
-          <span>脚本2</span>
-        </li>
-      </ul>
+      <div className={styles.introduction}>
+        <span>以下是脚本列表</span>
+      </div>
       <div>
-        <button>确认</button>
+        <Table
+          size="small"
+          bordered
+          columns={[
+            {
+              title: "名称",
+              dataIndex: "name",
+            },
+          ]}
+          dataSource={[
+            {
+              name: "脚本1",
+            },
+            {
+              name: "脚本2",
+            },
+          ]}
+        />
       </div>
     </div>
   );

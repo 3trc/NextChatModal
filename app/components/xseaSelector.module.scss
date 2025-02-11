@@ -1,8 +1,11 @@
 .com {
-  font-size: 14px;
-  ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
+  min-width: 500px;
+  .introduction {
+    margin: 1px 0 5px 0;
+  }
+  :global {
+    .ant-pagination {
+      margin-bottom: 0!important;
+    }
   }
 }
