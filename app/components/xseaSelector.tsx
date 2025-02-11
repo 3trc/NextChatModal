@@ -41,6 +41,33 @@ const XSeaSelector = (props: { message: string }) => {
         });
         setPage(res.data);
       }
+      if (label === "<ui-jmeter-scripts>") {
+        res = await axios.get(
+          `/api/object/xsea/product/${workspaceId}/script`,
+          {
+            params: newFilter,
+          },
+        );
+        setPage(res.data);
+      }
+      if (label === "<ui-gatling-scripts>") {
+        res = await axios.get(
+          `/api/object/xsea/product/${workspaceId}/script`,
+          {
+            params: newFilter,
+          },
+        );
+        setPage(res.data);
+      }
+      if (label === "<ui-shell-scripts>") {
+        res = await axios.get(
+          `/api/object/xsea/product/${workspaceId}/script`,
+          {
+            params: newFilter,
+          },
+        );
+        setPage(res.data);
+      }
       if (label === "<ui-plans>") {
         res = await axios.get(`/api/object/xsea/product/${workspaceId}/plan`, {
           params: newFilter,
