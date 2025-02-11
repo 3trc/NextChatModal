@@ -3,6 +3,15 @@
   .introduction {
     margin: 3px 0 5px 0;
   }
+  .title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 7px;
+    .searcher {
+      width: 200px;
+    }
+  }
   :global {
     .ant-pagination {
       margin-bottom: 0!important;

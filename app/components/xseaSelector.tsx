@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import styles from "./xseaSelector.module.scss";
-import { Table } from "antd";
+import { Input, Table } from "antd";
 import axios, { AxiosResponse } from "axios";
 
 const workspaceId = "849903850940473344";
@@ -102,6 +102,15 @@ const XSeaSelector = (props: { message: string }) => {
     <div className={styles.com}>
       <div className={styles.introduction}>
         <span>以下是现有可供选择的{LABELS_MAP[label]}列表：</span>
+      </div>
+      <div className={styles.title}>
+        <span></span>
+        <Input.Search
+          className={styles.searcher}
+          size="middle"
+          placeholder="请输入任意关键词搜索"
+          onSearch={(value) => updatePage({ name: value, pageNum: 1 })}
+        />
       </div>
       <div>
         <Table
