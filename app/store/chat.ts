@@ -336,9 +336,9 @@ export const useChatStore = createPersistStore(
           JSON.stringify(CN_MASKS.find((mask) => mask.name === maskName)),
         );
 
+        const prevMask = this.currentSession().mask;
+        const prevMessages = this.currentSession().messages;
         if (consequent === "FULL") {
-          const prevMask = this.currentSession().mask;
-          const prevMessages = this.currentSession().messages;
           targetMask.context.unshift(...prevMessages, {
             id: "",
             role: "system",
@@ -347,13 +347,18 @@ export const useChatStore = createPersistStore(
           });
           console.log("targetMask", targetMask);
         } else if (consequent === "NAME") {
-          const prevMask = this.currentSession().mask;
-          targetMask.context.unshift({
-            id: "",
-            role: "system",
-            content: `The user was doing ${prevMask.name} before chatting, You need to pay attention to the following content.`,
-            date: "",
-          });
+          targetMask.context.unshift(
+            ...prevMessages.map((message) => ({
+              ...message,
+              isMcpResponse: true,
+            })),
+            {
+              id: "",
+              role: "system",
+              content: `The user was doing ${prevMask.name} before chatting, You need to pay attention to the following content.`,
+              date: "",
+            },
+          );
           console.log("targetMask", targetMask);
         }
 
