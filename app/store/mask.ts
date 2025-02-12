@@ -33,7 +33,10 @@ export type Mask = {
       | {
           [entity: string]:
             | {
+                // 要调用的目标Agent名称
                 call?: string;
+                // 过场白
+                bridgeMessages?: ChatMessage[];
               }
             | number
             | null
