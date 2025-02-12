@@ -1130,16 +1130,19 @@ function _Chat() {
         try {
           const hookResult = await mask.userMessageHook(userInput);
           if (hookResult) {
-            console.log("意图分类:", hookResult.intention);
-            const sessionX = chatStore.newSessionX(
-              `XSea-${hookResult.intention}`,
-              "NONE",
-            );
-            if (sessionX) {
-              navigate(Path.Chat);
-              chatStore.onUserInput(hookResult.userContent);
-              setSendButtonLoading(false);
-              return;
+            // 根据意图识别获取下一个状态
+            const nextState =
+              mask.stateMap?.[hookResult.action]?.[hookResult.entity];
+            console.log("【意图分类】:", hookResult);
+            console.log("【下一个状态】:", nextState);
+            if (nextState && nextState.call && nextState.call !== mask.name) {
+              const sessionX = chatStore.newSessionX(nextState.call, "NONE");
+              if (sessionX) {
+                navigate(Path.Chat);
+                chatStore.onUserInput(hookResult.userContent);
+                setSendButtonLoading(false);
+                return;
+              }
             }
           }
         } catch (error) {
