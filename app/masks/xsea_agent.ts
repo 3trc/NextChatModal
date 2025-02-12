@@ -1,7 +1,6 @@
 import axios from "axios";
 import { BuiltinMask } from "./typing";
 import { AgentSwitchInfo } from "../store/mask";
-import { ChatMessage } from "../store";
 
 // XSea-智能体下属的所有的Agent的同意发送意图识别Hook
 const xseaAgentUserMessageHook = async (message: string) => {
@@ -42,7 +41,7 @@ const 执行压测: () => AgentSwitchInfo = () => {
 看起来用户想进行压测但是没有选择脚本，用户需要选择一些 JMeter 或者 Gatling 脚本用于压测，请你询问用户需要选择的类型是 JMeter 还是 Gatling
           `.trim(),
         },
-      ] as ChatMessage[],
+      ],
     };
   } else {
     return {

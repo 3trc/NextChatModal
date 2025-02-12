@@ -45,6 +45,11 @@ export interface RequestMessage {
   content: string | MultimodalContent[];
 }
 
+export interface ChatMessageBase {
+  role: MessageRole;
+  content: string;
+}
+
 export interface LLMConfig {
   model: string;
   providerName?: string;

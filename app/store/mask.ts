@@ -5,12 +5,13 @@ import { ModelConfig, useAppConfig } from "./config";
 import { StoreKey } from "../constant";
 import { nanoid } from "nanoid";
 import { createPersistStore } from "../utils/store";
+import { ChatMessageBase } from "../client/api";
 
 export interface AgentSwitchInfo {
   // 要调用的目标Agent名称
   call?: string;
   // 过场白
-  bridgeMessages?: ChatMessage[];
+  bridgeMessages?: ChatMessageBase[];
 }
 
 export type Mask = {

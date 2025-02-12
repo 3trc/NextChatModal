@@ -1148,7 +1148,10 @@ function _Chat() {
               const sessionX = chatStore.newSessionX(nextState.call, "NONE");
               if (sessionX) {
                 navigate(Path.Chat);
-                // chatStore.onSystemInput(hookResult.userContent);
+                chatStore.onSystemInput([
+                  ...(nextState.bridgeMessages ?? []),
+                  { role: "user", content: hookResult.userContent },
+                ]);
                 setSendButtonLoading(false);
                 return;
               }
