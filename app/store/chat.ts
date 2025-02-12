@@ -373,8 +373,10 @@ export const useChatStore = createPersistStore(
 
         if (targetMask) {
           this.newSession(targetMask, prevMessages);
+          return { targetMask, prevMessages };
         } else {
-          alert("目标Agent不存在，请联系管理员");
+          alert("目标Agent已经创建，但暂未开发完成");
+          return null;
         }
       },
 
