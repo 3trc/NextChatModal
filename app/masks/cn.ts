@@ -1,10 +1,9 @@
-import { MASS_MODELS } from "./maas_model";
 import { BuiltinMask } from "./typing";
 import { XSEA_AGENTS } from "./xsea_agent";
 
 export const CN_MASKS: BuiltinMask[] = [
   ...XSEA_AGENTS,
-  ...MASS_MODELS,
+  // ...MASS_MODELS,
   // {
   //   avatar: "1f638",
   //   name: "文案写手",
