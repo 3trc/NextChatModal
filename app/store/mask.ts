@@ -40,7 +40,6 @@ export type Mask = {
               }
             | undefined;
         }
-      | null
       | undefined;
   };
 };
