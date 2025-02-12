@@ -127,6 +127,11 @@ const XSeaSelector = (props: { message: string }) => {
           dataSource={page.list ?? []}
           rowSelection={{
             type: "checkbox",
+            onChange: (selectedRowKeys: any[], selectedRows: any[]) => {
+              if (label.includes("-scripts>")) {
+                localStorage.ui_scripts_selected = JSON.stringify(selectedRows);
+              }
+            },
           }}
           pagination={{
             position: ["bottomLeft"],
