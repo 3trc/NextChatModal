@@ -35,8 +35,7 @@ const 执行压测: () => AgentSwitchInfo = () => {
     return {
       call: "XSea-查询脚本",
     };
-  }
-  {
+  } else {
     return {
       call: "XSea-执行压测",
     };
