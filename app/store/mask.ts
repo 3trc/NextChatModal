@@ -38,10 +38,7 @@ export type Mask = {
                 // 过场白
                 bridgeMessages?: ChatMessage[];
               }
-            | number
-            | null
-            | undefined
-            | "";
+            | undefined;
         }
       | null
       | undefined;
