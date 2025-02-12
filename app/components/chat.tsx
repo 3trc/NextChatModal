@@ -1150,10 +1150,19 @@ function _Chat() {
               "【下一个状态】:",
               nextState,
             );
-            if (nextState && nextState.call && nextState.call !== mask.name) {
-              const sessionX = chatStore.newSessionX(nextState.call, "NONE");
-              if (sessionX) {
-                navigate(Path.Chat);
+            if (nextState && nextState.call) {
+              if (nextState.call !== mask.name) {
+                const sessionX = chatStore.newSessionX(nextState.call, "NONE");
+                if (sessionX) {
+                  navigate(Path.Chat);
+                  chatStore.onSystemInput([
+                    { role: "user", content: hookResult.userContent },
+                    ...(nextState.bridgeMessages ?? []),
+                  ]);
+                  setSendButtonLoading(false);
+                  return;
+                }
+              } else {
                 chatStore.onSystemInput([
                   { role: "user", content: hookResult.userContent },
                   ...(nextState.bridgeMessages ?? []),
