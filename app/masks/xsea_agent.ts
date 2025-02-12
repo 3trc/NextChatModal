@@ -43,7 +43,7 @@ export const XSEA_AGENTS: BuiltinMask[] = [
   },
   {
     avatar: "🔄",
-    name: "选择产品",
+    name: "查询产品",
     context: [
       {
         id: "",
@@ -71,7 +71,7 @@ XSea性能测试平台的产品选择助手，你需要做如下事情
   },
   {
     avatar: "🔄",
-    name: "选择脚本",
+    name: "查询脚本",
     context: [
       {
         id: "",
@@ -100,7 +100,7 @@ XSea性能测试平台的脚本选择助手，你需要做如下事情
   },
   {
     avatar: "🔄",
-    name: "选择计划",
+    name: "查询计划",
     context: [
       {
         id: "",
@@ -127,7 +127,7 @@ XSea性能测试平台的测试计划选择助手，你需要做如下事情
   },
   {
     avatar: "🔄",
-    name: "选择目标",
+    name: "查询目标",
     context: [
       {
         id: "",
@@ -154,7 +154,7 @@ XSea性能测试平台的目标选择助手，你需要做如下事情
   },
   {
     avatar: "🔄",
-    name: "选择记录",
+    name: "查询记录",
     context: [
       {
         id: "",
