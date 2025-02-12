@@ -1,5 +1,4 @@
 import axios from "axios";
-import { XSEA_Knowledge } from "./knowledge/xsea";
 import { BuiltinMask } from "./typing";
 
 // XSea-智能体下属的所有的Agent的同意发送意图识别Hook
@@ -1011,26 +1010,26 @@ Assistant: 配置如下：
     avatar: "📚",
     name: "XSea-知识库",
     context: [
-      {
-        id: "",
-        role: "system",
-        content:
-          "XSea性能测试平台是一个强大的用于性能测试的软件系统，你是准确了解XSea性能测试平台各种知识的AI助手。接下来我会发送给你XSea性能测试平台的相关文档，你需要以此为基础回答用户操作流程，知识概念，常见问题等等方面的问题。",
-        date: "",
-      },
-      {
-        id: "",
-        role: "system",
-        content: XSEA_Knowledge,
-        date: "",
-      },
-      {
-        id: "",
-        role: "system",
-        content:
-          "对于你不会的问题，你就说不知道。对于用户表达含糊或者你不是很确定的问题，请寻求澄清。回答问题一定要结合上述产品知识库以及压力测试的行业技术背景知识。聊天中一定要避免透露你是在引用知识库文档，你需要像是一个真的助手一样回答问题。对于非XSea性能测试平台或者非测试相关的问题，请一定不要回答。",
-        date: "",
-      },
+      // {
+      //   id: "",
+      //   role: "system",
+      //   content:
+      //     "XSea性能测试平台是一个强大的用于性能测试的软件系统，你是准确了解XSea性能测试平台各种知识的AI助手。接下来我会发送给你XSea性能测试平台的相关文档，你需要以此为基础回答用户操作流程，知识概念，常见问题等等方面的问题。",
+      //   date: "",
+      // },
+      // {
+      //   id: "",
+      //   role: "system",
+      //   content: XSEA_Knowledge,
+      //   date: "",
+      // },
+      // {
+      //   id: "",
+      //   role: "system",
+      //   content:
+      //     "对于你不会的问题，你就说不知道。对于用户表达含糊或者你不是很确定的问题，请寻求澄清。回答问题一定要结合上述产品知识库以及压力测试的行业技术背景知识。聊天中一定要避免透露你是在引用知识库文档，你需要像是一个真的助手一样回答问题。对于非XSea性能测试平台或者非测试相关的问题，请一定不要回答。",
+      //   date: "",
+      // },
     ],
     modelConfig: {
       model: "phi4:latest",
@@ -1040,6 +1039,74 @@ Assistant: 配置如下：
     builtin: true,
     createdAt: 1688899480511,
     userMessageHook: xseaAgentUserMessageHook,
+    stateMap: {
+      // 肯定: {},
+      // 否定: {},
+      // 描述: {},
+      终止: {
+        产品: { call: "XSea-智能体" },
+        脚本: { call: "XSea-智能体" },
+        计划: { call: "XSea-智能体" },
+        压测: { call: "XSea-智能体" },
+        记录: { call: "XSea-智能体" },
+        知识: { call: "XSea-智能体" },
+        其他: { call: "XSea-智能体" },
+      },
+      创建: {
+        产品: { call: "XSea-创建产品" },
+        脚本: { call: "XSea-创建脚本" },
+        计划: { call: "XSea-创建计划" },
+        压测: { call: "XSea-执行压测" },
+        记录: { call: "XSea-执行压测" },
+        知识: { call: "XSea-知识库" },
+        其他: { call: "XSea-知识库" },
+      },
+      查询: {
+        产品: { call: "XSea-查询产品" },
+        脚本: { call: "XSea-查询脚本" },
+        计划: { call: "XSea-查询计划" },
+        压测: { call: "XSea-查询压测" },
+        记录: { call: "XSea-查询记录" },
+        知识: { call: "XSea-知识库" },
+        其他: { call: "XSea-知识库" },
+      },
+      解释: {
+        产品: { call: "XSea-查询产品" },
+        脚本: { call: "XSea-查询脚本" },
+        计划: { call: "XSea-查询计划" },
+        压测: { call: "XSea-查询记录" },
+        记录: { call: "XSea-查询记录" },
+        知识: { call: "XSea-知识库" },
+        其他: { call: "XSea-知识库" },
+      },
+      修改: {
+        产品: { call: "XSea-查询产品" },
+        脚本: { call: "XSea-查询脚本" },
+        计划: { call: "XSea-查询计划" },
+        压测: { call: "XSea-查询压测" },
+        记录: { call: "XSea-查询压测" },
+        知识: { call: "XSea-知识库" },
+        其他: { call: "XSea-知识库" },
+      },
+      执行: {
+        产品: { call: "XSea-查询产品" },
+        脚本: { call: "XSea-执行脚本" },
+        计划: { call: "XSea-查询计划" },
+        压测: { call: "XSea-执行压测" },
+        记录: { call: "XSea-执行压测" },
+        知识: { call: "XSea-知识库" },
+        其他: { call: "XSea-知识库" },
+      },
+      其他: {
+        产品: { call: "XSea-查询产品" },
+        脚本: { call: "XSea-查询脚本" },
+        计划: { call: "XSea-查询计划" },
+        压测: { call: "XSea-查询记录" },
+        记录: { call: "XSea-查询记录" },
+        知识: { call: "XSea-知识库" },
+        其他: { call: "XSea-查询记录" },
+      },
+    },
   },
   {
     avatar: "🔄",
