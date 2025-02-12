@@ -21,7 +21,12 @@ export type Mask = {
   enableArtifacts?: boolean;
   enableCodeFold?: boolean;
 
-  userMessageHook?: (message: string) => any;
+  userMessageHook?: (message: string) => Promise<{
+    intention: string;
+    action: string;
+    entity: string;
+    userContent: string;
+  } | null>;
   assistantMessageHook?: (message: string) => any;
 };
 

@@ -1120,6 +1120,7 @@ function _Chat() {
         return;
       }
 
+      // 这里尝试调用消息发送的hook，进行意图分类
       const mask = chatStore.currentSession().mask;
       const fullMask = CN_MASKS.find((item) => item.name === mask.name);
       mask.userMessageHook = fullMask?.userMessageHook;
@@ -1127,7 +1128,10 @@ function _Chat() {
       if (mask.userMessageHook) {
         setSendButtonLoading(true);
         try {
-          await mask.userMessageHook(userInput);
+          const hookResult = await mask.userMessageHook(userInput);
+          if (hookResult) {
+            console.log("hookResult", hookResult);
+          }
         } catch (error) {
           setSendButtonLoading(false);
           console.error(error);
