@@ -601,9 +601,10 @@ export function MaskPage() {
                     icon={<AddIcon />}
                     text={Locale.Mask.Item.Chat}
                     onClick={() => {
-                      chatStore.newSessionX(m.name, "NONE");
-                      // TODO可以完成
-                      chatStore.onUserInput("你好");
+                      chatStore.newSession(m);
+                      // chatStore.newSessionX(m.name, "NONE");
+                      // // TODO可以完成
+                      // chatStore.onUserInput("你好");
                       navigate(Path.Chat);
                     }}
                   />
