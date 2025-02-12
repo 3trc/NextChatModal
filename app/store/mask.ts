@@ -28,6 +28,21 @@ export type Mask = {
     userContent: string;
   } | null>;
   assistantMessageHook?: (message: string) => any;
+  stateMap?: {
+    [action: string]:
+      | {
+          [entity: string]:
+            | {
+                call?: string;
+              }
+            | number
+            | null
+            | undefined
+            | "";
+        }
+      | null
+      | undefined;
+  };
 };
 
 export const DEFAULT_MASK_STATE = {
