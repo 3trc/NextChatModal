@@ -1125,6 +1125,7 @@ function _Chat() {
       const fullMask = CN_MASKS.find((item) => item.name === mask.name);
       mask.userMessageHook = fullMask?.userMessageHook;
       mask.assistantMessageHook = fullMask?.assistantMessageHook;
+      mask.stateMap = fullMask?.stateMap;
       if (mask.userMessageHook) {
         setSendButtonLoading(true);
         try {
