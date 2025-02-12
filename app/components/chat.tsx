@@ -1122,6 +1122,7 @@ function _Chat() {
 
       // 这里尝试调用消息发送的hook，进行意图分类
       const mask = chatStore.currentSession().mask;
+      const messages = chatStore.currentSession().messages;
       const fullMask = CN_MASKS.find((item) => item.name === mask.name);
       mask.userMessageHook = fullMask?.userMessageHook;
       mask.assistantMessageHook = fullMask?.assistantMessageHook;
@@ -1129,7 +1130,13 @@ function _Chat() {
       if (mask.userMessageHook) {
         setSendButtonLoading(true);
         try {
-          const hookResult = await mask.userMessageHook(userInput);
+          const dialogue =
+            messages.length > 0
+              ? `助手: ${
+                  messages[messages.length - 1].content
+                }\n用户: ${userInput}`
+              : `用户: ${userInput}`;
+          const hookResult = await mask.userMessageHook(dialogue);
           if (hookResult) {
             // 根据意图识别获取下一个状态
             const nextStateBase =
@@ -1156,7 +1163,7 @@ function _Chat() {
                 if (sessionX) {
                   navigate(Path.Chat);
                   chatStore.onSystemInput([
-                    { role: "user", content: hookResult.userContent },
+                    { role: "user", content: userInput },
                     ...(nextState.bridgeMessages ?? []),
                   ]);
                   setSendButtonLoading(false);
@@ -1164,7 +1171,7 @@ function _Chat() {
                 }
               } else {
                 chatStore.onSystemInput([
-                  { role: "user", content: hookResult.userContent },
+                  { role: "user", content: userInput },
                   ...(nextState.bridgeMessages ?? []),
                 ]);
                 setSendButtonLoading(false);
