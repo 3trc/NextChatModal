@@ -34,6 +34,14 @@ const 执行压测: () => AgentSwitchInfo = () => {
   if (script_list.length === 0) {
     return {
       call: "XSea-查询脚本",
+      bridgeMessages: [
+        {
+          role: "system",
+          content: `
+看起来用户想进行压测但是没有选择脚本，用户需要选择一些 JMeter 或者 Gatling 脚本用于压测，请你询问用户需要选择的类型是 JMeter 还是 Gatling
+          `.trim(),
+        },
+      ],
     };
   } else {
     return {
