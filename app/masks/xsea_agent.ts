@@ -1014,7 +1014,7 @@ Assistant: 配置如下：
       {
         id: "",
         role: "system",
-        content: ``.trim(),
+        content: `固定回复用户"你好"即可`.trim(),
         date: "",
       },
     ],
@@ -1029,7 +1029,15 @@ Assistant: 配置如下：
     stateMap: {
       // 肯定: {},
       // 否定: {},
-      // 描述: {},
+      描述: {
+        产品: { call: "XSea-查询产品" },
+        脚本: { call: "XSea-执行压测" },
+        计划: { call: "XSea-知识库" },
+        压测: { call: "XSea-执行压测" },
+        记录: { call: "XSea-查询记录" },
+        知识: { call: "XSea-执行压测" },
+        其他: { call: "XSea-执行压测" },
+      },
       终止: {
         产品: { call: "XSea-智能体" },
         脚本: { call: "XSea-智能体" },
