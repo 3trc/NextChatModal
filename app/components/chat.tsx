@@ -1149,8 +1149,8 @@ function _Chat() {
               if (sessionX) {
                 navigate(Path.Chat);
                 chatStore.onSystemInput([
-                  ...(nextState.bridgeMessages ?? []),
                   { role: "user", content: hookResult.userContent },
+                  ...(nextState.bridgeMessages ?? []),
                 ]);
                 setSendButtonLoading(false);
                 return;
