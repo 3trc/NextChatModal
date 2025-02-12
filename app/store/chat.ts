@@ -376,7 +376,9 @@ export const useChatStore = createPersistStore(
           this.newSession(targetMask, prevMessages);
           return { targetMask, prevMessages };
         } else {
-          alert("目标Agent已经创建，但暂未开发完成");
+          alert(
+            `意图已经识别为: ${maskName}，但此意图暂未归类到对应Agent，或未开发完成`,
+          );
           return null;
         }
       },
