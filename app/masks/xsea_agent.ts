@@ -22,33 +22,21 @@ const xseaAgentUserMessageHook = async (message: string) => {
 
 const 执行压测: () => AgentSwitchInfo = () => {
   // 采集已选脚本信息
-  let jmeter_list: any[] = [];
-  let gatling_list: any[] = [];
+  let script_list: any[] = [];
   try {
-    jmeter_list = JSON.parse(localStorage.ui_jmeter_scripts_selected);
-  } catch (error) {
-    console.error(error);
-  }
-  try {
-    gatling_list = JSON.parse(localStorage.ui_gatling_scripts_selected);
+    script_list = JSON.parse(localStorage.ui_scripts_selected);
+    script_list = script_list.filter((script) => script.type !== "SHELL");
   } catch (error) {
     console.error(error);
   }
 
-  // 四种情况判断
-  if (jmeter_list.length === 0 && gatling_list.length === 0) {
+  // 分支判断，如果没有选择脚本，引导去选择脚本
+  if (script_list.length === 0) {
     return {
       call: "选择脚本",
     };
-  } else if (jmeter_list.length > 0 && gatling_list.length === 0) {
-    return {
-      call: "执行压测",
-    };
-  } else if (jmeter_list.length === 0 && gatling_list.length > 0) {
-    return {
-      call: "执行压测",
-    };
-  } else {
+  }
+  {
     return {
       call: "执行压测",
     };
