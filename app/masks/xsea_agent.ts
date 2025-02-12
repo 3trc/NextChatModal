@@ -1344,6 +1344,97 @@ CI/CD流程集成
     },
   },
   {
+    avatar: "📮",
+    name: "XSea-摸摸鱼",
+    context: [
+      {
+        id: "",
+        role: "system",
+        content: `
+你是一个善于娱乐的聊天机器人，你可以和用户玩成语接龙，猜数字，对对子，你说我猜，脑筋急转弯等等游戏
+请确保与用户对话的游戏流程正确无误，这些游戏都是通过多轮对话完成，如果用户完成了挑战，你需要夸奖鼓励用户，如果用户答错了或者失败了，你可以嘲讽一下用户
+        `.trim(),
+        date: "",
+      },
+    ],
+    modelConfig: {
+      model: "phi4:latest",
+      max_tokens: 16384,
+    },
+    lang: "cn",
+    builtin: true,
+    createdAt: 1688899480511,
+    userMessageHook: xseaAgentUserMessageHook,
+    stateMap: {
+      // 肯定: {},
+      // 否定: {},
+      // 描述: {},
+      终止: {
+        产品: { call: "XSea-智能体" },
+        脚本: { call: "XSea-智能体" },
+        计划: { call: "XSea-智能体" },
+        压测: { call: "XSea-智能体" },
+        记录: { call: "XSea-智能体" },
+        知识: { call: "XSea-智能体" },
+        其他: { call: "XSea-智能体" },
+      },
+      创建: {
+        产品: { call: "XSea-创建产品" },
+        脚本: { call: "XSea-创建脚本" },
+        计划: { call: "XSea-知识库" },
+        压测: { call: "XSea-执行压测" },
+        记录: { call: "XSea-知识库" },
+        知识: { call: "XSea-知识库" },
+        其他: { call: "XSea-知识库" },
+      },
+      查询: {
+        产品: { call: "XSea-查询产品" },
+        脚本: { call: "XSea-查询脚本" },
+        计划: { call: "XSea-查询计划" },
+        压测: { call: "XSea-查询压测" },
+        记录: { call: "XSea-查询记录" },
+        知识: { call: "XSea-知识库" },
+        其他: { call: "XSea-知识库" },
+      },
+      解释: {
+        产品: { call: "XSea-知识库" },
+        脚本: { call: "XSea-知识库" },
+        计划: { call: "XSea-知识库" },
+        压测: { call: "XSea-知识库" },
+        记录: { call: "XSea-知识库" },
+        知识: { call: "XSea-知识库" },
+        其他: { call: "XSea-知识库" },
+      },
+      修改: {
+        产品: { call: "XSea-知识库" },
+        脚本: { call: "XSea-查询脚本" },
+        计划: { call: "XSea-知识库" },
+        压测: { call: "XSea-知识库" },
+        记录: { call: "XSea-知识库" },
+        知识: { call: "XSea-知识库" },
+        其他: { call: "XSea-知识库" },
+      },
+      执行: {
+        产品: { call: "XSea-知识库" },
+        脚本: { call: "XSea-执行脚本" },
+        计划: { call: "XSea-知识库" },
+        压测: { call: "XSea-执行压测" },
+        记录: { call: "XSea-执行压测" },
+        知识: { call: "XSea-知识库" },
+        其他: { call: "XSea-知识库" },
+      },
+      其他: {
+        产品: { call: "XSea-知识库" },
+        脚本: { call: "XSea-知识库" },
+        计划: { call: "XSea-知识库" },
+        压测: { call: "XSea-知识库" },
+        记录: { call: "XSea-知识库" },
+        知识: { call: "XSea-知识库" },
+        其他: { call: "XSea-知识库" },
+      },
+    },
+  },
+  {
     avatar: "🤔",
     name: "意图分类",
     context: [
@@ -1455,29 +1546,6 @@ CI/CD流程集成
     lang: "cn",
     builtin: true,
     createdAt: 1688899480511,
-  },
-  {
-    avatar: "📮",
-    name: "XSea-摸摸鱼",
-    context: [
-      {
-        id: "",
-        role: "system",
-        content: `
-你是一个善于娱乐的聊天机器人，你可以和用户玩成语接龙，猜数字，对对子，你说我猜，脑筋急转弯等等游戏
-请确保与用户对话的游戏流程正确无误，这些游戏都是通过多轮对话完成，如果用户完成了挑战，你需要夸奖鼓励用户，如果用户答错了或者失败了，你可以嘲讽一下用户
-        `.trim(),
-        date: "",
-      },
-    ],
-    modelConfig: {
-      model: "phi4:latest",
-      max_tokens: 16384,
-    },
-    lang: "cn",
-    builtin: true,
-    createdAt: 1688899480511,
-    userMessageHook: xseaAgentUserMessageHook,
   },
 ];
 
