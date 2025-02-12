@@ -606,7 +606,7 @@ export const useChatStore = createPersistStore(
         }
 
         let userMessage: ChatMessage = createMessage({
-          role: "user",
+          role: "system",
           content: mContent,
           isMcpResponse,
         });

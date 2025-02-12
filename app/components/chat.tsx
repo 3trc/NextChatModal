@@ -1148,7 +1148,7 @@ function _Chat() {
               const sessionX = chatStore.newSessionX(nextState.call, "NONE");
               if (sessionX) {
                 navigate(Path.Chat);
-                chatStore.onUserInput(hookResult.userContent);
+                chatStore.onSystemInput(hookResult.userContent);
                 setSendButtonLoading(false);
                 return;
               }
