@@ -1131,8 +1131,16 @@ function _Chat() {
           const hookResult = await mask.userMessageHook(userInput);
           if (hookResult) {
             // 根据意图识别获取下一个状态
-            const nextState =
+            const nextStateBase =
               mask.stateMap?.[hookResult.action]?.[hookResult.entity];
+            const nextState = (() => {
+              if (nextStateBase == null) return nextStateBase;
+              if (typeof nextStateBase === "function") {
+                return nextStateBase();
+              }
+              return nextStateBase;
+            })();
+
             console.log("【意图分类】:", hookResult);
             console.log("【下一个状态】:", nextState);
             if (nextState && nextState.call && nextState.call !== mask.name) {
