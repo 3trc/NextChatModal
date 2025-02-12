@@ -1134,8 +1134,6 @@ function _Chat() {
             chatStore.newSessionX(`XSea-${hookResult.intention}`, "NONE");
             navigate(Path.Chat);
             chatStore.onUserInput(hookResult.userContent);
-            setSendButtonLoading(false);
-            return;
           }
         } catch (error) {
           setSendButtonLoading(false);
