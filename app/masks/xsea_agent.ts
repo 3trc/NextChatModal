@@ -954,7 +954,7 @@ Assistant: 配置如下：
       创建: {
         产品: { call: "XSea-创建产品" },
         脚本: { call: "XSea-创建脚本" },
-        计划: { call: "XSea-创建计划" },
+        计划: { call: "XSea-创建产品" },
         压测: { call: "XSea-执行压测" },
         记录: { call: "XSea-执行压测" },
         知识: { call: "XSea-知识库" },
@@ -970,13 +970,13 @@ Assistant: 配置如下：
         其他: { call: "XSea-知识库" },
       },
       解释: {
-        产品: { call: "XSea-查询产品" },
+        产品: { call: "XSea-创建产品" },
         脚本: { call: "XSea-查询脚本" },
-        计划: { call: "XSea-查询计划" },
-        压测: { call: "XSea-查询压测" },
+        计划: { call: "XSea-创建产品" },
+        压测: { call: "XSea-创建产品" },
         记录: { call: "XSea-查询记录" },
         知识: { call: "XSea-知识库" },
-        其他: { call: "XSea-知识库" },
+        其他: { call: "XSea-创建产品" },
       },
       修改: {
         产品: { call: "XSea-创建产品" },
