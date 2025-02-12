@@ -557,8 +557,8 @@ Assistant: 配置如下：
       },
     ],
     modelConfig: {
-      model: "mistralai/mistral-small-24b-instruct-2501",
-      max_tokens: 32768,
+      model: "phi4:latest",
+      max_tokens: 16384,
     },
     lang: "cn",
     builtin: true,
