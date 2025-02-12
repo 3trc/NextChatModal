@@ -62,11 +62,54 @@ const 执行压测: () => AgentSwitchInfo = () => {
 };
 
 const 肯定压测: () => AgentSwitchInfo = () => {
-  return { call: "执行压测" };
+  // 采集已选脚本信息
+  let script_list: any[] = [];
+  try {
+    script_list = JSON.parse(localStorage.ui_scripts_selected);
+    script_list = script_list.filter((script) => script.type !== "SHELL");
+  } catch (error) {
+    console.error(error);
+  }
+
+  // 分支判断，如果没有选择脚本，引导去选择脚本
+  if (script_list.length === 0) {
+    return {
+      call: "XSea-查询脚本",
+      bridgeMessages: [
+        {
+          role: "system",
+          content: `
+看起来用户想进行压测但是没有选择脚本，用户需要选择一些 JMeter 或者 Gatling 脚本用于压测，请你询问用户需要选择的类型是 JMeter 还是 Gatling
+          `.trim(),
+        },
+      ],
+    };
+  } else {
+    return {
+      call: "XSea-执行压测",
+      bridgeMessages: [
+        {
+          role: "system",
+          content:
+            `无论用户的下一个问题是什么，你都固定回复"已经开始压测"`.trim(),
+        },
+      ],
+    };
+  }
 };
 
 const 否定压测: () => AgentSwitchInfo = () => {
-  return { call: "执行压测" };
+  return {
+    call: "XSea-查询脚本",
+    bridgeMessages: [
+      {
+        role: "system",
+        content: `
+用户看起来对于当前的脚本不满意，请引导用户选择 JMeter 或者 Gatling 脚本
+        `.trim(),
+      },
+    ],
+  };
 };
 
 export const XSEA_AGENTS: BuiltinMask[] = [
