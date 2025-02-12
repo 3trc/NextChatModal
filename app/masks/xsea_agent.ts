@@ -727,8 +727,8 @@ Assistant: 您是要确认吗？
         计划: { call: "XSea-创建脚本" },
         压测: { call: "XSea-执行压测" },
         记录: { call: "XSea-执行压测" },
-        知识: { call: "XSea-知识库" },
-        其他: { call: "XSea-知识库" },
+        知识: { call: "XSea-创建脚本" },
+        其他: { call: "XSea-创建脚本" },
       },
       查询: {
         产品: { call: "XSea-查询产品" },
@@ -740,7 +740,7 @@ Assistant: 您是要确认吗？
         其他: { call: "XSea-知识库" },
       },
       解释: {
-        产品: { call: "XSea-查询产品" },
+        产品: { call: "XSea-创建脚本" },
         脚本: { call: "XSea-创建脚本" },
         计划: { call: "XSea-创建脚本" },
         压测: { call: "XSea-创建脚本" },
@@ -749,7 +749,7 @@ Assistant: 您是要确认吗？
         其他: { call: "XSea-创建脚本" },
       },
       修改: {
-        产品: { call: "XSea-查询产品" },
+        产品: { call: "XSea-创建脚本" },
         脚本: { call: "XSea-创建脚本" },
         计划: { call: "XSea-创建脚本" },
         压测: { call: "XSea-创建脚本" },
@@ -763,8 +763,8 @@ Assistant: 您是要确认吗？
         计划: { call: "XSea-创建脚本" },
         压测: { call: "XSea-执行压测" },
         记录: { call: "XSea-执行压测" },
-        知识: { call: "XSea-创建脚本" },
-        其他: { call: "XSea-创建脚本" },
+        知识: { call: "XSea-执行脚本" },
+        其他: { call: "XSea-执行脚本" },
       },
       其他: {
         产品: { call: "XSea-创建脚本" },
