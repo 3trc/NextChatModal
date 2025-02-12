@@ -582,11 +582,34 @@ export const useChatStore = createPersistStore(
         });
       },
 
-      async onSystemInput(messages: ChatMessage[]) {
+      async onSystemInput(
+        content: string,
+        attachImages?: string[],
+        isMcpResponse?: boolean,
+      ) {
         const session = get().currentSession();
         const modelConfig = session.mask.modelConfig;
 
-        let userMessageList = messages;
+        // MCP Response no need to fill template
+        let mContent: string | MultimodalContent[] = isMcpResponse
+          ? content
+          : fillTemplateWith(content, modelConfig);
+
+        if (!isMcpResponse && attachImages && attachImages.length > 0) {
+          mContent = [
+            ...(content ? [{ type: "text" as const, text: content }] : []),
+            ...attachImages.map((url) => ({
+              type: "image_url" as const,
+              image_url: { url },
+            })),
+          ];
+        }
+
+        let userMessage: ChatMessage = createMessage({
+          role: "user",
+          content: mContent,
+          isMcpResponse,
+        });
 
         const botMessage: ChatMessage = createMessage({
           role: "assistant",
@@ -596,25 +619,19 @@ export const useChatStore = createPersistStore(
 
         // get recent messages
         const recentMessages = await get().getMessagesWithMemory();
-        const sendMessages = recentMessages.concat(userMessageList);
+        const sendMessages = recentMessages.concat(userMessage);
         const messageIndex = session.messages.length + 1;
 
         // save user's and bot's message
         get().updateTargetSession(session, (session) => {
-          userMessageList.forEach((userMessage) => {
-            const mContent: string | MultimodalContent[] = fillTemplateWith(
-              userMessage.content as string,
-              modelConfig,
-            );
-            const savedUserMessage = {
-              ...userMessage,
-              content: mContent,
-            };
-            session.messages = session.messages.concat([
-              savedUserMessage,
-              botMessage,
-            ]);
-          });
+          const savedUserMessage = {
+            ...userMessage,
+            content: mContent,
+          };
+          session.messages = session.messages.concat([
+            savedUserMessage,
+            botMessage,
+          ]);
         });
 
         const api: ClientApi = getClientApi(modelConfig.providerName);
@@ -665,9 +682,7 @@ export const useChatStore = createPersistStore(
                 message: error.message,
               });
             botMessage.streaming = false;
-            userMessageList.forEach((userMessage) => {
-              userMessage.isError = !isAborted;
-            });
+            userMessage.isError = !isAborted;
             botMessage.isError = !isAborted;
             get().updateTargetSession(session, (session) => {
               session.messages = session.messages.concat();
