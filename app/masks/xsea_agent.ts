@@ -21,9 +21,38 @@ const xseaAgentUserMessageHook = async (message: string) => {
 };
 
 const 执行压测: () => AgentSwitchInfo = () => {
-  return {
-    call: "XSea-笨笨的",
-  };
+  // 采集已选脚本信息
+  let jmeter_list: any[] = [];
+  let gatling_list: any[] = [];
+  try {
+    jmeter_list = JSON.parse(localStorage.ui_jmeter_scripts_selected);
+  } catch (error) {
+    console.error(error);
+  }
+  try {
+    gatling_list = JSON.parse(localStorage.ui_gatling_scripts_selected);
+  } catch (error) {
+    console.error(error);
+  }
+
+  // 四种情况判断
+  if (jmeter_list.length === 0 && gatling_list.length === 0) {
+    return {
+      call: "选择脚本",
+    };
+  } else if (jmeter_list.length > 0 && gatling_list.length === 0) {
+    return {
+      call: "选择脚本",
+    };
+  } else if (jmeter_list.length === 0 && gatling_list.length > 0) {
+    return {
+      call: "选择脚本",
+    };
+  } else {
+    return {
+      call: "选择脚本",
+    };
+  }
 };
 
 export const XSEA_AGENTS: BuiltinMask[] = [
