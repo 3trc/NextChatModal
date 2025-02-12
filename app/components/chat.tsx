@@ -1131,6 +1131,7 @@ function _Chat() {
           const hookResult = await mask.userMessageHook(userInput);
           if (hookResult) {
             console.log("hookResult", hookResult);
+            return;
           }
         } catch (error) {
           setSendButtonLoading(false);

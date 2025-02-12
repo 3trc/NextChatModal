@@ -4,6 +4,44 @@ import { BuiltinMask } from "./typing";
 
 export const XSEA_AGENTS: BuiltinMask[] = [
   {
+    avatar: "🤖",
+    name: "XSea-智能体",
+    context: [
+      {
+        id: "",
+        role: "system",
+        content: ``.trim(),
+        date: "",
+      },
+    ],
+    modelConfig: {
+      model: "phi4:latest",
+      max_tokens: 16384,
+    },
+    lang: "cn",
+    builtin: true,
+    createdAt: 1688899480511,
+    userMessageHook: async (message) => {
+      try {
+        const res = await axios.get(`/api/agent/xsea/router`, {
+          params: { content: message },
+        });
+        const data = res.data;
+        const intention = data.intention ?? "其他其他";
+        const action = data.action ?? "其他";
+        const entity = data.entity ?? "其他";
+        const userContent = data.userContent ?? "";
+        return { intention, action, entity, userContent };
+      } catch (error) {
+        console.error(error);
+      }
+      return null;
+    },
+    assistantMessageHook: (message) => {
+      console.log("assistantMessageHook", message);
+    },
+  },
+  {
     avatar: "🔄",
     name: "选择产品",
     context: [
@@ -417,44 +455,6 @@ Assistant: 配置如下：
     lang: "cn",
     builtin: true,
     createdAt: 1688899480511,
-  },
-  {
-    avatar: "🤖",
-    name: "XSea-智能体",
-    context: [
-      {
-        id: "",
-        role: "system",
-        content: ``.trim(),
-        date: "",
-      },
-    ],
-    modelConfig: {
-      model: "phi4:latest",
-      max_tokens: 16384,
-    },
-    lang: "cn",
-    builtin: true,
-    createdAt: 1688899480511,
-    userMessageHook: async (message) => {
-      try {
-        const res = await axios.get(`/api/agent/xsea/router`, {
-          params: { content: message },
-        });
-        const data = res.data;
-        const intention = data.intention ?? "其他其他";
-        const action = data.action ?? "其他";
-        const entity = data.entity ?? "其他";
-        const userContent = data.userContent ?? "";
-        return { intention, action, entity, userContent };
-      } catch (error) {
-        console.error(error);
-      }
-      return null;
-    },
-    assistantMessageHook: (message) => {
-      console.log("assistantMessageHook", message);
-    },
   },
   {
     avatar: "🤔",
