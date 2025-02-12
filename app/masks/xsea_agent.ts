@@ -420,7 +420,7 @@ Assistant: 配置如下：
   },
   {
     avatar: "🤖",
-    name: "XSea智能体",
+    name: "XSea-智能体",
     context: [
       {
         id: "",
