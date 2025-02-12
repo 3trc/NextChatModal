@@ -72,21 +72,22 @@ XSea性能测试平台的产品选择助手，你需要做如下事情
     stateMap: {
       // 肯定: {}
       // 否定: {}
+      // 描述: {},
       终止: {
         产品: { call: "XSea-智能体" },
         脚本: { call: "XSea-智能体" },
         计划: { call: "XSea-智能体" },
         压测: { call: "XSea-智能体" },
         记录: { call: "XSea-智能体" },
-        知识: { call: "XSea-智能体" },
+        知识: { call: "XSea-知识库" },
         其他: { call: "XSea-智能体" },
       },
       创建: {
         产品: { call: "XSea-创建产品" },
         脚本: { call: "XSea-创建脚本" },
         计划: { call: "XSea-创建计划" },
-        压测: { call: "XSea-创建压测" },
-        记录: { call: "XSea-创建压测" },
+        压测: { call: "XSea-执行压测" },
+        记录: { call: "XSea-执行压测" },
         知识: { call: "XSea-知识库" },
         其他: { call: "XSea-知识库" },
       },
@@ -112,8 +113,8 @@ XSea性能测试平台的产品选择助手，你需要做如下事情
         产品: { call: "XSea-查询产品" },
         脚本: { call: "XSea-查询脚本" },
         计划: { call: "XSea-查询计划" },
-        压测: { call: "XSea-查询记录" },
-        记录: { call: "XSea-查询记录" },
+        压测: { call: "XSea-查询目标" },
+        记录: { call: "XSea-查询目标" },
         知识: { call: "XSea-知识库" },
         其他: { call: "XSea-知识库" },
       },
