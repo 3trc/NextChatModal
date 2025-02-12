@@ -6,7 +6,7 @@ import { StoreKey } from "../constant";
 import { nanoid } from "nanoid";
 import { createPersistStore } from "../utils/store";
 
-interface AgentSwitchInfo {
+export interface AgentSwitchInfo {
   // 要调用的目标Agent名称
   call?: string;
   // 过场白

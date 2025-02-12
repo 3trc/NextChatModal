@@ -1,5 +1,6 @@
 import axios from "axios";
 import { BuiltinMask } from "./typing";
+import { AgentSwitchInfo } from "../store/mask";
 
 // XSea-智能体下属的所有的Agent的同意发送意图识别Hook
 const xseaAgentUserMessageHook = async (message: string) => {
@@ -17,6 +18,12 @@ const xseaAgentUserMessageHook = async (message: string) => {
     console.error(error);
   }
   return null;
+};
+
+const 执行压测: () => AgentSwitchInfo = () => {
+  return {
+    call: "XSea-笨笨的",
+  };
 };
 
 export const XSEA_AGENTS: BuiltinMask[] = [
@@ -93,7 +100,7 @@ export const XSEA_AGENTS: BuiltinMask[] = [
         产品: { call: "XSea-查询产品" },
         脚本: { call: "XSea-执行脚本" },
         计划: { call: "XSea-查询计划" },
-        压测: { call: "XSea-执行压测" },
+        压测: 执行压测,
         记录: { call: "XSea-执行压测" },
         知识: { call: "XSea-知识库" },
         其他: { call: "XSea-执行压测" },
