@@ -27,7 +27,8 @@ export const XSEA_AGENTS: BuiltinMask[] = [
       {
         id: "",
         role: "system",
-        content: ``.trim(),
+        content:
+          `如果用户有[退出|停止|取消|返回|终止|关闭|放弃|重来|算了|stop]的意图的话，你只需要向用户询问接下来有什么可以帮你的呢？`.trim(),
         date: "",
       },
     ],
