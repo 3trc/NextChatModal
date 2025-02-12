@@ -1131,6 +1131,9 @@ function _Chat() {
           const hookResult = await mask.userMessageHook(userInput);
           if (hookResult && hookResult.intention !== "其他其他") {
             console.log("hookResult", hookResult);
+            chatStore.newSessionX(`XSea-${hookResult.intention}`, "NONE");
+            navigate(Path.Chat);
+            chatStore.onUserInput(hookResult.userContent);
             return;
           }
         } catch (error) {

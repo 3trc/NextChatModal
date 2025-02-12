@@ -335,9 +335,10 @@ export const useChatStore = createPersistStore(
         consequent: "NAME" | "FULL" | "NONE" = "NONE",
         active = true,
       ) {
-        const targetMask: Mask = JSON.parse(
-          JSON.stringify(CN_MASKS.find((mask) => mask.name === maskName)),
-        );
+        const selectedMask = CN_MASKS.find((mask) => mask.name === maskName);
+        const targetMask: Mask = selectedMask
+          ? JSON.parse(JSON.stringify(selectedMask))
+          : null;
 
         const prevMask = this.currentSession().mask;
         const prevMessages: ChatMessage[] = JSON.parse(
