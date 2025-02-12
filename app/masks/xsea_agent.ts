@@ -2,6 +2,24 @@ import axios from "axios";
 import { XSEA_Knowledge } from "./knowledge/xsea";
 import { BuiltinMask } from "./typing";
 
+// XSea-智能体下属的所有的Agent的同意发送意图识别Hook
+const xseaAgentUserMessageHook = async (message: string) => {
+  try {
+    const res = await axios.get(`/api/agent/xsea/router`, {
+      params: { content: message },
+    });
+    const data = res.data;
+    const intention = data.intention ?? "其他其他";
+    const action = data.action ?? "其他";
+    const entity = data.entity ?? "其他";
+    const userContent = data.userContent ?? "";
+    return { intention, action, entity, userContent };
+  } catch (error) {
+    console.error(error);
+  }
+  return null;
+};
+
 export const XSEA_AGENTS: BuiltinMask[] = [
   {
     avatar: "🤖",
@@ -21,25 +39,7 @@ export const XSEA_AGENTS: BuiltinMask[] = [
     lang: "cn",
     builtin: true,
     createdAt: 1688899480511,
-    userMessageHook: async (message) => {
-      try {
-        const res = await axios.get(`/api/agent/xsea/router`, {
-          params: { content: message },
-        });
-        const data = res.data;
-        const intention = data.intention ?? "其他其他";
-        const action = data.action ?? "其他";
-        const entity = data.entity ?? "其他";
-        const userContent = data.userContent ?? "";
-        return { intention, action, entity, userContent };
-      } catch (error) {
-        console.error(error);
-      }
-      return null;
-    },
-    assistantMessageHook: (message) => {
-      console.log("assistantMessageHook", message);
-    },
+    userMessageHook: xseaAgentUserMessageHook,
   },
   {
     avatar: "🔄",
@@ -68,6 +68,7 @@ XSea性能测试平台的产品选择助手，你需要做如下事情
     lang: "cn",
     builtin: true,
     createdAt: 1688899480511,
+    userMessageHook: xseaAgentUserMessageHook,
   },
   {
     avatar: "🔄",
@@ -97,6 +98,7 @@ XSea性能测试平台的脚本选择助手，你需要做如下事情
     lang: "cn",
     builtin: true,
     createdAt: 1688899480511,
+    userMessageHook: xseaAgentUserMessageHook,
   },
   {
     avatar: "🔄",
@@ -124,6 +126,7 @@ XSea性能测试平台的测试计划选择助手，你需要做如下事情
     lang: "cn",
     builtin: true,
     createdAt: 1688899480511,
+    userMessageHook: xseaAgentUserMessageHook,
   },
   {
     avatar: "🔄",
@@ -151,6 +154,7 @@ XSea性能测试平台的目标选择助手，你需要做如下事情
     lang: "cn",
     builtin: true,
     createdAt: 1688899480511,
+    userMessageHook: xseaAgentUserMessageHook,
   },
   {
     avatar: "🔄",
@@ -178,6 +182,7 @@ XSea性能测试平台的压测记录选择助手，你需要做如下事情
     lang: "cn",
     builtin: true,
     createdAt: 1688899480511,
+    userMessageHook: xseaAgentUserMessageHook,
   },
   {
     avatar: "🔄",
@@ -294,6 +299,7 @@ Assistant: 您是要确认吗？
     lang: "cn",
     builtin: true,
     createdAt: 1688899480511,
+    userMessageHook: xseaAgentUserMessageHook,
   },
   {
     avatar: "🔄",
@@ -455,104 +461,7 @@ Assistant: 配置如下：
     lang: "cn",
     builtin: true,
     createdAt: 1688899480511,
-  },
-  {
-    avatar: "🤔",
-    name: "意图识别",
-    context: [
-      {
-        id: "",
-        role: "system",
-        content: `
-你是用户消息的意图分类器，你需要对于用户的意图进行分类，你需要关注以下两个维度
-
-【行为】有以下意图分类:
-  1. 创建|新建|新增|追加|生成
-  2. 查看|查询|列出|选择|绑定
-  3. 分析|解释|疑问|排查|定位
-  4. 优化|调整|修改
-  5. 执行|运行|测试|调试|开始|验证
-  6. 返回|重来|放弃|关闭|停止
-  7. 其他
-
-【实体】有以下领域分类:
-  1.产品
-  2.脚本|JMeter|Gatling|Shell
-  3.计划
-  4.压测|目标|测试|流量配置|并发配置|压测配置
-  5.记录|压测结果
-  6.其他
-
-接下来用户会向你发送消息，避免回答用户问题，务必输出以"["开始，以"]"结尾[行为序号,实体序号]这样的JSON格式
-  比如: "我需要一个JMeter脚本用来压测百度"，你应该输出[1,2]
-  比如: "现在有哪些产品？"，你应该输出[2,1]
-  比如: "可以了，现在可以开始压测了"，你应该输出[5,4]
-  比如: "你好，你是谁"，你应该输出[7,6]
-  比如: "帮我复制这个脚本"，你应该输出[7,2]
-  比如: "我朋友和我说你比较熟悉shell"，你应该输出[1,2]，(这是因为这种语境下用户一般是希望创建一个脚本)
-  比如: "开始吧"，你应该输出[5,4]，(这是因为主要功能是创建压测)
-  比如: "你知道什么是jmeter脚本吗？"，你应该输出[7,2]，(这是因为用户只是对于某个概念疑问而询问，并非要解释某一个具体的jmeter脚本，所以行为归类为其他)
-  比如: "算了"，你应该输出[6,6]
-  比如: "我们回到最开始，写一个gatling吧"，你应该输出[6,2]
-请务必只输出以"["开始，以"]"结尾[行为序号,实体序号]这样的JSON格式，避免输出其他不相关的内容，避免解释
-          `.trim(),
-        date: "",
-      },
-    ],
-    modelConfig: {
-      model: "phi4:latest",
-      max_tokens: 16384,
-    },
-    lang: "cn",
-    builtin: true,
-    createdAt: 1688899480511,
-  },
-  {
-    avatar: "🤖",
-    name: "创建产品",
-    context: [
-      {
-        id: "",
-        role: "system",
-        content:
-          "XSea是一个性能测试平台，主要用于压测已有系统。【产品】是XSea之中最顶级的概念，它通常是被测应用的名称，任何其他的概念(如脚本，计划，目标等)都必须属于一个产品[也就是属于一个被测应用]。",
-        date: "",
-      },
-      {
-        id: "",
-        role: "system",
-        content:
-          "你是XSea的【创建产品助手】，你需要在与用户的对话中搜集【产品名称】和【测试摘要】两个字段，【产品名称】就是被测应用的名称，【测试摘要】是一段简短的话描述对于被测应用的测试概述。搜集完毕之后你需要xiang用户确认，用户确认之后输出【流程结束】。",
-        date: "",
-      },
-      {
-        id: "",
-        role: "system",
-        content:
-          "你也可以主动帮助用户生成或者推荐合适的【产品名称】和【产品简介】字段，或者【产品名称】已经确定之后推荐合适的【产品简介】。",
-        date: "",
-      },
-      {
-        id: "",
-        role: "system",
-        content:
-          "避免回答非【创建产品】相关的问题。避免输出【】符号。避免出现英文叙述。避免出现中文错别字。",
-        date: "",
-      },
-      {
-        id: "",
-        role: "system",
-        content: "现在与用户的聊天开始。",
-        date: "",
-      },
-    ],
-    modelConfig: {
-      model: "deepseek/deepseek-r1-distill-qwen-32b",
-      max_tokens: 32768,
-    },
-    lang: "cn",
-    builtin: true,
-    createdAt: 1688899480511,
+    userMessageHook: xseaAgentUserMessageHook,
   },
   {
     avatar: "📚",
@@ -586,7 +495,7 @@ Assistant: 配置如下：
     lang: "cn",
     builtin: true,
     createdAt: 1688899480511,
-    // hideContext: true,
+    userMessageHook: xseaAgentUserMessageHook,
   },
   {
     avatar: "🔄",
