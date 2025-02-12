@@ -1135,7 +1135,7 @@ function _Chat() {
               ? `助手: ${
                   messages[messages.length - 1].content
                 }\n用户: ${userInput}`
-              : `用户: ${userInput}`;
+              : `助手: 你好\n用户: ${userInput}`;
           const hookResult = await mask.userMessageHook(dialogue);
           if (hookResult) {
             // 根据意图识别获取下一个状态
