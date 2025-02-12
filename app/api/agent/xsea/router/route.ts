@@ -2,73 +2,19 @@ import { NextRequest, NextResponse } from "next/server";
 import model from "../model";
 
 export async function GET(request: NextRequest, { params }: { params: any }) {
-  const actions = ["创建", "选择", "解释", "优化", "执行", "放弃", "其他"];
+  const actions = [
+    "肯定",
+    "否定",
+    "终止",
+    "描述",
+    "创建",
+    "查询",
+    "解释",
+    "修改",
+    "执行",
+    "其他",
+  ];
   const entities = ["产品", "脚本", "计划", "压测", "记录", "知识", "其他"];
-  const agentsMap = {
-    创建: {
-      产品: "创建产品",
-      脚本: "创建脚本",
-      计划: "创建计划",
-      压测: "创建压测",
-      记录: "创建压测",
-      知识: "知识库",
-      其他: "知识库",
-    },
-    选择: {
-      产品: "选择产品",
-      脚本: "选择脚本",
-      计划: "选择计划",
-      压测: "选择目标",
-      记录: "选择记录",
-      知识: "知识库",
-      其他: "知识库",
-    },
-    解释: {
-      产品: "解释产品",
-      脚本: "解释脚本",
-      计划: "解释计划",
-      压测: "解释记录",
-      记录: "解释记录",
-      知识: "知识库",
-      其他: "知识库",
-    },
-    优化: {
-      产品: "知识库",
-      脚本: "优化脚本",
-      计划: "知识库",
-      压测: "解释记录",
-      记录: "解释记录",
-      知识: "知识库",
-      其他: "知识库",
-    },
-    执行: {
-      产品: "创建压测",
-      脚本: "执行脚本",
-      计划: "创建压测",
-      压测: "创建压测",
-      记录: "创建压测",
-      知识: "知识库",
-      其他: "知识库",
-    },
-    放弃: {
-      产品: "退出",
-      脚本: "退出",
-      计划: "退出",
-      压测: "退出",
-      记录: "退出",
-      知识: "退出",
-      其他: "退出",
-    },
-    其他: {
-      产品: "知识库",
-      脚本: "知识库",
-      计划: "知识库",
-      压测: "知识库",
-      记录: "知识库",
-      知识: "知识库",
-      其他: "知识库",
-    },
-  } as any;
   try {
     const searchParams = request.nextUrl.searchParams;
     const userContent = (params?.content || searchParams.get("content")) ?? "";
@@ -161,13 +107,17 @@ export async function GET(request: NextRequest, { params }: { params: any }) {
       },
       { role: "user", content: userContent },
     ]);
-    const [actionIndex, entityIndex] = JSON.parse(result.content as string);
-    // const action = actions[actionIndex - 1] ?? "其他";
-    // const entity = entities[entityIndex - 1] ?? "其他";
-    // const intention = agentsMap[action]?.[entity] ?? "知识库";
+    let actionIndex = actions.length;
+    let entityIndex = entities.length;
+    try {
+      [actionIndex, entityIndex] = JSON.parse(result.content as string);
+    } catch (error) {
+      console.error(error);
+    }
+    const action = actions[actionIndex - 1] ?? "其他";
+    const entity = entities[entityIndex - 1] ?? "其他";
     return NextResponse.json(
-      { actionIndex, entityIndex },
-      // { intention, action, entity, userContent },
+      { intention: action + entity, action, entity, userContent },
       {
         status: 200,
         headers: {
