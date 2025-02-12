@@ -8,6 +8,7 @@ import {
 import { indexedDBStorage } from "@/app/utils/indexedDB-storage";
 import { nanoid } from "nanoid";
 import type {
+  ChatMessageBase,
   ClientApi,
   MultimodalContent,
   RequestMessage,
@@ -583,10 +584,12 @@ export const useChatStore = createPersistStore(
       },
 
       async onSystemInput(
-        content: string,
+        messages: ChatMessageBase[],
         attachImages?: string[],
         isMcpResponse?: boolean,
       ) {
+        const content = messages[messages.length - 1].content;
+
         const session = get().currentSession();
         const modelConfig = session.mask.modelConfig;
 
