@@ -61,6 +61,14 @@ const 执行压测: () => AgentSwitchInfo = () => {
   }
 };
 
+const 肯定压测: () => AgentSwitchInfo = () => {
+  return { call: "执行压测" };
+};
+
+const 否定压测: () => AgentSwitchInfo = () => {
+  return { call: "执行压测" };
+};
+
 export const XSEA_AGENTS: BuiltinMask[] = [
   {
     avatar: "🤖",
@@ -1071,22 +1079,22 @@ Assistant: 配置如下：
     userMessageHook: xseaAgentUserMessageHook,
     stateMap: {
       肯定: {
-        产品: 执行压测,
-        脚本: 执行压测,
-        计划: 执行压测,
-        压测: 执行压测,
-        记录: 执行压测,
-        知识: 执行压测,
-        其他: 执行压测,
+        产品: 肯定压测,
+        脚本: 肯定压测,
+        计划: 肯定压测,
+        压测: 肯定压测,
+        记录: 肯定压测,
+        知识: 肯定压测,
+        其他: 肯定压测,
       },
       否定: {
-        产品: 执行压测,
-        脚本: 执行压测,
-        计划: 执行压测,
-        压测: 执行压测,
-        记录: 执行压测,
-        知识: 执行压测,
-        其他: 执行压测,
+        产品: 否定压测,
+        脚本: 否定压测,
+        计划: 否定压测,
+        压测: 否定压测,
+        记录: 否定压测,
+        知识: 否定压测,
+        其他: 否定压测,
       },
       描述: {
         产品: { call: "XSea-查询产品" },
