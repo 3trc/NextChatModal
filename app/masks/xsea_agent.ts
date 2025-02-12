@@ -437,10 +437,20 @@ Assistant: 配置如下：
     builtin: true,
     createdAt: 1688899480511,
     userMessageHook: async (message) => {
-      const res = await axios.get(`/api/agent/xsea/router`, {
-        params: { content: message },
-      });
-      console.log("userMessageHook", message, res);
+      try {
+        const res = await axios.get(`/api/agent/xsea/router`, {
+          params: { content: message },
+        });
+        const data = res.data;
+        const intention = data.intention ?? "其他其他";
+        const action = data.action ?? "其他";
+        const entity = data.entity ?? "其他";
+        const userContent = data.userContent ?? "";
+        return { intention, action, entity, userContent };
+      } catch (error) {
+        console.error(error);
+      }
+      return null;
     },
     assistantMessageHook: (message) => {
       console.log("assistantMessageHook", message);
