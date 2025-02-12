@@ -1142,8 +1142,14 @@ function _Chat() {
               return nextStateBase;
             })();
 
-            console.log("【意图分类】:", hookResult);
-            console.log("【下一个状态】:", nextState);
+            console.log(
+              "【意图分类】:",
+              hookResult,
+              "【当前状态】:",
+              mask.name,
+              "【下一个状态】:",
+              nextState,
+            );
             if (nextState && nextState.call && nextState.call !== mask.name) {
               const sessionX = chatStore.newSessionX(nextState.call, "NONE");
               if (sessionX) {

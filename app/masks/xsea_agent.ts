@@ -825,9 +825,9 @@ Assistant: 您是要确认吗？
       },
       查询: {
         产品: { call: "XSea-查询产品" },
-        脚本: { call: "XSea-创建脚本" },
-        计划: { call: "XSea-创建脚本" },
-        压测: { call: "XSea-创建脚本" },
+        脚本: { call: "XSea-查询脚本" },
+        计划: { call: "XSea-查询脚本" },
+        压测: { call: "XSea-查询压测" },
         记录: { call: "XSea-查询记录" },
         知识: { call: "XSea-创建脚本" },
         其他: { call: "XSea-知识库" },
