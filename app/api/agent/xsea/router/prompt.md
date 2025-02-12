@@ -1,10 +1,10 @@
 ### 用户会给你发送如下格式的JSON
 {
-  "scene": "xxx",
+  "scenario": "xxx",
   "question": "xxx",
   "answer": "xxx"
 }
-- scene: 代表对话的场景
+- scenario: 代表对话的场景
 - question: 代表对话中助手的问题
 - answer: 代表对话中用户的回答
 
