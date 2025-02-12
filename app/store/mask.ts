@@ -6,6 +6,13 @@ import { StoreKey } from "../constant";
 import { nanoid } from "nanoid";
 import { createPersistStore } from "../utils/store";
 
+interface AgentSwitchInfo {
+  // 要调用的目标Agent名称
+  call?: string;
+  // 过场白
+  bridgeMessages?: ChatMessage[];
+}
+
 export type Mask = {
   id: string;
   createdAt: number;
@@ -32,12 +39,8 @@ export type Mask = {
     [action: string]:
       | {
           [entity: string]:
-            | {
-                // 要调用的目标Agent名称
-                call?: string;
-                // 过场白
-                bridgeMessages?: ChatMessage[];
-              }
+            | AgentSwitchInfo
+            | (() => AgentSwitchInfo)
             | undefined;
         }
       | undefined;
