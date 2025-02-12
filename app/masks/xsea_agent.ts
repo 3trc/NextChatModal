@@ -42,15 +42,15 @@ const 执行压测: () => AgentSwitchInfo = () => {
     };
   } else if (jmeter_list.length > 0 && gatling_list.length === 0) {
     return {
-      call: "选择脚本",
+      call: "执行压测",
     };
   } else if (jmeter_list.length === 0 && gatling_list.length > 0) {
     return {
-      call: "选择脚本",
+      call: "执行压测",
     };
   } else {
     return {
-      call: "选择脚本",
+      call: "执行压测",
     };
   }
 };
