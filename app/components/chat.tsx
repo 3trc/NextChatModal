@@ -1129,7 +1129,7 @@ function _Chat() {
         setSendButtonLoading(true);
         try {
           const hookResult = await mask.userMessageHook(userInput);
-          if (hookResult) {
+          if (hookResult && hookResult.intention !== "其他其他") {
             console.log("hookResult", hookResult);
             return;
           }

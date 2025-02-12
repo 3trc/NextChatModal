@@ -43,7 +43,7 @@ export const XSEA_AGENTS: BuiltinMask[] = [
   },
   {
     avatar: "🔄",
-    name: "查询产品",
+    name: "XSea-查询产品",
     context: [
       {
         id: "",
@@ -71,7 +71,7 @@ XSea性能测试平台的产品选择助手，你需要做如下事情
   },
   {
     avatar: "🔄",
-    name: "查询脚本",
+    name: "XSea-查询脚本",
     context: [
       {
         id: "",
@@ -100,7 +100,7 @@ XSea性能测试平台的脚本选择助手，你需要做如下事情
   },
   {
     avatar: "🔄",
-    name: "查询计划",
+    name: "XSea-查询计划",
     context: [
       {
         id: "",
@@ -127,7 +127,7 @@ XSea性能测试平台的测试计划选择助手，你需要做如下事情
   },
   {
     avatar: "🔄",
-    name: "查询目标",
+    name: "XSea-查询目标",
     context: [
       {
         id: "",
@@ -154,7 +154,7 @@ XSea性能测试平台的目标选择助手，你需要做如下事情
   },
   {
     avatar: "🔄",
-    name: "查询记录",
+    name: "XSea-查询记录",
     context: [
       {
         id: "",
@@ -181,7 +181,7 @@ XSea性能测试平台的压测记录选择助手，你需要做如下事情
   },
   {
     avatar: "🔄",
-    name: "创建脚本",
+    name: "XSea-创建脚本",
     context: [
       {
         id: "",
@@ -297,7 +297,7 @@ Assistant: 您是要确认吗？
   },
   {
     avatar: "🔄",
-    name: "创建产品",
+    name: "XSea-创建产品",
     context: [
       {
         id: "",
@@ -554,7 +554,6 @@ Assistant: 配置如下：
     builtin: true,
     createdAt: 1688899480511,
   },
-
   {
     avatar: "📚",
     name: "XSea-知识库",
