@@ -33,12 +33,12 @@ const 执行压测: () => AgentSwitchInfo = () => {
   // 分支判断，如果没有选择脚本，引导去选择脚本
   if (script_list.length === 0) {
     return {
-      call: "选择脚本",
+      call: "XSea-查询脚本",
     };
   }
   {
     return {
-      call: "执行压测",
+      call: "XSea-执行压测",
     };
   }
 };
