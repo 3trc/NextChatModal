@@ -1167,6 +1167,8 @@ function _Chat() {
                     ...(nextState.bridgeMessages ?? []),
                   ]);
                   setSendButtonLoading(false);
+                  setUserInput("");
+                  setPromptHints([]);
                   return;
                 }
               } else {
@@ -1175,6 +1177,8 @@ function _Chat() {
                   ...(nextState.bridgeMessages ?? []),
                 ]);
                 setSendButtonLoading(false);
+                setUserInput("");
+                setPromptHints([]);
                 return;
               }
             }
