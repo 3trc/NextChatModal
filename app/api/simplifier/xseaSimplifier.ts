@@ -281,7 +281,7 @@ export default class XSeaSimplifier {
       name,
       url: `/${
         this.envId
-      }/product/business/${"841402405221584896"}/plan/target?id=${planId}&goalId=${data}`,
+      }/product/business/${"849903850940473344"}/plan/target?id=${planId}&goalId=${data}`,
     };
   }
 
