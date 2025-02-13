@@ -115,6 +115,12 @@ const 肯定压测: () => AgentSwitchInfo = () => {
       call: "XSea-执行压测",
       bridgeMessages: [
         {
+          role: "assistant",
+          content: `
+测试标志，用于测试assistant消息是否正确显示
+          `,
+        },
+        {
           role: "system",
           content: `
 看起来压测已经成功执行
