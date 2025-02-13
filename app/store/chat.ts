@@ -584,8 +584,6 @@ export const useChatStore = createPersistStore(
       },
 
       async onSystemInput(messages: ChatMessageBase[]) {
-        const content = messages[messages.length - 1].content;
-
         const session = get().currentSession();
         const modelConfig = session.mask.modelConfig;
 
@@ -619,6 +617,11 @@ export const useChatStore = createPersistStore(
             botMessage,
           ]);
         });
+
+        // 如果最后一条消息是助手的消息的话，不需要触发请求
+        if (messages[messages.length - 1]?.role === "assistant") {
+          return;
+        }
 
         const api: ClientApi = getClientApi(modelConfig.providerName);
         // make request
