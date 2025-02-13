@@ -606,6 +606,8 @@ export const useChatStore = createPersistStore(
         const sendMessages = recentMessages.concat(userMessageList);
         const messageIndex = session.messages.length + 1;
 
+        const trigger = messages[messages.length - 1]?.role === "assistant";
+
         // save user's and bot's message
         get().updateTargetSession(session, (session) => {
           const newMessages = userMessageList.map((userMessage) => ({
@@ -614,12 +616,12 @@ export const useChatStore = createPersistStore(
           }));
           session.messages = session.messages.concat([
             ...newMessages,
-            botMessage,
+            ...(trigger ? [botMessage] : []),
           ]);
         });
 
         // 如果最后一条消息是助手的消息的话，不需要触发请求
-        if (messages[messages.length - 1]?.role === "assistant") {
+        if (trigger) {
           return;
         }
 
