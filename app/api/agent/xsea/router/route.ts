@@ -72,6 +72,7 @@ export async function POST(request: NextRequest) {
 - 退出的优先级最高
 - 否定|肯定的优先级低于其他行为
 - 如果对话中有多个意图，以最后一个意图为准
+- 如果【answer】和【question】无关，避免分类【question】
 
 输出检查
 - 确保回答内容在8个字符以内
