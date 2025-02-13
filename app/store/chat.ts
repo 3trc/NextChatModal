@@ -611,7 +611,7 @@ export const useChatStore = createPersistStore(
         // save user's and bot's message
         get().updateTargetSession(session, (session) => {
           userMessageList
-            .filter((message) => message.role === "user")
+            .filter((message) => message.role !== "system")
             .forEach((userMessage) => {
               const savedUserMessage = {
                 ...userMessage,
