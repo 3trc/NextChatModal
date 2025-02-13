@@ -88,13 +88,13 @@ const XSeaSelector = (props: { message: string }) => {
         );
         setPage(res.data);
       } else {
-        res = await axios.get(
-          `/api/object/xsea/product/${workspaceId}/script`,
-          {
-            params: { ...newFilter, type: "JMETER" },
-          },
-        );
-        setPage(res.data);
+        // res = await axios.get(
+        //   `/api/object/xsea/product/${workspaceId}/script`,
+        //   {
+        //     params: { ...newFilter, type: "JMETER" },
+        //   },
+        // );
+        // setPage(res.data);
       }
     } catch (error) {
       console.error(error);
