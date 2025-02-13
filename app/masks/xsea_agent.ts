@@ -117,12 +117,6 @@ const 肯定压测: () => AgentSwitchInfo = () => {
         {
           role: "assistant",
           content: `
-测试标志，用于测试assistant消息是否正确显示
-          `,
-        },
-        {
-          role: "system",
-          content: `
 看起来压测已经成功执行
 压测名称是：小鸡快跑
 页面地址是：http://www.baidu.com
