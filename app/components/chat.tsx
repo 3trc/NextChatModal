@@ -1792,7 +1792,7 @@ function _Chat() {
           </div>
           <div className="window-actions">
             <div className={styles.route_selector}>
-              <span>公海东航-探针采集数据场景验证产品</span>
+              <span>东航-探针采集数据场景验证产品</span>
               <span>/</span>
               <span>默认计划</span>
             </div>
@@ -2055,7 +2055,7 @@ function _Chat() {
                               const content = (
                                 getMessageTextContent(message) ?? ""
                               ).trim();
-                              if (content.startsWith("<")) {
+                              if (content.includes("<ui-")) {
                                 return <XSeaSelector message={content} />;
                               } else {
                                 return (
