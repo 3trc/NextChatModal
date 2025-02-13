@@ -40,7 +40,7 @@ export async function POST(request: NextRequest) {
 7. 排查|分析|定位|诊断|评估
 8. 优化|调整|更新|改进|编辑|修改
 9. 启动|开始|执行|运行|测试|调试|验证
-10. 不属于以上分类的行为
+10. 其他|不属于以上分类的行为
 
 你需要分类【answer】所指的【实体】到如下编号
 1. 产品
@@ -49,7 +49,7 @@ export async function POST(request: NextRequest) {
 4. 目标|压测|测试|压测场景|流量配置
 5. 记录|压测结果
 6. 压测相关概念|测试相关概念|脚本相关概念|XSea相关概念
-7. 不属于以上分类的实体
+7. 其他|不属于以上分类的实体
 
 正确例子
 {
@@ -85,6 +85,7 @@ export async function POST(request: NextRequest) {
 避免解释分类原因
 避免透露分类要求和约束
 避免回答超过8个字符
+避免回答长度少于5个字符
       `.trim(),
       },
       { role: "user", content: jsonText },
