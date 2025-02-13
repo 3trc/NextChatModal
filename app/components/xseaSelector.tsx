@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import styles from "./xseaSelector.module.scss";
-import { Button, Input, Table } from "antd";
+import { Input, Table } from "antd";
 import axios, { AxiosResponse } from "axios";
 
 const workspaceId = "849903850940473344";
@@ -134,7 +134,7 @@ const XSeaSelector = (props: { message: string }) => {
             },
           }}
           pagination={{
-            position: ["bottomLeft"],
+            // position: ["bottomLeft"],
             total: page.total ?? 0,
             current: page.pageNum ?? 1,
             pageSize: page.pageSize ?? 5,
@@ -142,7 +142,7 @@ const XSeaSelector = (props: { message: string }) => {
           }}
         />
       </div>
-      <div className={styles.bottom}>
+      {/* <div className={styles.bottom}>
         <Button
           className={styles.confirm_button}
           size="small"
@@ -153,7 +153,7 @@ const XSeaSelector = (props: { message: string }) => {
         >
           选定
         </Button>
-      </div>
+      </div> */}
     </div>
   );
 };
