@@ -250,7 +250,7 @@ export const XSEA_AGENTS: BuiltinMask[] = [
       执行: {
         产品: { call: "XSea-查询产品" },
         脚本: { call: "XSea-执行脚本" },
-        计划: 执行压测,
+        计划: { call: "XSea-查询计划" },
         压测: 执行压测,
         记录: 执行压测,
         概念: { call: "XSea-知识库" },
