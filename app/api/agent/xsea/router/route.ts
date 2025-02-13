@@ -30,7 +30,9 @@ export async function POST(request: NextRequest) {
 - question: 代表对话中助手的问题
 - answer: 代表对话中用户的回答
 
-你需要分类【answer】的【行为】到如下编号
+你需要从以下两个维度吧【answer】的意图分类到对应编号
+
+【行为】有如下分类编号
 1. 肯定|同意|确认|接受|认可|可以|ok
 2. 否定|拒绝|不对|不行|错了|有问题|no
 3. 退出|停止|取消|返回|关闭|放弃|重来|算了|终止|stop
@@ -42,7 +44,7 @@ export async function POST(request: NextRequest) {
 9. 启动|开始|执行|运行|测试|调试|验证
 10. 其他|不属于以上分类的行为
 
-你需要分类【answer】所指的【实体】到如下编号
+【实体】有如下分类编号
 1. 产品
 2. 脚本|JMeter|Gatling|Shell
 3. 计划|测试计划
