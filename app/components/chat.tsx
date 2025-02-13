@@ -1132,7 +1132,7 @@ function _Chat() {
         try {
           const dialogue = {
             question:
-              messages[messages.length - 1].content ||
+              messages[messages.length - 1]?.content ||
               "你好，有什么可以帮你的吗？",
             answer: userInput,
           };
