@@ -1141,7 +1141,7 @@ function _Chat() {
             // 根据意图识别获取下一个状态
             const nextStateBase =
               mask.stateMap?.[hookResult.action]?.[hookResult.entity];
-            const nextState = (() => {
+            const nextState = await (() => {
               if (nextStateBase == null) return nextStateBase;
               if (typeof nextStateBase === "function") {
                 return nextStateBase();

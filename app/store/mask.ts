@@ -40,7 +40,7 @@ export type Mask = {
       | {
           [entity: string]:
             | AgentSwitchInfo
-            | (() => AgentSwitchInfo)
+            | (() => AgentSwitchInfo | Promise<AgentSwitchInfo>)
             | undefined
             | null;
         }

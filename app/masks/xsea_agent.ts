@@ -58,7 +58,7 @@ ${script_list.map((script) => `- ${script.name}`).join("\n")}
   }
 };
 
-const 肯定压测: () => AgentSwitchInfo = () => {
+const 肯定压测 = async () => {
   // 采集已选脚本信息
   let script_list: any[] = [];
   try {
@@ -83,6 +83,14 @@ const 肯定压测: () => AgentSwitchInfo = () => {
       ],
     };
   } else {
+    const result = await axios.post(
+      `/api/object/xsea/product/${`849903850940473344`}/script/${`841402405221584896`}/test`,
+      {
+        scriptIds: script_list.map((script) => script.id),
+      },
+    );
+    console.log(1234, result);
+
     return {
       call: "XSea-执行压测",
       bridgeMessages: [
