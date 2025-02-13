@@ -41,9 +41,11 @@ export type Mask = {
           [entity: string]:
             | AgentSwitchInfo
             | (() => AgentSwitchInfo)
-            | undefined;
+            | undefined
+            | null;
         }
-      | undefined;
+      | undefined
+      | null;
   };
 };
 
