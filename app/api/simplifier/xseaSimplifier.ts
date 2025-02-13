@@ -202,7 +202,7 @@ export default class XSeaSimplifier {
     const list = res.data.object ?? [];
     const allScripts = list.filter((item: any) => item.type !== "FOLDER");
     const scriptsMeta = allScripts.map((item: any) => ({
-      id: item.id,
+      id: item.scriptId,
       name: item.name,
       url: `/${this.envId}/product/business/${productId}/script?scriptId=${item.id}`,
     }));
@@ -281,7 +281,7 @@ export default class XSeaSimplifier {
       name,
       url: `/${
         this.envId
-      }/product/business/${""}/plan/target?id=${planId}&goalId=${data}`,
+      }/product/business/${"841402405221584896"}/plan/target?id=${planId}&goalId=${data}`,
     };
   }
 
