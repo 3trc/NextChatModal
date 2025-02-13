@@ -378,7 +378,7 @@ XSea性能测试平台的产品选择助手，你需要做如下事情
 3. 查看|列出|查询|选择|筛选|获取|列举|绑定 【Shell脚本】
 4. 其他所有不符合以上分类的意图
 
-如果分类到1 -> 回答用户[ui-scripts-jmeter]
+如果分类到1 -> 回答用户[ui-jmeter-scripts]
 如果分类到2 -> 回答用户[ui-scripts-gatling]
 如果分类到3 -> 回答用户[ui-scripts-shell]
 如果分类到4 -> 回答用户[ui-scripts-guide]
