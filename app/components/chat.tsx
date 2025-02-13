@@ -2059,7 +2059,7 @@ function _Chat() {
                               const content = (
                                 getMessageTextContent(message) ?? ""
                               ).trim();
-                              if (content.includes("<ui-")) {
+                              if (content.startsWith("<ui-")) {
                                 return <XSeaSelector message={content} />;
                               } else {
                                 return (
