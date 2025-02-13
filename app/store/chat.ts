@@ -610,18 +610,14 @@ export const useChatStore = createPersistStore(
 
         // save user's and bot's message
         get().updateTargetSession(session, (session) => {
-          userMessageList
-            .filter((message) => message.role !== "system")
-            .forEach((userMessage) => {
-              const savedUserMessage = {
-                ...userMessage,
-                content: userMessage.content,
-              };
-              session.messages = session.messages.concat([
-                savedUserMessage,
-                botMessage,
-              ]);
-            });
+          const newMessages = userMessageList.map((userMessage) => ({
+            ...userMessage,
+            content: userMessage.content,
+          }));
+          session.messages = session.messages.concat([
+            ...newMessages,
+            botMessage,
+          ]);
         });
 
         const api: ClientApi = getClientApi(modelConfig.providerName);
