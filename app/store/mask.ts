@@ -29,11 +29,10 @@ export type Mask = {
   enableArtifacts?: boolean;
   enableCodeFold?: boolean;
 
-  userMessageHook?: (message: string) => Promise<{
+  userMessageHook?: (dialogue: any) => Promise<{
     intention: string;
     action: string;
     entity: string;
-    userContent: string;
   } | null>;
   assistantMessageHook?: (message: string) => any;
   stateMap?: {

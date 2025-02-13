@@ -1130,12 +1130,12 @@ function _Chat() {
       if (mask.userMessageHook) {
         setSendButtonLoading(true);
         try {
-          const dialogue =
-            messages.length > 0
-              ? `助手: ${
-                  messages[messages.length - 1].content
-                }\n用户: ${userInput}`
-              : `助手: 你好\n用户: ${userInput}`;
+          const dialogue = {
+            question:
+              messages[messages.length - 1].content ||
+              "你好，有什么可以帮你的吗？",
+            answer: userInput,
+          };
           const hookResult = await mask.userMessageHook(dialogue);
           if (hookResult) {
             // 根据意图识别获取下一个状态

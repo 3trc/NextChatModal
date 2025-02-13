@@ -3,17 +3,14 @@ import { BuiltinMask } from "./typing";
 import { AgentSwitchInfo } from "../store/mask";
 
 // XSea-智能体下属的所有的Agent的同意发送意图识别Hook
-const xseaAgentUserMessageHook = async (message: string) => {
+const xseaAgentUserMessageHook = async (dialogue: any) => {
   try {
-    const res = await axios.get(`/api/agent/xsea/router`, {
-      params: { content: message },
-    });
+    const res = await axios.post(`/api/agent/xsea/router`, dialogue);
     const data = res.data;
     const intention = data.intention ?? "其他其他";
     const action = data.action ?? "其他";
     const entity = data.entity ?? "其他";
-    const userContent = data.userContent ?? "";
-    return { intention, action, entity, userContent };
+    return { intention, action, entity };
   } catch (error) {
     console.error(error);
   }
