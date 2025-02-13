@@ -9,12 +9,12 @@ export async function POST(request: NextRequest) {
     "描述",
     "创建",
     "查询",
-    "解释",
+    "分析",
     "修改",
     "执行",
     "其他",
   ];
-  const entities = ["产品", "脚本", "计划", "压测", "记录", "知识", "其他"];
+  const entities = ["产品", "脚本", "计划", "压测", "记录", "概念", "其他"];
   try {
     const json = await request.json();
     const jsonText = JSON.stringify(json, null, 2);
@@ -57,7 +57,7 @@ export async function POST(request: NextRequest) {
 - 确保输出内容在8个字符以内
 - 确保输出内容以"["符号开头
 - 确保输出内容以"]"符号结束
-- 确保输出内容是[行为序号,实体序号]格式
+- 确保输出内容是[行为,实体]格式
 - 确保不输出多余的聊天消息
       `.trim(),
       },
