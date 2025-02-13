@@ -1792,9 +1792,9 @@ function _Chat() {
           </div>
           <div className="window-actions">
             <div className={styles.route_selector}>
-              <span>公海产品</span>
+              <span>公海东航-探针采集数据场景验证产品</span>
               <span>/</span>
-              <span>公海计划</span>
+              <span>默认计划</span>
             </div>
             <div className="window-action-button">
               <IconButton
