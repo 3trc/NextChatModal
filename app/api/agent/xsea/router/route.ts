@@ -93,9 +93,13 @@ export async function POST(request: NextRequest) {
     let actionIndex = actions.length;
     let entityIndex = entities.length;
     try {
-      [actionIndex, entityIndex] = JSON.parse(result.content as string);
+      [actionIndex, entityIndex] = JSON.parse(response);
     } catch (error) {
       console.log(error, result.content);
+      actionIndex =
+        actions.findIndex((action) => response.includes(`[${action}`)) + 1;
+      entityIndex =
+        entities.findIndex((entity) => response.includes(`${entity}]`)) + 1;
     }
     const action = actions[actionIndex - 1] ?? "其他";
     const entity = entities[entityIndex - 1] ?? "其他";
