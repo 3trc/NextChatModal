@@ -46,7 +46,7 @@ export interface RequestMessage {
 }
 
 export interface ChatMessageBase {
-  role: MessageRole;
+  role: MessageRole | string;
   content: string;
 }
 
