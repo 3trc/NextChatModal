@@ -89,21 +89,31 @@ export async function POST(request: NextRequest) {
       },
       { role: "user", content: jsonText },
     ]);
+    const response = result.content as string;
     let actionIndex = actions.length;
     let entityIndex = entities.length;
     try {
       [actionIndex, entityIndex] = JSON.parse(result.content as string);
     } catch (error) {
-      console.log(1234, result.content);
+      console.log(error, result.content);
     }
     const action = actions[actionIndex - 1] ?? "其他";
     const entity = entities[entityIndex - 1] ?? "其他";
-    return NextResponse.json(result.content, {
-      status: 200,
-      headers: {
-        "Content-Type": "application/json",
+    return NextResponse.json(
+      {
+        action,
+        entity,
+        intention: action + entity,
+        request: json,
+        response,
       },
-    });
+      {
+        status: 200,
+        headers: {
+          "Content-Type": "application/json",
+        },
+      },
+    );
   } catch (error) {
     return NextResponse.json(
       {
