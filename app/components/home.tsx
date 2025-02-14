@@ -30,6 +30,7 @@ import { type ClientApi, getClientApi } from "../client/api";
 import { useAccessStore } from "../store";
 import clsx from "clsx";
 import { initializeMcpSystem } from "../mcp/actions";
+import StatesView from "./statesView";
 
 export function Loading(props: { noLogo?: boolean }) {
   return (
@@ -204,6 +205,7 @@ function Screen() {
             <Route path={Path.McpMarket} element={<McpMarketPage />} />
           </Routes>
         </WindowContent>
+        <StatesView />
       </>
     );
   };
