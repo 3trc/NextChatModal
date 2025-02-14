@@ -11,7 +11,6 @@ export type ScriptType = "JMETER" | "GATLING" | "SHELL";
 
 const ScriptSelector = (props: { types: ScriptType[] }) => {
   const [tab, setTab] = useState<ScriptType>("JMETER");
-
   const [loading, setLoading] = useState<boolean>(true);
   const [filter, setFilter] = useState({ search: "", pageNum: 1, pageSize: 5 });
   const [page, setPage] = useState({
