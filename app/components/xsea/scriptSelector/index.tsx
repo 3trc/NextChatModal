@@ -42,6 +42,8 @@ const ScriptSelector = (props: { types: ScriptType[] }) => {
     updatePage({ type: tab });
   }, []);
 
+  const [selectedScripts, setSelectedScripts] = useState<any[]>([]);
+
   return (
     <div className={styles.com}>
       <div>😄 你好，你想选择哪些脚本呢？</div>
@@ -94,6 +96,10 @@ const ScriptSelector = (props: { types: ScriptType[] }) => {
           loading={loading}
           rowSelection={{
             type: "checkbox",
+            selectedRowKeys: selectedScripts.map((script) => script.id),
+            onChange: (_, selectedRows) => {
+              setSelectedScripts(selectedRows);
+            },
           }}
           pagination={{
             position: ["bottomLeft"],
@@ -102,8 +108,19 @@ const ScriptSelector = (props: { types: ScriptType[] }) => {
       </div>
       <div className={styles.bottom}>
         <Space className={styles.confirm_buttons}>
-          <Button size="small">清空</Button>
-          <Button size="small" type="primary" onClick={() => {}}>
+          <Button
+            disabled={selectedScripts.length === 0}
+            size="small"
+            onClick={() => setSelectedScripts([])}
+          >
+            清空
+          </Button>
+          <Button
+            disabled={selectedScripts.length === 0}
+            size="small"
+            type="primary"
+            onClick={() => {}}
+          >
             选定
           </Button>
         </Space>
