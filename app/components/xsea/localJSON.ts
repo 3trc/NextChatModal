@@ -3,7 +3,7 @@ const handler = {
     try {
       return JSON.parse(localStorage.getItem(property) as string);
     } catch (error) {
-      return undefined;
+      return null;
     }
   },
   set: (_: any, property: any, value: any) => {

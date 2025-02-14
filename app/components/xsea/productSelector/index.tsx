@@ -37,9 +37,9 @@ const ProductSelector = () => {
 
   const [selectedScripts, setSelectedScripts] = useState<any[]>([]);
 
-  const SetSelectedScripts = (scripts: any[]) => {
-    setSelectedScripts(scripts);
-    LocalJSON.selected_scripts = scripts;
+  const SetSelectedScripts = (products: any[]) => {
+    setSelectedScripts(products);
+    LocalJSON.selected_product = products[0] ?? null;
   };
 
   return (
