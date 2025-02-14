@@ -40,6 +40,7 @@ const ProductSelector = () => {
   const SetSelectedScripts = (products: any[]) => {
     setSelectedScripts(products);
     LocalJSON.selected_product = products[0] ?? null;
+    LocalJSON.selected_scripts = [];
   };
 
   return (
