@@ -55,8 +55,12 @@ const ScriptSelector = (props: { types: ScriptType[] }) => {
       <div>
         <span>
           😄 你好，
-          <a href="http://wwww.baidu.com" className={styles.a_product}>
-            东航压测产品
+          <a
+            href={`${"http://10.10.30.103:8081"}${LocalJSON.selected_product
+              ?.url}`}
+            className={styles.a_product}
+          >
+            {LocalJSON.selected_product?.name}
           </a>
           &nbsp;产品下有如下脚本可供选择，
         </span>
