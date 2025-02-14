@@ -7,10 +7,8 @@ import { nanoid } from "nanoid";
 import { createPersistStore } from "../utils/store";
 import { ChatMessageBase } from "../client/api";
 
-export interface AgentSwitchInfo {
-  // 要调用的目标Agent名称
-  call?: string;
-  // 过场白
+export interface AgentSwitcher {
+  agentName: string;
   bridgeMessages?: ChatMessageBase[];
 }
 
@@ -29,6 +27,9 @@ export type Mask = {
   enableArtifacts?: boolean;
   enableCodeFold?: boolean;
 
+  preHandle?: () => {};
+  postHandle?: () => {};
+
   userMessageHook?: (dialogue: any) => Promise<{
     intention: string;
     action: string;
@@ -39,8 +40,8 @@ export type Mask = {
     [action: string]:
       | {
           [entity: string]:
-            | AgentSwitchInfo
-            | (() => AgentSwitchInfo | Promise<AgentSwitchInfo>)
+            | AgentSwitcher
+            | (() => AgentSwitcher | Promise<AgentSwitcher>)
             | undefined
             | null;
         }

@@ -1,6 +1,6 @@
 import axios from "axios";
 import { BuiltinMask } from "./typing";
-import { AgentSwitchInfo } from "../store/mask";
+import { AgentSwitcher } from "../store/mask";
 
 // XSea-智能体下属的所有的Agent的同意发送意图识别Hook
 const xseaAgentUserMessageHook = async (dialogue: any) => {
@@ -17,7 +17,7 @@ const xseaAgentUserMessageHook = async (dialogue: any) => {
   return null;
 };
 
-const 执行压测: () => AgentSwitchInfo = () => {
+const 执行压测: () => AgentSwitcher = () => {
   // 采集已选脚本信息
   let script_list: any[] = [];
   try {
@@ -138,7 +138,7 @@ ${JSON.stringify(data.executeRecord?.id, null, 2)}
   }
 };
 
-const 否定压测: () => AgentSwitchInfo = () => {
+const 否定压测: () => AgentSwitcher = () => {
   return {
     call: "XSea-查询脚本",
     bridgeMessages: [
