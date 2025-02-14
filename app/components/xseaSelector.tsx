@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import ScriptSelector from "./xsea/scriptSelector";
+import ProductSelector from "./xsea/productSelector";
 
 const workspaceId = "849903850940473344";
 const planId = "841402405221584896";
@@ -17,7 +17,8 @@ const LABELS_MAP = {
 } as any;
 
 const XSeaSelector = (props: { message: string }) => {
-  return <ScriptSelector types={["JMETER", "GATLING", "SHELL"]} />;
+  return <ProductSelector />;
+  // return <ScriptSelector types={["JMETER", "GATLING", "SHELL"]} />;
   // const label = props.message.trim();
   // const [loading, setLoading] = useState<boolean>(true);
   // const [filter, setFilter] = useState({ search: "", pageNum: 1, pageSize: 5 });

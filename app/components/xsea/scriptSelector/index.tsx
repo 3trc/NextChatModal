@@ -126,7 +126,7 @@ const ScriptSelector = (props: { types: ScriptType[] }) => {
           <Button
             disabled={selectedScripts.length === 0}
             size="small"
-            onClick={() => setSelectedScripts([])}
+            onClick={() => SetSelectedScripts([])}
           >
             清空
           </Button>

@@ -1,17 +1,12 @@
 "use client";
 
-import { Button, Space, Table, Tabs } from "antd";
+import { Button, Space, Table } from "antd";
 import React, { useEffect, useState } from "react";
 import styles from "./index.module.scss";
 import axios from "axios";
 import LocalJSON from "../localJSON";
 
-const { TabPane } = Tabs;
-
-export type ScriptType = "JMETER" | "GATLING" | "SHELL";
-
-const ScriptSelector = (props: { types: ScriptType[] }) => {
-  const [tab, setTab] = useState<ScriptType>("JMETER");
+const ProductSelector = () => {
   const [loading, setLoading] = useState<boolean>(true);
   const [filter, setFilter] = useState({ search: "", pageNum: 1, pageSize: 5 });
   const [page, setPage] = useState({
@@ -26,12 +21,9 @@ const ScriptSelector = (props: { types: ScriptType[] }) => {
     setFilter(newFilter);
     setLoading(true);
     try {
-      const res = await axios.get(
-        `/api/object/xsea/product/849903850940473344/script`,
-        {
-          params: { ...newFilter },
-        },
-      );
+      const res = await axios.get(`/api/object/xsea/product`, {
+        params: { ...newFilter },
+      });
       setPage(res.data);
     } catch (error) {
       console.error(error);
@@ -40,7 +32,7 @@ const ScriptSelector = (props: { types: ScriptType[] }) => {
   };
 
   useEffect(() => {
-    updatePage({ type: tab });
+    updatePage();
   }, []);
 
   const [selectedScripts, setSelectedScripts] = useState<any[]>([]);
@@ -53,28 +45,8 @@ const ScriptSelector = (props: { types: ScriptType[] }) => {
   return (
     <div className={styles.com}>
       <div>
-        <span>
-          😄 你好，
-          <a href="http://wwww.baidu.com" className={styles.a_product}>
-            东航压测产品
-          </a>
-          &nbsp;产品下有如下脚本可供选择，
-        </span>
-        <span>你想选择哪些脚本呢？</span>
-      </div>
-      <div>
-        <Tabs
-          size="small"
-          activeKey={tab}
-          onChange={(activeKey) => {
-            setTab(activeKey as ScriptType);
-            updatePage({ type: activeKey, pageNum: 1 });
-          }}
-        >
-          <TabPane tab="JMeter" key="JMETER" />
-          <TabPane tab="Gatling" key="GATLING" />
-          <TabPane tab="Shell" key="SHELL" />
-        </Tabs>
+        <span>😊 你好，平台上现有以下产品可供选择</span>
+        <span>你想选择哪个产品呢？</span>
       </div>
       <div>
         <Table
@@ -92,15 +64,6 @@ const ScriptSelector = (props: { types: ScriptType[] }) => {
                     target="_blank"
                     className={styles.a_name}
                   >
-                    {row.type === "JMETER" && (
-                      <span className={styles.J}>J</span>
-                    )}
-                    {row.type === "GATLING" && (
-                      <span className={styles.G}>G</span>
-                    )}
-                    {row.type === "SHELL" && (
-                      <span className={styles.S}>S</span>
-                    )}
                     <span className={styles.name}>{row.name}</span>
                   </a>
                 );
@@ -110,7 +73,7 @@ const ScriptSelector = (props: { types: ScriptType[] }) => {
           dataSource={page.list ?? []}
           loading={loading}
           rowSelection={{
-            type: "checkbox",
+            type: "radio",
             selectedRowKeys: selectedScripts.map((script) => script.id),
             onChange: (_, selectedRows) => {
               SetSelectedScripts(selectedRows);
@@ -126,7 +89,7 @@ const ScriptSelector = (props: { types: ScriptType[] }) => {
           <Button
             disabled={selectedScripts.length === 0}
             size="small"
-            onClick={() => setSelectedScripts([])}
+            onClick={() => SetSelectedScripts([])}
           >
             清空
           </Button>
@@ -144,4 +107,4 @@ const ScriptSelector = (props: { types: ScriptType[] }) => {
   );
 };
 
-export default ScriptSelector;
+export default ProductSelector;
