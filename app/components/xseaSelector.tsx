@@ -9,13 +9,13 @@ const workspaceId = "849903850940473344";
 const planId = "841402405221584896";
 
 const LABELS_MAP = {
-  "<ui-products>": "产品",
-  "<ui-jmeter-scripts>": "JMeter脚本",
-  "<ui-gatling-scripts>": "Gatling脚本",
-  "<ui-shell-scripts>": "Shell脚本",
-  "<ui-plans>": "计划",
-  "<ui-goals>": "目标",
-  "<ui-records>": "记录",
+  "[ui-products]": "产品",
+  "[ui-jmeter-scripts]": "JMeter脚本",
+  "[ui-gatling-scripts]": "Gatling脚本",
+  "[ui-shell-scripts]": "Shell脚本",
+  "[ui-plans]": "计划",
+  "[ui-goals]": "目标",
+  "[ui-records]": "记录",
 } as any;
 
 const XSeaSelector = (props: { message: string }) => {
@@ -35,13 +35,13 @@ const XSeaSelector = (props: { message: string }) => {
     setLoading(true);
     try {
       let res: AxiosResponse<any, any>;
-      if (label.includes("<ui-products>")) {
+      if (label.includes("[ui-products]")) {
         res = await axios.get("/api/object/xsea/product", {
           params: newFilter,
         });
         setPage(res.data);
       }
-      if (label.includes("<ui-jmeter-scripts>")) {
+      if (label.includes("[ui-jmeter-scripts]")) {
         res = await axios.get(
           `/api/object/xsea/product/${workspaceId}/script`,
           {
@@ -50,7 +50,7 @@ const XSeaSelector = (props: { message: string }) => {
         );
         setPage(res.data);
       }
-      if (label.includes("<ui-gatling-scripts>")) {
+      if (label.includes("[ui-gatling-scripts]")) {
         res = await axios.get(
           `/api/object/xsea/product/${workspaceId}/script`,
           {
@@ -59,7 +59,7 @@ const XSeaSelector = (props: { message: string }) => {
         );
         setPage(res.data);
       }
-      if (label.includes("<ui-shell-scripts>")) {
+      if (label.includes("[ui-shell-scripts]")) {
         res = await axios.get(
           `/api/object/xsea/product/${workspaceId}/script`,
           {
@@ -68,20 +68,20 @@ const XSeaSelector = (props: { message: string }) => {
         );
         setPage(res.data);
       }
-      if (label.includes("<ui-plans>")) {
+      if (label.includes("[ui-plans]")) {
         res = await axios.get(`/api/object/xsea/product/${workspaceId}/plan`, {
           params: newFilter,
         });
         setPage(res.data);
       }
-      if (label.includes("<ui-goals>")) {
+      if (label.includes("[ui-goals]")) {
         res = await axios.get(
           `/api/object/xsea/product/${workspaceId}/plan/${planId}/goal`,
           { params: newFilter },
         );
         setPage(res.data);
       }
-      if (label.includes("<ui-records>")) {
+      if (label.includes("[ui-records]")) {
         res = await axios.get(
           `/api/object/xsea/product/${workspaceId}/plan/${planId}/test-record`,
           { params: newFilter },
