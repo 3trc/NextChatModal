@@ -62,6 +62,7 @@ const ScriptSelector = (props: { types: ScriptType[] }) => {
       </div>
       <div>
         <Table
+          rowKey="id"
           size="small"
           bordered
           showHeader={false}
@@ -91,6 +92,10 @@ const ScriptSelector = (props: { types: ScriptType[] }) => {
             },
           ]}
           dataSource={page.list ?? []}
+          loading={loading}
+          rowSelection={{
+            type: "checkbox",
+          }}
         />
       </div>
     </div>
