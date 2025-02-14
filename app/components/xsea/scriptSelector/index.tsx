@@ -5,6 +5,7 @@ import React, { useEffect, useState } from "react";
 import styles from "./index.module.scss";
 import axios from "axios";
 import LocalJSON from "../localJSON";
+import { useChatStore } from "@/app/store";
 
 const { TabPane } = Tabs;
 
@@ -49,6 +50,8 @@ const ScriptSelector = (props: { types: ScriptType[] }) => {
     setSelectedScripts(scripts);
     LocalJSON.selected_scripts = scripts;
   };
+
+  const chatStore = useChatStore();
 
   return (
     <div className={styles.com}>
@@ -117,7 +120,7 @@ const ScriptSelector = (props: { types: ScriptType[] }) => {
             type: "checkbox",
             selectedRowKeys: selectedScripts.map((script) => script.id),
             onChange: (_, selectedRows) => {
-              SetSelectedScripts(selectedRows);
+              setSelectedScripts(selectedRows);
             },
           }}
           pagination={{
@@ -138,7 +141,10 @@ const ScriptSelector = (props: { types: ScriptType[] }) => {
             disabled={selectedScripts.length === 0}
             size="small"
             type="primary"
-            onClick={() => {}}
+            onClick={() => {
+              SetSelectedScripts(selectedScripts);
+              chatStore.onUserInputX("开始压测");
+            }}
           >
             选定
           </Button>
