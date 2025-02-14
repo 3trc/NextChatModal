@@ -5,4 +5,31 @@
       margin-bottom: 0px;
     }
   }
+  .a_name {
+    display: inline-flex;
+    align-items: center;
+  }
+  .J {
+    color: white;
+    font-size: 12px;
+    border-radius: 2px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 14px;
+    height: 14px;
+    background-color: #346fff;
+  }
+  .G {
+    @extend .J;
+    background-color: orange;
+  }
+  .S {
+    color: white;
+    @extend .J;
+    background-color: greenyellow;
+  }
+  .name {
+    margin-left: 0.2rem;
+  }
 }

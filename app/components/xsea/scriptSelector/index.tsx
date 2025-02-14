@@ -65,7 +65,31 @@ const ScriptSelector = (props: { types: ScriptType[] }) => {
           size="small"
           bordered
           showHeader={false}
-          columns={[{ dataIndex: "name" }]}
+          columns={[
+            {
+              dataIndex: "name",
+              render: (_, row: any) => {
+                return (
+                  <a
+                    href={`${"http://10.10.30.103:8081"}${row.url}`}
+                    target="_blank"
+                    className={styles.a_name}
+                  >
+                    {row.type === "JMETER" && (
+                      <span className={styles.J}>J</span>
+                    )}
+                    {row.type === "GATLING" && (
+                      <span className={styles.G}>G</span>
+                    )}
+                    {row.type === "SHELL" && (
+                      <span className={styles.S}>S</span>
+                    )}
+                    <span className={styles.name}>{row.name}</span>
+                  </a>
+                );
+              },
+            },
+          ]}
           dataSource={page.list ?? []}
         />
       </div>
