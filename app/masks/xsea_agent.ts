@@ -162,7 +162,13 @@ export const XSEA_AGENTS: BuiltinMask[] = [
       {
         id: "",
         role: "system",
-        content: `你只需要向用户询问有什么可以帮你的呢？`.trim(),
+        content: `你是XSea性能测试平台的AI小助手`.trim(),
+        date: "",
+      },
+      {
+        id: "",
+        role: "assistant",
+        content: `[ui-welcome]`.trim(),
         date: "",
       },
     ],
