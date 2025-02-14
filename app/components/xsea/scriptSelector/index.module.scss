@@ -1,4 +1,5 @@
 .com {
+  font-size: 14px;
   min-width: 300px;
   :global {
     .ant-tabs-nav {
@@ -7,6 +8,14 @@
     .ant-pagination {
       margin-bottom: 0px!important;
     }
+  }
+  .a_product {
+    color: #1677ff;
+    text-decoration: none;
+    background-color: transparent;
+    outline: none;
+    cursor: pointer;
+    transition: color 0.3s;
   }
   .bottom {
     position: relative;

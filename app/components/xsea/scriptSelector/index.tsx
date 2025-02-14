@@ -48,7 +48,10 @@ const ScriptSelector = (props: { types: ScriptType[] }) => {
     <div className={styles.com}>
       <div>
         <span>
-          😄 你好，<a href="http://wwww.baidu.com">xxx</a>
+          😄 你好，
+          <a href="http://wwww.baidu.com" className={styles.a_product}>
+            东航压测产品
+          </a>
           &nbsp;产品下有如下脚本可供选择，
         </span>
         <span>你想选择哪些脚本呢？</span>
