@@ -82,6 +82,10 @@ const ProductSelector = () => {
           }}
           pagination={{
             position: ["bottomLeft"],
+            total: page.total,
+            current: page.pageNum ?? 1,
+            pageSize: page.pageSize ?? 5,
+            onChange: (pageNum, pageSize) => updatePage({ pageNum, pageSize }),
           }}
         />
       </div>
