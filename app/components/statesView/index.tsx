@@ -44,7 +44,11 @@ const StatesView = () => {
                   选择产品
                 </Button>
               ),
-              description: product.name ?? "暂未选择",
+              description: product.name ? (
+                <a href="javascript:;">{product.name}</a>
+              ) : (
+                "暂未选择"
+              ),
             },
             {
               status: "process",
@@ -53,20 +57,32 @@ const StatesView = () => {
                   选择脚本
                 </Button>
               ),
-              description: JSON.stringify(scripts.map((script) => script.name)),
-            },
-            {
-              status: "process",
-              title: (
-                <Button
-                  type="primary"
-                  onClick={() => chatStore.onUserInputX("开始压测")}
-                >
-                  开始压测
-                </Button>
+              description: (
+                <ul className={styles.ul}>
+                  {scripts.map((script) => (
+                    <li key={script.id}>
+                      <a href="javascript:;">{script.name}</a>
+                    </li>
+                  ))}
+                </ul>
               ),
-              description: <span>点我就可以开始压测了哦 ⚡</span>,
             },
+            ...(product.id && scripts.length > 0
+              ? [
+                  {
+                    status: "process" as any,
+                    title: (
+                      <Button
+                        type="primary"
+                        onClick={() => chatStore.onUserInputX("开始压测")}
+                      >
+                        开始压测
+                      </Button>
+                    ),
+                    description: <span>点我就可以开始压测了哦 ⚡</span>,
+                  },
+                ]
+              : []),
           ]}
         />
       </div>
