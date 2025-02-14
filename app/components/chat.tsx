@@ -1796,9 +1796,6 @@ function _Chat() {
             </div>
           </div>
           <div className="window-actions">
-            <div className={styles.route_selector}>
-              <span>东航-探针采集数据场景验证产品</span>
-            </div>
             <div className="window-action-button">
               <IconButton
                 icon={<ReloadIcon />}
