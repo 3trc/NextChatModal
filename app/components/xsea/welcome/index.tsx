@@ -17,28 +17,28 @@ const Welcome = () => {
           <Button
             type="primary"
             onClick={() => {
-              chatStore.onUserInput("开始压测");
+              chatStore.onUserInputX("开始压测");
             }}
           >
             开始压测
           </Button>
           <Button
             onClick={() => {
-              chatStore.onUserInput("创建JMeter脚本");
+              chatStore.onUserInputX("创建JMeter脚本");
             }}
           >
             编写脚本
           </Button>
           <Button
             onClick={() => {
-              chatStore.onUserInput("产品列表");
+              chatStore.onUserInputX("产品列表");
             }}
           >
             查看产品
           </Button>
           <Button
             onClick={() => {
-              chatStore.onUserInput("XSea是什么");
+              chatStore.onUserInputX("XSea是什么");
             }}
           >
             学习XSea性能测试平台
