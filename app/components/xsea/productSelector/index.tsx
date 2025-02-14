@@ -77,7 +77,7 @@ const ProductSelector = () => {
             type: "radio",
             selectedRowKeys: selectedScripts.map((script) => script.id),
             onChange: (_, selectedRows) => {
-              SetSelectedScripts(selectedRows);
+              setSelectedScripts(selectedRows);
             },
           }}
           pagination={{
@@ -98,7 +98,9 @@ const ProductSelector = () => {
             disabled={selectedScripts.length === 0}
             size="small"
             type="primary"
-            onClick={() => {}}
+            onClick={() => {
+              SetSelectedScripts(selectedScripts);
+            }}
           >
             选定
           </Button>
