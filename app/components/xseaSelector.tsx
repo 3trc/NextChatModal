@@ -149,18 +149,18 @@ const XSeaSelector = (props: { message: string }) => {
   //         }}
   //       />
   //     </div>
-  //     {/* <div className={styles.bottom}>
-  //       <Button
-  //         className={styles.confirm_button}
-  //         size="small"
-  //         type="primary"
-  //         onClick={() => {
-  //           alert("写入session状态");
-  //         }}
-  //       >
-  //         选定
-  //       </Button>
-  //     </div> */}
+  // {/* <div className={styles.bottom}>
+  //   <Button
+  //     className={styles.confirm_button}
+  //     size="small"
+  //     type="primary"
+  //     onClick={() => {
+  //       alert("写入session状态");
+  //     }}
+  //   >
+  //     选定
+  //   </Button>
+  // </div> */}
   //   </div>
   // );
 };

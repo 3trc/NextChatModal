@@ -1,12 +1,19 @@
 .com {
-  height: 305px;
-  min-width: 330px;
+  min-width: 300px;
   :global {
     .ant-tabs-nav {
       margin-bottom: 0px!important;
     }
     .ant-pagination {
       margin-bottom: 0px!important;
+    }
+  }
+  .bottom {
+    position: relative;
+    .confirm_buttons {
+      position: absolute;
+      top: -24px;
+      right: 0px;
     }
   }
   .a_name {

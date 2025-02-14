@@ -1,6 +1,6 @@
 "use client";
 
-import { Table, Tabs } from "antd";
+import { Button, Space, Table, Tabs } from "antd";
 import React, { useEffect, useState } from "react";
 import styles from "./index.module.scss";
 import axios from "axios";
@@ -96,7 +96,18 @@ const ScriptSelector = (props: { types: ScriptType[] }) => {
           rowSelection={{
             type: "checkbox",
           }}
+          pagination={{
+            position: ["bottomLeft"],
+          }}
         />
+      </div>
+      <div className={styles.bottom}>
+        <Space className={styles.confirm_buttons}>
+          <Button size="small">清空</Button>
+          <Button size="small" type="primary" onClick={() => {}}>
+            选定
+          </Button>
+        </Space>
       </div>
     </div>
   );
