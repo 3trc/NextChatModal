@@ -305,7 +305,7 @@ export const XSEA_AGENTS: BuiltinMask[] = [
     lang: "cn",
     builtin: true,
     createdAt: 1688899480511,
-    // userMessageHook: xseaAgentUserMessageHook,
+    userMessageHook: xseaAgentUserMessageHook,
     stateMap: {
       // 肯定: {},
       // 否定: {},
@@ -356,7 +356,7 @@ export const XSEA_AGENTS: BuiltinMask[] = [
         其他: { call: "XSea-知识库" },
       },
       执行: {
-        产品: { call: "XSea-查询产品" },
+        产品: 执行压测,
         脚本: { call: "XSea-执行脚本" },
         计划: { call: "XSea-查询计划" },
         压测: 执行压测,
@@ -407,7 +407,7 @@ export const XSEA_AGENTS: BuiltinMask[] = [
     lang: "cn",
     builtin: true,
     createdAt: 1688899480511,
-    // userMessageHook: xseaAgentUserMessageHook,
+    userMessageHook: xseaAgentUserMessageHook,
     stateMap: {
       // 肯定: {},
       // 否定: {},

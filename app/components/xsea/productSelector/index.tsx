@@ -5,6 +5,7 @@ import React, { useEffect, useState } from "react";
 import styles from "./index.module.scss";
 import axios from "axios";
 import LocalJSON from "../localJSON";
+import { useChatStore } from "@/app/store";
 
 const ProductSelector = () => {
   const [loading, setLoading] = useState<boolean>(true);
@@ -42,6 +43,8 @@ const ProductSelector = () => {
     LocalJSON.selected_product = products[0] ?? null;
     LocalJSON.selected_scripts = [];
   };
+
+  const chatStore = useChatStore();
 
   return (
     <div className={styles.com}>
@@ -104,6 +107,7 @@ const ProductSelector = () => {
             type="primary"
             onClick={() => {
               SetSelectedScripts(selectedScripts);
+              chatStore.onUserInputX("开始压测");
             }}
           >
             选定
