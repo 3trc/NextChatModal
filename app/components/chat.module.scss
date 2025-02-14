@@ -753,6 +753,7 @@
 }
 
 .route_selector {
+  cursor: pointer;
   display: flex;
   align-items: center;
   font-size: 14px;
@@ -765,7 +766,6 @@
   span {
     font-weight: bold;
     &:nth-child(odd) {
-      cursor: pointer;
       padding: 2px 6px; // 减小文字内边距
       transition: color 0.2s ease;
       &:hover {
