@@ -4,6 +4,7 @@ import { Button, Space, Table, Tabs } from "antd";
 import React, { useEffect, useState } from "react";
 import styles from "./index.module.scss";
 import axios from "axios";
+import LocalJSON from "../localJSON";
 
 const { TabPane } = Tabs;
 
@@ -43,6 +44,11 @@ const ScriptSelector = (props: { types: ScriptType[] }) => {
   }, []);
 
   const [selectedScripts, setSelectedScripts] = useState<any[]>([]);
+
+  const SetSelectedScripts = (scripts: any[]) => {
+    setSelectedScripts(scripts);
+    LocalJSON.selected_scripts = scripts;
+  };
 
   return (
     <div className={styles.com}>
@@ -107,7 +113,7 @@ const ScriptSelector = (props: { types: ScriptType[] }) => {
             type: "checkbox",
             selectedRowKeys: selectedScripts.map((script) => script.id),
             onChange: (_, selectedRows) => {
-              setSelectedScripts(selectedRows);
+              SetSelectedScripts(selectedRows);
             },
           }}
           pagination={{
