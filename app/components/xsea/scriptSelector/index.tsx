@@ -46,7 +46,13 @@ const ScriptSelector = (props: { types: ScriptType[] }) => {
 
   return (
     <div className={styles.com}>
-      <div>😄 你好，你想选择哪些脚本呢？</div>
+      <div>
+        <span>
+          😄 你好，<a href="http://wwww.baidu.com">xxx</a>
+          &nbsp;产品下有如下脚本可供选择，
+        </span>
+        <span>你想选择哪些脚本呢？</span>
+      </div>
       <div>
         <Tabs
           size="small"
