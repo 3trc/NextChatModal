@@ -3,4 +3,9 @@
   padding: 1rem;
   border-left: var(--border-in-light);
   transition: width 0.2s;
+  :global {
+    .ant-steps-item-description {
+      margin-top: 0.3rem;
+    }
+  }
 }

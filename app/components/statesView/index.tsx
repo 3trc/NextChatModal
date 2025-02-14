@@ -55,6 +55,18 @@ const StatesView = () => {
               ),
               description: JSON.stringify(scripts.map((script) => script.name)),
             },
+            {
+              status: "process",
+              title: (
+                <Button
+                  type="primary"
+                  onClick={() => chatStore.onUserInputX("开始压测")}
+                >
+                  开始压测
+                </Button>
+              ),
+              description: <span>点我就可以开始压测了哦 ⚡</span>,
+            },
           ]}
         />
       </div>
