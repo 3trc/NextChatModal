@@ -1,12 +1,29 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./index.module.scss";
 import { Button, Steps } from "antd";
 import { useChatStore } from "@/app/store";
+import LocalJSON from "../xsea/localJSON";
 
 const StatesView = () => {
   const [expand, setExpand] = useState<boolean>(true);
+  const [product, setProduct] = useState<any>({});
+  const [scripts, setScripts] = useState<any[]>([]);
 
   const chatStore = useChatStore();
+
+  const syncStates = () => {
+    setProduct(LocalJSON.selected_product ?? {});
+    setScripts(LocalJSON.selected_scripts ?? []);
+  };
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      syncStates();
+    }, 250);
+    return () => {
+      clearInterval(timer);
+    };
+  }, []);
 
   return (
     <div className={styles.com} style={{ width: expand ? "300px" : "100px" }}>
@@ -22,19 +39,21 @@ const StatesView = () => {
           items={[
             {
               status: "process",
-              title: "已选产品",
-              description: <span>某某产品</span>,
-              onClick: () => {
-                chatStore.onUserInputX("选择产品");
-              },
+              title: (
+                <Button onClick={() => chatStore.onUserInputX("选择产品")}>
+                  选择产品
+                </Button>
+              ),
+              description: product.name ?? "暂未选择",
             },
             {
               status: "process",
-              title: "已选脚本",
-              description: <span>某某脚本</span>,
-              onClick: () => {
-                chatStore.onUserInputX("选择脚本");
-              },
+              title: (
+                <Button onClick={() => chatStore.onUserInputX("选择脚本")}>
+                  选择脚本
+                </Button>
+              ),
+              description: JSON.stringify(scripts.map((script) => script.name)),
             },
           ]}
         />
