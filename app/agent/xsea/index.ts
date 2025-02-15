@@ -54,6 +54,10 @@ export default class Agent {
       return;
     }
     switcher = await this.life.onAfterActive?.();
+    if (switcher && switcher.agentName !== this.life.name) {
+      await AgentStore.get(switcher.agentName)?.Active();
+      return;
+    }
   }
 
   public Exit() {
