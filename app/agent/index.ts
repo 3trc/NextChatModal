@@ -4,6 +4,7 @@ import { ChatStore } from "@/app/store";
 import { Mask } from "@/app/store/mask";
 import { ReactNode } from "react";
 import { NavigateFunction } from "react-router-dom";
+import { AgentStore } from "./store";
 
 export interface ChatMessageX {
   role: "system" | "user" | "assistant";
@@ -78,23 +79,3 @@ export default class Agent {
     this.life.onAfterExit?.();
   }
 }
-
-export class AgentConnector {
-  private store = new Map<string, Agent>();
-
-  public register(name: string, agent: Agent) {
-    this.store.set(name, agent);
-  }
-
-  public get(name: string) {
-    const agent = this.store.get(name);
-    if (!agent) {
-      throw new Error(`AgentStore: can not find agent ${name}!`);
-    }
-    return agent;
-  }
-}
-
-const agentStore = new AgentConnector();
-
-export const AgentStore = agentStore;
