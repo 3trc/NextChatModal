@@ -51,16 +51,19 @@ export default class Agent {
   }
 
   public async Active() {
-    let switcher = await this.life.onBeforeActive?.();
-    if (switcher && switcher.agentName !== this.life.name) {
-      await AgentStore.get(switcher.agentName)?.Active();
-      return;
-    }
     this.chatStore.newSession(this.Mask);
     this.navigate(Path.Chat);
+    let switcher = await this.life.onBeforeActive?.();
+    if (switcher) {
+      // 这里需要触发转场消息
+      await AgentStore.get(switcher.agentName).Active();
+      return;
+    }
+    // 这里要欢迎
     switcher = await this.life.onAfterActive?.();
-    if (switcher && switcher.agentName !== this.life.name) {
-      await AgentStore.get(switcher.agentName)?.Active();
+    if (switcher) {
+      // 这里需要触发转场消息
+      await AgentStore.get(switcher.agentName).Active();
       return;
     }
   }
@@ -79,7 +82,11 @@ export class AgentConnector {
   }
 
   public get(name: string) {
-    return this.store.get(name);
+    const agent = this.store.get(name);
+    if (!agent) {
+      throw new Error(`AgentStore: can not find agent ${name}!`);
+    }
+    return agent;
   }
 }
 
