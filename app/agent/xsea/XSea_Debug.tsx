@@ -1,4 +1,8 @@
-import { AgentLifeCycle } from "..";
+import { useEffect } from "react";
+import { useChatStore } from "@/app/store";
+import { useNavigate } from "react-router-dom";
+import Agent, { AgentLifeCycle } from "..";
+import { AgentStore } from "../store";
 
 const lifeCycle = {
   avatar: "🔄",
@@ -22,6 +26,16 @@ const lifeCycle = {
   },
 } as AgentLifeCycle;
 
-const XSea_Debug = () => {};
+const XSea_Debug = () => {
+  const navigate = useNavigate();
+  const chatStore = useChatStore();
+  useEffect(() => {
+    AgentStore.register(
+      lifeCycle.name,
+      new Agent(lifeCycle, chatStore, navigate),
+    );
+  }, []);
+  return <></>;
+};
 
 export default XSea_Debug;
