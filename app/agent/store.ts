@@ -14,6 +14,10 @@ export class AgentConnector {
     }
     return agent;
   }
+
+  public MaskList() {
+    return Array.from(this.store.values()).map((agent) => agent.Mask);
+  }
 }
 
 const agentStore = new AgentConnector();

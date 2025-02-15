@@ -32,6 +32,7 @@ import clsx from "clsx";
 import { initializeMcpSystem } from "../mcp/actions";
 import StatesView from "./statesView";
 import XSea_Debug from "../agent/xsea/XSea_Debug";
+import XSea_查询产品 from "../agent/xsea/XSea_查询产品";
 
 export function Loading(props: { noLogo?: boolean }) {
   return (
@@ -271,6 +272,7 @@ export function Home() {
       <Router>
         <Screen />
         <XSea_Debug />
+        <XSea_查询产品 />
       </Router>
     </ErrorBoundary>
   );
