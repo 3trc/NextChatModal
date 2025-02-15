@@ -1,6 +1,10 @@
-import { AgentLifeCycle } from "..";
+import { useEffect } from "react";
+import { useChatStore } from "@/app/store";
+import { useNavigate } from "react-router-dom";
+import Agent, { AgentLifeCycle } from "..";
+import { AgentStore } from "../store";
 
-export default {
+const lifeCycle = {
   avatar: "🔄",
   name: "XSea_查询产品",
   context: [
@@ -33,3 +37,17 @@ export default {
     temperature: 0.1,
   },
 } as AgentLifeCycle;
+
+const Component = () => {
+  const navigate = useNavigate();
+  const chatStore = useChatStore();
+  useEffect(() => {
+    AgentStore.register(
+      lifeCycle.name,
+      new Agent(lifeCycle, chatStore, navigate),
+    );
+  }, []);
+  return <></>;
+};
+
+export default Component;
