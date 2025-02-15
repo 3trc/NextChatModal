@@ -68,6 +68,7 @@ export const DEFAULT_CONFIG = {
     providerName: "OpenAI" as ServiceProvider,
     temperature: undefined as unknown as number,
     top_p: undefined as unknown as number,
+    topK: undefined as unknown as number,
     max_tokens: 16384 as unknown as number,
     presence_penalty: undefined as unknown as number,
     frequency_penalty: undefined as unknown as number,
