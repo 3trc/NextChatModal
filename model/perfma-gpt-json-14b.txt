@@ -1,0 +1,7 @@
+FROM phi4:latest
+SYSTEM "确保回答以{符号开始，确保回答以}符号结束，避免回答以非{符号开始，避免回答以非}符号结束"
+PARAMETER temperature 0.06
+PARAMETER top_k 6
+PARAMETER top_p 0.6
+PARAMETER keep_alive "10000h"
+LICENSE "Copyright (c) Perfma."
