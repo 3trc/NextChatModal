@@ -1,5 +1,6 @@
 import { BuiltinMask } from "@/app/masks";
 import { ChatStore } from "@/app/store";
+import { Mask } from "@/app/store/mask";
 import { ReactNode } from "react";
 
 export interface ChatMessageX {
@@ -42,11 +43,17 @@ export default class Agent {
     private readonly chatStore: ChatStore,
   ) {}
 
-  private timer: any = null;
+  public get Mask() {
+    return this.life as Mask;
+  }
 
-  public Active() {
-    this.life.onBeforeActive?.();
-    this.life.onAfterActive?.();
+  public async Active() {
+    let switcher = await this.life.onBeforeActive?.();
+    if (switcher && switcher.agentName !== this.life.name) {
+      await AgentStore.get(switcher.agentName)?.Active();
+      return;
+    }
+    switcher = await this.life.onAfterActive?.();
   }
 
   public Exit() {
