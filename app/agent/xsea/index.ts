@@ -33,4 +33,16 @@ export interface AgentLifeCycle extends BuiltinMask {
 
 export default class Agent {
   public constructor(private readonly life: AgentLifeCycle) {}
+
+  private timer: any = null;
+
+  public Active() {
+    this.life.onBeforeActive?.();
+    this.life.onAfterActive?.();
+  }
+
+  public Exit() {
+    this.life.onBeforeExit?.();
+    this.life.onAfterExit?.();
+  }
 }
