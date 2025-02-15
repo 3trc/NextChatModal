@@ -30,3 +30,7 @@ export interface AgentLifeCycle extends BuiltinMask {
   onAfterExit?: () => MaybeAgentSwitcher;
   bye?: ChatMessageX;
 }
+
+export default class Agent {
+  public constructor(private readonly life: AgentLifeCycle) {}
+}
