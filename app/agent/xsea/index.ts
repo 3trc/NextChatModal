@@ -25,6 +25,10 @@ export interface AgentLifeCycle extends BuiltinMask {
   welcome?: ChatMessageX;
   onBeforeActive?: () => MaybeAgentSwitcher;
   onAfterActive?: () => MaybeAgentSwitcher;
+  onBeforeSendMessage?: () => MaybeAgentSwitcher;
+  onAfterSendMessage?: () => MaybeAgentSwitcher;
+  onBeforeReceiveMessage?: () => MaybeAgentSwitcher;
+  onAfterReceiveMessage?: () => MaybeAgentSwitcher;
   onHeartbeat?: () => MaybeAgentSwitcher;
   onBeforeExit?: () => MaybeAgentSwitcher;
   onAfterExit?: () => MaybeAgentSwitcher;
