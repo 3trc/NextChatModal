@@ -38,7 +38,7 @@ const lifeCycle = {
   },
 } as AgentLifeCycle;
 
-const Component = () => {
+const XSea_查询产品 = () => {
   const navigate = useNavigate();
   const chatStore = useChatStore();
   useEffect(() => {
@@ -50,4 +50,4 @@ const Component = () => {
   return <></>;
 };
 
-export default Component;
+export default XSea_查询产品;
