@@ -37,9 +37,9 @@ const lifeCycle = {
     temperature: 0.1,
   },
   onBeforeActive: () => {
-    return {
-      agentName: "XSea_Debug",
-    };
+    // return {
+    //   agentName: "XSea_Debug",
+    // };
   },
 } as AgentLifeCycle;
 
