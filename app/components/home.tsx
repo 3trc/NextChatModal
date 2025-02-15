@@ -31,8 +31,7 @@ import { useAccessStore } from "../store";
 import clsx from "clsx";
 import { initializeMcpSystem } from "../mcp/actions";
 import StatesView from "./statesView";
-import XSea_Debug from "../agent/xsea/XSea_Debug";
-import XSea_查询产品 from "../agent/xsea/XSea_查询产品";
+import Agents from "./agents";
 
 export function Loading(props: { noLogo?: boolean }) {
   return (
@@ -271,8 +270,7 @@ export function Home() {
     <ErrorBoundary>
       <Router>
         <Screen />
-        <XSea_Debug />
-        <XSea_查询产品 />
+        <Agents />
       </Router>
     </ErrorBoundary>
   );
