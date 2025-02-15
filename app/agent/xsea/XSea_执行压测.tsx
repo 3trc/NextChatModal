@@ -36,6 +36,11 @@ const lifeCycle = {
     top_p: 0.5,
     temperature: 0.1,
   },
+  onBeforeActive: () => {
+    return {
+      agentName: "XSea_查询脚本",
+    };
+  },
 } as AgentLifeCycle;
 
 const XSea_执行压测 = () => {

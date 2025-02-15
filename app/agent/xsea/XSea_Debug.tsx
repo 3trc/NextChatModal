@@ -24,6 +24,7 @@ const lifeCycle = {
     top_p: 0.5,
     temperature: 0.1,
   },
+  onBeforeActive: () => {},
 } as AgentLifeCycle;
 
 const XSea_Debug = () => {
