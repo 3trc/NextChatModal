@@ -1,0 +1,6 @@
+FROM phi4:latest
+SYSTEM "确保使用中文回答用户问题，避免使用英文回答用户问题"
+PARAMETER stop "<|im_start|>"
+PARAMETER stop "<|im_end|>"
+PARAMETER stop "<|im_sep|>"
+LICENSE "Copyright (c) Perfma."
