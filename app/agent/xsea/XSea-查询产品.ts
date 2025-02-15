@@ -32,7 +32,4 @@ export default {
     top_p: 0.5,
     temperature: 0.1,
   },
-  lang: "cn",
-  builtin: true,
-  createdAt: 1688899480511,
 } as AgentLifeCycle;

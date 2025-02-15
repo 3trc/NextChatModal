@@ -47,7 +47,12 @@ export default class Agent {
   ) {}
 
   public get Mask() {
-    return this.life as Mask;
+    return {
+      ...this.life,
+      lang: "cn",
+      builtin: true,
+      createdAt: 0,
+    } as Mask;
   }
 
   public async Active() {
