@@ -51,7 +51,7 @@ export async function POST(request: NextRequest) {
 4. 目标|压测|测试|压测场景|流量配置
 5. 记录|压测结果
 6. 压测相关概念|测试相关概念|脚本相关概念|XSea相关概念
-7. 其他|不属于以上分类的实体
+7. 其他不属于以上分类的实体
 
 正确例子
 {
@@ -72,7 +72,7 @@ export async function POST(request: NextRequest) {
 - 退出的优先级最高
 - 否定|肯定的优先级低于其他行为
 - 如果对话中有多个意图，以最后一个意图为准
-- 如果【answer】和【question】无关，避免分类【question】
+- 如果【question】意图与【answer】意图不一致，以【answer】意图为准
 
 输出检查
 - 确保回答内容在8个字符以内
