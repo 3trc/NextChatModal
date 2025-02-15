@@ -301,6 +301,12 @@ export const XSEA_AGENTS: BuiltinMask[] = [
     modelConfig: {
       model: "perfma-gpt-14b:latest",
       max_tokens: 16384,
+      ...{
+        topK: 6,
+        top_k: 6,
+      },
+      top_p: 0.6,
+      temperature: 0.06,
     },
     lang: "cn",
     builtin: true,
