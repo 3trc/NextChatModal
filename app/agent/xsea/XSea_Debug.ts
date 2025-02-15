@@ -1,6 +1,6 @@
 import { AgentLifeCycle } from "..";
 
-export default {
+const lifeCycle = {
   avatar: "🔄",
   name: "XSea_Debug",
   context: [
@@ -21,3 +21,7 @@ export default {
     temperature: 0.1,
   },
 } as AgentLifeCycle;
+
+const XSea_Debug = () => {};
+
+export default XSea_Debug;
