@@ -23,8 +23,10 @@ type MaybeAgentSwitcher =
 
 export interface Agent extends BuiltinMask {
   welcome?: ChatMessageX;
-  beforeActive?: () => MaybeAgentSwitcher;
-  afterActive?: () => MaybeAgentSwitcher;
-  beforeExit?: () => MaybeAgentSwitcher;
-  afterExit?: () => MaybeAgentSwitcher;
+  onBeforeActive?: () => MaybeAgentSwitcher;
+  onAfterActive?: () => MaybeAgentSwitcher;
+  onHeartbeat?: () => MaybeAgentSwitcher;
+  onBeforeExit?: () => MaybeAgentSwitcher;
+  onAfterExit?: () => MaybeAgentSwitcher;
+  bye?: ChatMessageX;
 }
