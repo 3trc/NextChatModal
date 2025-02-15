@@ -30,7 +30,7 @@ export async function POST(request: NextRequest) {
 - question: 代表对话中助手的问题
 - answer: 代表对话中用户的回答
 
-你需要从以下两个维度吧【answer】的意图分类到对应编号
+你需要从以下两个维度把【answer】的意图分类到对应编号
 
 【行为】有如下分类编号
 1. 肯定|同意|确认|接受|认可|可以|ok
