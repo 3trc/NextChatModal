@@ -7,6 +7,10 @@ const model = new ChatOllama({
   keepAlive: "10000h",
   streaming: true,
   stop: ["<|im_start|>", "<|im_end|>", "<|im_sep|>"],
+  topK: 6,
+  topP: 0.6,
+  temperature: 0.06,
+  penalizeNewline: true,
 });
 
 export default model;
