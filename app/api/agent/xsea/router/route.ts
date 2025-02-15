@@ -48,7 +48,7 @@ export async function POST(request: NextRequest) {
 1. 产品
 2. 脚本|JMeter|Gatling|Shell
 3. 计划|测试计划
-4. 目标|压测|测试|压测场景|流量配置
+4. 目标|压测|测试|压测场景|流量
 5. 记录|压测结果
 6. 压测相关概念|测试相关概念|脚本相关概念|XSea相关概念
 7. 其他不属于以上分类的实体
