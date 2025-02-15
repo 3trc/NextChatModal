@@ -50,3 +50,19 @@ export default class Agent {
     this.life.onAfterExit?.();
   }
 }
+
+export class AgentConnector {
+  private store = new Map<string, Agent>();
+
+  public register(name: string, agent: Agent) {
+    this.store.set(name, agent);
+  }
+
+  public get(name: string) {
+    return this.store.get(name);
+  }
+}
+
+const agentStore = new AgentConnector();
+
+export const AgentStore = agentStore;
