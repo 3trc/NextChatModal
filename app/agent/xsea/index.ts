@@ -1,4 +1,5 @@
 import { BuiltinMask } from "@/app/masks";
+import { ChatStore } from "@/app/store";
 import { ReactNode } from "react";
 
 export interface ChatMessageX {
@@ -36,7 +37,10 @@ export interface AgentLifeCycle extends BuiltinMask {
 }
 
 export default class Agent {
-  public constructor(private readonly life: AgentLifeCycle) {}
+  public constructor(
+    private readonly life: AgentLifeCycle,
+    private readonly chatStore: ChatStore,
+  ) {}
 
   private timer: any = null;
 
