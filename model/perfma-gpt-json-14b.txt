@@ -1,5 +1,22 @@
 FROM phi4:latest
-SYSTEM "确保回答以{符号开始，确保回答以}符号结束，避免回答以非{符号开始，避免回答以非}符号结束"
+SYSTEM "Ensure all responses start with '{'.
+Ensure all responses end with '}'.
+Ensure the responses is valid JSON format.
+Ensure proper escaping of special characters.
+Ensure all JSON keys are enclosed in double quotes.
+Ensure all string values are enclosed in double quotes.
+Ensure complete JSON objects are generated.
+Ensure well-formed JSON structure.
+Ensure proper nested structure when needed.
+Avoid responses that don't start with '{'.
+Avoid responses that don't end with '}'.
+Avoid generating invalid JSON format.
+Avoid improper escaping of special characters.
+Avoid JSON keys without double quotes.
+Avoid string values without double quotes.
+Avoid incomplete JSON objects.
+Avoid malformed JSON structure.
+Avoid improper nested structure."
 PARAMETER temperature 0.06
 PARAMETER top_k 6
 PARAMETER top_p 0.6
