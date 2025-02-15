@@ -173,7 +173,7 @@ export const XSEA_AGENTS: BuiltinMask[] = [
       },
     ],
     modelConfig: {
-      model: "phi4:latest",
+      model: "perfma-gpt-14b:latest",
       max_tokens: 16384,
     },
     lang: "cn",
@@ -299,7 +299,7 @@ export const XSEA_AGENTS: BuiltinMask[] = [
       },
     ],
     modelConfig: {
-      model: "phi4:latest",
+      model: "perfma-gpt-14b:latest",
       max_tokens: 16384,
     },
     lang: "cn",
@@ -401,7 +401,7 @@ export const XSEA_AGENTS: BuiltinMask[] = [
       },
     ],
     modelConfig: {
-      model: "phi4:latest",
+      model: "perfma-gpt-14b:latest",
       max_tokens: 16384,
     },
     lang: "cn",
@@ -497,7 +497,7 @@ XSea性能测试平台的测试计划选择助手，你需要做如下事情
       },
     ],
     modelConfig: {
-      model: "phi4:latest",
+      model: "perfma-gpt-14b:latest",
       max_tokens: 16384,
     },
     lang: "cn",
@@ -593,7 +593,7 @@ XSea性能测试平台的目标选择助手，你需要做如下事情
       },
     ],
     modelConfig: {
-      model: "phi4:latest",
+      model: "perfma-gpt-14b:latest",
       max_tokens: 16384,
     },
     lang: "cn",
@@ -689,7 +689,7 @@ XSea性能测试平台的压测记录选择助手，你需要做如下事情
       },
     ],
     modelConfig: {
-      model: "phi4:latest",
+      model: "perfma-gpt-14b:latest",
       max_tokens: 16384,
     },
     lang: "cn",
@@ -874,7 +874,7 @@ Assistant: 您是要确认吗？
       },
     ],
     modelConfig: {
-      model: "phi4:latest",
+      model: "perfma-gpt-14b:latest",
       max_tokens: 16384,
     },
     lang: "cn",
@@ -1104,7 +1104,7 @@ Assistant: 配置如下：
       },
     ],
     modelConfig: {
-      model: "phi4:latest",
+      model: "perfma-gpt-14b:latest",
       max_tokens: 16384,
     },
     lang: "cn",
@@ -1193,7 +1193,7 @@ Assistant: 配置如下：
       },
     ],
     modelConfig: {
-      model: "phi4:latest",
+      model: "perfma-gpt-14b:latest",
       max_tokens: 16384,
     },
     lang: "cn",
@@ -1556,7 +1556,7 @@ CI/CD流程集成
       // },
     ],
     modelConfig: {
-      model: "phi4:latest",
+      model: "perfma-gpt-14b:latest",
       max_tokens: 16384,
     },
     lang: "cn",
@@ -1671,7 +1671,7 @@ CI/CD流程集成
       },
     ],
     modelConfig: {
-      model: "phi4:latest",
+      model: "perfma-gpt-14b:latest",
       max_tokens: 16384,
     },
     lang: "cn",
@@ -1853,7 +1853,7 @@ CI/CD流程集成
   //       },
   //     ],
   //     modelConfig: {
-  //       model: "phi4:latest",
+  //       model: "perfma-gpt-14b:latest",
   //       max_tokens: 16384,
   //     },
   //     lang: "cn",
