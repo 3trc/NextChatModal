@@ -11,6 +11,7 @@ const model = new ChatOllama({
   topP: 0.5,
   temperature: 0.1,
   penalizeNewline: true,
+  seed: 2025,
 });
 
 export default model;
