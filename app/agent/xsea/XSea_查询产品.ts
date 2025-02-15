@@ -1,4 +1,4 @@
-import { AgentLifeCycle } from ".";
+import { AgentLifeCycle } from "..";
 
 export default {
   avatar: "🔄",
