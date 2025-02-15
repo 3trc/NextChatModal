@@ -21,9 +21,9 @@ export interface AgentSwitcher {
 
 type MaybeAgentSwitcher =
   | AgentSwitcher
-  | Promise<AgentSwitcher>
   | null
-  | undefined;
+  | undefined
+  | Promise<AgentSwitcher | null | undefined>;
 
 export interface AgentLifeCycle extends BuiltinMask {
   welcome?: ChatMessageX;
