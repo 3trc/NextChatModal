@@ -2,7 +2,7 @@ import { AgentLifeCycle } from ".";
 
 export default {
   avatar: "🔄",
-  name: "XSea-查询产品",
+  name: "XSea.查询产品",
   context: [
     {
       id: "",
