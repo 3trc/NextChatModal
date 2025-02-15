@@ -1106,3 +1106,5 @@ export const useChatStore = createPersistStore(
     },
   },
 );
+
+export type ChatStore = ReturnType<typeof useChatStore.getState>;
