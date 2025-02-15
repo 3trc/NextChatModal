@@ -21,7 +21,7 @@ type MaybeAgentSwitcher =
   | null
   | undefined;
 
-export interface Agent extends BuiltinMask {
+export interface AgentLifeCycle extends BuiltinMask {
   welcome?: ChatMessageX;
   onBeforeActive?: () => MaybeAgentSwitcher;
   onAfterActive?: () => MaybeAgentSwitcher;
