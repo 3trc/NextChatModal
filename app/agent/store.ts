@@ -10,7 +10,7 @@ export class AgentConnector {
   public get(name: string) {
     const agent = this.store.get(name);
     if (!agent) {
-      throw new Error(`AgentStore: can not find agent ${name}!`);
+      throw new Error(`AgentStore: Can not find agent ${name}!`);
     }
     return agent;
   }
