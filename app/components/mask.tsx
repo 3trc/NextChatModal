@@ -56,6 +56,7 @@ import {
 } from "@hello-pangea/dnd";
 import { getMessageTextContent } from "../utils";
 import clsx from "clsx";
+import { AgentStore } from "../agent/store";
 
 // drag and drop helper function
 function reorder<T>(list: T[], startIndex: number, endIndex: number): T[] {
@@ -601,11 +602,7 @@ export function MaskPage() {
                     icon={<AddIcon />}
                     text={Locale.Mask.Item.Chat}
                     onClick={() => {
-                      chatStore.newSession(m);
-                      // chatStore.newSessionX(m.name, "NONE");
-                      // // TODO可以完成
-                      // chatStore.onUserInput("你好");
-                      navigate(Path.Chat);
+                      AgentStore.get(m.name).Active();
                     }}
                   />
                   {m.builtin ? (
