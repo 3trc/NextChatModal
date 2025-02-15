@@ -1,7 +1,9 @@
+import { Path } from "@/app/constant";
 import { BuiltinMask } from "@/app/masks";
 import { ChatStore } from "@/app/store";
 import { Mask } from "@/app/store/mask";
 import { ReactNode } from "react";
+import { NavigateFunction } from "react-router-dom";
 
 export interface ChatMessageX {
   role: "system" | "user" | "assistant";
@@ -41,6 +43,7 @@ export default class Agent {
   public constructor(
     private readonly life: AgentLifeCycle,
     private readonly chatStore: ChatStore,
+    private readonly navigate: NavigateFunction,
   ) {}
 
   public get Mask() {
@@ -53,6 +56,8 @@ export default class Agent {
       await AgentStore.get(switcher.agentName)?.Active();
       return;
     }
+    this.chatStore.newSession(this.Mask);
+    this.navigate(Path.Chat);
     switcher = await this.life.onAfterActive?.();
     if (switcher && switcher.agentName !== this.life.name) {
       await AgentStore.get(switcher.agentName)?.Active();
