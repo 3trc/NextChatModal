@@ -48,9 +48,9 @@ export default class Agent {
     return null;
   }
 
-  public SendMessages(messages: ChatMessageX[]) {
+  public async SendMessages(messages: ChatMessageX[]) {
     if (messages.length < 1) return;
-    this.chatStore.SendMessages(messages);
+    await this.chatStore.SendMessages(messages);
   }
 
   public async onBeforeMessageSend(userMessage: string) {
@@ -85,11 +85,13 @@ export default class Agent {
   }
 
   public async Active() {
-    this.chatStore.newSession(this.Mask);
+    const session = this.chatStore.currentSession();
+    const prevMessages = JSON.parse(JSON.stringify(session.messages));
+    this.chatStore.newSession(this.Mask, prevMessages);
     this.navigate(Path.Chat);
     let switcher = await this.onBeforeActive();
     if (switcher) {
-      this.SendMessages(switcher.bridgeMessages ?? []);
+      await this.SendMessages(switcher.bridgeMessages ?? []);
       await AgentStore.get(switcher.agentName).Active();
       return;
     }
