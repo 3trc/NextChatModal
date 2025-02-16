@@ -36,7 +36,7 @@ export class Agent_XSea_执行压测 extends Agent {
   public onBeforeActive(): MaybeAgentSwitcher {
     return {
       agentName: "XSea_Debug",
-      bridgeMessages: [],
+      bridgeMessages: [{ role: "assistant", content: "看来你没有" }],
     };
   }
 }
