@@ -51,10 +51,10 @@ export default class Agent {
   private messageTimer: any = null;
   private messageBuffer: ChatMessageX[] = [];
   public SendMessage(message: ChatMessageX) {
-    clearTimeout(this.messageTimer);
     this.messageBuffer.push(message);
+    clearTimeout(this.messageTimer);
     this.messageTimer = setTimeout(() => {
-      this.chatStore.onSystemInput(this.messageBuffer.slice());
+      this.chatStore.SendMessages(this.messageBuffer.slice());
       this.messageBuffer = [];
     });
   }
