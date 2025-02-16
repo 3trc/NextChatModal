@@ -3,6 +3,8 @@ import { ChatStore, useChatStore } from "@/app/store";
 import { NavigateFunction, useNavigate } from "react-router-dom";
 import Agent, { AgentRouteMap, ChatMessageX } from "..";
 import { AgentStore } from "../store";
+import { Button, Space } from "antd";
+import styles from "./XSea_智能体.module.scss";
 
 export class Agent_XSea_智能体 extends Agent {
   public constructor(chatStore: ChatStore, navigate: NavigateFunction) {
@@ -35,8 +37,8 @@ export class Agent_XSea_智能体 extends Agent {
     return [
       {
         role: "assistant",
-        content: "你好啊",
-        component: <h1>你好啊</h1>,
+        content: "你好",
+        component: <Welcome />,
       },
     ];
   }
@@ -130,6 +132,55 @@ export class Agent_XSea_智能体 extends Agent {
     };
   }
 }
+
+const Welcome = () => {
+  const chatStore = useChatStore();
+  return (
+    <div className={styles.com}>
+      <div>
+        🦄
+        你好，我是XSea智能体，我可以辅助你解决在使用XSea性能测试平台过程中遇到的各种问题。比如：
+      </div>
+      <div className={styles.buttons}>
+        <Space>
+          <Button
+            type="primary"
+            onClick={() => {
+              chatStore.onUserInputX("开始压测");
+            }}
+          >
+            开始压测
+          </Button>
+          <Button
+            onClick={() => {
+              chatStore.onUserInputX("创建JMeter脚本");
+            }}
+          >
+            编写脚本
+          </Button>
+          <Button
+            onClick={() => {
+              chatStore.onUserInputX("产品列表");
+            }}
+          >
+            查看产品
+          </Button>
+          <Button
+            onClick={() => {
+              chatStore.onUserInputX("XSea是什么");
+            }}
+          >
+            学习XSea性能测试平台
+          </Button>
+        </Space>
+      </div>
+      <div>
+        或者试着说“开始压测吧”，“现在平台上有哪些JMeter脚本？”，或者任何其他话题
+        😊
+      </div>
+    </div>
+  );
+};
 
 const XSea_智能体 = () => {
   const navigate = useNavigate();
