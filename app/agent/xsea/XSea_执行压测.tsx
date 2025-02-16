@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { ChatStore, useChatStore } from "@/app/store";
 import { NavigateFunction, useNavigate } from "react-router-dom";
-import Agent, { ChatMessageX, MaybeAgentSwitcher } from "..";
+import Agent, { AgentRouteMap, ChatMessageX, MaybeAgentSwitcher } from "..";
 import { AgentStore } from "../store";
 import LocalJSON from "@/app/components/xsea/localJSON";
 
@@ -52,6 +52,96 @@ export class Agent_XSea_执行压测 extends Agent {
 
   public welcome(): ChatMessageX[] {
     return [{ role: "assistant", content: "[ui-confirm]" }];
+  }
+
+  public RouteMap(): AgentRouteMap {
+    return {
+      肯定: {
+        产品: "XSea_查询产品",
+        脚本: "XSea_查询脚本",
+        计划: "XSea_查询计划",
+        压测: "XSea_查询压测",
+        记录: "XSea_查询记录",
+        概念: "XSea_查询脚本",
+      },
+      否定: {
+        产品: "XSea_查询产品",
+        脚本: "XSea_查询脚本",
+        计划: "XSea_查询脚本",
+        压测: "XSea_查询脚本",
+        记录: "XSea_查询记录",
+        概念: "XSea_查询脚本",
+        其他: "XSea_查询脚本",
+      },
+      终止: {
+        产品: "XSea_查询产品",
+        脚本: "XSea_查询脚本",
+        计划: "XSea_查询计划",
+        压测: "XSea_查询压测",
+        记录: "XSea_查询记录",
+        概念: "XSea_知识库",
+      },
+      陈述: {
+        产品: "XSea_知识库",
+        脚本: "XSea_知识库",
+        计划: "XSea_知识库",
+        压测: "XSea_知识库",
+        记录: "XSea_知识库",
+        概念: "XSea_知识库",
+      },
+      创建: {
+        产品: "XSea_创建产品",
+        脚本: "XSea_创建脚本",
+        计划: "XSea_创建计划",
+        压测: "XSea_执行压测",
+        记录: "XSea_执行压测",
+        概念: "XSea_知识库",
+      },
+      查询: {
+        产品: "XSea_查询产品",
+        脚本: "XSea_查询脚本",
+        计划: "XSea_查询脚本",
+        压测: "XSea_查询脚本",
+        记录: "XSea_查询脚本",
+        概念: "XSea_知识库",
+        其他: "XSea_查询脚本",
+      },
+      询问: {
+        产品: "XSea_知识库",
+        脚本: "XSea_知识库",
+        计划: "XSea_知识库",
+        压测: "XSea_知识库",
+        记录: "XSea_知识库",
+        概念: "XSea_知识库",
+        其他: "XSea_查询脚本",
+      },
+      修改: {
+        产品: "XSea_查询产品",
+        脚本: "XSea_查询脚本",
+        计划: "XSea_查询计划",
+        压测: "XSea_查询压测",
+        记录: "XSea_查询记录",
+        概念: "XSea_知识库",
+        其他: "XSea_查询脚本",
+      },
+      执行: {
+        产品: "XSea_知识库",
+        脚本: "XSea_执行脚本",
+        计划: "XSea_执行压测",
+        压测: "XSea_执行压测",
+        记录: "XSea_执行压测",
+        概念: "XSea_知识库",
+        其他: "XSea_知识库",
+      },
+      其他: {
+        产品: "XSea_知识库",
+        脚本: "XSea_知识库",
+        计划: "XSea_知识库",
+        压测: "XSea_知识库",
+        记录: "XSea_知识库",
+        概念: "XSea_知识库",
+      },
+    };
   }
 }
 
