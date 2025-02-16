@@ -36,6 +36,15 @@ export class Agent_XSea_执行压测 extends Agent {
 
   public onBeforeActive(): MaybeAgentSwitcher {
     if (LocalJSON.selected_scripts?.length > 0) {
+      return {
+        agentName: "XSea_确认压测",
+        bridgeMessages: [
+          {
+            role: "assistant",
+            content: "好的，这就为你准备启动压测 🚀",
+          },
+        ],
+      };
     } else {
       return {
         agentName: "XSea_查询脚本",

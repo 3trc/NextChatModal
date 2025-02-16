@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { ChatStore, useChatStore } from "@/app/store";
 import { NavigateFunction, useNavigate } from "react-router-dom";
-import Agent, { AgentRouteMap, ChatMessageX, MaybeAgentSwitcher } from "..";
+import Agent, { AgentRouteMap, MaybeAgentSwitcher } from "..";
 import { AgentStore } from "../store";
 import LocalJSON from "@/app/components/xsea/localJSON";
 
@@ -36,23 +36,18 @@ export class Agent_XSea_确认压测 extends Agent {
 
   public onBeforeActive(): MaybeAgentSwitcher {
     if (LocalJSON.selected_scripts?.length > 0) {
+      alert("调用接口");
     } else {
       return {
-        agentName: "XSea_查询脚本",
-        bridgeMessages: [
-          {
-            role: "assistant",
-            content:
-              "🤔 看起来你还没有选择任何脚本，这样不能开始压测哦，我们去选择一些脚本吧！",
-          },
-        ],
+        agentName: "XSea_执行压测",
+        bridgeMessages: [],
       };
     }
   }
 
-  public welcome(): ChatMessageX[] {
-    return [{ role: "assistant", content: "[ui-confirm]" }];
-  }
+  // public welcome(): ChatMessageX[] {
+  //   return [{ role: "assistant", content: "[ui-confirm]" }];
+  // }
 
   public RouteMap(): AgentRouteMap {
     return {
