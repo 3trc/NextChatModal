@@ -37,8 +37,8 @@ export class Agent_XSea_智能体 extends Agent {
     return [
       {
         role: "assistant",
-        content: "你好",
-        component: <Welcome />,
+        content: "[ui-welcome]",
+        // component: <Welcome />,
       },
     ];
   }

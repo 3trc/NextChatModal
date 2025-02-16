@@ -3,7 +3,6 @@ import { ChatStore, useChatStore } from "@/app/store";
 import { NavigateFunction, useNavigate } from "react-router-dom";
 import Agent, { ChatMessageX } from "..";
 import { AgentStore } from "../store";
-import ProductSelector from "@/app/components/xsea/productSelector";
 
 export class Agent_XSea_查询产品 extends Agent {
   public constructor(chatStore: ChatStore, navigate: NavigateFunction) {
@@ -50,8 +49,8 @@ export class Agent_XSea_查询产品 extends Agent {
     return [
       {
         role: "assistant",
-        content: "你好",
-        component: <ProductSelector />,
+        content: "[ui-products]",
+        // component: <ProductSelector />,
       },
     ];
   }

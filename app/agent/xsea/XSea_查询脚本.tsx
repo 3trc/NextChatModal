@@ -3,7 +3,6 @@ import { ChatStore, useChatStore } from "@/app/store";
 import { NavigateFunction, useNavigate } from "react-router-dom";
 import Agent, { ChatMessageX, MaybeAgentSwitcher } from "..";
 import { AgentStore } from "../store";
-import ScriptSelector from "@/app/components/xsea/scriptSelector";
 import LocalJSON from "@/app/components/xsea/localJSON";
 
 export class Agent_XSea_查询脚本 extends Agent {
@@ -42,7 +41,7 @@ export class Agent_XSea_查询脚本 extends Agent {
           {
             role: "assistant",
             content:
-              "🤔 看起来你还没有选择任何产品，我需要你知道你像查看哪个产品下的脚本，我们现在开始选择一个产品吧！",
+              "🤔 看起来你还没有选择任何产品，你想查看哪个产品下的脚本呢？",
           },
         ],
       };
@@ -53,8 +52,8 @@ export class Agent_XSea_查询脚本 extends Agent {
     return [
       {
         role: "assistant",
-        content: "你好",
-        component: <ScriptSelector types={["JMETER", "GATLING", "SHELL"]} />,
+        content: "[ui-scripts]",
+        // component: <ScriptSelector types={["JMETER", "GATLING", "SHELL"]} />,
       },
     ];
   }
