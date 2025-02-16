@@ -1,8 +1,9 @@
 import { useEffect } from "react";
 import { ChatStore, useChatStore } from "@/app/store";
 import { NavigateFunction, useNavigate } from "react-router-dom";
-import Agent, { MaybeAgentSwitcher } from "..";
+import Agent, { ChatMessageX, MaybeAgentSwitcher } from "..";
 import { AgentStore } from "../store";
+import ScriptSelector from "@/app/components/xsea/scriptSelector";
 
 export class Agent_XSea_查询脚本 extends Agent {
   public constructor(chatStore: ChatStore, navigate: NavigateFunction) {
@@ -32,10 +33,20 @@ export class Agent_XSea_查询脚本 extends Agent {
   }
 
   public onBeforeActive(): MaybeAgentSwitcher {
-    return {
-      agentName: "XSea_查询产品",
-      bridgeMessages: [{ role: "assistant", content: "去选择产品吧" }],
-    };
+    // return {
+    //   agentName: "XSea_查询产品",
+    //   bridgeMessages: [{ role: "assistant", content: "去选择产品吧" }],
+    // };
+  }
+
+  public welcome(): ChatMessageX[] {
+    return [
+      {
+        role: "assistant",
+        content: "你好",
+        component: <ScriptSelector types={["JMETER", "GATLING", "SHELL"]} />,
+      },
+    ];
   }
 }
 
