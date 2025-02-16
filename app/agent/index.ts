@@ -29,13 +29,6 @@ type MaybeAgentSwitcher =
 export interface AgentLifeCycle extends BuiltinMask {
   welcome?: ChatMessageX;
   onBeforeActive?: () => MaybeAgentSwitcher;
-  onAfterActive?: () => MaybeAgentSwitcher;
-  onBeforeSendMessage?: () => MaybeAgentSwitcher;
-  onAfterSendMessage?: () => MaybeAgentSwitcher;
-  onBeforeReceiveMessage?: () => MaybeAgentSwitcher;
-  onAfterReceiveMessage?: () => MaybeAgentSwitcher;
-  onHeartbeat?: () => MaybeAgentSwitcher;
-  onBeforeExit?: () => MaybeAgentSwitcher;
   onAfterExit?: () => MaybeAgentSwitcher;
   bye?: ChatMessageX;
 }
@@ -66,16 +59,9 @@ export default class Agent {
       return;
     }
     // 这里要欢迎
-    switcher = await this.life.onAfterActive?.();
-    if (switcher) {
-      // 这里需要触发转场消息
-      await AgentStore.get(switcher.agentName).Active();
-      return;
-    }
   }
 
   public Exit() {
-    this.life.onBeforeExit?.();
     this.life.onAfterExit?.();
   }
 }
