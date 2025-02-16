@@ -75,7 +75,7 @@ export class Agent_XSea_执行压测 extends Agent {
         其他: "XSea_确认压测",
       },
       否定: {
-        产品: "XSea_查询脚本",
+        产品: "XSea_查询产品",
         脚本: "XSea_查询脚本",
         计划: "XSea_查询脚本",
         压测: "XSea_查询脚本",
@@ -93,7 +93,7 @@ export class Agent_XSea_执行压测 extends Agent {
         其他: "XSea_智能体",
       },
       陈述: {
-        产品: "XSea_知识库",
+        产品: "XSea_查询产品",
         脚本: "XSea_知识库",
         计划: "XSea_知识库",
         压测: "XSea_确认压测",
@@ -101,7 +101,7 @@ export class Agent_XSea_执行压测 extends Agent {
         概念: "XSea_知识库",
       },
       创建: {
-        产品: "XSea_创建产品",
+        产品: "XSea_查询产品",
         脚本: "XSea_查询脚本",
         计划: "XSea_创建计划",
         压测: "XSea_确认压测",
@@ -118,7 +118,7 @@ export class Agent_XSea_执行压测 extends Agent {
         其他: "XSea_查询脚本",
       },
       询问: {
-        产品: "XSea_知识库",
+        产品: "XSea_查询产品",
         脚本: "XSea_查询脚本",
         计划: "XSea_知识库",
         压测: "XSea_知识库",
