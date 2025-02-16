@@ -44,8 +44,8 @@ export class Agent_XSea_智能体 extends Agent {
 const XSea_智能体 = () => {
   const navigate = useNavigate();
   const chatStore = useChatStore();
-  const agent = new Agent_XSea_智能体(chatStore, navigate);
   useEffect(() => {
+    const agent = new Agent_XSea_智能体(chatStore, navigate);
     AgentStore.register(agent.Name, agent);
   }, []);
   return <></>;
