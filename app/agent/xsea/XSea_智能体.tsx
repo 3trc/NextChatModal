@@ -14,9 +14,7 @@ export class Agent_XSea_智能体 extends Agent {
           {
             id: "",
             role: "system",
-            content: `
-确保中文回答，确保回答"智能体"，避免回答非"智能体"文本，避免回答超过两个汉字，避免回答英文
-          `.trim(),
+            content: ``.trim(),
             date: "",
           },
         ],
@@ -34,10 +32,10 @@ export class Agent_XSea_智能体 extends Agent {
   }
 
   public onBeforeActive(): MaybeAgentSwitcher {
-    // return {
-    //   agentName: "XSea_Debug",
-    //   bridgeMessages: [],
-    // };
+    return {
+      agentName: "XSea_执行压测",
+      bridgeMessages: [{ role: "assistant", content: "去执行压测吧" }],
+    };
   }
 }
 

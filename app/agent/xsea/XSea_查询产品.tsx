@@ -4,19 +4,17 @@ import { NavigateFunction, useNavigate } from "react-router-dom";
 import Agent, { MaybeAgentSwitcher } from "..";
 import { AgentStore } from "../store";
 
-export class Agent_XSea_执行压测 extends Agent {
+export class Agent_XSea_查询产品 extends Agent {
   public constructor(chatStore: ChatStore, navigate: NavigateFunction) {
     super(
       {
         avatar: "🔄",
-        name: "XSea_执行压测",
+        name: "XSea_查询产品",
         context: [
           {
             id: "",
             role: "system",
-            content: `
-确保中文回答，确保回答"开始"，避免回答非"开始"文本，避免回答超过两个汉字，避免回答英文
-          `.trim(),
+            content: ``.trim(),
             date: "",
           },
         ],
@@ -35,20 +33,20 @@ export class Agent_XSea_执行压测 extends Agent {
 
   public onBeforeActive(): MaybeAgentSwitcher {
     return {
-      agentName: "XSea_查询脚本",
-      bridgeMessages: [{ role: "assistant", content: "去选择脚本吧" }],
+      agentName: "XSea_Debug",
+      bridgeMessages: [{ role: "assistant", content: "去Debug吧" }],
     };
   }
 }
 
-const XSea_执行压测 = () => {
+const XSea_查询产品 = () => {
   const navigate = useNavigate();
   const chatStore = useChatStore();
-  const agent = new Agent_XSea_执行压测(chatStore, navigate);
   useEffect(() => {
+    const agent = new Agent_XSea_查询产品(chatStore, navigate);
     AgentStore.register(agent.Name, agent);
   }, []);
   return <></>;
 };
 
-export default XSea_执行压测;
+export default XSea_查询产品;
