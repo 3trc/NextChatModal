@@ -45,8 +45,8 @@ export default class Agent {
     return [] as ChatMessageX[];
   }
 
-  public onBeforeActive(): MaybeAgentSwitcher {
-    return null;
+  public onBeforeActive(): Promise<MaybeAgentSwitcher> {
+    return Promise.resolve();
   }
 
   public async SendMessage(message: ChatMessageX) {
