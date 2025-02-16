@@ -103,6 +103,6 @@ export default class Agent {
       await AgentStore.get(switcher.agentName).Active();
       return;
     }
-    // 这里要欢迎
+    this.SendMessages(this.welcome());
   }
 }
