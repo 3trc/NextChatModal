@@ -1,8 +1,9 @@
 import { useEffect } from "react";
 import { ChatStore, useChatStore } from "@/app/store";
 import { NavigateFunction, useNavigate } from "react-router-dom";
-import Agent from "..";
+import Agent, { ChatMessageX } from "..";
 import { AgentStore } from "../store";
+import ProductSelector from "@/app/components/xsea/productSelector";
 
 export class Agent_XSea_查询产品 extends Agent {
   public constructor(chatStore: ChatStore, navigate: NavigateFunction) {
@@ -43,6 +44,16 @@ export class Agent_XSea_查询产品 extends Agent {
       chatStore,
       navigate,
     );
+  }
+
+  public welcome(): ChatMessageX[] {
+    return [
+      {
+        role: "assistant",
+        content: "你好",
+        component: <ProductSelector />,
+      },
+    ];
   }
 }
 
