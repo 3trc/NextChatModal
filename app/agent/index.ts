@@ -35,9 +35,8 @@ export interface AgentLifeCycle extends BuiltinMask {
 
 export default class Agent {
   public constructor(
-    private readonly life: AgentLifeCycle,
-    private readonly chatStore: ChatStore,
-    private readonly navigate: NavigateFunction,
+    public readonly chatStore: ChatStore,
+    public readonly navigate: NavigateFunction,
   ) {}
 
   public get Mask() {
