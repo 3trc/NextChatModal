@@ -50,7 +50,12 @@ export default class Agent {
   }
 
   public async SendMessage(message: ChatMessageX) {
-    await this.onBeforeSendMessage(message.content);
+    const switcher = await this.onBeforeSendMessage(message.content);
+    if (switcher) {
+      await this.SendMessageList(switcher.bridgeMessages ?? []);
+      await AgentStore.get(switcher.agentName).Active();
+      return;
+    }
     this.SendMessageList([message]);
   }
 
