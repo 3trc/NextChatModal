@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { ChatStore, useChatStore } from "@/app/store";
 import { NavigateFunction, useNavigate } from "react-router-dom";
-import Agent, { MaybeAgentSwitcher } from "..";
+import Agent from "..";
 import { AgentStore } from "../store";
 
 export class Agent_XSea_查询产品 extends Agent {
@@ -29,13 +29,6 @@ export class Agent_XSea_查询产品 extends Agent {
       chatStore,
       navigate,
     );
-  }
-
-  public onBeforeActive(): MaybeAgentSwitcher {
-    return {
-      agentName: "XSea_Debug",
-      bridgeMessages: [{ role: "assistant", content: "去Debug吧" }],
-    };
   }
 }
 
