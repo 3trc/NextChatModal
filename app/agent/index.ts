@@ -48,12 +48,17 @@ export default class Agent {
     return null;
   }
 
-  public async SendMessages(messages: ChatMessageX[]) {
+  public async SendMessage(message: ChatMessageX) {
+    await this.onBeforeSendMessage(message.content);
+    this.SendMessageList([message]);
+  }
+
+  public async SendMessageList(messages: ChatMessageX[]) {
     if (messages.length < 1) return;
     await this.chatStore.SendMessages(messages);
   }
 
-  public async onBeforeMessageSend(userMessage: string) {
+  public async onBeforeSendMessage(userMessage: string) {
     const session = this.chatStore.currentSession();
     const messages = session.messages;
     const dialogue = {
@@ -91,10 +96,10 @@ export default class Agent {
     this.navigate(Path.Chat);
     let switcher = await this.onBeforeActive();
     if (switcher) {
-      await this.SendMessages(switcher.bridgeMessages ?? []);
+      await this.SendMessageList(switcher.bridgeMessages ?? []);
       await AgentStore.get(switcher.agentName).Active();
       return;
     }
-    this.SendMessages(this.welcome());
+    this.SendMessageList(this.welcome());
   }
 }

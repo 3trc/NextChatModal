@@ -1121,12 +1121,10 @@ function _Chat() {
       }
 
       const mask = chatStore.currentSession().mask;
-      AgentStore.get(mask.name).SendMessages([
-        {
-          role: "user",
-          content: userInput,
-        },
-      ]);
+      AgentStore.get(mask.name).SendMessage({
+        role: "user",
+        content: userInput,
+      });
       return;
 
       // 这里尝试调用消息发送的hook，进行意图分类
