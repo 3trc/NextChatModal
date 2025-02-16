@@ -135,9 +135,6 @@ ${JSON.stringify(data.executeRecord?.id, null, 2)}
 避免回答包含[ui-products]
 避免回答包含[ui-scripts]
 避免回答包含[ui-confirm]
-
-确保一行输出关键信息
-避免换行
             `.trim(),
           },
         ],
