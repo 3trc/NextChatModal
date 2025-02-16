@@ -6,6 +6,7 @@ import styles from "./index.module.scss";
 import axios from "axios";
 import LocalJSON from "../localJSON";
 import { useChatStore } from "@/app/store";
+import { AgentStore } from "@/app/agent/store";
 
 const { TabPane } = Tabs;
 
@@ -142,7 +143,7 @@ const ScriptSelector = (props: { types: ScriptType[] }) => {
             type="primary"
             onClick={() => {
               SetSelectedScripts(selectedScripts);
-              chatStore.onUserInputX("开始压测");
+              AgentStore.get("XSea_执行压测").Active();
             }}
           >
             选定
