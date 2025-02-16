@@ -6,6 +6,7 @@ import { ReactNode } from "react";
 import { NavigateFunction } from "react-router-dom";
 import { AgentStore } from "./store";
 import { nanoid } from "nanoid";
+import axios from "axios";
 
 export interface ChatMessageX {
   role: "system" | "user" | "assistant";
@@ -44,6 +45,30 @@ export default class Agent {
   }
 
   public onBeforeActive(): MaybeAgentSwitcher {
+    return null;
+  }
+
+  private messageTimer: any = null;
+  private messageBuffer: ChatMessageX[] = [];
+  public SendMessage(message: ChatMessageX) {
+    clearTimeout(this.messageTimer);
+    this.messageBuffer.push(message);
+    this.messageTimer = setTimeout(() => {
+      this.chatStore.onSystemInput(this.messageBuffer.slice());
+      this.messageBuffer = [];
+    });
+  }
+
+  public async onBeforeMessageSend(userMessage: string) {
+    const session = this.chatStore.currentSession();
+    const messages = session.messages;
+    const dialogue = {
+      question:
+        messages[messages.length - 1]?.content || "你好，有什么可以帮你的吗？",
+      answer: userMessage,
+    };
+    const res = await axios.post(`/api/agent/xsea/router`, dialogue);
+    console.log("意图识别", res.data);
     return null;
   }
 
