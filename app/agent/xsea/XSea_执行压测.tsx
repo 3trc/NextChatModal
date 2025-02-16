@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { ChatStore, useChatStore } from "@/app/store";
 import { NavigateFunction, useNavigate } from "react-router-dom";
-import Agent, { MaybeAgentSwitcher } from "..";
+import Agent, { ChatMessageX, MaybeAgentSwitcher } from "..";
 import { AgentStore } from "../store";
 import LocalJSON from "@/app/components/xsea/localJSON";
 
@@ -48,6 +48,10 @@ export class Agent_XSea_执行压测 extends Agent {
         ],
       };
     }
+  }
+
+  public welcome(): ChatMessageX[] {
+    return [{ role: "assistant", content: "[ui-confirm]" }];
   }
 }
 

@@ -4,6 +4,7 @@ import React from "react";
 import ProductSelector from "./xsea/productSelector";
 import ScriptSelector from "./xsea/scriptSelector";
 import Welcome from "./xsea/welcome";
+import TestConfirm from "./xsea/testConfirm";
 
 const workspaceId = "849903850940473344";
 const planId = "841402405221584896";
@@ -25,6 +26,8 @@ const XSeaSelector = (props: { message: string }) => {
     return <ScriptSelector types={["JMETER", "GATLING", "SHELL"]} />;
   } else if (props.message.includes("welcome")) {
     return <Welcome />;
+  } else if (props.message.includes("confirm")) {
+    return <TestConfirm />;
   }
   {
     return <span>...</span>;
