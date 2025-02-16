@@ -85,38 +85,30 @@ export default class Agent {
         其他: "XSea_知识库",
       },
       终止: {
-        产品: "XSea_知识库",
-        脚本: "XSea_知识库",
-        计划: "XSea_知识库",
-        压测: "XSea_知识库",
-        记录: "XSea_知识库",
-        概念: "XSea_知识库",
-        其他: "XSea_知识库",
+        产品: "XSea_智能体",
+        脚本: "XSea_智能体",
+        计划: "XSea_智能体",
+        压测: "XSea_智能体",
+        记录: "XSea_智能体",
+        概念: "XSea_智能体",
+        其他: "XSea_智能体",
       },
-      陈述: {
-        产品: "XSea_知识库",
-        脚本: "XSea_知识库",
-        计划: "XSea_知识库",
-        压测: "XSea_知识库",
-        记录: "XSea_知识库",
-        概念: "XSea_知识库",
-        其他: "XSea_知识库",
-      },
+      陈述: {},
       创建: {
-        产品: "XSea_知识库",
-        脚本: "XSea_知识库",
-        计划: "XSea_知识库",
-        压测: "XSea_知识库",
-        记录: "XSea_知识库",
+        产品: "XSea_创建产品",
+        脚本: "XSea_创建脚本",
+        计划: "XSea_创建计划",
+        压测: "XSea_执行压测",
+        记录: "XSea_执行压测",
         概念: "XSea_知识库",
         其他: "XSea_知识库",
       },
       查询: {
-        产品: "XSea_知识库",
-        脚本: "XSea_知识库",
-        计划: "XSea_知识库",
-        压测: "XSea_知识库",
-        记录: "XSea_知识库",
+        产品: "XSea_查询产品",
+        脚本: "XSea_查询脚本",
+        计划: "XSea_查询计划",
+        压测: "XSea_查询压测",
+        记录: "XSea_查询记录",
         概念: "XSea_知识库",
         其他: "XSea_知识库",
       },
@@ -139,22 +131,16 @@ export default class Agent {
         其他: "XSea_知识库",
       },
       执行: {
-        产品: "XSea_知识库",
-        脚本: "XSea_知识库",
-        计划: "XSea_知识库",
-        压测: "XSea_知识库",
-        记录: "XSea_知识库",
+        产品: "XSea_执行压测",
+        脚本: "XSea_执行脚本",
+        计划: "XSea_执行压测",
+        压测: "XSea_执行压测",
+        记录: "XSea_执行压测",
         概念: "XSea_知识库",
         其他: "XSea_知识库",
       },
       其他: {
-        产品: "XSea_知识库",
-        脚本: "XSea_知识库",
-        计划: "XSea_知识库",
-        压测: "XSea_知识库",
-        记录: "XSea_知识库",
         概念: "XSea_知识库",
-        其他: "XSea_知识库",
       },
     };
   }
@@ -168,11 +154,9 @@ export default class Agent {
       answer: userMessage,
     };
     const res = await axios.post(`/api/agent/xsea/router`, dialogue);
-    const data = res.data;
-    const action = data.action || "其他";
-    const entity = data.entity || "其他";
-    const nextAgentName = this.RouteMap()[action][entity];
-    console.log("意图", action, entity);
+    const { action, entity, intention } = res.data;
+    const nextAgentName = this.RouteMap()[action]?.[entity];
+    console.log("【意图路由】", intention, nextAgentName);
     return null;
   }
 
