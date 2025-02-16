@@ -14,7 +14,8 @@ export class Agent_XSea_知识库 extends Agent {
           {
             id: "",
             role: "system",
-            content: ``.trim(),
+            content:
+              `你只需要回答"我是XSea性能测试平台的知识库"即可，避免回答其他问题，回答控制在30个字符以内`.trim(),
             date: "",
           },
         ],
