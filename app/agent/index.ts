@@ -28,7 +28,7 @@ type MaybeAgentSwitcher =
 
 export default class Agent {
   public constructor(
-    public readonly mask: BuiltinMask,
+    public readonly mask: Omit<BuiltinMask, "lang" | "builtin" | "createdAt">,
     public readonly chatStore: ChatStore,
     public readonly navigate: NavigateFunction,
   ) {}
@@ -48,6 +48,10 @@ export default class Agent {
       builtin: true,
       createdAt: 0,
     } as Mask;
+  }
+
+  public get Name() {
+    return this.Mask.name;
   }
 
   public async Active() {
