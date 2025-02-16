@@ -22,12 +22,7 @@ export interface AgentSwitcher {
   bridgeMessages?: ChatMessageX[];
 }
 
-export type MaybeAgentSwitcher =
-  | AgentSwitcher
-  | null
-  | undefined
-  | void
-  | Promise<AgentSwitcher | null | undefined | void>;
+export type MaybeAgentSwitcher = AgentSwitcher | null | undefined | void;
 
 export type AgentRouteMap = {
   [actionName: string]: {
@@ -145,19 +140,28 @@ export default class Agent {
     };
   }
 
-  public async onBeforeSendMessage(userMessage: string) {
-    const session = this.chatStore.currentSession();
-    const messages = session.messages;
-    const dialogue = {
-      question:
-        messages[messages.length - 1]?.content || "你好，有什么可以帮你的吗？",
-      answer: userMessage,
-    };
-    const res = await axios.post(`/api/agent/xsea/router`, dialogue);
-    const { action, entity, intention } = res.data;
-    const nextAgentName = this.RouteMap()[action]?.[entity];
-    console.log("【意图路由】", intention, nextAgentName);
-    return null;
+  public async onBeforeSendMessage(
+    userMessage: string,
+  ): Promise<MaybeAgentSwitcher> {
+    try {
+      const session = this.chatStore.currentSession();
+      const messages = session.messages;
+      const dialogue = {
+        question:
+          messages[messages.length - 1]?.content ||
+          "你好，有什么可以帮你的吗？",
+        answer: userMessage,
+      };
+      const res = await axios.post(`/api/agent/xsea/router`, dialogue);
+      const { action, entity, intention } = res.data;
+      const nextAgentName = this.RouteMap()[action]?.[entity];
+      console.log("【意图】:", intention, "【路由】:", nextAgentName);
+      if (nextAgentName) {
+        return { agentName: nextAgentName } as AgentSwitcher;
+      }
+    } catch (error) {
+      console.error(error);
+    }
   }
 
   public get Mask() {
