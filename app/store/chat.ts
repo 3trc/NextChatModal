@@ -595,7 +595,6 @@ export const useChatStore = createPersistStore(
           createMessage({
             role: message.role,
             content: fillTemplateWith(message.content, modelConfig),
-            isMcpResponse: false,
           }),
         );
 
@@ -614,9 +613,9 @@ export const useChatStore = createPersistStore(
 
         // save user's and bot's message
         get().updateTargetSession(session, (session) => {
-          const newMessages = sendMessageList.map((userMessage) => ({
-            ...userMessage,
-            content: userMessage.content,
+          const newMessages = sendMessageList.map((message) => ({
+            ...message,
+            content: message.content,
           }));
           session.messages = session.messages.concat([
             ...newMessages,
