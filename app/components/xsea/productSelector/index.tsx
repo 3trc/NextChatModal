@@ -49,7 +49,7 @@ const ProductSelector = () => {
   return (
     <div className={styles.com}>
       <div>
-        <span>😊 你好，平台上现有以下产品可供选择</span>
+        <span>😊 平台上现有以下产品可供选择</span>
         <span>你想选择哪个产品呢？</span>
       </div>
       <div>
