@@ -29,6 +29,12 @@ export type MaybeAgentSwitcher =
   | void
   | Promise<AgentSwitcher | null | undefined | void>;
 
+export type AgentRouteMap = {
+  [actionName: string]: {
+    [entityName: string]: string;
+  };
+};
+
 export default class Agent {
   public constructor(
     public readonly mask: Omit<BuiltinMask, "lang" | "builtin" | "createdAt">,
@@ -58,6 +64,101 @@ export default class Agent {
     await this.chatStore.SendMessages(messages);
   }
 
+  public RouteMap(): AgentRouteMap {
+    return {
+      肯定: {
+        产品: "XSea_知识库",
+        脚本: "XSea_知识库",
+        计划: "XSea_知识库",
+        压测: "XSea_知识库",
+        记录: "XSea_知识库",
+        概念: "XSea_知识库",
+        其他: "XSea_知识库",
+      },
+      否定: {
+        产品: "XSea_知识库",
+        脚本: "XSea_知识库",
+        计划: "XSea_知识库",
+        压测: "XSea_知识库",
+        记录: "XSea_知识库",
+        概念: "XSea_知识库",
+        其他: "XSea_知识库",
+      },
+      终止: {
+        产品: "XSea_知识库",
+        脚本: "XSea_知识库",
+        计划: "XSea_知识库",
+        压测: "XSea_知识库",
+        记录: "XSea_知识库",
+        概念: "XSea_知识库",
+        其他: "XSea_知识库",
+      },
+      陈述: {
+        产品: "XSea_知识库",
+        脚本: "XSea_知识库",
+        计划: "XSea_知识库",
+        压测: "XSea_知识库",
+        记录: "XSea_知识库",
+        概念: "XSea_知识库",
+        其他: "XSea_知识库",
+      },
+      创建: {
+        产品: "XSea_知识库",
+        脚本: "XSea_知识库",
+        计划: "XSea_知识库",
+        压测: "XSea_知识库",
+        记录: "XSea_知识库",
+        概念: "XSea_知识库",
+        其他: "XSea_知识库",
+      },
+      查询: {
+        产品: "XSea_知识库",
+        脚本: "XSea_知识库",
+        计划: "XSea_知识库",
+        压测: "XSea_知识库",
+        记录: "XSea_知识库",
+        概念: "XSea_知识库",
+        其他: "XSea_知识库",
+      },
+      询问: {
+        产品: "XSea_知识库",
+        脚本: "XSea_知识库",
+        计划: "XSea_知识库",
+        压测: "XSea_知识库",
+        记录: "XSea_知识库",
+        概念: "XSea_知识库",
+        其他: "XSea_知识库",
+      },
+      修改: {
+        产品: "XSea_知识库",
+        脚本: "XSea_知识库",
+        计划: "XSea_知识库",
+        压测: "XSea_知识库",
+        记录: "XSea_知识库",
+        概念: "XSea_知识库",
+        其他: "XSea_知识库",
+      },
+      执行: {
+        产品: "XSea_知识库",
+        脚本: "XSea_知识库",
+        计划: "XSea_知识库",
+        压测: "XSea_知识库",
+        记录: "XSea_知识库",
+        概念: "XSea_知识库",
+        其他: "XSea_知识库",
+      },
+      其他: {
+        产品: "XSea_知识库",
+        脚本: "XSea_知识库",
+        计划: "XSea_知识库",
+        压测: "XSea_知识库",
+        记录: "XSea_知识库",
+        概念: "XSea_知识库",
+        其他: "XSea_知识库",
+      },
+    };
+  }
+
   public async onBeforeSendMessage(userMessage: string) {
     const session = this.chatStore.currentSession();
     const messages = session.messages;
@@ -67,7 +168,11 @@ export default class Agent {
       answer: userMessage,
     };
     const res = await axios.post(`/api/agent/xsea/router`, dialogue);
-    console.log("意图识别", res.data);
+    const data = res.data;
+    const action = data.action || "其他";
+    const entity = data.entity || "其他";
+    const nextAgentName = this.RouteMap()[action][entity];
+    console.log("意图", action, entity);
     return null;
   }
 
