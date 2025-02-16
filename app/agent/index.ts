@@ -5,6 +5,7 @@ import { Mask } from "@/app/store/mask";
 import { ReactNode } from "react";
 import { NavigateFunction } from "react-router-dom";
 import { AgentStore } from "./store";
+import { nanoid } from "nanoid";
 
 export interface ChatMessageX {
   role: "system" | "user" | "assistant";
@@ -31,7 +32,11 @@ export default class Agent {
     public readonly mask: Omit<BuiltinMask, "lang" | "builtin" | "createdAt">,
     public readonly chatStore: ChatStore,
     public readonly navigate: NavigateFunction,
-  ) {}
+  ) {
+    this.id = nanoid();
+  }
+
+  private id = "";
 
   public welcome() {
     return [] as ChatMessageX[];
@@ -44,10 +49,15 @@ export default class Agent {
   public get Mask() {
     return {
       ...this.mask,
+      id: this.id,
       lang: "cn",
       builtin: true,
       createdAt: 0,
     } as Mask;
+  }
+
+  public get Id() {
+    return this.id;
   }
 
   public get Name() {
