@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { ChatStore, useChatStore } from "@/app/store";
 import { NavigateFunction, useNavigate } from "react-router-dom";
-import Agent, { MaybeAgentSwitcher } from "..";
+import Agent from "..";
 import { AgentStore } from "../store";
 
 export class Agent_XSea_智能体 extends Agent {
@@ -29,13 +29,6 @@ export class Agent_XSea_智能体 extends Agent {
       chatStore,
       navigate,
     );
-  }
-
-  public onBeforeActive(): MaybeAgentSwitcher {
-    // return {
-    //   agentName: "XSea_执行压测",
-    //   bridgeMessages: [{ role: "assistant", content: "去执行压测吧" }],
-    // };
   }
 }
 
