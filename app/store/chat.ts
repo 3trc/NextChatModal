@@ -8,7 +8,6 @@ import {
 import { indexedDBStorage } from "@/app/utils/indexedDB-storage";
 import { nanoid } from "nanoid";
 import type {
-  ChatMessageBase,
   ClientApi,
   MultimodalContent,
   RequestMessage,
@@ -40,6 +39,7 @@ import { createEmptyMask, Mask } from "./mask";
 import { executeMcpAction, getAllTools } from "../mcp/actions";
 import { extractMcpJson, isMcpJson } from "../mcp/utils";
 import { CN_MASKS } from "../masks/cn";
+import { ChatMessageX } from "../agent";
 
 const localStorage = safeLocalStorage();
 
@@ -587,11 +587,11 @@ export const useChatStore = createPersistStore(
         window.doSubmit(content);
       },
 
-      async onSystemInput(messages: ChatMessageBase[]) {
+      async SendMessages(messages: ChatMessageX[]) {
         const session = get().currentSession();
         const modelConfig = session.mask.modelConfig;
 
-        let userMessageList: ChatMessage[] = messages.map((message) =>
+        const sendMessageList: ChatMessage[] = messages.map((message) =>
           createMessage({
             role: message.role,
             content: fillTemplateWith(message.content, modelConfig),
@@ -607,14 +607,14 @@ export const useChatStore = createPersistStore(
 
         // get recent messages
         const recentMessages = await get().getMessagesWithMemory();
-        const sendMessages = recentMessages.concat(userMessageList);
+        const sendMessages = recentMessages.concat(sendMessageList);
         const messageIndex = session.messages.length + 1;
 
         const trigger = messages[messages.length - 1]?.role !== "assistant";
 
         // save user's and bot's message
         get().updateTargetSession(session, (session) => {
-          const newMessages = userMessageList.map((userMessage) => ({
+          const newMessages = sendMessageList.map((userMessage) => ({
             ...userMessage,
             content: userMessage.content,
           }));
@@ -677,8 +677,8 @@ export const useChatStore = createPersistStore(
                 message: error.message,
               });
             botMessage.streaming = false;
-            if (userMessageList.length > 0) {
-              userMessageList[userMessageList.length - 1].isError = !isAborted;
+            if (sendMessageList.length > 0) {
+              sendMessageList[sendMessageList.length - 1].isError = !isAborted;
             }
             botMessage.isError = !isAborted;
             get().updateTargetSession(session, (session) => {
