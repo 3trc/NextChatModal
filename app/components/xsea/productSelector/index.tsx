@@ -6,6 +6,7 @@ import styles from "./index.module.scss";
 import axios from "axios";
 import LocalJSON from "../localJSON";
 import { useChatStore } from "@/app/store";
+import { AgentStore } from "@/app/agent/store";
 
 const ProductSelector = () => {
   const [loading, setLoading] = useState<boolean>(true);
@@ -107,7 +108,7 @@ const ProductSelector = () => {
             type="primary"
             onClick={() => {
               SetSelectedScripts(selectedScripts);
-              chatStore.onUserInputX("开始压测");
+              AgentStore.get("XSea_查询脚本").Active();
             }}
           >
             选定

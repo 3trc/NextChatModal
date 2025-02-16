@@ -33,7 +33,7 @@ export class Agent_XSea_查询脚本 extends Agent {
   }
 
   public onBeforeActive(): MaybeAgentSwitcher {
-    if (LocalJSON.selected_products) {
+    if (LocalJSON.selected_product) {
     } else {
       return {
         agentName: "XSea_查询产品",
