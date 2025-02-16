@@ -57,7 +57,6 @@ const ScriptSelector = (props: { types: ScriptType[] }) => {
     <div className={styles.com}>
       <div>
         <span>
-          😄 你好，
           <a
             href={`${"http://10.10.30.103:8081"}${LocalJSON.selected_product
               ?.url}`}

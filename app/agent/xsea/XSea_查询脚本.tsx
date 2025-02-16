@@ -4,6 +4,7 @@ import { NavigateFunction, useNavigate } from "react-router-dom";
 import Agent, { ChatMessageX, MaybeAgentSwitcher } from "..";
 import { AgentStore } from "../store";
 import ScriptSelector from "@/app/components/xsea/scriptSelector";
+import LocalJSON from "@/app/components/xsea/localJSON";
 
 export class Agent_XSea_查询脚本 extends Agent {
   public constructor(chatStore: ChatStore, navigate: NavigateFunction) {
@@ -33,10 +34,18 @@ export class Agent_XSea_查询脚本 extends Agent {
   }
 
   public onBeforeActive(): MaybeAgentSwitcher {
-    // return {
-    //   agentName: "XSea_查询产品",
-    //   bridgeMessages: [{ role: "assistant", content: "去选择产品吧" }],
-    // };
+    if (LocalJSON.selected_products) {
+    } else {
+      return {
+        agentName: "XSea_查询产品",
+        bridgeMessages: [
+          {
+            role: "assistant",
+            content: "看起来你还没有选择任何产品，我们现在开始选择一个产品吧！",
+          },
+        ],
+      };
+    }
   }
 
   public welcome(): ChatMessageX[] {
