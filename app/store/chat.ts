@@ -593,7 +593,7 @@ export const useChatStore = createPersistStore(
 
         const sendMessageList: ChatMessage[] = messages.map((message) =>
           createMessage({
-            role: message.role,
+            ...message,
             content: fillTemplateWith(message.content, modelConfig),
           }),
         );

@@ -126,6 +126,7 @@ import clsx from "clsx";
 import { getAvailableClientsCount } from "../mcp/actions";
 import XSeaSelector from "./xseaSelector";
 import { AgentStore } from "../agent/store";
+import { ChatMessageX } from "../agent";
 
 const localStorage = safeLocalStorage();
 
@@ -2067,6 +2068,10 @@ function _Chat() {
                               const content = (
                                 getMessageTextContent(message) ?? ""
                               ).trim();
+                              const messageX = message as ChatMessageX;
+                              if (messageX.component) {
+                                return (message as ChatMessageX).component;
+                              }
                               if (content.startsWith("[ui-")) {
                                 return <XSeaSelector message={content} />;
                               } else {
