@@ -34,10 +34,10 @@ export class Agent_XSea_执行压测 extends Agent {
   }
 
   public onBeforeActive(): MaybeAgentSwitcher {
-    return {
-      agentName: "XSea_查询脚本",
-      bridgeMessages: [{ role: "assistant", content: "去选择脚本吧" }],
-    };
+    // return {
+    //   agentName: "XSea_查询脚本",
+    //   bridgeMessages: [{ role: "assistant", content: "去选择脚本吧" }],
+    // };
   }
 }
 
