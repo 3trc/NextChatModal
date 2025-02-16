@@ -41,7 +41,8 @@ export class Agent_XSea_查询脚本 extends Agent {
         bridgeMessages: [
           {
             role: "assistant",
-            content: "看起来你还没有选择任何产品，我们现在开始选择一个产品吧！",
+            content:
+              "🤔 看起来你还没有选择任何产品，我们现在开始选择一个产品吧！",
           },
         ],
       };
