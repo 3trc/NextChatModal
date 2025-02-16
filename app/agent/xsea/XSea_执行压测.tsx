@@ -3,6 +3,7 @@ import { ChatStore, useChatStore } from "@/app/store";
 import { NavigateFunction, useNavigate } from "react-router-dom";
 import Agent, { MaybeAgentSwitcher } from "..";
 import { AgentStore } from "../store";
+import LocalJSON from "@/app/components/xsea/localJSON";
 
 export class Agent_XSea_执行压测 extends Agent {
   public constructor(chatStore: ChatStore, navigate: NavigateFunction) {
@@ -34,10 +35,19 @@ export class Agent_XSea_执行压测 extends Agent {
   }
 
   public onBeforeActive(): MaybeAgentSwitcher {
-    // return {
-    //   agentName: "XSea_查询脚本",
-    //   bridgeMessages: [{ role: "assistant", content: "去选择脚本吧" }],
-    // };
+    if (LocalJSON.selected_scripts?.length > 0) {
+    } else {
+      return {
+        agentName: "XSea_查询脚本",
+        bridgeMessages: [
+          {
+            role: "assistant",
+            content:
+              "🤔 看起来你还没有选择任何脚本，这样不能开始压测哦，我们去选择一些脚本吧！",
+          },
+        ],
+      };
+    }
   }
 }
 
