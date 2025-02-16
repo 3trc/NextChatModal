@@ -32,10 +32,10 @@ export class Agent_XSea_智能体 extends Agent {
   }
 
   public onBeforeActive(): MaybeAgentSwitcher {
-    return {
-      agentName: "XSea_执行压测",
-      bridgeMessages: [{ role: "assistant", content: "去执行压测吧" }],
-    };
+    // return {
+    //   agentName: "XSea_执行压测",
+    //   bridgeMessages: [{ role: "assistant", content: "去执行压测吧" }],
+    // };
   }
 }
 
