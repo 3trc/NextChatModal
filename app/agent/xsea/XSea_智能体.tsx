@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { ChatStore, useChatStore } from "@/app/store";
 import { NavigateFunction, useNavigate } from "react-router-dom";
-import Agent, { AgentRouteMap } from "..";
+import Agent, { AgentRouteMap, ChatMessageX } from "..";
 import { AgentStore } from "../store";
 
 export class Agent_XSea_智能体 extends Agent {
@@ -31,6 +31,16 @@ export class Agent_XSea_智能体 extends Agent {
     );
   }
 
+  public welcome(): ChatMessageX[] {
+    return [
+      {
+        role: "assistant",
+        content: "你好啊",
+        component: <h1>你好啊</h1>,
+      },
+    ];
+  }
+
   public RouteMap(): AgentRouteMap {
     return {
       肯定: {
@@ -40,7 +50,6 @@ export class Agent_XSea_智能体 extends Agent {
         压测: "XSea_查询压测",
         记录: "XSea_查询记录",
         概念: "XSea_知识库",
-        其他: "XSea_知识库",
       },
       否定: {
         产品: "XSea_查询产品",
@@ -49,7 +58,6 @@ export class Agent_XSea_智能体 extends Agent {
         压测: "XSea_查询压测",
         记录: "XSea_查询记录",
         概念: "XSea_知识库",
-        其他: "XSea_知识库",
       },
       终止: {
         产品: "XSea_查询产品",
@@ -58,7 +66,6 @@ export class Agent_XSea_智能体 extends Agent {
         压测: "XSea_查询压测",
         记录: "XSea_查询记录",
         概念: "XSea_知识库",
-        其他: "XSea_知识库",
       },
       陈述: {
         产品: "XSea_知识库",
@@ -67,7 +74,6 @@ export class Agent_XSea_智能体 extends Agent {
         压测: "XSea_知识库",
         记录: "XSea_知识库",
         概念: "XSea_知识库",
-        其他: "XSea_知识库",
       },
       创建: {
         产品: "XSea_创建产品",
@@ -76,7 +82,6 @@ export class Agent_XSea_智能体 extends Agent {
         压测: "XSea_执行压测",
         记录: "XSea_执行压测",
         概念: "XSea_知识库",
-        其他: "XSea_知识库",
       },
       查询: {
         产品: "XSea_查询产品",
@@ -121,7 +126,6 @@ export class Agent_XSea_智能体 extends Agent {
         压测: "XSea_知识库",
         记录: "XSea_知识库",
         概念: "XSea_知识库",
-        其他: "XSea_知识库",
       },
     };
   }
