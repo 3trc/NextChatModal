@@ -25,7 +25,8 @@ export type MaybeAgentSwitcher =
   | AgentSwitcher
   | null
   | undefined
-  | Promise<AgentSwitcher | null | undefined>;
+  | void
+  | Promise<AgentSwitcher | null | undefined | void>;
 
 export default class Agent {
   public constructor(

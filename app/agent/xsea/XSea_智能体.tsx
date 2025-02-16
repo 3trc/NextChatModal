@@ -34,10 +34,10 @@ export class Agent_XSea_智能体 extends Agent {
   }
 
   public onBeforeActive(): MaybeAgentSwitcher {
-    return {
-      agentName: "XSea_Debug",
-      bridgeMessages: [],
-    };
+    // return {
+    //   agentName: "XSea_Debug",
+    //   bridgeMessages: [],
+    // };
   }
 }
 
