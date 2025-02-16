@@ -20,7 +20,7 @@ export interface AgentSwitcher {
   bridgeMessages?: ChatMessageX[];
 }
 
-type MaybeAgentSwitcher =
+export type MaybeAgentSwitcher =
   | AgentSwitcher
   | null
   | undefined
@@ -37,8 +37,8 @@ export default class Agent {
     return [] as ChatMessageX[];
   }
 
-  public onBeforeActive() {
-    return null as MaybeAgentSwitcher;
+  public onBeforeActive(): MaybeAgentSwitcher {
+    return null;
   }
 
   public get Mask() {
