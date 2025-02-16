@@ -36,18 +36,20 @@ export type Mask = {
     entity: string;
   } | null>;
   assistantMessageHook?: (message: string) => any;
-  stateMap?: {
-    [action: string]:
-      | {
-          [entity: string]:
-            | AgentSwitcher
-            | (() => AgentSwitcher | Promise<AgentSwitcher>)
-            | undefined
-            | null;
-        }
-      | undefined
-      | null;
-  };
+  stateMap?:
+    | {
+        [action: string]:
+          | {
+              [entity: string]:
+                | AgentSwitcher
+                | (() => AgentSwitcher | Promise<AgentSwitcher>)
+                | undefined
+                | null;
+            }
+          | undefined
+          | null;
+      }
+    | any;
 };
 
 export const DEFAULT_MASK_STATE = {
