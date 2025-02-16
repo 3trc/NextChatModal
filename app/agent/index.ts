@@ -58,6 +58,10 @@ export default class Agent {
       this.messageBuffer = [];
     });
   }
+  public SendMessages(messages: ChatMessageX[]) {
+    if (messages.length < 1) return;
+    messages.forEach((message) => this.SendMessage(message));
+  }
 
   public async onBeforeMessageSend(userMessage: string) {
     const session = this.chatStore.currentSession();
@@ -95,7 +99,7 @@ export default class Agent {
     this.navigate(Path.Chat);
     let switcher = await this.onBeforeActive();
     if (switcher) {
-      // 这里需要触发转场消息
+      this.SendMessages(switcher.bridgeMessages ?? []);
       await AgentStore.get(switcher.agentName).Active();
       return;
     }
