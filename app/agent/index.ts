@@ -26,22 +26,24 @@ type MaybeAgentSwitcher =
   | undefined
   | Promise<AgentSwitcher | null | undefined>;
 
-export interface AgentLifeCycle extends BuiltinMask {
-  welcome?: ChatMessageX;
-  onBeforeActive?: () => MaybeAgentSwitcher;
-  onAfterExit?: () => MaybeAgentSwitcher;
-  bye?: ChatMessageX;
-}
-
 export default class Agent {
   public constructor(
+    public readonly mask: BuiltinMask,
     public readonly chatStore: ChatStore,
     public readonly navigate: NavigateFunction,
   ) {}
 
+  public welcome() {
+    return [] as ChatMessageX[];
+  }
+
+  public onBeforeActive() {
+    return null as MaybeAgentSwitcher;
+  }
+
   public get Mask() {
     return {
-      ...this.life,
+      ...this.mask,
       lang: "cn",
       builtin: true,
       createdAt: 0,
@@ -51,16 +53,12 @@ export default class Agent {
   public async Active() {
     this.chatStore.newSession(this.Mask);
     this.navigate(Path.Chat);
-    let switcher = await this.life.onBeforeActive?.();
+    let switcher = await this.onBeforeActive();
     if (switcher) {
       // 这里需要触发转场消息
       await AgentStore.get(switcher.agentName).Active();
       return;
     }
     // 这里要欢迎
-  }
-
-  public Exit() {
-    this.life.onAfterExit?.();
   }
 }
