@@ -2057,7 +2057,12 @@ function _Chat() {
                               ))}
                             </div>
                           )}
-                          <div className={styles["chat-message-item"]}>
+                          <div
+                            className={styles["chat-message-item"]}
+                            onClick={() => {
+                              console.log("前端消息体", message);
+                            }}
+                          >
                             {(() => {
                               const content = (
                                 getMessageTextContent(message) ?? ""
