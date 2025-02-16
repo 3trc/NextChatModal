@@ -29,7 +29,7 @@ const ScriptSelector = (props: { types: ScriptType[] }) => {
     setLoading(true);
     try {
       const res = await axios.get(
-        `/api/object/xsea/product/849903850940473344/script`,
+        `/api/object/xsea/product/${LocalJSON.selected_product?.id}/script`,
         {
           params: { ...newFilter },
         },
