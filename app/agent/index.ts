@@ -48,19 +48,9 @@ export default class Agent {
     return null;
   }
 
-  private messageTimer: any = null;
-  private messageBuffer: ChatMessageX[] = [];
-  public SendMessage(message: ChatMessageX) {
-    this.messageBuffer.push(message);
-    clearTimeout(this.messageTimer);
-    this.messageTimer = setTimeout(() => {
-      this.chatStore.SendMessages(this.messageBuffer.slice());
-      this.messageBuffer = [];
-    });
-  }
   public SendMessages(messages: ChatMessageX[]) {
     if (messages.length < 1) return;
-    messages.forEach((message) => this.SendMessage(message));
+    this.chatStore.SendMessages(messages);
   }
 
   public async onBeforeMessageSend(userMessage: string) {
