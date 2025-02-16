@@ -4,6 +4,7 @@ import { NavigateFunction, useNavigate } from "react-router-dom";
 import Agent, { AgentRouteMap, MaybeAgentSwitcher } from "..";
 import { AgentStore } from "../store";
 import LocalJSON from "@/app/components/xsea/localJSON";
+import axios from "axios";
 
 export class Agent_XSea_确认压测 extends Agent {
   public constructor(chatStore: ChatStore, navigate: NavigateFunction) {
@@ -34,9 +35,23 @@ export class Agent_XSea_确认压测 extends Agent {
     );
   }
 
-  public onBeforeActive(): MaybeAgentSwitcher {
+  public async onBeforeActive(): Promise<MaybeAgentSwitcher> {
     if (LocalJSON.selected_scripts?.length > 0) {
-      alert("调用接口");
+      let res: any = {};
+      try {
+        res = await axios.post(
+          `/api/object/xsea/product/${
+            LocalJSON.selected_product.id
+          }/script/${`841402405221584896`}/test`,
+          {
+            scriptIds: LocalJSON.selected_scripts.map(
+              (script: any) => script.id,
+            ),
+          },
+        );
+      } catch (error) {}
+      const data = res.data ?? {};
+      console.log(data);
     } else {
       return {
         agentName: "XSea_执行压测",
