@@ -1149,6 +1149,7 @@ function _Chat() {
   };
   window._doSubmit = _doSubmit;
   const doSubmit = (userInput: string) => {
+    if (isLoading) return;
     const mask = chatStore.currentSession().mask;
     AgentStore.get(mask.name).SendMessage(userInput);
   };
