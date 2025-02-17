@@ -53,7 +53,7 @@ export default class Agent {
     return [] as ChatMessageX[];
   }
 
-  public onBeforeActive(): Promise<MaybeAgentSwitcher> {
+  public onBeforeCreate(): Promise<MaybeAgentSwitcher> {
     return Promise.resolve();
   }
 
@@ -167,7 +167,7 @@ export default class Agent {
     const prevMessages = JSON.parse(JSON.stringify(session.messages));
     this.chatStore.newSession(this.Mask, prevMessages);
     this.navigate(Path.Chat);
-    let switcher = await this.onBeforeActive();
+    let switcher = await this.onBeforeCreate();
     if (switcher) {
       const nextAgent = await this.SwitchAgent(switcher);
       if (nextAgent !== this) {
