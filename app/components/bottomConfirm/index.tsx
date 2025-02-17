@@ -4,10 +4,9 @@ import styles from "./index.module.scss";
 import { ChatMessageX } from "@/app/agent";
 
 export const isConfirmMessage = (message: string) => {
-  return (
-    message.split("\n").some((line) => line.trim().startsWith("请确认")) &&
-    !message.includes("符合")
-  );
+  return message
+    .split("\n")
+    .some((line) => line.trim().startsWith("请确认") && !line.includes("符合"));
 };
 
 export default function BottomConfirm(props: { message: ChatMessageX }) {
