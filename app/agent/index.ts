@@ -154,23 +154,27 @@ export default class Agent {
   }
 
   public async onBeforeSendMessage(
-    userMessage: string,
+    message: string,
   ): Promise<MaybeAgentSwitcher> {
     try {
       const session = this.chatStore.currentSession();
-      const messages = session.messages;
+      const assistantMessages = session.messages.filter(
+        (item) => item.role === "assistant",
+      );
       const dialogue = {
         question:
-          messages[messages.length - 1]?.content ||
+          assistantMessages[assistantMessages.length - 1]?.content ||
           "你好，有什么可以帮你的吗？",
-        answer: userMessage,
+        answer: message,
       };
       const res = await axios.post(`/api/agent/xsea/router`, dialogue);
       const { action, entity, intention } = res.data;
-      const nextAgentName = this.RouteMap()[action]?.[entity];
+      const layer1 = this.RouteMap()[action];
+      const nextAgentName =
+        typeof layer1 === "string" ? layer1 : layer1?.[entity];
       console.log("【意图】:", intention, "【路由】:", nextAgentName);
       if (nextAgentName) {
-        return { agentName: nextAgentName } as AgentSwitcher;
+        return { agentName: nextAgentName };
       }
     } catch (error) {
       console.error(error);
