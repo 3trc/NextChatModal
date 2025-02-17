@@ -57,6 +57,27 @@ export default class Agent {
     return Promise.resolve();
   }
 
+  public async SwitchAgent(
+    switcher: AgentSwitcher,
+    userMessage?: ChatMessageX,
+  ) {
+    if (switcher.agentName) {
+      const nextAgent = AgentStore.get(switcher.agentName);
+      await nextAgent.Active();
+      await nextAgent.SendMessageList([
+        ...(userMessage ? [userMessage] : []),
+        ...(switcher.bridgeMessages ?? []),
+      ]);
+      return nextAgent;
+    } else {
+      await this.SendMessageList([
+        ...(userMessage ? [userMessage] : []),
+        ...(switcher.bridgeMessages ?? []),
+      ]);
+      return this;
+    }
+  }
+
   public async SendMessage(message: string) {
     this.chatStore.SendMessage(message, async (message) => {
       const switcher = await this.onBeforeSendMessage(message);
