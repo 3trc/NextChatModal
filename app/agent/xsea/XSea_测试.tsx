@@ -41,7 +41,7 @@ class _Agent extends Agent {
   }
 }
 
-export default function XSea_测试() {
+export default () => {
   const navigate = useNavigate();
   const chatStore = useChatStore();
   useEffect(() => {
@@ -49,4 +49,4 @@ export default function XSea_测试() {
     AgentStore.register(agent.Name, agent);
   }, []);
   return <></>;
-}
+};
