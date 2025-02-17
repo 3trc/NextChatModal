@@ -3,6 +3,13 @@ import { Button, Space } from "antd";
 import styles from "./index.module.scss";
 import { ChatMessageX } from "@/app/agent";
 
+export const isConfirmMessage = (message: string) => {
+  return (
+    message.split("\n").some((line) => line.trim().startsWith("请确认")) &&
+    !message.includes("符合")
+  );
+};
+
 export default function BottomConfirm(props: { message: ChatMessageX }) {
   const [show, setShow] = useState<boolean>(false);
   const timer = useRef<any>();
@@ -10,10 +17,7 @@ export default function BottomConfirm(props: { message: ChatMessageX }) {
   const shouldShow = useMemo(() => {
     return (
       props.message.role === "assistant" &&
-      props.message.content
-        .split("\n")
-        .some((line) => line.trim().startsWith("请确认")) &&
-      !props.message.content.includes("符合")
+      isConfirmMessage(props.message.content)
     );
   }, [props.message.role, props.message.content]);
 
