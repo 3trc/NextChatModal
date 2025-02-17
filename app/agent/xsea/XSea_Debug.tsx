@@ -9,7 +9,7 @@ class _Agent extends Agent {
     super(
       {
         avatar: "🔄",
-        name: "XSea_Debug",
+        name: "XSea_模板",
         context: [
           {
             id: "",
@@ -32,7 +32,7 @@ class _Agent extends Agent {
   }
 }
 
-export default function XSea_Debug() {
+export default function XSea_模板() {
   const navigate = useNavigate();
   const chatStore = useChatStore();
   useEffect(() => {
