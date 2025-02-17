@@ -583,8 +583,11 @@ export const useChatStore = createPersistStore(
         });
       },
 
-      SendMessage(content: string) {
-        window._doSubmit?.(content);
+      async SendMessage(
+        content: string,
+        preCheck?: (message: string) => any,
+      ): Promise<void> {
+        return window._doSubmit?.(content, preCheck);
       },
 
       async SendMessages(messages: ChatMessageX[]) {
