@@ -52,18 +52,24 @@ export default class Agent {
   }
 
   public async SendMessage(message: string) {
-    // const switcher = await this.onBeforeSendMessage(message);
-    // if (switcher) {
-    //   await this.SendMessageList(switcher.bridgeMessages ?? []);
-    //   await AgentStore.get(switcher.agentName).Active();
-    //   return;
-    // }
-    this.chatStore.SendMessage(message, (message) => {
-      return new Promise<boolean>((resolve) => {
-        setTimeout(() => {
-          resolve(true);
-        }, 10000);
-      });
+    this.chatStore.SendMessage(message, async (message) => {
+      const switcher = await this.onBeforeSendMessage(message);
+      if (switcher) {
+        if (switcher.agentName) {
+          const nextAgent = AgentStore.get(switcher.agentName);
+          await nextAgent.Active();
+          await nextAgent.SendMessageList([
+            { role: "user", content: message },
+            ...(switcher.bridgeMessages ?? []),
+          ]);
+          return switcher;
+        } else {
+          await this.SendMessageList([
+            { role: "user", content: message },
+            ...(switcher.bridgeMessages ?? []),
+          ]);
+        }
+      }
     });
   }
 
