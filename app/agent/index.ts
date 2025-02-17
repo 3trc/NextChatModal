@@ -204,13 +204,7 @@ export default class Agent {
         switcher = await routeMap();
       }
 
-      const layer1 = this.RouteMap()[action];
-      const nextAgentName =
-        typeof layer1 === "string" ? layer1 : layer1?.[entity];
-      console.log("【意图】:", intention, "【路由】:", nextAgentName);
-      if (nextAgentName) {
-        return { agentName: nextAgentName };
-      }
+      return switcher;
     } catch (error) {
       console.error(error);
     }
