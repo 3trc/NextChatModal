@@ -143,7 +143,7 @@ const ScriptSelector = (props: { types: ScriptType[] }) => {
             type="primary"
             onClick={() => {
               SetSelectedScripts(selectedScripts);
-              AgentStore.get("XSea_执行压测").Active();
+              AgentStore.get("XSea_执行压测").Create();
             }}
           >
             选定

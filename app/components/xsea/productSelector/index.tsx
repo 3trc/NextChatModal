@@ -108,7 +108,7 @@ const ProductSelector = () => {
             type="primary"
             onClick={() => {
               SetSelectedScripts(selectedScripts);
-              AgentStore.get("XSea_查询脚本").Active();
+              AgentStore.get("XSea_查询脚本").Create();
             }}
           >
             选定

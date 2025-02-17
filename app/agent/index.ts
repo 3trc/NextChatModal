@@ -63,7 +63,7 @@ export default class Agent {
   ) {
     if (switcher.agentName) {
       const nextAgent = AgentStore.get(switcher.agentName);
-      await nextAgent.Active();
+      await nextAgent.Create();
       await nextAgent.SendMessageList([
         ...(userMessage ? [userMessage] : []),
         ...(switcher.bridgeMessages ?? []),
@@ -162,7 +162,7 @@ export default class Agent {
     return this.Mask.name;
   }
 
-  public async Active() {
+  public async Create() {
     const session = this.chatStore.currentSession();
     const prevMessages = JSON.parse(JSON.stringify(session.messages));
     this.chatStore.newSession(this.Mask, prevMessages);
