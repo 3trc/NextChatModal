@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { ChatStore, useChatStore } from "@/app/store";
 import { NavigateFunction, useNavigate } from "react-router-dom";
-import Agent from "..";
+import Agent, { AgentRouteMap } from "..";
 import { AgentStore } from "../store";
 
 class _Agent extends Agent {
@@ -57,6 +57,16 @@ class _Agent extends Agent {
       chatStore,
       navigate,
     );
+  }
+
+  public RouteMap(): AgentRouteMap {
+    return {
+      终止: "XSea_智能体",
+      创建: "XSea_智能体",
+      查询: "XSea_智能体",
+      修改: "XSea_智能体",
+      执行: "XSea_智能体",
+    };
   }
 }
 
