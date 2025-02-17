@@ -125,7 +125,6 @@ import { RealtimeChat } from "@/app/components/realtime-chat";
 import clsx from "clsx";
 import { getAvailableClientsCount } from "../mcp/actions";
 import XSeaSelector from "./xseaSelector";
-import { AgentStore } from "../agent/store";
 import { ChatMessageX } from "../agent";
 
 const localStorage = safeLocalStorage();
@@ -1121,83 +1120,12 @@ function _Chat() {
         return;
       }
 
-      const mask = chatStore.currentSession().mask;
-      AgentStore.get(mask.name).SendMessage({
-        role: "user",
-        content: userInput,
-      });
-      return;
-
-      // 这里尝试调用消息发送的hook，进行意图分类
       // const mask = chatStore.currentSession().mask;
-      // const messages = chatStore.currentSession().messages;
-      // const fullMask = CN_MASKS.find((item) => item.name === mask.name);
-      // mask.userMessageHook = fullMask?.userMessageHook;
-      // mask.assistantMessageHook = fullMask?.assistantMessageHook;
-      // mask.stateMap = fullMask?.stateMap;
-      // if (mask.userMessageHook) {
-      //   setSendButtonLoading(true);
-      //   try {
-      //     const dialogue = {
-      //       question:
-      //         messages[messages.length - 1]?.content ||
-      //         "你好，有什么可以帮你的吗？",
-      //       answer: userInput,
-      //     };
-      //     const hookResult = await mask.userMessageHook(dialogue);
-      //     if (hookResult) {
-      //       // 根据意图识别获取下一个状态
-      //       const nextStateBase =
-      //         mask.stateMap?.[hookResult.action]?.[hookResult.entity];
-      //       const nextState = await (() => {
-      //         if (nextStateBase == null) return nextStateBase;
-      //         if (typeof nextStateBase === "function") {
-      //           return nextStateBase();
-      //         }
-      //         return nextStateBase;
-      //       })();
-
-      //       console.log(
-      //         "【意图分类】:",
-      //         hookResult,
-      //         "【当前状态】:",
-      //         mask.name,
-      //         "【下一个状态】:",
-      //         nextState,
-      //       );
-      //       if (nextState && nextState.call) {
-      //         if (nextState.call !== mask.name) {
-      //           const sessionX = chatStore.newSessionX(nextState.call, "NONE");
-      //           if (sessionX) {
-      //             navigate(Path.Chat);
-      //             chatStore.onSystemInput([
-      //               { role: "user", content: userInput },
-      //               ...(nextState.bridgeMessages ?? []),
-      //             ]);
-      //             setSendButtonLoading(false);
-      //             setUserInput("");
-      //             setPromptHints([]);
-      //             return;
-      //           }
-      //         } else {
-      //           chatStore.onSystemInput([
-      //             { role: "user", content: userInput },
-      //             ...(nextState.bridgeMessages ?? []),
-      //           ]);
-      //           setSendButtonLoading(false);
-      //           setUserInput("");
-      //           setPromptHints([]);
-      //           return;
-      //         }
-      //       }
-      //     }
-      //   } catch (error) {
-      //     setSendButtonLoading(false);
-      //     console.error(error);
-      //     return;
-      //   }
-      //   setSendButtonLoading(false);
-      // }
+      // AgentStore.get(mask.name).SendMessage({
+      //   role: "user",
+      //   content: userInput,
+      // });
+      // return;
 
       setIsLoading(true);
       chatStore

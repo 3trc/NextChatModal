@@ -49,14 +49,14 @@ export default class Agent {
     return Promise.resolve();
   }
 
-  public async SendMessage(message: ChatMessageX) {
-    const switcher = await this.onBeforeSendMessage(message.content);
-    if (switcher) {
-      await this.SendMessageList(switcher.bridgeMessages ?? []);
-      await AgentStore.get(switcher.agentName).Active();
-      return;
-    }
-    this.SendMessageList([message]);
+  public async SendMessage(message: string) {
+    // const switcher = await this.onBeforeSendMessage(message);
+    // if (switcher) {
+    //   await this.SendMessageList(switcher.bridgeMessages ?? []);
+    //   await AgentStore.get(switcher.agentName).Active();
+    //   return;
+    // }
+    this.chatStore.onUserInput(message);
   }
 
   public async SendMessageList(messages: ChatMessageX[]) {
