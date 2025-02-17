@@ -1105,7 +1105,10 @@ function _Chat() {
     }
   };
 
-  const _doSubmit = (userInput: string) => {
+  const _doSubmit = async (
+    userInput: string,
+    preCheck?: (message: string) => any,
+  ) => {
     if (userInput.trim() === "" && isEmpty(attachImages)) {
       return;
     }
@@ -1117,6 +1120,23 @@ function _Chat() {
       return;
     }
     setIsLoading(true);
+
+    try {
+      const result = await preCheck?.(userInput);
+      if (result) {
+        setIsLoading(false);
+        setAttachImages([]);
+        chatStore.setLastInput(userInput);
+        setUserInput("");
+        setPromptHints([]);
+        if (!isMobileScreen) inputRef.current?.focus();
+        setAutoScroll(true);
+        return;
+      }
+    } catch (error) {
+      console.error(error);
+    }
+
     chatStore
       .onUserInput(userInput, attachImages)
       .then(() => setIsLoading(false));
