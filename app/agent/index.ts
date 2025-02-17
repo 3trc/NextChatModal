@@ -57,9 +57,9 @@ export default class Agent {
     //   return;
     // }
     this.chatStore.SendMessage(message, (message) => {
-      return new Promise<void>((resolve) => {
+      return new Promise<boolean>((resolve) => {
         setTimeout(() => {
-          resolve();
+          resolve(true);
         }, 10000);
       });
     });
