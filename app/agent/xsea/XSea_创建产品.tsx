@@ -4,6 +4,7 @@ import { NavigateFunction, useNavigate } from "react-router-dom";
 import Agent, { AgentRouteMap } from "..";
 import { AgentStore } from "../store";
 import { isConfirmMessage } from "@/app/components/bottomConfirm";
+import XSeaSimplifier from "@/app/api/simplifier/xseaSimplifier";
 
 function extractFields(text: string, fields: string[]) {
   const statements = text
@@ -76,13 +77,26 @@ XSea是一个性能测试平台
 
   public RouteMap(): AgentRouteMap {
     return {
-      肯定: () => {
+      肯定: async () => {
         const messages = this.chatStore
           .currentSession()
           .messages.filter((message) => message.role === "assistant");
         const lastMessage = messages[messages.length - 1].content as string;
         if (isConfirmMessage(lastMessage)) {
-          console.log(extractFields(lastMessage, ["产品名称", "产品描述"]));
+          const params = extractFields(lastMessage, ["产品名称", "产品描述"]);
+          const xsea = new XSeaSimplifier();
+          const product = await xsea.ProductCreate(
+            params["产品名称"],
+            params["产品描述"],
+          );
+          return {
+            bridgeMessages: [
+              {
+                role: "assistant",
+                content: "已经成功创建产品" + JSON.stringify(product),
+              },
+            ],
+          };
         }
       },
     };
