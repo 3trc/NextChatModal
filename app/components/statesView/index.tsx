@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import styles from "./index.module.scss";
 import { Button, Steps } from "antd";
 import { useChatStore } from "@/app/store";
-import LocalJSON from "../xsea/localJSON";
+import { SessionJSON } from "../xsea/localJSON";
 
 const StatesView = () => {
   const [expand, setExpand] = useState<boolean>(true);
@@ -12,8 +12,8 @@ const StatesView = () => {
   const chatStore = useChatStore();
 
   const syncStates = () => {
-    setProduct(LocalJSON.selected_product ?? {});
-    setScripts(LocalJSON.selected_scripts ?? []);
+    setProduct(SessionJSON.selected_product ?? {});
+    setScripts(SessionJSON.selected_scripts ?? []);
   };
 
   useEffect(() => {

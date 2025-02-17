@@ -4,7 +4,7 @@ import { Button, Space, Table, Tabs } from "antd";
 import React, { useEffect, useState } from "react";
 import styles from "./index.module.scss";
 import axios from "axios";
-import LocalJSON from "../localJSON";
+import { SessionJSON } from "../localJSON";
 import { useChatStore } from "@/app/store";
 import { AgentStore } from "@/app/agent/store";
 
@@ -29,7 +29,7 @@ const ScriptSelector = (props: { types: ScriptType[] }) => {
     setLoading(true);
     try {
       const res = await axios.get(
-        `/api/object/xsea/product/${LocalJSON.selected_product?.id}/script`,
+        `/api/object/xsea/product/${SessionJSON.selected_product?.id}/script`,
         {
           params: { ...newFilter },
         },
@@ -49,7 +49,7 @@ const ScriptSelector = (props: { types: ScriptType[] }) => {
 
   const SetSelectedScripts = (scripts: any[]) => {
     setSelectedScripts(scripts);
-    LocalJSON.selected_scripts = scripts;
+    SessionJSON.selected_scripts = scripts;
   };
 
   const chatStore = useChatStore();
@@ -59,11 +59,11 @@ const ScriptSelector = (props: { types: ScriptType[] }) => {
       <div>
         <span>
           <a
-            href={`${"http://10.10.30.103:8081"}${LocalJSON.selected_product
+            href={`${"http://10.10.30.103:8081"}${SessionJSON.selected_product
               ?.url}`}
             className={styles.a_product}
           >
-            {LocalJSON.selected_product?.name}
+            {SessionJSON.selected_product?.name}
           </a>
           &nbsp;产品下有如下脚本可供选择，
         </span>

@@ -4,7 +4,7 @@ import { Button, Space, Table } from "antd";
 import React, { useEffect, useState } from "react";
 import styles from "./index.module.scss";
 import axios from "axios";
-import LocalJSON from "../localJSON";
+import { SessionJSON } from "../localJSON";
 import { useChatStore } from "@/app/store";
 import { AgentStore } from "@/app/agent/store";
 
@@ -41,8 +41,8 @@ const ProductSelector = () => {
 
   const SetSelectedScripts = (products: any[]) => {
     setSelectedScripts(products);
-    LocalJSON.selected_product = products[0] ?? null;
-    LocalJSON.selected_scripts = [];
+    SessionJSON.selected_product = products[0] ?? null;
+    SessionJSON.selected_scripts = [];
   };
 
   const chatStore = useChatStore();

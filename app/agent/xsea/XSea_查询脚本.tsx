@@ -3,7 +3,7 @@ import { ChatStore, useChatStore } from "@/app/store";
 import { NavigateFunction, useNavigate } from "react-router-dom";
 import Agent, { AgentRouteMap, ChatMessageX } from "..";
 import { AgentStore } from "../store";
-import LocalJSON from "@/app/components/xsea/localJSON";
+import { SessionJSON } from "@/app/components/xsea/localJSON";
 
 export class Agent_XSea_查询脚本 extends Agent {
   public constructor(chatStore: ChatStore, navigate: NavigateFunction) {
@@ -33,7 +33,7 @@ export class Agent_XSea_查询脚本 extends Agent {
   }
 
   public onBeforeActive(): any {
-    if (LocalJSON.selected_product) {
+    if (SessionJSON.selected_product) {
     } else {
       return {
         agentName: "XSea_查询产品",

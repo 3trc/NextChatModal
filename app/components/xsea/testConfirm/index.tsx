@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./index.module.scss";
-import LocalJSON from "../localJSON";
+import { SessionJSON } from "../localJSON";
 
 const TestConfirm = () => {
   return (
@@ -8,17 +8,17 @@ const TestConfirm = () => {
       <div>
         <span>你好，当前你已经选择了产品</span>&nbsp;
         <a
-          href={`${"http://10.10.30.103:8081"}${LocalJSON.selected_product
+          href={`${"http://10.10.30.103:8081"}${SessionJSON.selected_product
             ?.url}`}
           className={styles.a_product}
         >
-          {LocalJSON.selected_product?.name}
+          {SessionJSON.selected_product?.name}
         </a>
       </div>
       <div>以及如下脚本</div>
       <div>
         <ul className={styles.ul}>
-          {(LocalJSON.selected_scripts ?? []).map((script: any) => (
+          {(SessionJSON.selected_scripts ?? []).map((script: any) => (
             <li key={script.id}>
               <a href="javascript:;">{script.name}</a>
             </li>
