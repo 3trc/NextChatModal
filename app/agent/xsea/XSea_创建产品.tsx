@@ -5,46 +5,16 @@ import Agent, { AgentRouteMap } from "..";
 import { AgentStore } from "../store";
 import { isConfirmMessage } from "@/app/components/bottomConfirm";
 
-interface ExtractResult {
-  [key: string]: string;
-}
-
-function extractFields(text: string, fields: string[]): ExtractResult {
-  const result: ExtractResult = {};
-
-  // 预处理文本：移除多余空格，统一标点符号
-  let normalizedText = text
-    .replace(/[\n\r]+/g, " ") // 将换行符转换为空格
-    .replace(/\s+/g, " ") // 合并多个空格
-    .replace(/[：:]/g, ":") // 统一冒号
-    .replace(/[*_]/g, "") // 移除markdown标记
-    .trim();
-
+function extractFields(text: string, fields: string[]) {
+  const statements = text
+    .split(/[*:：()（）\s]/)
+    .map((item) => item.trim())
+    .filter((item) => item);
+  const result: any = {};
   fields.forEach((field) => {
-    // 尝试多种匹配模式
-    const patterns = [
-      // 精确匹配模式：字段名称+冒号+内容（考虑空格变化）
-      new RegExp(`${field}\\s*:[\\s]*([^\\n:：。]+)`),
-      // 宽松匹配模式：字段名称在内容附近
-      new RegExp(`${field}[^\\n:：。]*[\\s:：][^\\n:：。]*([^\\n:：。]+)`),
-      // 超宽松匹配模式：尝试找到字段名称后的任何内容
-      new RegExp(`${field}[^\\n:：。]*(.+?)(?=[\\n:：。]|$)`),
-    ];
-
-    for (const pattern of patterns) {
-      const match = normalizedText.match(pattern);
-      if (match && match[1]) {
-        result[field] = match[1].trim();
-        break;
-      }
-    }
-
-    // 如果所有模式都未匹配，设置为空字符串
-    if (!result[field]) {
-      result[field] = "";
-    }
+    result[field] =
+      statements[statements.findLastIndex((item) => item === field) + 1];
   });
-
   return result;
 }
 
