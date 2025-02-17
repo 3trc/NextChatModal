@@ -1002,7 +1002,6 @@ function _Chat() {
   const inputRef = useRef<HTMLTextAreaElement>(null);
   const [userInput, setUserInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const [sendButtonLoading, setSendButtonLoading] = useState(false);
   const { submitKey, shouldSubmit } = useSubmitHandler();
   const scrollRef = useRef<HTMLDivElement>(null);
   const isScrolledToBottom = scrollRef?.current
@@ -1105,33 +1104,29 @@ function _Chat() {
     }
   };
 
-  const doSubmit = useCallback(
-    async (userInput: string) => {
-      if (
-        (userInput.trim() === "" && isEmpty(attachImages)) ||
-        sendButtonLoading
-      )
-        return;
-      const matchCommand = chatCommands.match(userInput);
-      if (matchCommand.matched) {
-        setUserInput("");
-        setPromptHints([]);
-        matchCommand.invoke();
-        return;
-      }
-      setIsLoading(true);
-      chatStore
-        .onUserInput(userInput, attachImages)
-        .then(() => setIsLoading(false));
-      setAttachImages([]);
-      chatStore.setLastInput(userInput);
+  const doSubmit = (userInput: string) => {
+    if (userInput.trim() === "" && isEmpty(attachImages)) {
+      return;
+    }
+    const matchCommand = chatCommands.match(userInput);
+    if (matchCommand.matched) {
       setUserInput("");
       setPromptHints([]);
-      if (!isMobileScreen) inputRef.current?.focus();
-      setAutoScroll(true);
-    },
-    [sendButtonLoading],
-  );
+      matchCommand.invoke();
+      return;
+    }
+    setIsLoading(true);
+    chatStore
+      .onUserInput(userInput, attachImages)
+      .then(() => setIsLoading(false));
+    setAttachImages([]);
+    chatStore.setLastInput(userInput);
+    setUserInput("");
+    setPromptHints([]);
+    if (!isMobileScreen) inputRef.current?.focus();
+    setAutoScroll(true);
+  };
+
   window.getDoSubmit = () => doSubmit;
 
   const onPromptSelect = (prompt: RenderPrompt) => {
@@ -2114,7 +2109,7 @@ function _Chat() {
                   className={styles["chat-input"]}
                   placeholder={Locale.Chat.Input(submitKey)}
                   onInput={(e) => onInput(e.currentTarget.value)}
-                  value={sendButtonLoading ? "" : userInput}
+                  value={isLoading ? "" : userInput}
                   onKeyDown={onInputKeyDown}
                   onFocus={scrollToBottom}
                   onClick={scrollToBottom}
@@ -2151,7 +2146,7 @@ function _Chat() {
                 )}
                 <IconButton
                   icon={<SendWhiteIcon />}
-                  text={sendButtonLoading ? "发送中..." : Locale.Chat.Send}
+                  text={isLoading ? "发送中..." : Locale.Chat.Send}
                   className={styles["chat-input-send"]}
                   type="primary"
                   onClick={() => doSubmit(userInput)}
