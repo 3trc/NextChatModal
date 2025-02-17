@@ -44,7 +44,11 @@ class _Agent extends Agent {
   public RouteMap(): AgentRouteMap {
     return {
       执行: {
-        压测: "XSea_测试_A",
+        压测: () => {
+          return {
+            agentName: "XSea_测试_A",
+          };
+        },
       },
       创建: {
         脚本: "XSea_测试_B",
