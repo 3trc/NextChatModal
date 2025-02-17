@@ -216,7 +216,7 @@ export default class Agent {
         switcher = await routeMap();
       }
 
-      console.log("[Intention]:", intention, "[Switcher]", switcher);
+      console.log("【Intention】:", intention, "【Switcher】", switcher);
       return switcher;
     } catch (error) {
       console.error(error);
