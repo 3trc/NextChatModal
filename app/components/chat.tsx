@@ -126,6 +126,7 @@ import clsx from "clsx";
 import { getAvailableClientsCount } from "../mcp/actions";
 import XSeaSelector from "./xseaSelector";
 import { ChatMessageX } from "../agent";
+import { AgentStore } from "../agent/store";
 
 const localStorage = safeLocalStorage();
 
@@ -1127,6 +1128,10 @@ function _Chat() {
     setAutoScroll(true);
   };
   window._doSubmit = _doSubmit;
+  const doSubmit = (userInput: string) => {
+    const mask = chatStore.currentSession().mask;
+    AgentStore.get(mask.name).SendMessage(userInput);
+  };
 
   const onPromptSelect = (prompt: RenderPrompt) => {
     setTimeout(() => {
