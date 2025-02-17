@@ -18,7 +18,7 @@ export interface ChatMessageX {
 }
 
 export interface AgentSwitcher {
-  agentName: string;
+  agentName?: string;
   bridgeMessages?: ChatMessageX[];
 }
 
