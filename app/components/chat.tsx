@@ -2010,7 +2010,11 @@ function _Chat() {
                               ).trim();
                               const messageX = message as ChatMessageX;
                               if (messageX.component) {
-                                return (message as ChatMessageX).component;
+                                return (
+                                  <XSeaSelector
+                                    message={messageX.component as string}
+                                  />
+                                );
                               }
                               if (content.startsWith("[ui-")) {
                                 return <XSeaSelector message={content} />;
