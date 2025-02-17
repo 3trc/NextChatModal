@@ -86,7 +86,7 @@ export default class Agent {
           role: "user",
           content: message,
         });
-        if (nextAgent !== this) {
+        if (switcher.agentName) {
           return nextAgent;
         }
       }
