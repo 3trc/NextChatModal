@@ -6,6 +6,7 @@ import XSea_查询脚本 from "../agent/xsea/XSea_查询脚本";
 import XSea_知识库 from "../agent/xsea/XSea_知识库";
 import XSea_确认压测 from "../agent/xsea/XSea_确认压测";
 import XSea_模板 from "../agent/xsea/XSea_模板";
+import XSea_测试 from "../agent/xsea/XSea_测试";
 
 const Agents = () => {
   return (
@@ -16,6 +17,7 @@ const Agents = () => {
       <XSea_查询脚本 />
       <XSea_知识库 />
       <XSea_确认压测 />
+      <XSea_测试 />
       <XSea_模板 />
     </>
   );
