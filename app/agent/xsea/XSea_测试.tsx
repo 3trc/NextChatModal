@@ -47,6 +47,6 @@ export default () => {
   useEffect(() => {
     const agent = new _Agent(chatStore, navigate);
     AgentStore.register(agent.Name, agent);
-  }, []);
+  }, [chatStore, navigate]);
   return <></>;
 };
