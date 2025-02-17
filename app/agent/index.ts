@@ -56,7 +56,7 @@ export default class Agent {
     //   await AgentStore.get(switcher.agentName).Active();
     //   return;
     // }
-    this.chatStore.onUserInput(message);
+    this.chatStore.SendMessage(message);
   }
 
   public async SendMessageList(messages: ChatMessageX[]) {
