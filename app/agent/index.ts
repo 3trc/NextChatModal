@@ -79,22 +79,15 @@ export default class Agent {
   }
 
   public async SendMessage(message: string) {
-    this.chatStore.SendMessage(message, async (message) => {
+    return await this.chatStore.SendMessage(message, async (message) => {
       const switcher = await this.onBeforeSendMessage(message);
       if (switcher) {
-        if (switcher.agentName) {
-          const nextAgent = AgentStore.get(switcher.agentName);
-          await nextAgent.Active();
-          await nextAgent.SendMessageList([
-            { role: "user", content: message },
-            ...(switcher.bridgeMessages ?? []),
-          ]);
-          return switcher;
-        } else {
-          await this.SendMessageList([
-            { role: "user", content: message },
-            ...(switcher.bridgeMessages ?? []),
-          ]);
+        const nextAgent = await this.SwitchAgent(switcher, {
+          role: "user",
+          content: message,
+        });
+        if (nextAgent !== this) {
+          return nextAgent;
         }
       }
     });
