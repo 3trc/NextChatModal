@@ -46,7 +46,7 @@ class _Agent extends Agent {
       执行: {
         压测: () => {
           return {
-            agentName: "XSea_测试_A",
+            bridgeMessages: [{ role: "assistant", content: "这还不简单吗" }],
           };
         },
       },
