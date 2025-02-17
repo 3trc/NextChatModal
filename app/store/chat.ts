@@ -583,8 +583,8 @@ export const useChatStore = createPersistStore(
         });
       },
 
-      async onUserInputX(content: string) {
-        window.doSubmit(content);
+      SendMessage(content: string) {
+        window.getDoSubmit?.()?.(content);
       },
 
       async SendMessages(messages: ChatMessageX[]) {

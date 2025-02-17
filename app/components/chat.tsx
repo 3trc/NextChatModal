@@ -1132,7 +1132,7 @@ function _Chat() {
     },
     [sendButtonLoading],
   );
-  window.doSubmit = doSubmit;
+  window.getDoSubmit = () => doSubmit;
 
   const onPromptSelect = (prompt: RenderPrompt) => {
     setTimeout(() => {
