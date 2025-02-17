@@ -170,12 +170,10 @@ export default class Agent {
   ): Promise<MaybeAgentSwitcher> {
     try {
       const session = this.chatStore.currentSession();
-      const assistantMessages = session.messages.filter(
-        (item) => item.role === "assistant",
-      );
+      const prevMessages = session.messages;
       const dialogue = {
         question:
-          assistantMessages[assistantMessages.length - 1]?.content ||
+          prevMessages[prevMessages.length - 1]?.content ||
           "你好，有什么可以帮你的吗？",
         answer: message,
       };
@@ -204,6 +202,7 @@ export default class Agent {
         switcher = await routeMap();
       }
 
+      console.log("[Intention]:", intention, "[Switcher]", switcher);
       return switcher;
     } catch (error) {
       console.error(error);
