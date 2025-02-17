@@ -1126,8 +1126,7 @@ function _Chat() {
     if (!isMobileScreen) inputRef.current?.focus();
     setAutoScroll(true);
   };
-
-  window.getDoSubmit = () => doSubmit;
+  window.doSubmit = doSubmit;
 
   const onPromptSelect = (prompt: RenderPrompt) => {
     setTimeout(() => {

@@ -584,7 +584,7 @@ export const useChatStore = createPersistStore(
       },
 
       SendMessage(content: string) {
-        window.getDoSubmit?.()?.(content);
+        window.doSubmit?.(content);
       },
 
       async SendMessages(messages: ChatMessageX[]) {
