@@ -4,7 +4,7 @@ import { NavigateFunction, useNavigate } from "react-router-dom";
 import Agent from "..";
 import { AgentStore } from "../store";
 
-export class Agent_XSea_Debug extends Agent {
+class _Agent extends Agent {
   public constructor(chatStore: ChatStore, navigate: NavigateFunction) {
     super(
       {
@@ -14,9 +14,7 @@ export class Agent_XSea_Debug extends Agent {
           {
             id: "",
             role: "system",
-            content: `
-确保中文回答，确保回答"你好"，避免回答非"你好"文本，避免回答超过两个汉字，避免回答英文
-          `.trim(),
+            content: ``.trim(),
             date: "",
           },
         ],
@@ -34,14 +32,12 @@ export class Agent_XSea_Debug extends Agent {
   }
 }
 
-const XSea_Debug = () => {
+export default function XSea_Debug() {
   const navigate = useNavigate();
   const chatStore = useChatStore();
-  const agent = new Agent_XSea_Debug(chatStore, navigate);
   useEffect(() => {
+    const agent = new _Agent(chatStore, navigate);
     AgentStore.register(agent.Name, agent);
   }, []);
   return <></>;
-};
-
-export default XSea_Debug;
+}
