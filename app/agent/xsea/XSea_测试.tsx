@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { ChatStore, useChatStore } from "@/app/store";
 import { NavigateFunction, useNavigate } from "react-router-dom";
-import Agent from "..";
+import Agent, { AgentRouteMap } from "..";
 import { AgentStore } from "../store";
 
 class _Agent extends Agent {
@@ -38,6 +38,10 @@ class _Agent extends Agent {
       chatStore,
       navigate,
     );
+  }
+
+  public RouteMap(): AgentRouteMap {
+    return {};
   }
 }
 
