@@ -127,7 +127,7 @@ import { getAvailableClientsCount } from "../mcp/actions";
 import XSeaSelector from "./xseaSelector";
 import { ChatMessageX } from "../agent";
 import { AgentStore } from "../agent/store";
-import { Button, Space } from "antd";
+import BottomConfirm from "./bottomConfirm";
 
 const localStorage = safeLocalStorage();
 
@@ -2046,22 +2046,7 @@ function _Chat() {
                                       parentRef={scrollRef}
                                       defaultShow={i >= messages.length - 6}
                                     />
-                                    {messageX.role === "assistant" &&
-                                      messageX.content
-                                        .split("\n")
-                                        .some((line) =>
-                                          line.trim().startsWith("请确认"),
-                                        ) && (
-                                        <div className={styles.bottom_confirm}>
-                                          <span></span>
-                                          <Space>
-                                            <Button size="small">取消</Button>
-                                            <Button size="small" type="primary">
-                                              确认
-                                            </Button>
-                                          </Space>
-                                        </div>
-                                      )}
+                                    <BottomConfirm message={messageX} />
                                   </div>
                                 );
                               }
