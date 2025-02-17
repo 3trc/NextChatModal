@@ -25,9 +25,11 @@ export interface AgentSwitcher {
 export type MaybeAgentSwitcher = AgentSwitcher | null | undefined | void;
 
 export type AgentRouteMap = {
-  [actionName: string]: {
-    [entityName: string]: string;
-  };
+  [actionName: string]:
+    | {
+        [entityName: string]: string;
+      }
+    | string;
 };
 
 export default class Agent {
