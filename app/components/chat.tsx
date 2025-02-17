@@ -127,6 +127,7 @@ import { getAvailableClientsCount } from "../mcp/actions";
 import XSeaSelector from "./xseaSelector";
 import { ChatMessageX } from "../agent";
 import { AgentStore } from "../agent/store";
+import { Button, Space } from "antd";
 
 const localStorage = safeLocalStorage();
 
@@ -2020,27 +2021,48 @@ function _Chat() {
                                 return <XSeaSelector message={content} />;
                               } else {
                                 return (
-                                  <Markdown
-                                    key={message.streaming ? "loading" : "done"}
-                                    content={getMessageTextContent(message)}
-                                    loading={
-                                      message.content === "……" ||
-                                      ((message.preview || message.streaming) &&
-                                        message.content.length === 0 &&
-                                        !isUser)
-                                    }
-                                    //   onContextMenu={(e) => onRightClick(e, message)} // hard to use
-                                    onDoubleClickCapture={() => {
-                                      if (!isMobileScreen) return;
-                                      setUserInput(
-                                        getMessageTextContent(message),
-                                      );
-                                    }}
-                                    fontSize={fontSize}
-                                    fontFamily={fontFamily}
-                                    parentRef={scrollRef}
-                                    defaultShow={i >= messages.length - 6}
-                                  />
+                                  <div>
+                                    <Markdown
+                                      key={
+                                        message.streaming ? "loading" : "done"
+                                      }
+                                      content={getMessageTextContent(message)}
+                                      loading={
+                                        message.content === "……" ||
+                                        ((message.preview ||
+                                          message.streaming) &&
+                                          message.content.length === 0 &&
+                                          !isUser)
+                                      }
+                                      //   onContextMenu={(e) => onRightClick(e, message)} // hard to use
+                                      onDoubleClickCapture={() => {
+                                        if (!isMobileScreen) return;
+                                        setUserInput(
+                                          getMessageTextContent(message),
+                                        );
+                                      }}
+                                      fontSize={fontSize}
+                                      fontFamily={fontFamily}
+                                      parentRef={scrollRef}
+                                      defaultShow={i >= messages.length - 6}
+                                    />
+                                    {messageX.role === "assistant" &&
+                                      messageX.content
+                                        .split("\n")
+                                        .some((line) =>
+                                          line.trim().startsWith("请确认"),
+                                        ) && (
+                                        <div className={styles.bottom_confirm}>
+                                          <span></span>
+                                          <Space>
+                                            <Button size="small">取消</Button>
+                                            <Button size="small" type="primary">
+                                              确认
+                                            </Button>
+                                          </Space>
+                                        </div>
+                                      )}
+                                  </div>
                                 );
                               }
                             })()}
