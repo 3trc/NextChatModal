@@ -1104,7 +1104,7 @@ function _Chat() {
     }
   };
 
-  const doSubmit = (userInput: string) => {
+  const _doSubmit = (userInput: string) => {
     if (userInput.trim() === "" && isEmpty(attachImages)) {
       return;
     }
@@ -1126,7 +1126,7 @@ function _Chat() {
     if (!isMobileScreen) inputRef.current?.focus();
     setAutoScroll(true);
   };
-  window.doSubmit = doSubmit;
+  window._doSubmit = _doSubmit;
 
   const onPromptSelect = (prompt: RenderPrompt) => {
     setTimeout(() => {
