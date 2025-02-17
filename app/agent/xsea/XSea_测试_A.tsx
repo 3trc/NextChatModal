@@ -32,7 +32,17 @@ class _Agent extends Agent {
   }
 
   public RouteMap(): AgentRouteMap {
-    return {};
+    return {
+      终止: {
+        产品: "XSea_测试",
+        脚本: "XSea_测试",
+        计划: "XSea_测试",
+        压测: "XSea_测试",
+        记录: "XSea_测试",
+        概念: "XSea_测试",
+        其他: "XSea_测试",
+      },
+    };
   }
 }
 
