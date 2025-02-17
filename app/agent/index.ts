@@ -56,7 +56,13 @@ export default class Agent {
     //   await AgentStore.get(switcher.agentName).Active();
     //   return;
     // }
-    this.chatStore.SendMessage(message);
+    this.chatStore.SendMessage(message, (message) => {
+      return new Promise<void>((resolve) => {
+        setTimeout(() => {
+          resolve();
+        }, 10000);
+      });
+    });
   }
 
   public async SendMessageList(messages: ChatMessageX[]) {
