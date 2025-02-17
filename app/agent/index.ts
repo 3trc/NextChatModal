@@ -86,9 +86,7 @@ export default class Agent {
           role: "user",
           content: message,
         });
-        if (switcher.agentName) {
-          return nextAgent;
-        }
+        return nextAgent;
       }
     });
   }
