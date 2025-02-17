@@ -181,6 +181,29 @@ export default class Agent {
       };
       const res = await axios.post(`/api/agent/xsea/router`, dialogue);
       const { action, entity, intention } = res.data;
+
+      const routeMap = this.RouteMap();
+      let switcher: MaybeAgentSwitcher = null;
+      if (typeof routeMap === "object") {
+        const layer1 = routeMap[action];
+        if (typeof layer1 === "object") {
+          const layer2 = layer1[entity];
+          if (typeof layer2 === "string") {
+            switcher = { agentName: layer2 };
+          } else if (typeof layer2 === "function") {
+            switcher = await layer2();
+          }
+        } else if (typeof layer1 === "string") {
+          switcher = { agentName: layer1 };
+        } else if (typeof layer1 === "function") {
+          switcher = await layer1();
+        }
+      } else if (typeof routeMap === "string") {
+        switcher = { agentName: routeMap };
+      } else if (typeof routeMap === "function") {
+        switcher = await routeMap();
+      }
+
       const layer1 = this.RouteMap()[action];
       const nextAgentName =
         typeof layer1 === "string" ? layer1 : layer1?.[entity];
