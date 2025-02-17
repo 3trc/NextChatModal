@@ -7,6 +7,8 @@ import XSea_知识库 from "../agent/xsea/XSea_知识库";
 import XSea_确认压测 from "../agent/xsea/XSea_确认压测";
 import XSea_模板 from "../agent/xsea/XSea_模板";
 import XSea_测试 from "../agent/xsea/XSea_测试";
+import XSea_测试_A from "../agent/xsea/XSea_测试_A";
+import XSea_测试_B from "../agent/xsea/XSea_测试_B";
 
 const Agents = () => {
   return (
@@ -18,6 +20,8 @@ const Agents = () => {
       <XSea_知识库 />
       <XSea_确认压测 />
       <XSea_测试 />
+      <XSea_测试_A />
+      <XSea_测试_B />
       <XSea_模板 />
     </>
   );
