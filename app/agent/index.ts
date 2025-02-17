@@ -248,9 +248,10 @@ export default class Agent {
     this.navigate(Path.Chat);
     let switcher = await this.onBeforeActive();
     if (switcher) {
-      await this.SendMessageList(switcher.bridgeMessages ?? []);
-      await AgentStore.get(switcher.agentName).Active();
-      return;
+      const nextAgent = await this.SwitchAgent(switcher);
+      if (nextAgent !== this) {
+        return;
+      }
     }
     this.SendMessageList(this.welcome());
   }
