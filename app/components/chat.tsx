@@ -1119,14 +1119,6 @@ function _Chat() {
         matchCommand.invoke();
         return;
       }
-
-      // const mask = chatStore.currentSession().mask;
-      // AgentStore.get(mask.name).SendMessage({
-      //   role: "user",
-      //   content: userInput,
-      // });
-      // return;
-
       setIsLoading(true);
       chatStore
         .onUserInput(userInput, attachImages)
