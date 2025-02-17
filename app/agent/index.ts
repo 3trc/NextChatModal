@@ -23,14 +23,20 @@ export interface AgentSwitcher {
 }
 
 export type MaybeAgentSwitcher = AgentSwitcher | null | undefined | void;
+export type MaybeAgentSwitcherCallback = () =>
+  | MaybeAgentSwitcher
+  | Promise<MaybeAgentSwitcher>;
+export type MaybeAgentSwitcherKey = string | MaybeAgentSwitcherCallback;
 
-export type AgentRouteMap = {
-  [actionName: string]:
-    | {
-        [entityName: string]: string;
-      }
-    | string;
-};
+export type AgentRouteMap =
+  | {
+      [actionName: string]:
+        | {
+            [entityName: string]: MaybeAgentSwitcherKey;
+          }
+        | MaybeAgentSwitcherKey;
+    }
+  | MaybeAgentSwitcherKey;
 
 export default class Agent {
   public constructor(
