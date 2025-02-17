@@ -12,7 +12,8 @@ export default function BottomConfirm(props: { message: ChatMessageX }) {
       props.message.role === "assistant" &&
       props.message.content
         .split("\n")
-        .some((line) => line.trim().startsWith("请确认"))
+        .some((line) => line.trim().startsWith("请确认")) &&
+      !props.message.content.includes("符合")
     );
   }, [props.message.role, props.message.content]);
 
