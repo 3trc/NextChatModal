@@ -1,3 +1,2 @@
 FROM phi4:latest
 PARAMETER num_ctx 16384
-PARAMETER keep_alive "10000h"
