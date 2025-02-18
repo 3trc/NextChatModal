@@ -215,7 +215,12 @@ export default class XSeaSimplifier {
     };
   }
 
-  public async ScriptCreate(productId: string, name: string, type = "JMETER") {
+  public async ScriptCreate(
+    productId: string,
+    name: string,
+    type: string,
+    content: string,
+  ) {
     const res = await http.post(`xsea/script/add`, {
       workspaceId: productId,
       name,
@@ -226,6 +231,11 @@ export default class XSeaSimplifier {
       level: 1,
     });
     const data = res.data.object;
+    await http.post(`xsea/script/saveContent`, {
+      workspaceId: productId,
+      id: data.id,
+      content,
+    });
     return {
       id: data,
       name,
