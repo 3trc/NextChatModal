@@ -1,7 +1,7 @@
 "use client";
 
 import { Button, Space, Table, Tabs } from "antd";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import styles from "./index.module.scss";
 import axios from "axios";
 import { SessionJSON } from "../localJSON";
@@ -25,6 +25,10 @@ const ScriptSelector = (props: { search: string }) => {
     list: [],
     total: 0,
   });
+
+  const autoPageList = useMemo(() => {
+    return (page.list ?? []).filter((item: any) => item.type === tab);
+  }, [page.list, tab]);
 
   const updatePage = async (params: any = {}) => {
     const newFilter = { ...filter, ...params };
@@ -77,7 +81,6 @@ const ScriptSelector = (props: { search: string }) => {
           activeKey={tab}
           onChange={(activeKey) => {
             setTab(activeKey as ScriptType);
-            updatePage({ pageNum: 1 });
           }}
         >
           <TabPane tab="JMeter" key="JMETER" />
@@ -116,7 +119,7 @@ const ScriptSelector = (props: { search: string }) => {
               },
             },
           ]}
-          dataSource={page.list ?? []}
+          dataSource={autoPageList}
           loading={loading}
           rowSelection={{
             type: "checkbox",
