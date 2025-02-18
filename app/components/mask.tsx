@@ -602,10 +602,7 @@ export function MaskPage() {
                     icon={<AddIcon />}
                     text={Locale.Mask.Item.Chat}
                     onClick={() => {
-                      AgentStore.get(m.name).Create(
-                        [{ role: "user", content: "你好" }],
-                        true,
-                      );
+                      AgentStore.get(m.name).Create([], true);
                     }}
                   />
                   {m.builtin ? (

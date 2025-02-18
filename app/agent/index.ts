@@ -168,13 +168,13 @@ export default class Agent {
     this.chatStore.newSession(this.Mask);
     this.navigate(Path.Chat);
 
-    // 只有在前置消息为空的情况下才会追加欢迎消息
-    if (prevMessage.length === 0) {
-      this.chatStore.AppendRoleMessageList(this.welcome(), false);
+    // 只有在前置消息为空且不主动触发的情况下才会追加欢迎消息
+    if (prevMessage.length === 0 && !trigger) {
+      await this.chatStore.AppendRoleMessageList(this.welcome(), false);
     }
 
     // 发送不会触发请求的前置消息
-    this.chatStore.AppendRoleMessageList(
+    await this.chatStore.AppendRoleMessageList(
       prevMessage.slice(0, prevMessage.length - 1),
       false,
     );
@@ -187,7 +187,7 @@ export default class Agent {
     if (switcher) {
       // 以不触发请求的方式发送最后一个消息
       if (lastMessage) {
-        this.chatStore.AppendRoleMessage(lastMessage, false);
+        await this.chatStore.AppendRoleMessage(lastMessage, false);
       }
 
       // 以下部分没有Review
@@ -198,7 +198,9 @@ export default class Agent {
       // 上面
     } else {
       if (lastMessage) {
-        this.chatStore.AppendRoleMessage(lastMessage, trigger);
+        await this.chatStore.AppendRoleMessage(lastMessage, trigger);
+      } else if (trigger) {
+        await this.chatStore.AppendEmptyMessage();
       }
     }
   }
