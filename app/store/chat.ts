@@ -696,6 +696,18 @@ export const useChatStore = createPersistStore(
         });
       },
 
+      async AppendRoleMessageList(
+        messageList: ChatMessageX[],
+        trigger = false,
+      ) {
+        for (let i = 0; i < messageList.length; ++i) {
+          await this.AppendRoleMessage(
+            messageList[i],
+            i === messageList.length - 1 ? trigger : false,
+          );
+        }
+      },
+
       async SendMessage(
         content: string,
         preCheck?: (message: string) => any,
