@@ -583,7 +583,7 @@ export const useChatStore = createPersistStore(
         });
       },
 
-      async SendRoleMessage(message: ChatMessageX) {
+      async AppendRoleMessage(message: ChatMessageX, trigger = false) {
         const session = get().currentSession();
         const modelConfig = session.mask.modelConfig;
 
@@ -617,9 +617,13 @@ export const useChatStore = createPersistStore(
           };
           session.messages = session.messages.concat([
             savedUserMessage,
-            botMessage,
+            ...(trigger ? [botMessage] : []),
           ]);
         });
+
+        if (!trigger) {
+          return;
+        }
 
         const api: ClientApi = getClientApi(modelConfig.providerName);
         // make request
