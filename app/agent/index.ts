@@ -168,11 +168,6 @@ export default class Agent {
     this.chatStore.newSession(this.Mask);
     this.navigate(Path.Chat);
 
-    // 只有在前置消息为空且不主动触发的情况下才会追加欢迎消息
-    if (prevMessage.length === 0 && !trigger) {
-      await this.chatStore.AppendRoleMessageList(this.welcome(), false);
-    }
-
     // 发送不会触发请求的前置消息
     await this.chatStore.AppendRoleMessageList(
       prevMessage.slice(0, prevMessage.length - 1),
@@ -200,7 +195,12 @@ export default class Agent {
       if (lastMessage) {
         await this.chatStore.AppendRoleMessage(lastMessage, trigger);
       } else if (trigger) {
-        await this.chatStore.AppendEmptyMessage();
+        const welcome = this.welcome();
+        if (welcome.length > 0) {
+          await this.chatStore.AppendRoleMessageList(welcome, false);
+        } else {
+          await this.chatStore.AppendEmptyMessage();
+        }
       }
     }
   }
