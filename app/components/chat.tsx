@@ -2001,27 +2001,27 @@ function _Chat() {
                           )}
                           <div
                             className={styles["chat-message-item"]}
-                            onClick={() => {
-                              const text = message.content as string;
-                              const statements = text
-                                .split(/[*:：()（）\s]/)
-                                .map((item) => item.trim())
-                                .filter((item) => item);
-                              console.log(
-                                statements[
-                                  statements.findLastIndex(
-                                    (item) => item === "产品名称",
-                                  ) + 1
-                                ],
-                              );
-                              console.log(
-                                statements[
-                                  statements.findLastIndex(
-                                    (item) => item === "产品描述",
-                                  ) + 1
-                                ],
-                              );
-                            }}
+                            // onClick={() => {
+                            //   const text = message.content as string;
+                            //   const statements = text
+                            //     .split(/[*:：()（）\s]/)
+                            //     .map((item) => item.trim())
+                            //     .filter((item) => item);
+                            //   console.log(
+                            //     statements[
+                            //       statements.findLastIndex(
+                            //         (item) => item === "产品名称",
+                            //       ) + 1
+                            //     ],
+                            //   );
+                            //   console.log(
+                            //     statements[
+                            //       statements.findLastIndex(
+                            //         (item) => item === "产品描述",
+                            //       ) + 1
+                            //     ],
+                            //   );
+                            // }}
                           >
                             {(() => {
                               const content = (
