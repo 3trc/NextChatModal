@@ -231,11 +231,12 @@ export default class XSeaSimplifier {
       level: 1,
     });
     const data = res.data.object;
-    await http.post(`xsea/script/saveContent`, {
+    const saveRes = await http.post(`xsea/script/saveContent`, {
       workspaceId: productId,
-      id: data.id,
+      id: data,
       content,
     });
+    console.log(saveRes.data);
     return {
       id: data,
       name,
