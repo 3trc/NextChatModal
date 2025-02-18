@@ -61,20 +61,26 @@ const ScriptSelector = (props: { search: string }) => {
 
   return (
     <div className={styles.com}>
-      <div>
-        <span>📝</span>&nbsp;
-        <span>
-          <a
-            href={`${"http://10.10.30.103:8081"}${SessionJSON.selected_product
-              ?.url}`}
-            className={styles.a_product}
-          >
-            {SessionJSON.selected_product?.name}
-          </a>
-          &nbsp;产品下有如下脚本可供选择，
-        </span>
-        <span>你想选择哪些脚本呢？</span>
-      </div>
+      {loading ? (
+        <div>🚚 加载中...</div>
+      ) : autoPageList.length > 0 ? (
+        <div>
+          <span>📝</span>&nbsp;
+          <span>
+            <a
+              href={`${"http://10.10.30.103:8081"}${SessionJSON.selected_product
+                ?.url}`}
+              className={styles.a_product}
+            >
+              {SessionJSON.selected_product?.name}
+            </a>
+            &nbsp;产品下有如下脚本可供选择，
+          </span>
+          <span>你想选择哪些脚本呢？</span>
+        </div>
+      ) : (
+        <div>😌 好像暂时没有相关脚本呢</div>
+      )}
       <div>
         <Tabs
           size="small"
@@ -133,28 +139,30 @@ const ScriptSelector = (props: { search: string }) => {
           }}
         />
       </div>
-      <div className={styles.bottom}>
-        <Space className={styles.confirm_buttons}>
-          <Button
-            disabled={selectedScripts.length === 0}
-            size="small"
-            onClick={() => SetSelectedScripts([])}
-          >
-            清空
-          </Button>
-          <Button
-            disabled={selectedScripts.length === 0}
-            size="small"
-            type="primary"
-            onClick={() => {
-              SetSelectedScripts(selectedScripts);
-              AgentStore.get("XSea_执行压测").Create();
-            }}
-          >
-            选定
-          </Button>
-        </Space>
-      </div>
+      {autoPageList.length > 0 && (
+        <div className={styles.bottom}>
+          <Space className={styles.confirm_buttons}>
+            <Button
+              disabled={selectedScripts.length === 0}
+              size="small"
+              onClick={() => SetSelectedScripts([])}
+            >
+              清空
+            </Button>
+            <Button
+              disabled={selectedScripts.length === 0}
+              size="small"
+              type="primary"
+              onClick={() => {
+                SetSelectedScripts(selectedScripts);
+                AgentStore.get("XSea_执行压测").Create();
+              }}
+            >
+              选定
+            </Button>
+          </Space>
+        </div>
+      )}
     </div>
   );
 };
