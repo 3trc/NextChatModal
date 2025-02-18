@@ -5,6 +5,7 @@ import Agent, { AgentRouteMap } from "..";
 import { AgentStore } from "../store";
 import { isConfirmMessage } from "@/app/components/bottomConfirm";
 import axios from "axios";
+import { SessionJSON } from "@/app/components/xsea/localJSON";
 
 function extractFields(text: string, fields: string[]) {
   const statements = text
@@ -122,10 +123,11 @@ XSea是一个性能测试平台
             .slice(key.length)
             .trim();
           const res = await axios.post(
-            `/api/object/xsea/product/981384112626135040/script`,
+            `/api/object/xsea/product/${SessionJSON.selected_product?.id}/script`,
             { name: scriptName, type: scriptType, content },
           );
-          const { id, name, url } = res.data;
+          const { name, url } = res.data;
+          SessionJSON.selected_scripts = [res.data];
           return {
             bridgeMessages: [
               {
