@@ -583,18 +583,18 @@ export const useChatStore = createPersistStore(
         });
       },
 
-      async SendRoleMessage(content: string) {
+      async SendRoleMessage(message: ChatMessageX) {
         const session = get().currentSession();
         const modelConfig = session.mask.modelConfig;
 
         // MCP Response no need to fill template
         let mContent: string | MultimodalContent[] = fillTemplateWith(
-          content,
+          message.content,
           modelConfig,
         );
 
         let userMessage: ChatMessage = createMessage({
-          role: "user",
+          role: message.role,
           content: mContent,
         });
 
