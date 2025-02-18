@@ -8,7 +8,7 @@ import { AgentStore } from "@/app/agent/store";
 export const isConfirmMessage = (message: string) => {
   return message
     .split("\n")
-    .some((line) => line.includes("确认") && !line.includes("符合"));
+    .some((line) => line.includes("请确认") && !line.includes("符合"));
 };
 
 export default function BottomConfirm(props: { message: ChatMessageX }) {
