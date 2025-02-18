@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { ChatStore, useChatStore } from "@/app/store";
 import { NavigateFunction, useNavigate } from "react-router-dom";
-import Agent, { ChatMessageX } from "..";
+import Agent, { AgentRouteMap, ChatMessageX } from "..";
 import { AgentStore } from "../store";
 
 class _Agent extends Agent {
@@ -45,6 +45,27 @@ class _Agent extends Agent {
 
   public welcome(): ChatMessageX[] {
     return [{ role: "assistant", content: "", component: "@ui-welcome" }];
+  }
+
+  public RouteMap(): AgentRouteMap {
+    return {
+      查询: {
+        产品: "XSea_查询产品",
+        脚本: "XSea_查询脚本",
+      },
+      询问: {
+        产品: "XSea_查询产品",
+        脚本: "XSea_查询脚本",
+      },
+      创建: {
+        产品: "XSea_创建产品",
+        脚本: "XSea_创建脚本",
+        压测: "XSea_执行压测",
+      },
+      执行: {
+        压测: "XSea_执行压测",
+      },
+    };
   }
 }
 
