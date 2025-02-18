@@ -97,28 +97,30 @@ const ProductSelector = (props: { search: string }) => {
           }}
         />
       </div>
-      <div className={styles.bottom}>
-        <Space className={styles.confirm_buttons}>
-          <Button
-            disabled={selectedScripts.length === 0}
-            size="small"
-            onClick={() => SetSelectedScripts([])}
-          >
-            清空
-          </Button>
-          <Button
-            disabled={selectedScripts.length === 0}
-            size="small"
-            type="primary"
-            onClick={() => {
-              SetSelectedScripts(selectedScripts);
-              AgentStore.get("XSea_查询脚本").Create();
-            }}
-          >
-            选定
-          </Button>
-        </Space>
-      </div>
+      {page.list && page.list.length > 0 && (
+        <div className={styles.bottom}>
+          <Space className={styles.confirm_buttons}>
+            <Button
+              disabled={selectedScripts.length === 0}
+              size="small"
+              onClick={() => SetSelectedScripts([])}
+            >
+              清空
+            </Button>
+            <Button
+              disabled={selectedScripts.length === 0}
+              size="small"
+              type="primary"
+              onClick={() => {
+                SetSelectedScripts(selectedScripts);
+                AgentStore.get("XSea_查询脚本").Create();
+              }}
+            >
+              选定
+            </Button>
+          </Space>
+        </div>
+      )}
     </div>
   );
 };
