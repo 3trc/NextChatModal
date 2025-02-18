@@ -700,17 +700,6 @@ export const useChatStore = createPersistStore(
         const session = get().currentSession();
         const modelConfig = session.mask.modelConfig;
 
-        // MCP Response no need to fill template
-        let mContent: string | MultimodalContent[] = fillTemplateWith(
-          message.content,
-          modelConfig,
-        );
-
-        let userMessage: ChatMessage = createMessage({
-          role: message.role,
-          content: mContent,
-        });
-
         const botMessage: ChatMessage = createMessage({
           role: "assistant",
           streaming: true,
@@ -719,24 +708,13 @@ export const useChatStore = createPersistStore(
 
         // get recent messages
         const recentMessages = await get().getMessagesWithMemory();
-        const sendMessages = recentMessages.concat(userMessage);
-        const messageIndex = session.messages.length + 1;
+        const sendMessages = recentMessages.concat();
+        const messageIndex = session.messages.length;
 
         // save user's and bot's message
         get().updateTargetSession(session, (session) => {
-          const savedUserMessage = {
-            ...userMessage,
-            content: mContent,
-          };
-          session.messages = session.messages.concat([
-            savedUserMessage,
-            ...(trigger ? [botMessage] : []),
-          ]);
+          session.messages = session.messages.concat(botMessage);
         });
-
-        if (!trigger) {
-          return;
-        }
 
         const api: ClientApi = getClientApi(modelConfig.providerName);
         // make request
@@ -786,7 +764,6 @@ export const useChatStore = createPersistStore(
                 message: error.message,
               });
             botMessage.streaming = false;
-            userMessage.isError = !isAborted;
             botMessage.isError = !isAborted;
             get().updateTargetSession(session, (session) => {
               session.messages = session.messages.concat();
