@@ -163,12 +163,15 @@ export default class Agent {
     return this.Mask.name;
   }
 
-  public async Create() {
-    const session = this.chatStore.currentSession();
-    const prevMessages = JSON.parse(JSON.stringify(session.messages));
-    // 先不带上上下文
+  public async Create(prevMessage: ChatMessageX[] = [], trigger = false) {
     this.chatStore.newSession(this.Mask);
     this.navigate(Path.Chat);
+    // 发送不会触发请求的前置消息
+    this.chatStore.AppendRoleMessageList(
+      prevMessage.slice(0, prevMessage.length - 1),
+      false,
+    );
+    // 进行前置校验
     const switcher = await this.onBeforeCreate();
     if (switcher) {
       const nextAgent = await this.SwitchAgent(switcher);
