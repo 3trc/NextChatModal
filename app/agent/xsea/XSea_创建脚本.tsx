@@ -4,6 +4,7 @@ import { NavigateFunction, useNavigate } from "react-router-dom";
 import Agent, { AgentRouteMap } from "..";
 import { AgentStore } from "../store";
 import { isConfirmMessage } from "@/app/components/bottomConfirm";
+import axios from "axios";
 
 function extractFields(text: string, fields: string[]) {
   const statements = text
@@ -89,12 +90,37 @@ XSea是一个性能测试平台
         const lastMessage = messages[messages.length - 1].content as string;
         if (isConfirmMessage(lastMessage)) {
           const params = extractFields(lastMessage, ["脚本名称", "脚本类型"]);
+          const scriptName: string = params["脚本名称"];
+          const scriptType: string = params["脚本类型"]?.toUpperCase();
+          const allContext = this.chatStore
+            .currentSession()
+            .messages.filter((message) => message.role === "assistant")
+            .map((message) => message.content)
+            .join("\n");
+          const allParts = allContext
+            .split("```")
+            .map((item) => item.trim())
+            .filter((item) => item);
+          let key = "xml";
+          if (scriptType === "JMETER") key = "xml";
+          if (scriptType === "GATLING") key = "scala";
+          if (scriptType === "SHELL") key = "bash";
+          const content = (
+            allParts.findLast((part) => part.startsWith(key)) ?? key
+          )
+            .slice(key.length)
+            .trim();
+          const res = await axios.post(
+            `/api/object/xsea/product/981384112626135040/script`,
+            { name: scriptName, type: scriptType, content },
+          );
+          const { id, name, url } = res.data;
           return {
             bridgeMessages: [
               {
                 role: "assistant",
                 content: `
-✨ 已为你成功创建脚本 ${JSON.stringify(params)}
+✨ 已为你成功创建脚本 **[${name}](http://10.10.30.103:8081${url})**
                 `.trim(),
               },
             ],
