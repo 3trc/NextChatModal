@@ -583,7 +583,7 @@ export const useChatStore = createPersistStore(
         });
       },
 
-      async onRoleInput(content: string) {
+      async SendRoleMessage(content: string) {
         const session = get().currentSession();
         const modelConfig = session.mask.modelConfig;
 
