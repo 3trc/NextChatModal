@@ -10,6 +10,7 @@ import XSea_创建产品 from "../agent/xsea/XSea_创建产品";
 import XSea_创建脚本 from "../agent/xsea/XSea_创建脚本";
 import XSea_创建计划 from "../agent/xsea/XSea_创建计划";
 import XSea_修改压测 from "../agent/xsea/XSea_修改压测";
+import XSea_查询产品 from "../agent/xsea/XSea_查询产品";
 
 const Agents = () => {
   return (
@@ -17,6 +18,7 @@ const Agents = () => {
       <XSea_智能体 />
       <XSea_创建产品 />
       <XSea_创建脚本 />
+      <XSea_查询产品 />
       <XSea_创建计划 />
       <XSea_修改压测 />
       <XSea_摸摸鱼 />
