@@ -57,10 +57,7 @@ export default class Agent {
     return Promise.resolve();
   }
 
-  public async SwitchAgent(
-    switcher: AgentSwitcher,
-    userMessage?: ChatMessageX,
-  ) {
+  public async SwitchAgent(switcher: AgentSwitcher) {
     console.log("【Switcher】:", switcher);
     if (switcher.agentName) {
       const nextAgent = AgentStore.get(switcher.agentName);
@@ -81,10 +78,7 @@ export default class Agent {
           { role: "user", content: message },
           false,
         );
-        const nextAgent = await this.SwitchAgent(switcher, {
-          role: "user",
-          content: message,
-        });
+        const nextAgent = await this.SwitchAgent(switcher);
         return nextAgent;
       }
     });
