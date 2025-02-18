@@ -44,7 +44,7 @@ class _Agent extends Agent {
   }
 
   public welcome(): ChatMessageX[] {
-    return [{ role: "assistant", content: "", component: "[ui-welcome]" }];
+    return [{ role: "assistant", content: "", component: "@ui-welcome" }];
   }
 }
 
