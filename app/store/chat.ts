@@ -594,7 +594,7 @@ export const useChatStore = createPersistStore(
         );
 
         let userMessage: ChatMessage = createMessage({
-          role: message.role,
+          ...message,
           content: mContent,
         });
 
