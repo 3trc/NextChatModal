@@ -5,7 +5,6 @@ import React, { useEffect, useState } from "react";
 import styles from "./index.module.scss";
 import axios from "axios";
 import { SessionJSON } from "../localJSON";
-import { useChatStore } from "@/app/store";
 import { AgentStore } from "@/app/agent/store";
 
 const { TabPane } = Tabs;
@@ -55,8 +54,6 @@ const ScriptSelector = (props: { search: string }) => {
     setSelectedScripts(scripts);
     SessionJSON.selected_scripts = scripts;
   };
-
-  const chatStore = useChatStore();
 
   return (
     <div className={styles.com}>
