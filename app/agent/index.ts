@@ -65,16 +65,8 @@ export default class Agent {
     if (switcher.agentName) {
       const nextAgent = AgentStore.get(switcher.agentName);
       await nextAgent.Create();
-      await nextAgent.SendMessageList([
-        // ...(userMessage ? [userMessage] : []),
-        ...(switcher.bridgeMessages ?? []),
-      ]);
       return nextAgent;
     } else {
-      await this.SendMessageList([
-        // ...(userMessage ? [userMessage] : []),
-        ...(switcher.bridgeMessages ?? []),
-      ]);
       return this;
     }
   }
