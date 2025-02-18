@@ -46,7 +46,7 @@ const ScriptSelector = (props: { search: string }) => {
   };
 
   useEffect(() => {
-    updatePage({ type: tab });
+    updatePage();
   }, []);
 
   const [selectedScripts, setSelectedScripts] = useState<any[]>([]);
@@ -80,7 +80,7 @@ const ScriptSelector = (props: { search: string }) => {
           activeKey={tab}
           onChange={(activeKey) => {
             setTab(activeKey as ScriptType);
-            updatePage({ type: activeKey, pageNum: 1 });
+            updatePage({ pageNum: 1 });
           }}
         >
           <TabPane tab="JMeter" key="JMETER" />
