@@ -3,6 +3,8 @@ import { ChatStore, useChatStore } from "@/app/store";
 import { NavigateFunction, useNavigate } from "react-router-dom";
 import Agent, { AgentRouteMap } from "..";
 import { AgentStore } from "../store";
+import { isConfirmMessage } from "@/app/components/bottomConfirm";
+import axios from "axios";
 
 function extractFields(text: string, fields: string[]) {
   const statements = text
@@ -80,7 +82,32 @@ XSea是一个性能测试平台
   }
 
   public RouteMap(): AgentRouteMap {
-    return {};
+    return {
+      肯定: async () => {
+        const messages = this.chatStore
+          .currentSession()
+          .messages.filter((message) => message.role === "assistant");
+        const lastMessage = messages[messages.length - 1].content as string;
+        if (isConfirmMessage(lastMessage)) {
+          const params = extractFields(lastMessage, ["脚本名称", "脚本类型"]);
+          const res = await axios.post(`/api/object/xsea/product`, {
+            name: params["产品名称"],
+            desc: params["产品描述"],
+          });
+          const { id, name, url } = res.data;
+          return {
+            bridgeMessages: [
+              {
+                role: "assistant",
+                content: `
+✨ 已为你成功创建 **[${name}](http://10.10.30.103:8081${url})** 产品
+                `.trim(),
+              },
+            ],
+          };
+        }
+      },
+    };
   }
 }
 
