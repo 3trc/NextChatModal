@@ -67,7 +67,11 @@ export default class Agent {
       const prevMessages = this.chatStore.currentSession()
         .messages as ChatMessageX[];
       await nextAgent.Create(
-        [...prevMessages, ...(switcher.bridgeMessages ?? [])],
+        [
+          ...prevMessages,
+          ...(userMessage ? [userMessage] : []),
+          ...(switcher.bridgeMessages ?? []),
+        ],
         false,
       );
       return nextAgent;
