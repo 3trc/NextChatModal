@@ -164,15 +164,24 @@ export default class Agent {
   }
 
   public async Create(prevMessage: ChatMessageX[] = [], trigger = false) {
+    // 新建好一个独立的Session
     this.chatStore.newSession(this.Mask);
     this.navigate(Path.Chat);
+
+    // 只有在前置消息为空的情况下才会追加欢迎消息
+    if (prevMessage.length === 0) {
+      this.chatStore.AppendRoleMessageList(this.welcome(), false);
+    }
+
     // 发送不会触发请求的前置消息
     this.chatStore.AppendRoleMessageList(
       prevMessage.slice(0, prevMessage.length - 1),
       false,
     );
+
     // 有可能触发请求的最后一个消息
     const lastMessage = prevMessage[prevMessage.length - 1];
+
     // 进行前置校验
     const switcher = await this.onBeforeCreate();
     if (switcher) {
@@ -180,10 +189,13 @@ export default class Agent {
       if (lastMessage) {
         this.chatStore.AppendRoleMessage(lastMessage, false);
       }
+
+      // 以下部分没有Review
       const nextAgent = await this.SwitchAgent(switcher);
       if (nextAgent !== this) {
         return;
       }
+      // 上面
     } else {
       if (lastMessage) {
         this.chatStore.AppendRoleMessage(lastMessage, trigger);
