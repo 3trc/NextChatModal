@@ -63,7 +63,10 @@ export default class Agent {
       const nextAgent = AgentStore.get(switcher.agentName);
       const prevMessages = this.chatStore.currentSession()
         .messages as ChatMessageX[];
-      await nextAgent.Create([...prevMessages], false);
+      await nextAgent.Create(
+        [...prevMessages, ...(switcher.bridgeMessages ?? [])],
+        false,
+      );
       return nextAgent;
     } else {
       return this;
