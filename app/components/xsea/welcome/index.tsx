@@ -2,6 +2,7 @@ import React from "react";
 import styles from "./index.module.scss";
 import { Button, Space } from "antd";
 import { useChatStore } from "@/app/store";
+import { AgentStore } from "@/app/agent/store";
 
 const Welcome = () => {
   const chatStore = useChatStore();
@@ -17,28 +18,36 @@ const Welcome = () => {
           <Button
             type="primary"
             onClick={() => {
-              chatStore.onUserInputX("开始压测");
+              AgentStore.get(chatStore.currentSession().mask.name).SendMessage(
+                "开始压测",
+              );
             }}
           >
             开始压测
           </Button>
           <Button
             onClick={() => {
-              chatStore.onUserInputX("创建JMeter脚本");
+              AgentStore.get(chatStore.currentSession().mask.name).SendMessage(
+                "创建JMeter脚本",
+              );
             }}
           >
             编写脚本
           </Button>
           <Button
             onClick={() => {
-              chatStore.onUserInputX("产品列表");
+              AgentStore.get(chatStore.currentSession().mask.name).SendMessage(
+                "查看产品",
+              );
             }}
           >
             查看产品
           </Button>
           <Button
             onClick={() => {
-              chatStore.onUserInputX("XSea是什么");
+              AgentStore.get(chatStore.currentSession().mask.name).SendMessage(
+                "XSea是什么",
+              );
             }}
           >
             学习XSea性能测试平台
