@@ -63,7 +63,12 @@ class _Agent extends Agent {
         压测: "XSea_执行压测",
       },
       执行: {
-        压测: "XSea_执行压测",
+        压测: () => {
+          return Promise.resolve({
+            agentName: "XSea_执行压测",
+            bridgeMessages: [{ role: "assistant", content: "你好" }],
+          });
+        },
       },
     };
   }
