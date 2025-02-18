@@ -61,6 +61,7 @@ export default class Agent {
     switcher: AgentSwitcher,
     userMessage?: ChatMessageX,
   ) {
+    console.log("【Switcher】:", switcher);
     if (switcher.agentName) {
       const nextAgent = AgentStore.get(switcher.agentName);
       await nextAgent.Create();
@@ -137,6 +138,12 @@ export default class Agent {
         switcher = await routeMap();
       }
 
+      if (switcher) {
+        switcher.bridgeMessages = [
+          { role: "user", content: message },
+          ...(switcher.bridgeMessages ?? []),
+        ];
+      }
       console.log("【Intention】:", intention, "【Switcher】", switcher);
       return switcher;
     } catch (error) {
