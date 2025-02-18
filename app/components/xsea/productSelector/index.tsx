@@ -8,9 +8,13 @@ import { SessionJSON } from "../localJSON";
 import { useChatStore } from "@/app/store";
 import { AgentStore } from "@/app/agent/store";
 
-const ProductSelector = () => {
+const ProductSelector = (props: { search: string }) => {
   const [loading, setLoading] = useState<boolean>(true);
-  const [filter, setFilter] = useState({ search: "", pageNum: 1, pageSize: 5 });
+  const [filter, setFilter] = useState({
+    search: props.search,
+    pageNum: 1,
+    pageSize: 5,
+  });
   const [page, setPage] = useState({
     pageNum: 1,
     pageSize: 5,

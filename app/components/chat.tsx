@@ -2024,20 +2024,25 @@ function _Chat() {
                             // }}
                           >
                             {(() => {
-                              const content = (
-                                getMessageTextContent(message) ?? ""
-                              ).trim();
+                              // const content = (
+                              //   getMessageTextContent(message) ?? ""
+                              // ).trim();
+
+                              let content = "";
                               const messageX = message as ChatMessageX;
-                              if (
-                                messageX.component &&
-                                (messageX.component as string).startsWith("[ui")
-                              ) {
-                                return (
-                                  <XSeaSelector
-                                    message={messageX.component as string}
-                                  />
-                                );
+                              if (messageX.component) {
+                                if (typeof messageX.component === "string") {
+                                  content = messageX.component;
+                                } else {
+                                  return messageX.component;
+                                }
+                              } else {
+                                content = messageX.content;
                               }
+                              if (content.startsWith("@")) {
+                                return <XSeaSelector message={content} />;
+                              }
+
                               if (false && content.startsWith("[ui-")) {
                                 return <XSeaSelector message={content} />;
                               } else {
