@@ -24,7 +24,7 @@ class _Agent extends Agent {
     super(
       {
         avatar: "🔄",
-        name: "XSea_创建产品",
+        name: "XSea_修改压测",
         context: [
           {
             id: "",
