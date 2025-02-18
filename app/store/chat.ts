@@ -583,33 +583,19 @@ export const useChatStore = createPersistStore(
         });
       },
 
-      async onRoleInput(
-        content: string,
-        attachImages?: string[],
-        isMcpResponse?: boolean,
-      ) {
+      async onRoleInput(content: string) {
         const session = get().currentSession();
         const modelConfig = session.mask.modelConfig;
 
         // MCP Response no need to fill template
-        let mContent: string | MultimodalContent[] = isMcpResponse
-          ? content
-          : fillTemplateWith(content, modelConfig);
-
-        if (!isMcpResponse && attachImages && attachImages.length > 0) {
-          mContent = [
-            ...(content ? [{ type: "text" as const, text: content }] : []),
-            ...attachImages.map((url) => ({
-              type: "image_url" as const,
-              image_url: { url },
-            })),
-          ];
-        }
+        let mContent: string | MultimodalContent[] = fillTemplateWith(
+          content,
+          modelConfig,
+        );
 
         let userMessage: ChatMessage = createMessage({
           role: "user",
           content: mContent,
-          isMcpResponse,
         });
 
         const botMessage: ChatMessage = createMessage({
