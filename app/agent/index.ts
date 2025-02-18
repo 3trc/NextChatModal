@@ -138,12 +138,6 @@ export default class Agent {
         switcher = await routeMap();
       }
 
-      if (switcher) {
-        switcher.bridgeMessages = [
-          { role: "user", content: message },
-          ...(switcher.bridgeMessages ?? []),
-        ];
-      }
       console.log("【Intention】:", intention, "【Switcher】", switcher);
       return switcher;
     } catch (error) {
@@ -172,7 +166,8 @@ export default class Agent {
   public async Create() {
     const session = this.chatStore.currentSession();
     const prevMessages = JSON.parse(JSON.stringify(session.messages));
-    this.chatStore.newSession(this.Mask, prevMessages);
+    // 先不带上上下文
+    this.chatStore.newSession(this.Mask);
     this.navigate(Path.Chat);
     const switcher = await this.onBeforeCreate();
     if (switcher) {
