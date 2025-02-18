@@ -171,14 +171,23 @@ export default class Agent {
       prevMessage.slice(0, prevMessage.length - 1),
       false,
     );
+    // 有可能触发请求的最后一个消息
+    const lastMessage = prevMessage[prevMessage.length - 1];
     // 进行前置校验
     const switcher = await this.onBeforeCreate();
     if (switcher) {
+      // 以不触发请求的方式发送最后一个消息
+      if (lastMessage) {
+        this.chatStore.AppendRoleMessage(lastMessage, false);
+      }
       const nextAgent = await this.SwitchAgent(switcher);
       if (nextAgent !== this) {
         return;
       }
+    } else {
+      if (lastMessage) {
+        this.chatStore.AppendRoleMessage(lastMessage, trigger);
+      }
     }
-    this.SendMessageList(this.welcome());
   }
 }
