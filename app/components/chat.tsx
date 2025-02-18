@@ -2028,14 +2028,17 @@ function _Chat() {
                                 getMessageTextContent(message) ?? ""
                               ).trim();
                               const messageX = message as ChatMessageX;
-                              if (messageX.component) {
+                              if (
+                                messageX.component &&
+                                (messageX.component as string).startsWith("[ui")
+                              ) {
                                 return (
                                   <XSeaSelector
                                     message={messageX.component as string}
                                   />
                                 );
                               }
-                              if (content.startsWith("[ui-")) {
+                              if (false && content.startsWith("[ui-")) {
                                 return <XSeaSelector message={content} />;
                               } else {
                                 return (
@@ -2044,7 +2047,10 @@ function _Chat() {
                                       key={
                                         message.streaming ? "loading" : "done"
                                       }
-                                      content={getMessageTextContent(message)}
+                                      content={
+                                        (messageX.component as string) ||
+                                        getMessageTextContent(message)
+                                      }
                                       loading={
                                         message.content === "……" ||
                                         ((message.preview ||
