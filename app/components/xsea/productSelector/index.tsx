@@ -53,10 +53,16 @@ const ProductSelector = (props: { search: string }) => {
 
   return (
     <div className={styles.com}>
-      <div>
-        <span>😊 平台上现有以下产品可供选择</span>
-        <span>你想选择哪个产品呢？</span>
-      </div>
+      {loading ? (
+        <div>🚚 加载中...</div>
+      ) : page.list && page.list.length > 0 ? (
+        <div>
+          <span>😊 平台上现有以下产品可供选择</span>
+          <span>你想选择哪个产品呢？</span>
+        </div>
+      ) : (
+        <div>😌 好像暂时没有相关产品呢</div>
+      )}
       <div>
         <Table
           rowKey="id"
