@@ -20,7 +20,7 @@ const XSeaSelector = (props: { message: string }) => {
   if (props.message.startsWith("@ui-products")) {
     return <ProductSelector search={props.message.split(":")[1] ?? ""} />;
   }
-  return null;
+  return props.message;
   // if (props.message.includes("products")) {
   //   return <ProductSelector />;
   // } else if (props.message.includes("scripts")) {
