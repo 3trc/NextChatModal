@@ -12,10 +12,14 @@ const { TabPane } = Tabs;
 
 export type ScriptType = "JMETER" | "GATLING" | "SHELL";
 
-const ScriptSelector = (props: { types: ScriptType[] }) => {
+const ScriptSelector = (props: { search: string }) => {
   const [tab, setTab] = useState<ScriptType>("JMETER");
   const [loading, setLoading] = useState<boolean>(true);
-  const [filter, setFilter] = useState({ search: "", pageNum: 1, pageSize: 5 });
+  const [filter, setFilter] = useState({
+    search: props.search,
+    pageNum: 1,
+    pageSize: 5,
+  });
   const [page, setPage] = useState({
     pageNum: 1,
     pageSize: 5,
@@ -57,6 +61,7 @@ const ScriptSelector = (props: { types: ScriptType[] }) => {
   return (
     <div className={styles.com}>
       <div>
+        <span>📝</span>&nbsp;
         <span>
           <a
             href={`${"http://10.10.30.103:8081"}${SessionJSON.selected_product

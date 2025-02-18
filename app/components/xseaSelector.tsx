@@ -22,7 +22,7 @@ const XSeaSelector = (props: { message: string }) => {
     return <ProductSelector search={props.message.split(":")[1] ?? ""} />;
   }
   if (props.message.startsWith("@ui-scripts")) {
-    return <ScriptSelector types={["JMETER", "GATLING", "SHELL"]} />;
+    return <ScriptSelector search={props.message.split(":")[1] ?? ""} />;
   }
   return props.message;
 };
