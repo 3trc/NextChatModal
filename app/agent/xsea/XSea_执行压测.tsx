@@ -1,8 +1,9 @@
 import { useEffect } from "react";
 import { ChatStore, useChatStore } from "@/app/store";
 import { NavigateFunction, useNavigate } from "react-router-dom";
-import Agent from "..";
+import Agent, { MaybeAgentSwitcher } from "..";
 import { AgentStore } from "../store";
+import { SessionJSON } from "@/app/components/xsea/localJSON";
 
 class _Agent extends Agent {
   public constructor(chatStore: ChatStore, navigate: NavigateFunction) {
@@ -32,6 +33,23 @@ XSea是一个性能测试平台
       chatStore,
       navigate,
     );
+  }
+
+  public async onBeforeCreate(): Promise<MaybeAgentSwitcher> {
+    if (!SessionJSON.selected_scripts?.length) {
+      return {
+        agentName: "XSea_查询脚本",
+        bridgeMessages: [
+          {
+            role: "assistant",
+            content: `
+🤔 看起来你当前没有选择任何 **JMeter** 或者 **Gatling** 脚本
+我将引导你选择脚本 🚀
+            `,
+          },
+        ],
+      };
+    }
   }
 }
 
