@@ -64,7 +64,9 @@ export default class Agent {
     console.log("【Switcher】:", switcher);
     if (switcher.agentName) {
       const nextAgent = AgentStore.get(switcher.agentName);
-      await nextAgent.Create();
+      const prevMessages = this.chatStore.currentSession()
+        .messages as ChatMessageX[];
+      await nextAgent.Create([...prevMessages], false);
       return nextAgent;
     } else {
       return this;
@@ -75,6 +77,10 @@ export default class Agent {
     return await this.chatStore.SendMessage(message, async (message) => {
       const switcher = await this.onBeforeSendMessage(message);
       if (switcher) {
+        await this.chatStore.AppendRoleMessage(
+          { role: "user", content: message },
+          false,
+        );
         const nextAgent = await this.SwitchAgent(switcher, {
           role: "user",
           content: message,
