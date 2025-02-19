@@ -79,9 +79,13 @@ export default class Agent {
     const lastMessageRole = sendMessages[sendMessages.length - 1]?.role;
     const trigger = lastMessageRole && lastMessageRole !== "assistant";
     if (switcher.agentName) {
-      nextAgent.Create(sendMessages, trigger);
+      await nextAgent.Create(sendMessages, trigger);
     } else {
-      this.chatStore.AppendRoleMessageList(sendMessages, trigger);
+      if (trigger && sendMessages.length === 0) {
+        await this.chatStore.AppendEmptyMessage();
+      } else {
+        await this.chatStore.AppendRoleMessageList(sendMessages, trigger);
+      }
     }
   }
 
