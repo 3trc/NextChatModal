@@ -87,6 +87,7 @@ export default class Agent {
         await this.chatStore.AppendRoleMessageList(sendMessages, trigger);
       }
     }
+    return nextAgent;
   }
 
   public async SendMessage(message: string) {
