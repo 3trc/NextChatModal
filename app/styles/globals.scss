@@ -403,6 +403,15 @@ pre {
 }
 
 .text-rows {
+  a {
+    color: #1677ff;
+    text-decoration: none;
+    background-color: transparent;
+    outline: none;
+    cursor: pointer;
+    transition: color 0.3s;
+    font-weight: bold;
+  }
   > div {
     padding: 4px 0;
   }
