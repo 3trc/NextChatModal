@@ -61,7 +61,6 @@ export default class Agent {
     switcher: AgentSwitcher,
     userMessage?: ChatMessageX,
   ) {
-    // console.log("【Switcher】:", switcher);
     let nextAgent: Agent = this;
     let sendMessages: ChatMessageX[] = [];
     if (switcher.agentName) {
