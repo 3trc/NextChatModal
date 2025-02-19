@@ -61,22 +61,22 @@ export default class Agent {
     switcher: AgentSwitcher,
     userMessage?: ChatMessageX,
   ) {
-    console.log("【Switcher】:", switcher);
+    // console.log("【Switcher】:", switcher);
+    let nextAgent: Agent = this;
+    let sendMessages: ChatMessageX[] = [];
     if (switcher.agentName) {
-      const nextAgent = AgentStore.get(switcher.agentName);
-      const prevMessages = this.chatStore.currentSession()
-        .messages as ChatMessageX[];
-      await nextAgent.Create(
-        [
-          ...prevMessages,
-          ...(userMessage ? [userMessage] : []),
-          ...(switcher.bridgeMessages ?? []),
-        ],
-        false,
-      );
-      return nextAgent;
+      sendMessages = [
+        ...(this.chatStore.currentSession().messages as ChatMessageX[]),
+        ...(userMessage ? [userMessage] : []),
+        ...(switcher.bridgeMessages ?? []),
+      ];
+      nextAgent = AgentStore.get(switcher.agentName);
+      nextAgent.Create([], false);
     } else {
-      return this;
+      sendMessages = [
+        ...(userMessage ? [userMessage] : []),
+        ...(switcher.bridgeMessages ?? []),
+      ];
     }
   }
 
