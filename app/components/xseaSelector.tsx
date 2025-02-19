@@ -20,10 +20,14 @@ const LABELS_MAP = {
 
 const XSeaSelector = (props: { message: string }) => {
   if (props.message.startsWith("@ui-products")) {
-    return <ProductSelector search={props.message.split(":")[1] ?? ""} />;
+    return (
+      <ProductSelector search={(props.message.split(":")[1] ?? "").trim()} />
+    );
   }
   if (props.message.startsWith("@ui-scripts")) {
-    return <ScriptSelector search={props.message.split(":")[1] ?? ""} />;
+    return (
+      <ScriptSelector search={(props.message.split(":")[1] ?? "").trim()} />
+    );
   }
   if (props.message.startsWith("@ui-welcome")) {
     return <Welcome />;
