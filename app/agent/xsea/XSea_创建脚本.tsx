@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { ChatStore, useChatStore } from "@/app/store";
 import { NavigateFunction, useNavigate } from "react-router-dom";
-import Agent, { AgentRouteMap } from "..";
+import Agent, { AgentRouteMap, MaybeAgentSwitcher } from "..";
 import { AgentStore } from "../store";
 import { isConfirmMessage } from "@/app/components/bottomConfirm";
 import axios from "axios";
@@ -91,6 +91,28 @@ XSea是一个性能测试平台
       chatStore,
       navigate,
     );
+  }
+
+  public async onBeforeCreate(): Promise<MaybeAgentSwitcher> {
+    if (!SessionJSON.selected_product?.id) {
+      return {
+        agentName: "XSea_查询产品",
+        bridgeMessages: [
+          {
+            role: "assistant",
+            content: `
+🤔 看起来你当前没有选择任何产品
+我将引导你选择产品 🚀
+              `,
+            noLLM: true,
+          },
+          {
+            role: "system",
+            content: "列出全部产品",
+          },
+        ],
+      };
+    }
   }
 
   public RouteMap(): AgentRouteMap {
