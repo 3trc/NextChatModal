@@ -70,7 +70,6 @@ export default class Agent {
         ...(switcher.bridgeMessages ?? []),
       ];
       nextAgent = AgentStore.get(switcher.agentName);
-      nextAgent.Create([], false);
     } else {
       sendMessages = [
         ...(userMessage ? [userMessage] : []),
@@ -79,7 +78,11 @@ export default class Agent {
     }
     const lastMessageRole = sendMessages[sendMessages.length - 1]?.role;
     const trigger = lastMessageRole && lastMessageRole !== "assistant";
-    this.chatStore.AppendRoleMessageList(sendMessages, trigger);
+    if (switcher.agentName) {
+      nextAgent.Create(sendMessages, trigger);
+    } else {
+      this.chatStore.AppendRoleMessageList(sendMessages, trigger);
+    }
   }
 
   public async SendMessage(message: string) {
