@@ -6,11 +6,14 @@ import { useChatStore } from "@/app/store";
 import { AgentStore } from "@/app/agent/store";
 
 export const isConfirmMessage = (message: string) => {
-  return (
-    !message.includes("```") &&
-    message
-      .split("\n")
-      .some((line) => line.includes("请确认") && !line.includes("符合"))
+  if (message.includes("```")) return false;
+  const lines = message
+    .split("\n")
+    .map((line) => line.trim())
+    .filter((line) => line);
+  if (lines.length <= 3) return false;
+  return lines.some(
+    (line) => line.includes("请确认") && !line.includes("符合"),
   );
 };
 
