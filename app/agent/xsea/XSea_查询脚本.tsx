@@ -64,7 +64,7 @@ class _Agent extends Agent {
           {
             role: "assistant",
             content: `
-🤔 看起来你当前没有选择任何产品
+🤔 看起来你当前没有选择任何 **产品**
 我将引导你选择产品 🚀
               `,
             noLLM: true,
