@@ -2039,6 +2039,7 @@ function _Chat() {
                               } else {
                                 content = messageX.content;
                               }
+                              content = content.trim();
                               if (content.startsWith("@")) {
                                 return <XSeaSelector message={content} />;
                               }
