@@ -96,6 +96,7 @@ class _Agent extends Agent {
       },
       执行: {
         压测: "XSea_执行压测",
+        脚本: "XSea_执行压测",
       },
     };
   }
