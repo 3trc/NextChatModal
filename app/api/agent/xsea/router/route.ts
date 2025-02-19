@@ -38,7 +38,7 @@ export async function POST(request: NextRequest) {
 3. 退出|放弃
 4. 陈述
 5. 新建
-6. 查看|选择|绑定
+6. 查看|选择|绑定|更换
 7. 询问
 8. 修改|优化
 9. 执行|开始
