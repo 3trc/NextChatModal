@@ -49,7 +49,18 @@ const StateConfirm = () => {
           </Button>
           <Button
             onClick={() => {
-              AgentStore.get("XSea_智能体").Create([], true);
+              AgentStore.get("XSea_执行压测").SwitchAgent({
+                agentName: "XSea_智能体",
+                bridgeMessages: [
+                  {
+                    role: "assistant",
+                    content: `
+好的，已经为你取消压测，有什么 **顾虑** 吗 🧐，你可以问我任何问题？
+                    `.trim(),
+                    noLLM: true,
+                  },
+                ],
+              });
             }}
           >
             取消
