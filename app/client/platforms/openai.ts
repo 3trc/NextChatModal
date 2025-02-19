@@ -216,7 +216,7 @@ export class ChatGPTApi implements LLMApi {
       const visionModel = isVisionModel(options.config.model);
       const messages: ChatOptions["messages"] = [];
       for (const v of options.messages.filter(
-        (message: any) => !message.isMcpResponse,
+        (message: any) => !message.noLLM,
       )) {
         const content = visionModel
           ? await preProcessImageContent(v.content)
