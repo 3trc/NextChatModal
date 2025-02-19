@@ -77,6 +77,9 @@ export default class Agent {
         ...(switcher.bridgeMessages ?? []),
       ];
     }
+    const lastMessageRole = sendMessages[sendMessages.length - 1]?.role;
+    const trigger = lastMessageRole && lastMessageRole !== "assistant";
+    this.chatStore.AppendRoleMessageList(sendMessages, trigger);
   }
 
   public async SendMessage(message: string) {
