@@ -120,11 +120,11 @@ const ProductSelector = (props: { search: string }) => {
               onClick={() => {
                 SetSelectedScripts(selectedScripts);
                 AgentStore.get("XSea_查询产品").SwitchAgent({
-                  agentName: "XSea_查询脚本",
                   bridgeMessages: [
                     {
-                      role: "system",
-                      content: "列出全部脚本",
+                      role: "assistant",
+                      content: "",
+                      component: "@ui-ProductSelectorBye",
                     },
                   ],
                 });

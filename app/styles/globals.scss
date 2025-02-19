@@ -401,3 +401,9 @@ pre {
 .copyable {
   user-select: text;
 }
+
+.text-rows {
+  > div {
+    padding: 4px 0;
+  }
+}
