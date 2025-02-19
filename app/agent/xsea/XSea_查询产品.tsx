@@ -57,6 +57,9 @@ class _Agent extends Agent {
 
   public RouteMap(): AgentRouteMap {
     return {
+      否定: {
+        脚本: "XSea_查询脚本",
+      },
       查询: {
         脚本: "XSea_查询脚本",
       },
