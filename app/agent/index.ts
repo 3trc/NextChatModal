@@ -126,8 +126,12 @@ export default class Agent {
       const prevMessages = session.messages;
       const dialogue = {
         question:
-          prevMessages[prevMessages.length - 1]?.content ||
-          "你好，有什么可以帮你的吗？",
+          prevMessages[prevMessages.length - 1]?.content &&
+          !(prevMessages[prevMessages.length - 1].content as string).startsWith(
+            "@",
+          )
+            ? prevMessages[prevMessages.length - 1].content
+            : "你好，有什么可以帮你的吗？",
         answer: message,
       };
       const res = await axios.post(`/api/agent/xsea/router`, dialogue);
