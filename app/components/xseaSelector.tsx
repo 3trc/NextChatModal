@@ -18,16 +18,17 @@ const LABELS_MAP = {
   "[ui-records]": "记录",
 } as any;
 
+const getSearch = (message: string) => {
+  const firstLine = message.split("\n")[0];
+  return (firstLine.split(":")[1] ?? "").trim();
+};
+
 const XSeaSelector = (props: { message: string }) => {
   if (props.message.startsWith("@ui-products")) {
-    return (
-      <ProductSelector search={(props.message.split(":")[1] ?? "").trim()} />
-    );
+    return <ProductSelector search={getSearch(props.message)} />;
   }
   if (props.message.startsWith("@ui-scripts")) {
-    return (
-      <ScriptSelector search={(props.message.split(":")[1] ?? "").trim()} />
-    );
+    return <ScriptSelector search={getSearch(props.message)} />;
   }
   if (props.message.startsWith("@ui-welcome")) {
     return <Welcome />;
