@@ -39,7 +39,7 @@ const ProductSelector = (props: { search: string }) => {
 
   useEffect(() => {
     updatePage();
-  }, []);
+  }, [props.search]);
 
   const [selectedScripts, setSelectedScripts] = useState<any[]>([]);
 
