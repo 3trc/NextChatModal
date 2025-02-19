@@ -231,6 +231,7 @@ export function SideBar(props: { className?: string }) {
   const config = useAppConfig();
   const chatStore = useChatStore();
   const [mcpEnabled, setMcpEnabled] = useState(false);
+  const { sessions } = useChatStore();
 
   useEffect(() => {
     // 检查 MCP 是否启用
@@ -314,15 +315,17 @@ export function SideBar(props: { className?: string }) {
           />
         )}
       </SideBarHeader>
-      <SideBarBody
-        onClick={(e) => {
-          if (e.target === e.currentTarget) {
-            navigate(Path.Home);
-          }
-        }}
-      >
-        <ChatList narrow={shouldNarrow} />
-      </SideBarBody>
+      {sessions.length > 1 && (
+        <SideBarBody
+          onClick={(e) => {
+            if (e.target === e.currentTarget) {
+              navigate(Path.Home);
+            }
+          }}
+        >
+          <ChatList narrow={shouldNarrow} />
+        </SideBarBody>
+      )}
       <SideBarTail
         primaryAction={
           <>

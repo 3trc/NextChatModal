@@ -3,6 +3,7 @@ import styles from "./index.module.scss";
 import { Button, Steps } from "antd";
 import { useChatStore } from "@/app/store";
 import { SessionJSON } from "../xsea/localJSON";
+import { AgentStore } from "@/app/agent/store";
 
 const StatesView = () => {
   const [expand, setExpand] = useState<boolean>(true);
@@ -40,7 +41,11 @@ const StatesView = () => {
             {
               status: "process",
               title: (
-                <Button onClick={() => chatStore.onUserInputX("选择产品")}>
+                <Button
+                  onClick={() =>
+                    AgentStore.get("XSea_执行压测").SendMessage("列出全部产品")
+                  }
+                >
                   选择产品
                 </Button>
               ),
@@ -53,7 +58,11 @@ const StatesView = () => {
             {
               status: "process",
               title: (
-                <Button onClick={() => chatStore.onUserInputX("选择脚本")}>
+                <Button
+                  onClick={() =>
+                    AgentStore.get("XSea_执行压测").SendMessage("列出全部脚本")
+                  }
+                >
                   选择脚本
                 </Button>
               ),
@@ -74,7 +83,11 @@ const StatesView = () => {
                     title: (
                       <Button
                         type="primary"
-                        onClick={() => chatStore.onUserInputX("开始压测")}
+                        onClick={() =>
+                          AgentStore.get("XSea_执行压测").SendMessage(
+                            "执行压测",
+                          )
+                        }
                       >
                         开始压测
                       </Button>
