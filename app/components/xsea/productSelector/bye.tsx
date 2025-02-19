@@ -10,7 +10,7 @@ const ProductSelectorBye = () => {
         <Space>
           <Button type="primary">创建脚本</Button>
           <Button>选择脚本</Button>
-          <Button type="primary">学习什么是产品？</Button>
+          <Button>学习什么是产品？</Button>
         </Space>
       </div>
     </div>
