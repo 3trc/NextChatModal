@@ -68,6 +68,10 @@ class _Agent extends Agent {
 我将引导你选择产品 🚀
               `,
           },
+          {
+            role: "system",
+            content: "查询产品",
+          },
         ],
       };
     }
