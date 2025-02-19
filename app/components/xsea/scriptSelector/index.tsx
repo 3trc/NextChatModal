@@ -155,7 +155,16 @@ const ScriptSelector = (props: { search: string }) => {
               type="primary"
               onClick={() => {
                 SetSelectedScripts(selectedScripts);
-                AgentStore.get("XSea_执行压测").Create();
+                AgentStore.get("XSea_查询脚本").SwitchAgent({
+                  bridgeMessages: [
+                    {
+                      role: "assistant",
+                      content: "",
+                      component: "@ui-ScriptSelectorBye",
+                      noLLM: true,
+                    },
+                  ],
+                });
               }}
             >
               选定

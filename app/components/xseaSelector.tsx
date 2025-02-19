@@ -5,6 +5,7 @@ import ProductSelector from "./xsea/productSelector";
 import ScriptSelector from "./xsea/scriptSelector";
 import Welcome from "./xsea/welcome";
 import ProductSelectorBye from "./xsea/productSelector/bye";
+import ScriptSelectorBye from "./xsea/scriptSelector/bye";
 
 const workspaceId = "849903850940473344";
 const planId = "841402405221584896";
@@ -36,6 +37,9 @@ const XSeaSelector = (props: { message: string }) => {
   }
   if (props.message.startsWith("@ui-ProductSelectorBye")) {
     return <ProductSelectorBye />;
+  }
+  if (props.message.startsWith("@ui-ScriptSelectorBye")) {
+    return <ScriptSelectorBye />;
   }
   return props.message;
 };
