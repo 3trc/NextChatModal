@@ -29,5 +29,6 @@ const localHandler = {
 const _SessionJSON = new Proxy({}, sessionHandler);
 const LocalJSON = new Proxy({}, localHandler);
 
-export const SessionJSON = _SessionJSON;
+// 临时换成LocalJSON
+export const SessionJSON = LocalJSON;
 export default LocalJSON;
