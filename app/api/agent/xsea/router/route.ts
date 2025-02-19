@@ -17,7 +17,7 @@ export async function POST(request: NextRequest) {
   const entities = ["产品", "脚本", "计划", "压测", "记录", "概念", "其他"];
   try {
     const json = await request.json();
-    json.question = "";
+    // json.question = "";
     const jsonText = JSON.stringify(json, null, 2);
     const result = await model.invoke([
       {
