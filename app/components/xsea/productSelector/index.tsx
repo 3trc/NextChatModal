@@ -119,7 +119,15 @@ const ProductSelector = (props: { search: string }) => {
               type="primary"
               onClick={() => {
                 SetSelectedScripts(selectedScripts);
-                AgentStore.get("XSea_查询脚本").Create();
+                AgentStore.get("XSea_查询脚本").Create(
+                  [
+                    {
+                      role: "system",
+                      content: "列出脚本",
+                    },
+                  ],
+                  true,
+                );
               }}
             >
               选定
