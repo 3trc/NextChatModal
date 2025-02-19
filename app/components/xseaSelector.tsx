@@ -28,10 +28,18 @@ const getSearch = (message: string) => {
 
 const XSeaSelector = (props: { message: string }) => {
   if (props.message.startsWith("@ui-products")) {
-    return <ProductSelector search={getSearch(props.message)} />;
+    return (
+      <ProductSelector
+        search={getSearch(props.message).replaceAll("产品", "")}
+      />
+    );
   }
   if (props.message.startsWith("@ui-scripts")) {
-    return <ScriptSelector search={getSearch(props.message)} />;
+    return (
+      <ScriptSelector
+        search={getSearch(props.message).replaceAll("脚本", "")}
+      />
+    );
   }
   if (props.message.startsWith("@ui-welcome")) {
     return <Welcome />;
