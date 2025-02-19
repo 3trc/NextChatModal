@@ -67,11 +67,10 @@ class _Agent extends Agent {
 🤔 看起来你当前没有选择任何产品
 我将引导你选择产品 🚀
               `,
-            noLLM: true,
           },
           {
             role: "system",
-            content: "查询产品",
+            content: "给我全部产品",
           },
         ],
       };
