@@ -1,6 +1,7 @@
 import { Button, Space } from "antd";
 import React from "react";
 import { SessionJSON } from "./localJSON";
+import { AgentStore } from "@/app/agent/store";
 
 const StateConfirm = () => {
   return (
@@ -37,11 +38,30 @@ const StateConfirm = () => {
       <div className="buttons">
         <span></span>
         <Space>
-          <Button size="small" type="link">
+          <Button
+            size="small"
+            type="link"
+            onClick={() => {
+              AgentStore.get("XSea_执行压测").SendMessage("列出全部脚本");
+            }}
+          >
             更换脚本
           </Button>
-          <Button>取消</Button>
-          <Button type="primary">压测</Button>
+          <Button
+            onClick={() => {
+              AgentStore.get("XSea_智能体").Create([], true);
+            }}
+          >
+            取消
+          </Button>
+          <Button
+            type="primary"
+            onClick={() => {
+              AgentStore.get("XSea_执行压测").SendMessage("确认压测");
+            }}
+          >
+            压测
+          </Button>
         </Space>
       </div>
     </div>
