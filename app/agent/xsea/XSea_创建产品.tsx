@@ -93,6 +93,7 @@ XSea是一个性能测试平台
           });
           const { name, url } = res.data;
           SessionJSON.selected_product = res.data;
+          SessionJSON.selected_scripts = [];
           return {
             bridgeMessages: [
               {
