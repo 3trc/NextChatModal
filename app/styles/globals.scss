@@ -406,4 +406,10 @@ pre {
   > div {
     padding: 4px 0;
   }
+  > div:first-of-type {
+    padding-top: 0px;
+  }
+  > div:last-of-type {
+    padding-bottom: 0px;
+  }
 }
