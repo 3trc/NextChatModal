@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { ChatStore, useChatStore } from "@/app/store";
 import { NavigateFunction, useNavigate } from "react-router-dom";
-import Agent, { MaybeAgentSwitcher } from "..";
+import Agent, { AgentRouteMap, MaybeAgentSwitcher } from "..";
 import { AgentStore } from "../store";
 import { SessionJSON } from "@/app/components/xsea/localJSON";
 
@@ -76,6 +76,28 @@ class _Agent extends Agent {
         ],
       };
     }
+  }
+
+  public RouteMap(): AgentRouteMap {
+    return {
+      否定: {
+        产品: "XSea_查询产品",
+      },
+      查询: {
+        产品: "XSea_查询产品",
+      },
+      询问: {
+        产品: "XSea_查询产品",
+      },
+      创建: {
+        产品: "XSea_创建产品",
+        脚本: "XSea_创建脚本",
+        压测: "XSea_执行压测",
+      },
+      执行: {
+        压测: "XSea_执行压测",
+      },
+    };
   }
 }
 
