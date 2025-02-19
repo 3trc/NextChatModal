@@ -65,7 +65,13 @@ export default class Agent {
     let sendMessages: ChatMessageX[] = [];
     if (switcher.agentName) {
       sendMessages = [
-        ...(this.chatStore.currentSession().messages as ChatMessageX[]),
+        ...this.chatStore.currentSession().messages.map(
+          (message) =>
+            ({
+              ...message,
+              noLLM: true,
+            }) as ChatMessageX,
+        ),
         ...(userMessage ? [userMessage] : []),
         ...(switcher.bridgeMessages ?? []),
       ];
