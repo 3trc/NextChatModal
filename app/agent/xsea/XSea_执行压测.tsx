@@ -53,6 +53,17 @@ XSea是一个性能测试平台
           },
         ],
       };
+    } else {
+      return {
+        bridgeMessages: [
+          {
+            role: "assistant",
+            content: "",
+            component: "@ui-StateConfirm",
+            noLLM: true,
+          },
+        ],
+      };
     }
   }
 }
