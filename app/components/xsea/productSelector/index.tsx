@@ -125,6 +125,7 @@ const ProductSelector = (props: { search: string }) => {
                       role: "assistant",
                       content: "",
                       component: "@ui-ProductSelectorBye",
+                      noLLM: true,
                     },
                   ],
                 });
