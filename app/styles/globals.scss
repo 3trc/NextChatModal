@@ -63,7 +63,8 @@
   --window-width: 100vw;
   --window-height: 100vh;
   --sidebar-width: 300px;
-  --window-content-width: calc(100% - var(--sidebar-width));
+  --tools-width: 240px;
+  --window-content-width: calc(100% - var(--sidebar-width) - var(--tools-width));
   --message-max-width: 80%;
   --full-height: 100%;
 }

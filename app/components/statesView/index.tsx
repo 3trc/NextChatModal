@@ -26,12 +26,12 @@ const StatesView = () => {
   }, []);
 
   return (
-    <div className={styles.com} style={{ width: expand ? "300px" : "100px" }}>
-      <div style={{ padding: "0 1rem 1rem 0" }}>
+    <div className={styles.com}>
+      {/* <div style={{ padding: "0 1rem 1rem 0" }}>
         <Button type="primary" onClick={() => setExpand(() => !expand)}>
           {expand ? "收起" : "展开"}
         </Button>
-      </div>
+      </div> */}
       <div>
         <Steps
           progressDot
