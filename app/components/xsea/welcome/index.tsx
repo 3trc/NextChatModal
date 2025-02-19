@@ -37,7 +37,7 @@ const Welcome = () => {
           <Button
             onClick={() => {
               AgentStore.get(chatStore.currentSession().mask.name).SendMessage(
-                "查看产品",
+                "列出全部产品",
               );
             }}
           >
