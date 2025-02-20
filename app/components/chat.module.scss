@@ -70,6 +70,10 @@
     width: var(--icon-width);
     overflow: hidden;
 
+    --delay: 0.5s;
+    width: var(--full-width);
+    transition-delay: var(--delay);
+
     .text {
       white-space: nowrap;
       padding-left: 5px;
@@ -77,6 +81,10 @@
       transform: translateX(-5px);
       transition: all ease 0.3s;
       pointer-events: none;
+
+      transition-delay: var(--delay);
+      opacity: 1;
+      transform: translate(0);
     }
 
     &:hover {

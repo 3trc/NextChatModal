@@ -419,8 +419,8 @@ export function ChatAction(props: {
       onTouchStart={updateWidth}
       style={
         {
-          "--icon-width": `${width.icon}px`,
-          "--full-width": `${width.full}px`,
+          // "--icon-width": `${width.icon}px`,
+          // "--full-width": `${width.full}px`,
         } as React.CSSProperties
       }
     >
