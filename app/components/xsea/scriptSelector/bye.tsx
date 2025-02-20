@@ -42,7 +42,7 @@ const ScriptSelectorBye = () => {
               AgentStore.get("XSea_查询脚本").SendMessage("执行压测");
             }}
           >
-            执行压测
+            快速压测
           </Button>
           <Button
             onClick={() => {
