@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { ChatStore, useChatStore } from "@/app/store";
 import { NavigateFunction, useNavigate } from "react-router-dom";
-import Agent, { AgentRouteMap, MaybeAgentSwitcher } from "..";
+import Agent, { AgentRouteMap, ChatMessageX, MaybeAgentSwitcher } from "..";
 import { AgentStore } from "../store";
 import { SessionJSON } from "@/app/components/xsea/localJSON";
 import axios from "axios";
@@ -41,13 +41,17 @@ XSea是一个性能测试平台
       return {
         agentName: "XSea_查询脚本",
         bridgeMessages: [
-          {
-            role: "assistant",
-            content: `
-  🤔 看起来你当前没有选择任何 **JMeter** 或者 **Gatling** 脚本
-  我将引导你选择脚本 🚀
+          ...((SessionJSON.background === "XSea_执行压测"
+            ? []
+            : [
+                {
+                  role: "assistant",
+                  content: `
+🤔 看起来你当前没有选择任何 **JMeter** 或者 **Gatling** 脚本
+我将引导你选择脚本 🚀
               `,
-          },
+                },
+              ]) as ChatMessageX[]),
           {
             role: "system",
             content: "查询脚本",
