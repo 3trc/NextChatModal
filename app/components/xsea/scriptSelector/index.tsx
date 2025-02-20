@@ -79,7 +79,19 @@ const ScriptSelector = (props: { search: string }) => {
           <span>你想选择哪些脚本呢？</span>
         </div>
       ) : (
-        <div>😌 好像暂时没有相关脚本呢</div>
+        <div>
+          <span>😌 好像暂时没有相关脚本呢</span>
+          <span>你可以尝试</span>
+          <Button
+            size="small"
+            type="link"
+            onClick={() => {
+              AgentStore.get("XSea_查询脚本").SendMessage("我想创建一个脚本");
+            }}
+          >
+            创建脚本
+          </Button>
+        </div>
       )}
       <div>
         <Tabs
