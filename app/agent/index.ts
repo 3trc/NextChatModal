@@ -7,6 +7,7 @@ import { NavigateFunction } from "react-router-dom";
 import { AgentStore } from "./store";
 import { nanoid } from "nanoid";
 import axios from "axios";
+import { SessionJSON } from "../components/xsea/localJSON";
 
 export interface ChatMessageX {
   role: "system" | "user" | "assistant";
@@ -159,6 +160,9 @@ export default class Agent {
         switcher = await routeMap();
       }
 
+      if (switcher?.agentName) {
+        SessionJSON.background = switcher.agentName;
+      }
       console.log("【Intention】:", intention, "【Switcher】", switcher);
       return switcher;
     } catch (error) {
