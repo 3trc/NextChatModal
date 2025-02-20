@@ -55,9 +55,10 @@ const ProductSelector = (props: { search: string }) => {
 
   const autoPageList = useMemo(() => {
     const list: any[] = (page.list ?? []).slice();
-    if (page.pageNum === 1 && SessionJSON.selected_product?.id) {
-      list.unshift(SessionJSON.selected_product);
-    }
+    // if (page.pageNum === 1 && SessionJSON.selected_product?.id) {
+    //   list.unshift(SessionJSON.selected_product);
+    // }
+    // return list;
     return list;
   }, [page]);
 
