@@ -70,7 +70,7 @@ ${JSON.stringify(data.executeRecord?.id, null, 2)}
         }
       }}
     >
-      快速压测(测试中)
+      快速压测
     </Button>
   );
 };
