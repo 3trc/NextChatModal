@@ -61,7 +61,7 @@ const ProductSelector = (props: { search: string }) => {
           <span>你想选择哪个产品呢？</span>
         </div>
       ) : (
-        <div>😌 好像暂时没有相关产品呢</div>
+        <div>😌 暂时没有相关产品呢</div>
       )}
       <div>
         <Table

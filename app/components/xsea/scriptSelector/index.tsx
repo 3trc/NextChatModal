@@ -96,7 +96,7 @@ const ScriptSelector = (props: { search: string }) => {
         </div>
       ) : (
         <div>
-          <span>😌 好像暂时没有相关脚本呢</span>
+          <span>😌 暂时没有相关脚本呢</span>
           <span>你可以尝试</span>
           <Button
             size="small"
