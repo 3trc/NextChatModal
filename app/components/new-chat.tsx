@@ -17,6 +17,7 @@ import { useCommand } from "../command";
 import { showConfirm } from "./ui-lib";
 import { BUILTIN_MASK_STORE } from "../masks";
 import clsx from "clsx";
+import { AgentStore } from "../agent/store";
 
 function MaskItem(props: { mask: Mask; onClick?: () => void }) {
   return (
@@ -172,7 +173,13 @@ export function NewChat() {
       <div className={styles["masks"]} ref={maskRef}>
         <div className={styles["mask-row"]}>
           {masks.map((mask, index) => (
-            <MaskItem key={index} mask={mask} onClick={() => startChat(mask)} />
+            <MaskItem
+              key={index}
+              mask={mask}
+              onClick={() => {
+                AgentStore.get(mask.name).Create([], true);
+              }}
+            />
           ))}
         </div>
         {/* {groups.map((masks, i) => (
