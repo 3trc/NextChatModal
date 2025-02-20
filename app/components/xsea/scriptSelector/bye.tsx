@@ -47,17 +47,17 @@ const ScriptSelectorBye = () => {
           </Button>
           <Button
             onClick={() => {
-              AgentStore.get("XSea_查询脚本").SendMessage("列出全部产品");
+              AgentStore.get("XSea_查询脚本").SendMessage("列出脚本");
             }}
           >
-            更换产品
+            更换脚本
           </Button>
           <Button
             onClick={() => {
-              AgentStore.get("XSea_查询脚本").SendMessage("什么是脚本");
+              AgentStore.get("XSea_查询脚本").SendMessage("列出产品");
             }}
           >
-            学习什么是脚本？
+            更换产品
           </Button>
         </Space>
       </div>
