@@ -108,6 +108,7 @@ import XSeaSelector from "./xseaSelector";
 import { ChatMessageX } from "../agent";
 import { AgentStore } from "../agent/store";
 import BottomConfirm from "./bottomConfirm";
+import { SessionJSON } from "./xsea/localJSON";
 
 const localStorage = safeLocalStorage();
 
@@ -656,6 +657,9 @@ export function ChatActions(props: {
                 session.memoryPrompt = ""; // will clear memory
               }
             });
+            SessionJSON.selected_product = null;
+            SessionJSON.selected_scripts = [];
+            AgentStore.get("XSea_智能体").Create([], true);
           }}
         />
 
