@@ -53,7 +53,9 @@ const ScriptSelector = (props: { search: string }) => {
     updatePage();
   }, [props.search]);
 
-  const [selectedScripts, setSelectedScripts] = useState<any[]>([]);
+  const [selectedScripts, setSelectedScripts] = useState<any[]>(
+    SessionJSON.selected_scripts,
+  );
 
   const SetSelectedScripts = (scripts: any[]) => {
     setSelectedScripts(scripts);
