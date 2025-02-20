@@ -1,6 +1,26 @@
 .com {
   font-size: 14px;
   .buttons {
-    padding: 10px 0;
+    padding: 10px 0 0 0;
+    ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      li {
+        margin-bottom: 0.6rem;
+        p {
+          margin: 0;
+          margin-top: 0.4rem;
+        }
+        > div {
+          > span {
+            margin-left: 0.4rem;
+          }
+        }
+      }
+      li:last-of-type {
+        margin-bottom: 0;
+      }
+    }
   }
 }
