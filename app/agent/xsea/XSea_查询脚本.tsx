@@ -61,14 +61,14 @@ class _Agent extends Agent {
       return {
         agentName: "XSea_查询产品",
         bridgeMessages: [
-          //           {
-          //             role: "assistant",
-          //             content: `
-          // 🤔 看起来你当前没有选择任何 **产品**
-          // 我将引导你选择产品 🚀
-          //               `,
-          //             noLLM: true,
-          //           },
+          {
+            role: "assistant",
+            content: `
+🤔 看起来你当前没有选择任何 **产品**
+我将引导你选择某一个产品 🚀
+              `.trim(),
+            noLLM: true,
+          },
           {
             role: "system",
             content: "列出全部产品",
