@@ -58,10 +58,36 @@ const ProductSelector = (props: { search: string }) => {
       ) : page.list && page.list.length > 0 ? (
         <div>
           <span>😊 平台上现有以下产品可供选择</span>
-          <span>你想选择哪个产品呢？</span>
+          <span>
+            你想选择哪个产品呢？或者{" "}
+            <Button
+              size="small"
+              type="link"
+              onClick={() => {
+                AgentStore.get(
+                  chatStore.currentSession().mask.name,
+                ).SendMessage("请帮我创建一个产品");
+              }}
+            >
+              创建一个产品
+            </Button>
+          </span>
         </div>
       ) : (
-        <div>😌 暂时没有相关产品呢</div>
+        <div>
+          😌 暂时没有相关产品呢 你可以尝试{" "}
+          <Button
+            size="small"
+            type="link"
+            onClick={() => {
+              AgentStore.get(chatStore.currentSession().mask.name).SendMessage(
+                "请帮我创建一个产品",
+              );
+            }}
+          >
+            创建产品
+          </Button>
+        </div>
       )}
       <div>
         <Table
