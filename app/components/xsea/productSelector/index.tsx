@@ -119,16 +119,38 @@ const ProductSelector = (props: { search: string }) => {
               type="primary"
               onClick={() => {
                 SetSelectedScripts(selectedScripts);
-                AgentStore.get("XSea_查询产品").SwitchAgent({
-                  bridgeMessages: [
-                    {
-                      role: "assistant",
-                      content: "",
-                      component: "@ui-ProductSelectorBye",
-                      noLLM: true,
-                    },
-                  ],
-                });
+                if (SessionJSON.background === "XSea_执行压测") {
+                  AgentStore.get("XSea_查询产品").SwitchAgent({
+                    agentName: "XSea_查询脚本",
+                    bridgeMessages: [
+                      {
+                        role: "system",
+                        content: "列出脚本",
+                      },
+                    ],
+                  });
+                } else if (SessionJSON.background === "XSea_创建脚本") {
+                  AgentStore.get("XSea_查询产品").SwitchAgent({
+                    agentName: "XSea_创建脚本",
+                    bridgeMessages: [
+                      {
+                        role: "system",
+                        content: "请帮我创建一个脚本",
+                      },
+                    ],
+                  });
+                } else {
+                  AgentStore.get("XSea_查询产品").SwitchAgent({
+                    bridgeMessages: [
+                      {
+                        role: "assistant",
+                        content: "",
+                        component: "@ui-ProductSelectorBye",
+                        noLLM: true,
+                      },
+                    ],
+                  });
+                }
               }}
             >
               选定

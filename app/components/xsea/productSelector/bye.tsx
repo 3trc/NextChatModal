@@ -36,13 +36,6 @@ const ProductSelectorBye = () => {
           >
             选择脚本
           </Button>
-          <Button
-            onClick={() => {
-              AgentStore.get("XSea_查询产品").SendMessage("什么是产品");
-            }}
-          >
-            学习什么是产品？
-          </Button>
         </Space>
       </div>
     </div>
