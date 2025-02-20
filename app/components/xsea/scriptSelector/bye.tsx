@@ -2,6 +2,7 @@ import { AgentStore } from "@/app/agent/store";
 import { Button, Space } from "antd";
 import React from "react";
 import { SessionJSON } from "../localJSON";
+import FastTest from "../fastTest";
 
 const ScriptSelectorBye = () => {
   return (
@@ -36,14 +37,7 @@ const ScriptSelectorBye = () => {
       <div>接下来你需要快速压测吗？或者任意其他事情 😊</div>
       <div>
         <Space>
-          <Button
-            type="primary"
-            onClick={() => {
-              AgentStore.get("XSea_查询脚本").SendMessage("执行压测");
-            }}
-          >
-            快速压测
-          </Button>
+          <FastTest />
           <Button
             onClick={() => {
               AgentStore.get("XSea_查询脚本").SendMessage("列出脚本");
