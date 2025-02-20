@@ -13,18 +13,23 @@ const StatesView = () => {
   const chatStore = useChatStore();
 
   const syncStates = useCallback(() => {
+    const oldShow = !!(product?.id || (scripts && scripts.length > 0));
     const newShow = !!(
       SessionJSON.selected_product?.id ||
       (SessionJSON.selected_scripts && SessionJSON.selected_scripts.length > 0)
     );
     setProduct(SessionJSON.selected_product ?? {});
     setScripts(SessionJSON.selected_scripts ?? []);
-    if (newShow) {
+    if (!oldShow && newShow) {
       document.documentElement.style.setProperty("--tools-width", "240px");
-    } else {
-      document.documentElement.style.setProperty("--tools-width", "0px");
+      setTimeout(() => {
+        setExpand(newShow);
+      }, 200);
     }
-    setExpand(newShow);
+    if (!newShow) {
+      document.documentElement.style.setProperty("--tools-width", "0px");
+      setExpand(newShow);
+    }
   }, [product, scripts]);
 
   useEffect(() => {
