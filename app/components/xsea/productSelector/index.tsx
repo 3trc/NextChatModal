@@ -1,7 +1,7 @@
 "use client";
 
 import { Button, Space, Table } from "antd";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import styles from "./index.module.scss";
 import axios from "axios";
 import { SessionJSON } from "../localJSON";
@@ -41,7 +41,9 @@ const ProductSelector = (props: { search: string }) => {
     updatePage();
   }, [props.search]);
 
-  const [selectedScripts, setSelectedScripts] = useState<any[]>([]);
+  const [selectedScripts, setSelectedScripts] = useState<any[]>(
+    [SessionJSON.selected_product].filter((item) => item),
+  );
 
   const SetSelectedScripts = (products: any[]) => {
     setSelectedScripts(products);
@@ -50,6 +52,14 @@ const ProductSelector = (props: { search: string }) => {
   };
 
   const chatStore = useChatStore();
+
+  const autoPageList = useMemo(() => {
+    const list: any[] = (page.list ?? []).slice();
+    if (page.pageNum === 1 && SessionJSON.selected_product?.id) {
+      list.unshift(SessionJSON.selected_product);
+    }
+    return list;
+  }, [page]);
 
   return (
     <div className={styles.com}>
@@ -111,7 +121,7 @@ const ProductSelector = (props: { search: string }) => {
               },
             },
           ]}
-          dataSource={page.list ?? []}
+          dataSource={autoPageList}
           loading={loading}
           rowSelection={{
             type: "radio",
