@@ -28,6 +28,7 @@ const Welcome = () => {
               >
                 快速压测
               </Button>
+              <span>:</span>
               <span>
                 ⚡ 以更 <b>简单</b> 的方式 <b>快速</b>{" "}
                 发起一次压测，验证已有系统。
@@ -46,6 +47,7 @@ const Welcome = () => {
               >
                 创建脚本
               </Button>
+              <span>:</span>
               <span>
                 📜 需要我帮助你编写一些 <b>压测脚本</b> 吗？无论是 <b>JMeter</b>{" "}
                 还是 <b>Gatling</b> 亦或是 <b>Shell</b>
@@ -65,6 +67,7 @@ const Welcome = () => {
               >
                 创建产品
               </Button>
+              <span>:</span>
               <span>
                 💡 产品是XSea之中的 <b>顶层概念</b>，用于管理 脚本 测试计划
                 等等其他性能测试相关资源。
@@ -83,6 +86,7 @@ const Welcome = () => {
               >
                 查询脚本
               </Button>
+              <span>:</span>
               <span>
                 📜 需要查询平台上的 <b>已有脚本</b>{" "}
                 吗，通常我们选择了一些脚本就可以立即快速压测了哦！
@@ -101,6 +105,7 @@ const Welcome = () => {
               >
                 查询产品
               </Button>
+              <span>:</span>
               <span>
                 💡 如果你想了解 <b>现有的产品</b>{" "}
                 信息，或者需要查找某个特定的产品，请告诉我具体的需求。
@@ -119,6 +124,7 @@ const Welcome = () => {
               >
                 学习XSea性能测试平台
               </Button>
+              <span>:</span>
               <span>
                 📚 使用XSea的过程中遇到了难以解决的问题，试着与 <b>知识库</b>{" "}
                 对话，解答你的一切疑惑。
