@@ -6,6 +6,7 @@ import styles from "./index.module.scss";
 import axios from "axios";
 import { SessionJSON } from "../localJSON";
 import { AgentStore } from "@/app/agent/store";
+import { useChatStore } from "@/app/store";
 
 const { TabPane } = Tabs;
 
@@ -59,6 +60,8 @@ const ScriptSelector = (props: { search: string }) => {
     SessionJSON.selected_scripts = scripts;
   };
 
+  const chatStore = useChatStore();
+
   return (
     <div className={styles.com}>
       {loading ? (
@@ -74,9 +77,22 @@ const ScriptSelector = (props: { search: string }) => {
             >
               {SessionJSON.selected_product?.name}
             </a>
-            &nbsp;产品下有如下脚本可供选择，
+            &nbsp;产品下有如下脚本可供选择。
           </span>
-          <span>你想选择哪些脚本呢？</span>
+          <span>
+            <span>或者，你也可以</span>
+            <Button
+              size="small"
+              type="link"
+              onClick={() => {
+                AgentStore.get(
+                  chatStore.currentSession().mask.name,
+                ).SendMessage("请帮我创建一个脚本");
+              }}
+            >
+              新建一个脚本
+            </Button>
+          </span>
         </div>
       ) : (
         <div>
