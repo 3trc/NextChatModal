@@ -89,7 +89,7 @@ const StatesView = () => {
                           )
                         }
                       >
-                        开始压测
+                        快速压测
                       </Button>
                     ),
                     description: <span>点我就可以开始压测了哦 ⚡</span>,
