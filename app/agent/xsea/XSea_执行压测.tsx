@@ -18,7 +18,6 @@ class _Agent extends Agent {
             role: "system",
             content: `
 XSea是一个性能测试平台
-你是XSea执行压测小助手
             `.trim(),
             date: "",
           },
