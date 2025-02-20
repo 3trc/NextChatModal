@@ -7,14 +7,15 @@ const ScriptSelectorBye = () => {
   return (
     <div className="text-rows">
       <div>
-        👍🏻 当前，我们已经在{" "}
-        <a
+        👍🏻 当前，我们已经
+        {/* {" "} */}
+        {/* <a
           target="_blank"
           href={`http://10.10.30.103:8081${SessionJSON.selected_product?.url}`}
         >
           {SessionJSON.selected_product?.name}
-        </a>{" "}
-        产品下面选择了一些脚本
+        </a>{" "} */}
+        选择了一些脚本
       </div>
       <div>
         <ul>
