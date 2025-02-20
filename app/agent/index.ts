@@ -161,7 +161,14 @@ export default class Agent {
       }
 
       if (switcher?.agentName) {
-        SessionJSON.background = switcher.agentName;
+        const agentName = switcher.agentName;
+        if (
+          ["XSea_执行压测", "XSea_创建脚本", "XSea_创建产品"].includes(
+            agentName,
+          )
+        ) {
+          SessionJSON.background = agentName;
+        }
       }
       console.log("【Intention】:", intention, "【Switcher】", switcher);
       return switcher;
