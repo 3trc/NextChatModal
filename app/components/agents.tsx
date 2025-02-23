@@ -8,6 +8,7 @@ import XSea_查询脚本 from "../agent/xsea/XSea_查询脚本";
 import XSea_执行压测 from "../agent/xsea/XSea_执行压测";
 import XSea_调用栈分析 from "../agent/xsea/XSea_调用栈分析";
 import { AgentStore } from "../agent/store";
+import XSea_知识库 from "../agent/xsea/XSea_知识库";
 
 const Agents = () => {
   const receiveMessage = (data: any) => {
@@ -52,6 +53,7 @@ const Agents = () => {
       <XSea_查询脚本 />
       <XSea_执行压测 />
       <XSea_调用栈分析 />
+      <XSea_知识库 />
       <XSea_摸摸鱼 />
     </>
   );
