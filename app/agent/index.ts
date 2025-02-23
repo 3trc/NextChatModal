@@ -172,6 +172,14 @@ export default class Agent {
             },
           ];
         }
+
+        // 临时加上Loading
+        await new Promise<void>((resolve) => {
+          setTimeout(() => {
+            resolve();
+          }, 1000);
+        });
+
         this.chatStore.AppendRoleMessageList(
           [
             {
