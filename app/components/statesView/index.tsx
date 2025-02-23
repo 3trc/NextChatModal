@@ -160,7 +160,24 @@ const StatesView = () => {
                           </div>
                         )}
                         {item.heapHisto && (
-                          <div className={styles.problem}>
+                          <div
+                            className={styles.problem}
+                            onClick={() => {
+                              AgentStore.get("XSea_内存分析").Create(
+                                [
+                                  {
+                                    role: "system",
+                                    content: `${JSON.stringify(
+                                      item.heapHisto,
+                                      null,
+                                      2,
+                                    )}\n性能瓶颈在哪？`,
+                                  },
+                                ],
+                                true,
+                              );
+                            }}
+                          >
                             📟 发现内存性能问题
                           </div>
                         )}
