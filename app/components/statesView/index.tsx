@@ -4,11 +4,13 @@ import { Button, Steps } from "antd";
 import { useChatStore } from "@/app/store";
 import { SessionJSON } from "../xsea/localJSON";
 import { AgentStore } from "@/app/agent/store";
+import FastTest from "../xsea/fastTest";
 
 const StatesView = () => {
   const [expand, setExpand] = useState<boolean>(true);
   const [product, setProduct] = useState<any>({});
   const [scripts, setScripts] = useState<any[]>([]);
+  const [tests, setTests] = useState<any[]>([]);
 
   const chatStore = useChatStore();
 
@@ -20,6 +22,7 @@ const StatesView = () => {
     );
     setProduct(SessionJSON.selected_product ?? {});
     setScripts(SessionJSON.selected_scripts ?? []);
+    setTests(SessionJSON.tests ?? []);
     if (!oldShow && newShow) {
       document.documentElement.style.setProperty("--tools-width", "240px");
       setTimeout(() => {
@@ -108,18 +111,7 @@ const StatesView = () => {
                   ? [
                       {
                         status: "process" as any,
-                        title: (
-                          <Button
-                            type="primary"
-                            onClick={() =>
-                              AgentStore.get("XSea_执行压测").SendMessage(
-                                "执行压测",
-                              )
-                            }
-                          >
-                            快速压测
-                          </Button>
-                        ),
+                        title: <FastTest />,
                         description: <span>点我就可以开始压测了哦 ⚡</span>,
                       },
                     ]
@@ -127,14 +119,25 @@ const StatesView = () => {
               ]}
             />
           </div>
-          <div className={styles.his_test}>
-            <b>历史压测</b>
-            <ul className={styles.test_list}>
-              <li>1. 某某压测</li>
-              <li>2. 某某压测</li>
-              <li>3. 某某压测</li>
-            </ul>
-          </div>
+          {tests.length > 0 && (
+            <div className={styles.his_test}>
+              <b>历史压测</b>
+              <ul className={styles.test_list}>
+                {tests.map((test, index) => (
+                  <li key={test.executeRecord.id}>
+                    <a
+                      href="javascript:;"
+                      onClick={() => {
+                        // window.top?.open(`http://192.168.8.139:8080${test.executeRecord.url}`);
+                      }}
+                    >
+                      {test.goal.name ?? "-"}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
         </>
       )}
     </div>
