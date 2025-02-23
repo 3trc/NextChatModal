@@ -125,14 +125,31 @@ const StatesView = () => {
               <ul className={styles.test_list}>
                 {tests.map((test, index) => (
                   <li key={test.executeRecord.id}>
-                    <a
-                      href="javascript:;"
-                      onClick={() => {
-                        // window.top?.open(`http://192.168.8.139:8080${test.executeRecord.url}`);
-                      }}
-                    >
-                      {test.goal.name ?? "-"}
-                    </a>
+                    <div>
+                      <a
+                        href="javascript:;"
+                        onClick={() => {
+                          // window.top?.open(`http://192.168.8.139:8080${test.executeRecord.url}`);
+                        }}
+                      >
+                        {test.goal.name ?? "-"}
+                      </a>
+                    </div>
+                    {(test.list ?? []).map((item: any) => (
+                      <>
+                        {item.stackDatas && (
+                          <div
+                            className={styles.problem}
+                            onClick={() => console.log(item)}
+                          >
+                            🎛️ CPU性能瓶颈
+                          </div>
+                        )}
+                        {item.heapHisto && (
+                          <div className={styles.problem}>📟 内存性能问题</div>
+                        )}
+                      </>
+                    ))}
                   </li>
                 ))}
               </ul>
