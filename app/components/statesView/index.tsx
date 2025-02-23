@@ -140,7 +140,21 @@ const StatesView = () => {
                         {item.stackDatas && (
                           <div
                             className={styles.problem}
-                            onClick={() => console.log(item)}
+                            onClick={() => {
+                              AgentStore.get("XSea_调用栈分析").Create(
+                                [
+                                  {
+                                    role: "system",
+                                    content: `${JSON.stringify(
+                                      item.stackDatas,
+                                      null,
+                                      2,
+                                    )}\n性能瓶颈在哪？`,
+                                  },
+                                ],
+                                true,
+                              );
+                            }}
                           >
                             🎛️ 发现CPU性能问题
                           </div>
