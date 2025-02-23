@@ -142,11 +142,13 @@ const StatesView = () => {
                             className={styles.problem}
                             onClick={() => console.log(item)}
                           >
-                            🎛️ CPU性能瓶颈
+                            🎛️ 发现CPU性能问题
                           </div>
                         )}
                         {item.heapHisto && (
-                          <div className={styles.problem}>📟 内存性能问题</div>
+                          <div className={styles.problem}>
+                            📟 发现内存性能问题
+                          </div>
                         )}
                       </>
                     ))}
