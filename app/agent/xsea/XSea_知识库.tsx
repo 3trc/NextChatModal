@@ -26,7 +26,7 @@ class _Agent extends Agent {
     );
   }
 
-  public async SendMessage(message: string) {
+  public async SendMessage(message: string): Promise<any> {
     return await this.chatStore.SendMessage(message, async (message) => {
       const switcher = await this.onBeforeSendMessage(message);
       if (switcher) {
