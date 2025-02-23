@@ -9,7 +9,7 @@ class _Agent extends Agent {
   public constructor(chatStore: ChatStore, navigate: NavigateFunction) {
     super(
       {
-        avatar: "🔄",
+        avatar: "📚",
         name: "XSea_知识库",
         context: [],
         modelConfig: {

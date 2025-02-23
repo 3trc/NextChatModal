@@ -16,8 +16,11 @@ export async function POST(request: NextRequest) {
     const subQALib = QALib.map((qa) => ({
       ...qa,
       score:
-        words.filter((word) => qa.q.includes(word)).length * 2 +
-        words.filter((word) => qa.a.includes(word)).length,
+        words.filter((word) => qa.q.toLowerCase().includes(word.toLowerCase()))
+          .length *
+          2 +
+        words.filter((word) => qa.a.toLowerCase().includes(word.toLowerCase()))
+          .length,
     }));
     subQALib.sort((a, b) => b.score - a.score);
     return NextResponse.json(
