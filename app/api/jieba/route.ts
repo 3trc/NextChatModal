@@ -4,8 +4,7 @@ import QALib from "./zzk.json";
 
 export async function GET(request: NextRequest) {
   try {
-    const text =
-      "XSea之中，所以，😄，你知道怎么安装探针吗，你这个小丑，回答我把，哈哈哈";
+    const text = "熔断怎么配置";
     const words = nodejieba
       .tag(text)
       .filter((tag) =>
