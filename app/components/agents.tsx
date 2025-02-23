@@ -13,12 +13,13 @@ import XSea_当下引导 from "../agent/xsea/XSea_当下引导";
 import XSea_JMeter专家 from "../agent/xsea/XSea_JMeter专家";
 import XSea_Gatling专家 from "../agent/xsea/XSea_Gatling专家";
 import XSea_Shell专家 from "../agent/xsea/XSea_Shell专家";
+import { SessionJSON } from "./xsea/localJSON";
 
 const Agents = () => {
   const receiveMessage = (data: any) => {
     const message = data.data ?? {};
-    console.log(message);
-    if (message.from === "ai_parent") {
+    // console.log(message);
+    if (message.from === "ai_parent" && message.expertName) {
       if (message.problem) {
         AgentStore.get(message.expertName).Create(
           [
@@ -31,6 +32,19 @@ const Agents = () => {
         );
       } else {
         AgentStore.get(message.expertName).Create([], true);
+      }
+    } else {
+      if (message.type === "发送异常") {
+        const execId = message.problem.execId;
+        const list = message.problem.list;
+        const tests: any[] = SessionJSON.tests ?? [];
+        const index = tests.findIndex(
+          (test) => test.executeRecord.id === execId,
+        );
+        if (index >= 0) {
+          tests[index] = { ...tests[index], list };
+        }
+        SessionJSON.tests = tests;
       }
     }
   };
