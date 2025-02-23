@@ -32,8 +32,10 @@ if (typeof window != "undefined") {
     })
     .then((masks) => {
       const { cn = [], tw = [], en = [] } = masks;
-      return [...AgentStore.MaskList()].map((m) => {
-        BUILTIN_MASKS.push(BUILTIN_MASK_STORE.add(m));
-      });
+      return [...AgentStore.MaskList()]
+        .filter((mask) => mask.avatar !== "🔄")
+        .map((m) => {
+          BUILTIN_MASKS.push(BUILTIN_MASK_STORE.add(m));
+        });
     });
 }
