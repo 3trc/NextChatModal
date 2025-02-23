@@ -293,7 +293,7 @@ export default class XSeaSimplifier {
       name,
       url: `/${
         this.envId
-      }/product/business/${"849903850940473344"}/plan/target?id=${planId}&goalId=${data}`,
+      }/product/business/${"920951261988982784"}/plan/target?id=${planId}&goalId=${data}`,
     };
   }
 

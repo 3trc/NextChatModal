@@ -16,7 +16,7 @@ const FastTest = () => {
         let res: any = {};
         try {
           res = await axios.post(
-            `/api/object/xsea/product/${`849903850940473344`}/script/${`841402405221584896`}/test`,
+            `/api/object/xsea/product/${`920951261988982784`}/script/${`841675362774847488`}/test`,
             {
               scriptIds: script_list.map((script: any) => script.id),
             },

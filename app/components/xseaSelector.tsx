@@ -8,8 +8,8 @@ import ProductSelectorBye from "./xsea/productSelector/bye";
 import ScriptSelectorBye from "./xsea/scriptSelector/bye";
 import StateConfirm from "./xsea/stateConfirm";
 
-const workspaceId = "849903850940473344";
-const planId = "841402405221584896";
+const workspaceId = "920951261988982784";
+const planId = "841675362774847488";
 
 const LABELS_MAP = {
   "[ui-products]": "产品",
