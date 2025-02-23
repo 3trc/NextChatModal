@@ -10,15 +10,13 @@ const Welcome = () => {
   return (
     <div className={styles.com}>
       <div>
-        🦄 嗨，很高兴见到你，我是 <b>XSea智能体</b>，我可以协助你解决在使用{" "}
-        <b>XSea性能测试平台</b> 过程中遇到的各种问题。
+        🦄 嗨，很高兴见到你，我是 <b>XSea智能体</b>
       </div>
       <div className={styles.buttons}>
         <div className={styles.summary}>
-          &nbsp;有什么需求和问题吗？随时可以跟我分享！试着说{" "}
-          <b>“帮我压测 xxx 下的 xxx 脚本”</b>，<b>“帮我分析 xxx 报告”</b>，
-          <b>“帮我解释 xxx 脚本是做什么的”</b>
-          ，或者任何其他话题 😊
+          &nbsp;试着说 <b>“帮我压测 xxx 下的 xxx 脚本”</b>，
+          <b>“帮我分析 xxx 报告”</b>，<b>“帮我解释 xxx 脚本是做什么的”</b>
+          &nbsp;等
         </div>
         <ul>
           <li>
