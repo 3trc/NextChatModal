@@ -50,6 +50,7 @@ class _Agent extends Agent {
           topK: 1,
           top_p: 0.5,
           temperature: 0.1,
+          historyMessageCount: 1,
         },
       },
       chatStore,
