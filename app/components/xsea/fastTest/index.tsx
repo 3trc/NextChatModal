@@ -27,7 +27,12 @@ const FastTest = () => {
           data.executeRecord?.id &&
           typeof data.executeRecord.id === "string"
         ) {
-          SessionJSON.tests = [...(SessionJSON.tests ?? []), data];
+          const newTests = [...(SessionJSON.tests ?? []), data];
+          const diff = newTests.length - 5;
+          if (diff > 0) {
+            newTests.splice(0, diff);
+          }
+          SessionJSON.tests = newTests;
           AgentStore.get(chatStore.currentSession().mask.name).SwitchAgent({
             agentName: "XSea_智能体",
             bridgeMessages: [
