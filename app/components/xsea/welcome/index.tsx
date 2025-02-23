@@ -14,6 +14,12 @@ const Welcome = () => {
         <b>XSea性能测试平台</b> 过程中遇到的各种问题。
       </div>
       <div className={styles.buttons}>
+        <div className={styles.summary}>
+          &nbsp;有什么需求和问题吗？随时可以跟我分享！试着说{" "}
+          <b>“帮我压测 xxx 下的 xxx 脚本”</b>，<b>“帮我分析 xxx 报告”</b>，
+          <b>“帮我解释 xxx 脚本是做什么的”</b>
+          ，或者任何其他话题 😊
+        </div>
         <ul>
           <li>
             <div>
@@ -62,25 +68,6 @@ const Welcome = () => {
                 onClick={() => {
                   AgentStore.get(
                     chatStore.currentSession().mask.name,
-                  ).SendMessage("请帮我创建一个产品");
-                }}
-              >
-                创建产品
-              </Button>
-              <span>:</span>
-              <span>
-                💡 产品是XSea之中的 <b>顶层概念</b>，用于管理 脚本 测试计划
-                等等其他性能测试相关资源。
-              </span>
-            </div>
-          </li>
-          <li>
-            <div>
-              <Button
-                size="small"
-                onClick={() => {
-                  AgentStore.get(
-                    chatStore.currentSession().mask.name,
                   ).SendMessage("请列出所有脚本");
                 }}
               >
@@ -90,25 +77,6 @@ const Welcome = () => {
               <span>
                 📜 需要查询平台上的 <b>已有脚本</b>{" "}
                 吗，通常我们选择了一些脚本就可以立即快速压测了哦！
-              </span>
-            </div>
-          </li>
-          <li>
-            <div>
-              <Button
-                size="small"
-                onClick={() => {
-                  AgentStore.get(
-                    chatStore.currentSession().mask.name,
-                  ).SendMessage("请列出所有产品");
-                }}
-              >
-                查询产品
-              </Button>
-              <span>:</span>
-              <span>
-                💡 如果你想了解 <b>现有的产品</b>{" "}
-                信息，或者需要查找某个特定的产品，请告诉我具体的需求。
               </span>
             </div>
           </li>
@@ -129,13 +97,6 @@ const Welcome = () => {
                 📚 使用XSea的过程中遇到了难以解决的问题，试着与 <b>知识库</b>{" "}
                 对话，解答你的一切疑惑。
               </span>
-            </div>
-          </li>
-          <li>
-            <div>
-              或者有什么具体的需求和问题吗？随时可以跟我分享！试着说{" "}
-              <b>“开始压测吧”</b>，<b>“现在平台上有哪些JMeter脚本？”</b>
-              ，或者任何其他话题 😊
             </div>
           </li>
         </ul>
