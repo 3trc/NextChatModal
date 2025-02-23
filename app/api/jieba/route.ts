@@ -2,9 +2,11 @@ import { NextRequest, NextResponse } from "next/server";
 import nodejieba from "nodejieba";
 import QALib from "./zzk.json";
 
-export async function GET(request: NextRequest) {
+export async function POST(request: NextRequest) {
   try {
-    const text = "熔断怎么配置";
+    const body = await request.json();
+    const text = body.message;
+    const limit = body.limit ?? 10;
     const words = nodejieba
       .tag(text)
       .filter((tag) =>
@@ -17,7 +19,7 @@ export async function GET(request: NextRequest) {
     }));
     subQALib.sort((a, b) => b.score - a.score);
     return NextResponse.json(
-      subQALib.slice(0, 10).map((qa) => ({ q: qa.q, a: qa.a })),
+      subQALib.slice(0, limit).map((qa) => ({ q: qa.q, a: qa.a })),
       {
         status: 200,
         headers: {
