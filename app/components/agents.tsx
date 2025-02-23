@@ -21,7 +21,7 @@ const Agents = () => {
           [
             {
               role: "system",
-              content: `${message.problem}\n性能瓶颈在哪里？`,
+              content: `${message.problem}`,
             },
           ],
           true,
