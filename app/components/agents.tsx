@@ -10,6 +10,9 @@ import XSea_调用栈分析 from "../agent/xsea/XSea_调用栈分析";
 import { AgentStore } from "../agent/store";
 import XSea_知识库 from "../agent/xsea/XSea_知识库";
 import XSea_当下引导 from "../agent/xsea/XSea_当下引导";
+import XSea_JMeter专家 from "../agent/xsea/XSea_JMeter专家";
+import XSea_Gatling专家 from "../agent/xsea/XSea_Gatling专家";
+import XSea_Shell专家 from "../agent/xsea/XSea_Shell专家";
 
 const Agents = () => {
   const receiveMessage = (data: any) => {
@@ -52,6 +55,9 @@ const Agents = () => {
   return (
     <>
       <XSea_智能体 />
+      <XSea_JMeter专家 />
+      <XSea_Gatling专家 />
+      <XSea_Shell专家 />
       <XSea_创建产品 />
       <XSea_创建脚本 />
       <XSea_查询产品 />
