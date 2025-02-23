@@ -1,12 +1,13 @@
 import axios from "axios";
 import { NextRequest, NextResponse } from "next/server";
 
-export async function GET(request: NextRequest) {
+export async function POST(request: NextRequest) {
   try {
-    const res = await axios.post(
+    const json = await request.json();
+    await axios.post(
       `http://10.10.224.24:8089/api/xchaos/taskinstance/executeTask`,
       {
-        taskId: "1887384229074038786",
+        taskId: json.taskId,
         ignore: false,
       },
       {

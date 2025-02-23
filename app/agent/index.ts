@@ -99,6 +99,46 @@ export default class Agent {
 
   public async SendMessage(message: string) {
     return await this.chatStore.SendMessage(message, async (message) => {
+      if (message.toLowerCase().includes("注入cpu")) {
+        await axios.post(`/api/agent/xchaos`, {
+          taskId: "1887384229074038786",
+        });
+        this.chatStore.AppendRoleMessageList(
+          [
+            {
+              role: "user",
+              content: message,
+            },
+            {
+              role: "assistant",
+              content: "已经为你成功注入CPU故障 🐞",
+            },
+          ],
+          false,
+        );
+        return this;
+      }
+
+      if (message.toLowerCase().includes("注入内存")) {
+        await axios.post(`/api/agent/xchaos`, {
+          taskId: "1887381615393501186",
+        });
+        this.chatStore.AppendRoleMessageList(
+          [
+            {
+              role: "user",
+              content: message,
+            },
+            {
+              role: "assistant",
+              content: "已经为你成功注入内存故障 🐞",
+            },
+          ],
+          false,
+        );
+        return this;
+      }
+
       const switcher = await this.onBeforeSendMessage(message);
       if (switcher) {
         const nextAgent = await this.SwitchAgent(switcher, {
