@@ -28,7 +28,8 @@
 }
 
 .window-actions {
-  display: inline-flex;
+  // display: inline-flex;
+  display: none;
 }
 
 .window-action-button:not(:first-child) {
