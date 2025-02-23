@@ -132,43 +132,45 @@ export function PreCode(props: { children: any }) {
 
   return (
     <>
-      <pre ref={ref}>
-        <span
-          className="copy-code-button"
-          onClick={() => {
-            if (ref.current) {
-              copyToClipboard(
-                ref.current.querySelector("code")?.innerText ?? "",
-              );
-            }
-          }}
-        ></span>
-        {props.children}
-      </pre>
-      {mermaidCode.length > 0 && (
-        <Mermaid code={mermaidCode} key={mermaidCode} />
-      )}
-      {htmlCode.length > 0 && enableArtifacts && (
-        <FullScreen className="no-dark html" right={70}>
-          <ArtifactsShareButton
-            style={{ position: "absolute", right: 20, top: 10 }}
-            getCode={() => htmlCode}
-          />
-          <IconButton
-            style={{ position: "absolute", right: 120, top: 10 }}
-            bordered
-            icon={<ReloadButtonIcon />}
-            shadow
-            onClick={() => previewRef.current?.reload()}
-          />
-          <HTMLPreview
-            ref={previewRef}
-            code={htmlCode}
-            autoHeight={!document.fullscreenElement}
-            height={!document.fullscreenElement ? 600 : height}
-          />
-        </FullScreen>
-      )}
+      <div className="main-code-area">
+        <pre ref={ref}>
+          <span
+            className="copy-code-button"
+            onClick={() => {
+              if (ref.current) {
+                copyToClipboard(
+                  ref.current.querySelector("code")?.innerText ?? "",
+                );
+              }
+            }}
+          ></span>
+          {props.children}
+        </pre>
+        {mermaidCode.length > 0 && (
+          <Mermaid code={mermaidCode} key={mermaidCode} />
+        )}
+        {htmlCode.length > 0 && enableArtifacts && (
+          <FullScreen className="no-dark html" right={70}>
+            <ArtifactsShareButton
+              style={{ position: "absolute", right: 20, top: 10 }}
+              getCode={() => htmlCode}
+            />
+            <IconButton
+              style={{ position: "absolute", right: 120, top: 10 }}
+              bordered
+              icon={<ReloadButtonIcon />}
+              shadow
+              onClick={() => previewRef.current?.reload()}
+            />
+            <HTMLPreview
+              ref={previewRef}
+              code={htmlCode}
+              autoHeight={!document.fullscreenElement}
+              height={!document.fullscreenElement ? 600 : height}
+            />
+          </FullScreen>
+        )}
+      </div>
     </>
   );
 }

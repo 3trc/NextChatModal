@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import XSea_智能体 from "../agent/xsea/XSea_智能体";
 import XSea_摸摸鱼 from "../agent/xsea/XSea_摸摸鱼";
 import XSea_创建产品 from "../agent/xsea/XSea_创建产品";
@@ -50,8 +50,38 @@ const Agents = () => {
     }
   };
 
+  const markdownText = useRef<string>("");
+  const markdownFlag = useRef<boolean>(false);
+
+  const postMessage = (msg: any) => {
+    // console.log("postMessage", msg);
+    window.top?.postMessage(msg, "*");
+  };
+
+  const postMarkdown = (text: string) => {
+    localStorage.ai_code = text;
+    postMessage({ type: "code", text });
+  };
+
+  const check = () => {
+    const markdown = document.querySelector(
+      "div[class^=chat_chat-body__] > div[class^=chat_chat-message__]:last-child .markdown-body .main-code-area code",
+    );
+    if (markdown) {
+      const currentText = markdown.textContent!.trim();
+      if (currentText && currentText !== markdownText.current) {
+        markdownText.current = currentText;
+        if (markdownFlag.current) {
+          postMarkdown(currentText);
+        }
+        markdownFlag.current = true;
+      }
+    }
+  };
+
   useEffect(() => {
     window.addEventListener("message", receiveMessage);
+    check();
     const timer = setInterval(() => {
       window.top?.postMessage(
         {
@@ -60,6 +90,7 @@ const Agents = () => {
         },
         "*",
       );
+      check();
     }, 250);
     return () => {
       window.removeEventListener("message", receiveMessage);
