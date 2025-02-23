@@ -306,6 +306,19 @@ export default class XSeaSimplifier {
     });
     const targetGoal =
       res.data.object?.list?.find((item: any) => item.id === goalId) ?? {};
+
+    const { data: strategyData } = await http.post(
+      `xsea/scene/script/queryStrategy`,
+      { id: targetGoal.sceneId },
+    );
+    const object = strategyData.object ?? {};
+    (object.sceneScriptConfModelList ?? []).slice(0, 1).forEach((item: any) => {
+      item.sceneStrategies = DFT_LINE;
+      item.threadNum = "1000";
+    });
+    await http.post(`xsea/scene/script/modifyStrategy`, object);
+    console.log(object);
+
     res = await http.post(`xsea/sceneExec/start`, {
       envId: this.envId,
       planId,
@@ -377,3 +390,56 @@ export default class XSeaSimplifier {
     };
   }
 }
+
+const DFT_LINE = [
+  {
+    index: 1,
+    period: 10,
+    userNum: 200,
+  },
+  {
+    index: 2,
+    period: 60,
+    userNum: 0,
+  },
+  {
+    index: 3,
+    period: 10,
+    userNum: 200,
+  },
+  {
+    index: 4,
+    period: 60,
+    userNum: 0,
+  },
+  {
+    index: 5,
+    period: 10,
+    userNum: 200,
+  },
+  {
+    index: 6,
+    period: 60,
+    userNum: 0,
+  },
+  {
+    index: 7,
+    period: 10,
+    userNum: 200,
+  },
+  {
+    index: 8,
+    period: 60,
+    userNum: 0,
+  },
+  {
+    index: 9,
+    period: 10,
+    userNum: 200,
+  },
+  {
+    index: 10,
+    period: 60,
+    userNum: 0,
+  },
+];
