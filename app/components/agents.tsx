@@ -15,15 +15,19 @@ const Agents = () => {
     const message = data.data ?? {};
     console.log(message);
     if (message.from === "ai_parent") {
-      AgentStore.get(message.expertName).Create(
-        [
-          {
-            role: "system",
-            content: `${message.problem}\n性能瓶颈在哪里？`,
-          },
-        ],
-        true,
-      );
+      if (message.problem) {
+        AgentStore.get(message.expertName).Create(
+          [
+            {
+              role: "system",
+              content: `${message.problem}\n性能瓶颈在哪里？`,
+            },
+          ],
+          true,
+        );
+      } else {
+        AgentStore.get(message.expertName).Create([], true);
+      }
     }
   };
 
