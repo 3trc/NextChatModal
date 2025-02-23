@@ -3,9 +3,15 @@ import nodejieba from "nodejieba";
 
 export async function GET(request: NextRequest) {
   try {
+    const text =
+      "XSea之中，所以，😄，你知道怎么安装探针吗，你这个小丑，回答我把，哈哈哈";
+    const tags = nodejieba
+      .tag(text)
+      .filter((tag) => ["n", "eng"].includes(tag.tag))
+      .map((tag) => tag.word);
     return NextResponse.json(
       {
-        tags: nodejieba.tag("怎么安装探针"),
+        result: tags,
       },
       {
         status: 200,
