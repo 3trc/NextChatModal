@@ -24,6 +24,8 @@ const nextConfig = {
       child_process: false,
     };
 
+    config.externals = [...config.externals, "nodejieba"];
+
     return config;
   },
   output: mode,
