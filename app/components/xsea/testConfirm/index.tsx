@@ -8,7 +8,7 @@ const TestConfirm = () => {
       <div>
         <span>你好，当前你已经选择了产品</span>&nbsp;
         <a
-          href={`${"http://10.10.30.103:8081"}${SessionJSON.selected_product
+          href={`${"http://192.168.8.139:8080"}${SessionJSON.selected_product
             ?.url}`}
           className={styles.a_product}
         >
