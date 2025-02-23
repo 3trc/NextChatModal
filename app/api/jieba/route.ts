@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import nodejieba from "nodejieba";
+import QALib from "./zzk.json";
 
 export async function GET(request: NextRequest) {
   try {
@@ -11,12 +12,20 @@ export async function GET(request: NextRequest) {
         ["n", "eng", "v"].some((type) => tag.tag.startsWith(type)),
       )
       .map((tag) => tag.word);
-    return NextResponse.json(words, {
-      status: 200,
-      headers: {
-        "Content-Type": "application/json",
+    const subQALib = QALib.map((qa) => ({
+      ...qa,
+      score: words.filter((word) => qa.q.includes(word)).length,
+    }));
+    subQALib.sort((a, b) => b.score - a.score);
+    return NextResponse.json(
+      subQALib.slice(0, 10).map((qa) => ({ q: qa.q, a: qa.a })),
+      {
+        status: 200,
+        headers: {
+          "Content-Type": "application/json",
+        },
       },
-    });
+    );
   } catch (error) {
     return NextResponse.json(
       {
