@@ -3,6 +3,7 @@ import { ChatStore, useChatStore } from "@/app/store";
 import { NavigateFunction, useNavigate } from "react-router-dom";
 import Agent from "..";
 import { AgentStore } from "../store";
+import axios from "axios";
 
 class _Agent extends Agent {
   public constructor(chatStore: ChatStore, navigate: NavigateFunction) {
@@ -10,29 +11,60 @@ class _Agent extends Agent {
       {
         avatar: "🔄",
         name: "XSea_知识库",
-        context: [
-          {
-            id: "",
-            role: "system",
-            content: `
-请你结合上述问答知识库，并且结合性能测试的背景知识，回答用户的问题
-避免透露自己引用知识库
-避免回答与性能测试无关的问题
-            `.trim(),
-            date: "",
-          },
-        ],
+        context: [],
         modelConfig: {
           model: "perfma-gpt-14b:latest",
           max_tokens: 16384,
           topK: 1,
           top_p: 0.5,
           temperature: 0.1,
+          historyMessageCount: 1,
         },
       },
       chatStore,
       navigate,
     );
+  }
+
+  public async SendMessage(message: string) {
+    return await this.chatStore.SendMessage(message, async (message) => {
+      const switcher = await this.onBeforeSendMessage(message);
+      if (switcher) {
+        const nextAgent = await this.SwitchAgent(switcher, {
+          role: "user",
+          content: message,
+        });
+        return nextAgent;
+      } else {
+        const { data } = await axios.post(`/api/jieba`, { message });
+        this.chatStore.AppendRoleMessageList(
+          [
+            {
+              role: "system",
+              content: `
+XSea是一个性能测试平台，支持 JMeter, Gatling，Shell，SeaMeter 四种类型的脚本
+- 其中 Shell 主要用来执行性能测试的前后置任务
+- 其中 SeaMeter 平台自研的低代码发压脚本格式
+
+${JSON.stringify(data, null, 2)}
+
+请使用以上问答知识库回答用户问题
+- 确保结合上述知识库回答用户问题
+- 确保结合性能测试背景回答用户问题
+- 避免透露自己引用知识库
+- 避免回答和测试无关的问题
+            `.trim(),
+            },
+            {
+              role: "user",
+              content: message,
+            },
+          ],
+          true,
+        );
+        return this;
+      }
+    });
   }
 }
 
