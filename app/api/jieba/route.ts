@@ -21,7 +21,10 @@ export async function POST(request: NextRequest) {
     }));
     subQALib.sort((a, b) => b.score - a.score);
     return NextResponse.json(
-      subQALib.slice(0, limit).map((qa) => ({ q: qa.q, a: qa.a })),
+      subQALib
+        .slice(0, limit)
+        .map((qa) => ({ q: qa.q, a: qa.a }))
+        .reverse(),
       {
         status: 200,
         headers: {
