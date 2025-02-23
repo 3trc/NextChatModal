@@ -28,7 +28,7 @@ const FastTest = () => {
           typeof data.executeRecord.id === "string"
         ) {
           const newTests = [...(SessionJSON.tests ?? []), data];
-          const diff = newTests.length - 5;
+          const diff = newTests.length - 3;
           if (diff > 0) {
             newTests.splice(0, diff);
           }
