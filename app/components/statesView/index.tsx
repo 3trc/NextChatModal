@@ -56,76 +56,86 @@ const StatesView = () => {
         </Button>
       </div> */}
       {expand && (
-        <div>
-          <Steps
-            progressDot
-            direction="vertical"
-            items={[
-              {
-                status: "process",
-                title: (
-                  <Button
-                    onClick={() =>
-                      AgentStore.get("XSea_执行压测").SendMessage(
-                        "列出全部产品",
-                      )
-                    }
-                  >
-                    选择产品
-                  </Button>
-                ),
-                description: product.name ? (
-                  <a href="javascript:;">{product.name}</a>
-                ) : (
-                  "暂未选择"
-                ),
-              },
-              {
-                status: "process",
-                title: (
-                  <Button
-                    onClick={() =>
-                      AgentStore.get("XSea_执行压测").SendMessage(
-                        "列出全部脚本",
-                      )
-                    }
-                  >
-                    选择脚本
-                  </Button>
-                ),
-                description: (
-                  <ul className={styles.ul}>
-                    {scripts.map((script) => (
-                      <li key={script.id}>
-                        <a href="javascript:;">{script.name}</a>
-                      </li>
-                    ))}
-                  </ul>
-                ),
-              },
-              ...(product.id && scripts.length > 0
-                ? [
-                    {
-                      status: "process" as any,
-                      title: (
-                        <Button
-                          type="primary"
-                          onClick={() =>
-                            AgentStore.get("XSea_执行压测").SendMessage(
-                              "执行压测",
-                            )
-                          }
-                        >
-                          快速压测
-                        </Button>
-                      ),
-                      description: <span>点我就可以开始压测了哦 ⚡</span>,
-                    },
-                  ]
-                : []),
-            ]}
-          />
-        </div>
+        <>
+          <div>
+            <Steps
+              progressDot
+              direction="vertical"
+              items={[
+                {
+                  status: "process",
+                  title: (
+                    <Button
+                      onClick={() =>
+                        AgentStore.get("XSea_执行压测").SendMessage(
+                          "列出全部产品",
+                        )
+                      }
+                    >
+                      选择产品
+                    </Button>
+                  ),
+                  description: product.name ? (
+                    <a href="javascript:;">{product.name}</a>
+                  ) : (
+                    "暂未选择"
+                  ),
+                },
+                {
+                  status: "process",
+                  title: (
+                    <Button
+                      onClick={() =>
+                        AgentStore.get("XSea_执行压测").SendMessage(
+                          "列出全部脚本",
+                        )
+                      }
+                    >
+                      选择脚本
+                    </Button>
+                  ),
+                  description: (
+                    <ul className={styles.ul}>
+                      {scripts.map((script) => (
+                        <li key={script.id}>
+                          <a href="javascript:;">{script.name}</a>
+                        </li>
+                      ))}
+                    </ul>
+                  ),
+                },
+                ...(product.id && scripts.length > 0
+                  ? [
+                      {
+                        status: "process" as any,
+                        title: (
+                          <Button
+                            type="primary"
+                            onClick={() =>
+                              AgentStore.get("XSea_执行压测").SendMessage(
+                                "执行压测",
+                              )
+                            }
+                          >
+                            快速压测
+                          </Button>
+                        ),
+                        description: <span>点我就可以开始压测了哦 ⚡</span>,
+                      },
+                    ]
+                  : []),
+              ]}
+            />
+          </div>
+          <div className={styles.his_test}>
+            <b>历史压测</b>
+            <ul className={styles.test_list}>
+              <li>1. 某某压测</li>
+              <li>2. 某某压测</li>
+              <li>3. 某某压测</li>
+            </ul>
+          </div>
+        </>
       )}
     </div>
   );
