@@ -86,7 +86,12 @@ export default class Agent {
     const lastMessageRole = sendMessages[sendMessages.length - 1]?.role;
     const trigger = lastMessageRole && lastMessageRole !== "assistant";
     if (switcher.agentName) {
-      await nextAgent.Create(sendMessages, trigger);
+      if (switcher.agentName === "XSea_知识库") {
+        await nextAgent.Create([], false);
+        nextAgent.SendMessage(userMessage?.content as string);
+      } else {
+        await nextAgent.Create(sendMessages, trigger);
+      }
     } else {
       if (trigger && sendMessages.length === 0) {
         await this.chatStore.AppendEmptyMessage();
