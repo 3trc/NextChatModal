@@ -13,7 +13,7 @@ export async function POST(request: NextRequest) {
       {
         headers: {
           cookie:
-            "sys_token=cb1d35c85f9b4f47acf46785051ec2dd; sys_env_id=977046101482688512; sys_env_code=AI_DEMO",
+            "sys_token=5d1cc39eada249da830c12c5e3f11978; sys_env_id=977046101482688512; sys_env_code=AI_DEMO",
           ["Content-Type"]: "application/json",
         },
       },
