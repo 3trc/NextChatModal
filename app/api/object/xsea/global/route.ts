@@ -3,6 +3,8 @@ import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(request: NextRequest) {
   try {
+    const searchParams = request.nextUrl.searchParams;
+    const query = searchParams.get("query") ?? "";
     const [scriptRes, goalRes] = await Promise.all([
       http.post(`http://10.10.30.103:8081/api/xsea/script/queryScriptRel`),
       http.post(`http://10.10.30.103:8081/api/xsea/plan/goal/queryGoalRel`),
@@ -18,12 +20,18 @@ export async function GET(request: NextRequest) {
       ...item,
     }));
 
-    return NextResponse.json(scriptList.concat(goalList), {
-      status: 200,
-      headers: {
-        "Content-Type": "application/json",
+    return NextResponse.json(
+      {
+        query,
+        list: scriptList.concat(goalList),
       },
-    });
+      {
+        status: 200,
+        headers: {
+          "Content-Type": "application/json",
+        },
+      },
+    );
   } catch (error) {
     return NextResponse.json(
       {
