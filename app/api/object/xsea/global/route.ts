@@ -8,7 +8,11 @@ export async function GET(request: NextRequest) {
     const query = searchParams.get("query") ?? "";
     const words = nodejieba
       .extract(query, 5)
-      .filter((word) => word.weight >= 8);
+      .filter((word) => word.weight >= 8)
+      .filter(
+        (word) =>
+          !["产品", "脚本", "计划", "目标", "压测", "执行"].includes(word.word),
+      );
     const [scriptRes, goalRes] = await Promise.all([
       http.post(`http://10.10.30.103:8081/api/xsea/script/queryScriptRel`),
       http.post(`http://10.10.30.103:8081/api/xsea/plan/goal/queryGoalRel`),
