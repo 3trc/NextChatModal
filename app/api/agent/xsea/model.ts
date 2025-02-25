@@ -1,5 +1,6 @@
 import { ChatOllama } from "@langchain/ollama";
 import { createOpenRouter } from "@openrouter/ai-sdk-provider";
+import { CoreMessage, generateText } from "ai";
 
 const openrouter = createOpenRouter({
   apiKey: process.env.OPENAI_API_KEY,
@@ -7,16 +8,10 @@ const openrouter = createOpenRouter({
 
 const openrouterModel = openrouter("qwen/qwen-2-72b-instruct");
 
-export const openrouterGenerate = async (
-  prompts: {
-    role: "system" | "assistant" | "user" | "tools";
-    content: string;
-  }[],
-) => {
-  return await openrouterModel.doGenerate({
-    mode: { type: "regular" },
-    inputFormat: "prompt",
-    prompt: prompts as any[],
+export const openrouterGenerate = async (messages: CoreMessage[]) => {
+  return await generateText({
+    model: openrouterModel,
+    messages: messages,
   });
 };
 

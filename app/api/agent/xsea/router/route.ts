@@ -1,17 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
-import model, { openrouterGenerate } from "../model";
+import model from "../model";
 
 export async function POST(request: NextRequest) {
-  (async () => {
-    console.log(5678);
-    const a = await openrouterGenerate([
-      {
-        role: "user",
-        content: "你好",
-      },
-    ]);
-    console.log(1234, a);
-  })();
   const actions = [
     "肯定",
     "否定",
