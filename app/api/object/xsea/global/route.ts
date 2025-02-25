@@ -54,14 +54,11 @@ export async function GET(request: NextRequest) {
       ...item,
     }));
     const allList = [...scriptList, ...goalList].map((item) => {
-      const allValueText = Object.values({
-        ...item,
-        type: null,
-      })
-        .map((value) =>
-          value == null ? "" : value.toString().trim().toLowerCase(),
-        )
-        .filter((value) => value)
+      const allValueText = Object.keys(item)
+        .filter((key) => key.toLowerCase().includes("name"))
+        .map((key) => item[key])
+        .filter((value) => value != null)
+        .map((value) => value.toString().trim().toLowerCase())
         .join(",");
       const score = words.filter((word) => allValueText.includes(word)).length;
       return { ...item, score };
