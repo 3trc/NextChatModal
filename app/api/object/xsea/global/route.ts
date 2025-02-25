@@ -38,7 +38,7 @@ export async function GET(request: NextRequest) {
             "uz", // 状态词尾
           ].includes(tag.tag),
       )
-      .map((tag) => tag.word);
+      .map((tag) => tag.word.toLowerCase());
     const [scriptRes, goalRes] = await Promise.all([
       http.post(`http://10.10.30.103:8081/api/xsea/script/queryScriptRel`),
       http.post(`http://10.10.30.103:8081/api/xsea/plan/goal/queryGoalRel`),
@@ -53,13 +53,27 @@ export async function GET(request: NextRequest) {
       type: "GOAL",
       ...item,
     }));
+    const allList = [...scriptList, ...goalList].map((item) => {
+      const allValueText = Object.values({
+        ...item,
+        type: null,
+      })
+        .map((value) =>
+          value == null ? "" : value.toString().trim().toLowerCase(),
+        )
+        .filter((value) => value)
+        .join(",");
+      const score = words.filter((word) => allValueText.includes(word)).length;
+      return { ...item, score };
+    });
+    allList.sort((a, b) => b.score - a.score);
 
     return NextResponse.json(
       {
         query,
         tokens,
         words,
-        list: scriptList.concat(goalList),
+        list: allList,
       },
       {
         status: 200,
