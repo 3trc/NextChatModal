@@ -45,6 +45,9 @@ export const NameMap: XSeaObjectTypeMap<string> = {
 
 const XSeaA = (props: { data: XSeaObject }) => {
   const { data } = props;
+
+  const envId = "822313712173449216";
+
   const name = useMemo(() => {
     const nameMap: XSeaObjectTypeMap<string | undefined> = {
       PRODUCT: data.productName,
@@ -57,7 +60,20 @@ const XSeaA = (props: { data: XSeaObject }) => {
     };
     return nameMap[data.type];
   }, [data]);
-  return <a>{name ?? `未知${NameMap[data.type] ?? ""}`}</a>;
+
+  const href = useMemo(() => {
+    const hrefMap: XSeaObjectTypeMap<string> = {
+      PRODUCT: `/${envId}/product/business/${data.productId}/overview?tab=0`,
+      SCRIPT: `/${envId}/product/business/${data.productId}/script?scriptId=${data.scriptId}`,
+      PLAN: `/${envId}/product/business/${data.productId}/plan/detail?id=${data.planId}`,
+      GOAL: `/${envId}/product/business/${data.productId}/plan/target?id=${data.planId}&goalId=${data.goalId}`,
+      RECORD: `/${envId}/product/business/${data.productId}/plan/targetExecuteDetail?id=${data.goalId}`,
+      REPORT: "",
+      SCHEDULE: "",
+    };
+    return hrefMap[data.type];
+  }, [data]);
+  return <a href={href}>{name ?? `未知${NameMap[data.type] ?? ""}`}</a>;
 };
 
 export default XSeaA;
