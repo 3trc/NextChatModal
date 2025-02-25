@@ -5,7 +5,8 @@ import nodejieba from "nodejieba";
 export async function GET(request: NextRequest) {
   try {
     const searchParams = request.nextUrl.searchParams;
-    const query = searchParams.get("query") ?? "";
+    const query = searchParams.get("query") || "";
+    const limit = Number(searchParams.get("limit") || "10");
     const words = nodejieba
       .extract(query, 5)
       .filter((word) => word.weight >= 8)
@@ -43,11 +44,12 @@ export async function GET(request: NextRequest) {
       })
       .filter((item) => item.score > 0);
     allList.sort((a, b) => b.score - a.score);
+    allList.splice(limit, Infinity);
 
     return NextResponse.json(
       {
         query,
-        words,
+        // words,
         list: allList,
       },
       {
