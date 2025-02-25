@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "./index.module.scss";
 import { useChatStore } from "@/app/store";
+import { AgentStore } from "@/app/agent/store";
 
 const Welcome = () => {
   const chatStore = useChatStore();
@@ -14,22 +15,46 @@ const Welcome = () => {
         <div className={styles.summary}>
           <b>试着说</b> 😊
           <ul className={styles.try_to_say}>
-            <li>
+            <li
+              onClick={() => {
+                AgentStore.get(
+                  chatStore.currentSession().mask.name,
+                ).SendMessage("开始压测东航下航班相关的脚本");
+              }}
+            >
               <span>帮我压测 xxx 下的 xxx 脚本</span>
             </li>
             <li>
               <span>帮我分析 xxx 报告</span>
             </li>
-            <li>
+            <li
+              onClick={() => {
+                AgentStore.get(
+                  chatStore.currentSession().mask.name,
+                ).SendMessage("请开始压测");
+              }}
+            >
               <span>现在就开始压测吧！</span>
             </li>
-            <li>
+            <li
+              onClick={() => {
+                AgentStore.get(
+                  chatStore.currentSession().mask.name,
+                ).SendMessage("帮我创建一个JMeter脚本");
+              }}
+            >
               <span>帮我编写一个JMeter脚本吧</span>
             </li>
             <li>
               <span>帮我解释 xxx 脚本是做什么的</span>
             </li>
-            <li>
+            <li
+              onClick={() => {
+                AgentStore.get(
+                  chatStore.currentSession().mask.name,
+                ).SendMessage("怎么样安装探针");
+              }}
+            >
               <span>怎么样安装探针</span>
             </li>
           </ul>
