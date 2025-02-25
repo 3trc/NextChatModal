@@ -15,7 +15,7 @@ export async function GET(request: NextRequest) {
             "f", // 方位词
             // "x", // 标点符号
             "r", // 代词
-            "v", // 动词
+            // "v", // 动词
             "o", // 拟声词
             "y", // 语气词
             "c", // 连词
