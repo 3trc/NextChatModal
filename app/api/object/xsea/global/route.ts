@@ -69,6 +69,10 @@ export async function GET(request: NextRequest) {
     });
     allList.sort((a, b) => b.score - a.score);
 
+    if (!allList[0]?.score) {
+      allList.splice(0, allList.length);
+    }
+
     return NextResponse.json(
       {
         query,
