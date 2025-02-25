@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import model from "../model";
+import { openrouterGenerate } from "../model";
 
 export async function POST(request: NextRequest) {
   const actions = [
@@ -19,7 +19,7 @@ export async function POST(request: NextRequest) {
     const json = await request.json();
     // json.question = "";
     const jsonText = JSON.stringify(json, null, 2);
-    const result = await model.invoke([
+    const result = await openrouterGenerate([
       {
         role: "system",
         content: `
@@ -130,13 +130,13 @@ export async function POST(request: NextRequest) {
       },
       { role: "user", content: jsonText },
     ]);
-    const response = result.content as string;
+    const response = result.text as string;
     let actionIndex = actions.length;
     let entityIndex = entities.length;
     try {
       [actionIndex, entityIndex] = JSON.parse(response);
     } catch (error) {
-      console.log(error, result.content);
+      console.log(error, result.text);
       actionIndex =
         actions.findIndex((action) => response.includes(`[${action}`)) + 1;
       entityIndex =
