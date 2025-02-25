@@ -1,4 +1,11 @@
 import { ChatOllama } from "@langchain/ollama";
+import { createOpenAICompatible } from "@ai-sdk/openai-compatible";
+
+const provider = createOpenAICompatible({
+  name: "provider-name",
+  apiKey: process.env.PROVIDER_API_KEY,
+  baseURL: "https://api.provider.com/v1",
+});
 
 const model = new ChatOllama({
   baseUrl: "http://111.9.7.102:31131",
