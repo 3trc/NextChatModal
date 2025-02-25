@@ -31,12 +31,12 @@ export async function GET(request: NextRequest) {
           .filter((value) => value != null)
           .map((value) => value.toString().trim().toLowerCase())
           .join(",");
-        const score = words.filter((word) =>
-          allValueText.includes(word.word),
-        ).length;
+        const score =
+          words.filter((word) => allValueText.includes(word.word)).length +
+          1 / allValueText.length;
         return { ...item, score };
       })
-      .filter((item) => item.score > 0);
+      .filter((item) => item.score > 1);
     allList.sort((a, b) => b.score - a.score);
 
     return NextResponse.json(
