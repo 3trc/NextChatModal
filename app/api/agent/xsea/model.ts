@@ -5,18 +5,20 @@ const openrouter = createOpenRouter({
   apiKey: process.env.OPENAI_API_KEY,
 });
 
-const m = openrouter("qwen/qwen-2-72b-instruct");
+const openrouterModel = openrouter("qwen/qwen-2-72b-instruct");
 
-const a = await m.doGenerate({
-  mode: { type: "regular" },
-  inputFormat: "prompt",
-  prompt: [
-    {
-      role: "system",
-      content: "你好",
-    },
-  ],
-});
+export const openrouterGenerate = async (
+  prompts: {
+    role: "system" | "assistant" | "user" | "tools";
+    content: string;
+  }[],
+) => {
+  return await openrouterModel.doGenerate({
+    mode: { type: "regular" },
+    inputFormat: "prompt",
+    prompt: prompts as any[],
+  });
+};
 
 const model = new ChatOllama({
   baseUrl: "http://111.9.7.102:31131",
