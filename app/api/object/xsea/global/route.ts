@@ -13,7 +13,7 @@ export async function GET(request: NextRequest) {
           ![
             "uj", // 助词
             "f", // 方位词
-            "x", // 标点符号
+            // "x", // 标点符号
             "r", // 代词
             "v", // 动词
             "o", // 拟声词
@@ -38,7 +38,11 @@ export async function GET(request: NextRequest) {
             "uz", // 状态词尾
           ].includes(tag.tag),
       )
-      .map((tag) => tag.word.toLowerCase());
+      .map((tag) => tag.word.toLowerCase())
+      .filter(
+        (word) =>
+          !["产品", "脚本", "计划", "目标", "压测", "执行"].includes(word),
+      );
     const [scriptRes, goalRes] = await Promise.all([
       http.post(`http://10.10.30.103:8081/api/xsea/script/queryScriptRel`),
       http.post(`http://10.10.30.103:8081/api/xsea/plan/goal/queryGoalRel`),
