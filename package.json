@@ -22,6 +22,7 @@
     "test:ci": "jest --ci"
   },
   "dependencies": {
+    "@ai-sdk/openai-compatible": "^0.1.12",
     "@fortaine/fetch-event-source": "^3.0.6",
     "@hello-pangea/dnd": "^16.5.0",
     "@langchain/core": "^0.3.39",
