@@ -466,11 +466,11 @@ export const VISION_MODEL_REGEXES = [
 export const EXCLUDE_VISION_MODEL_REGEXES = [/claude-3-5-haiku-20241022/];
 
 export const CUSTOM_MODEL_LIST = [
-  "perfma-gpt-14b:latest",
+  "qwen/qwen-2-72b-instruct",
   "MFDoom/deepseek-r1-tool-calling:14b-qwen-distill-q4_K_M",
   "mistral-small:24b-instruct-2501-q4_K_M",
-  "anthropic/claude-3.5-sonnet",
-  "anthropic/claude-3.5-sonnet:beta",
+  "qwen/qwen-2-72b-instruct",
+  "qwen/qwen-2-72b-instruct:beta",
   "openai/gpt-4o-2024-08-06",
   "openai/gpt-4o-2024-11-20",
   "google/gemini-flash-1.5",
@@ -487,7 +487,7 @@ export const CUSTOM_MODEL_LIST = [
 
 export const PRIVATE_MODEL_LIST = [
   "mistral-small:24b-instruct-2501-q4_K_M",
-  "perfma-gpt-14b:latest",
+  "qwen/qwen-2-72b-instruct",
   "deepseek-r1:14b",
   "deepseek-r1:32b",
 ];
