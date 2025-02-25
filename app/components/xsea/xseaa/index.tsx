@@ -33,6 +33,16 @@ export const EmojiMap: XSeaObjectTypeMap<string> = {
   SCHEDULE: "⏰",
 };
 
+export const NameMap: XSeaObjectTypeMap<string> = {
+  PRODUCT: "产品",
+  SCRIPT: "脚本",
+  PLAN: "计划",
+  GOAL: "目标",
+  RECORD: "记录",
+  REPORT: "报告",
+  SCHEDULE: "定时任务",
+};
+
 const XSeaA = (props: { data: XSeaObject }) => {
   const { data } = props;
   const name = useMemo(() => {
@@ -47,7 +57,7 @@ const XSeaA = (props: { data: XSeaObject }) => {
     };
     return nameMap[data.type];
   }, [data]);
-  return <a>{}</a>;
+  return <a>{name ?? `未知${NameMap[data.type] ?? ""}`}</a>;
 };
 
 export default XSeaA;
