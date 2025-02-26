@@ -146,7 +146,7 @@ export default class Agent {
 
       const switcher = await this.onBeforeSendMessage(message);
 
-      if (message.toLowerCase().includes("下")) {
+      if (message.toLowerCase().includes("下的")) {
         let flag = false;
         if (message.includes("东")) {
           if (message.includes("登录")) {
@@ -205,7 +205,6 @@ export default class Agent {
               resolve();
             }, 1000);
           });
-
           this.chatStore.AppendRoleMessageList(
             [
               {
@@ -220,8 +219,8 @@ export default class Agent {
             ],
             false,
           );
+          return this;
         }
-        return this;
       }
 
       if (switcher) {
