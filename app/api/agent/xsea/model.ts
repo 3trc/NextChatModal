@@ -6,7 +6,7 @@ const openrouter = createOpenRouter({
   apiKey: process.env.OPENAI_API_KEY,
 });
 
-const openrouterModel = openrouter("qwen/qwen-2-72b-instruct");
+const openrouterModel = openrouter("microsoft/phi-4");
 
 export const openrouterGenerate = async (messages: CoreMessage[]) => {
   return await generateText({
