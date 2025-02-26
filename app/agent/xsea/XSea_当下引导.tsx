@@ -14,7 +14,9 @@ class _Agent extends Agent {
           {
             id: "",
             role: "system",
-            content: ``.trim(),
+            content: `
+之后用户会发送给你XSea性能测试平台上页面的文本，你需要深入思考后理解当前用户页面上的信息和可选的操作，精准总结当前页面上的信息内容，告诉用户可以进行哪些操作。
+            `.trim(),
             date: "",
           },
         ],
