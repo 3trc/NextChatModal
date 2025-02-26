@@ -146,21 +146,37 @@ export default class Agent {
 
       const switcher = await this.onBeforeSendMessage(message);
 
-      if (message.toLowerCase().includes("下的")) {
+      if (message.toLowerCase().includes("下")) {
         if (message.includes("东")) {
-          SessionJSON.selected_product = {
-            id: "849903850940473344",
-            name: "东航-探针采集数据场景验证",
-            url: "/822313712173449216/product/business/849903850940473344/overview?tab=0",
-          };
-          SessionJSON.selected_scripts = [
-            {
-              id: "724647819989913600",
-              name: "获取航班信息",
-              type: "JMETER",
-              url: "/822313712173449216/product/business/849903850940473344/script?scriptId=724647819989913600",
-            },
-          ];
+          if (message.includes("登录")) {
+            SessionJSON.selected_product = {
+              id: "849903850940473344",
+              name: "东航-探针采集数据场景验证",
+              url: "/822313712173449216/product/business/849903850940473344/overview?tab=0",
+            };
+            SessionJSON.selected_scripts = [
+              {
+                id: "841406834943479808",
+                name: "登录接口压测",
+                type: "JMETER",
+                url: "/822313712173449216/product/business/849903850940473344/script?scriptId=841406834943479808",
+              },
+            ];
+          } else {
+            SessionJSON.selected_product = {
+              id: "849903850940473344",
+              name: "东航-探针采集数据场景验证",
+              url: "/822313712173449216/product/business/849903850940473344/overview?tab=0",
+            };
+            SessionJSON.selected_scripts = [
+              {
+                id: "724647819989913600",
+                name: "获取航班信息",
+                type: "JMETER",
+                url: "/822313712173449216/product/business/849903850940473344/script?scriptId=724647819989913600",
+              },
+            ];
+          }
         }
         if (message.includes("移")) {
           SessionJSON.selected_product = {
