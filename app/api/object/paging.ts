@@ -31,11 +31,11 @@ export function pagingFactory(
         status: 200,
         headers: { "Content-Type": "application/json" },
       });
-    } catch (error) {
+    } catch (error: any) {
       return NextResponse.json(
         {
           code: 500,
-          message: "Internal Server Error",
+          message: error.message ?? "Internal Server Error",
         },
         { status: 500 },
       );
