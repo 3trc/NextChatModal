@@ -7,7 +7,7 @@ export async function GET(request: NextRequest) {
     const searchParams = request.nextUrl.searchParams;
     const query = searchParams.get("query") || "";
     const limit = Number(searchParams.get("limit") || "10");
-    const showWords = searchParams.get("words") || "";
+    const showWords = !!searchParams.get("words");
     const words = nodejieba
       .extract(query, 5)
       .filter((word) => word.weight >= 8)
