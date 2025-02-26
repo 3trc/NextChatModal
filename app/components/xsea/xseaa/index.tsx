@@ -1,4 +1,5 @@
 import React, { useMemo } from "react";
+import styles from "./index.module.scss";
 
 export interface XSeaObject {
   type:
@@ -43,8 +44,8 @@ export const NameMap: XSeaObjectTypeMap<string> = {
   SCHEDULE: "定时任务",
 };
 
-const XSeaA = (props: { data: XSeaObject }) => {
-  const { data } = props;
+const XSeaA = (props: { data: XSeaObject; emoji?: boolean }) => {
+  const { data, emoji } = props;
 
   const envId = "822313712173449216";
 
@@ -73,7 +74,14 @@ const XSeaA = (props: { data: XSeaObject }) => {
     };
     return hrefMap[data.type];
   }, [data]);
-  return <a href={href}>{name ?? `未知${NameMap[data.type] ?? ""}`}</a>;
+  return (
+    <a className={styles.com} target="_blank" href={href}>
+      {emoji && <span className={styles.emoji}>{EmojiMap[data.type]}</span>}
+      <span className={styles.name}>
+        {name ?? `未知${NameMap[data.type] ?? ""}`}
+      </span>
+    </a>
+  );
 };
 
 export default XSeaA;

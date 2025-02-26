@@ -2,6 +2,7 @@ import React from "react";
 import styles from "./index.module.scss";
 import { useChatStore } from "@/app/store";
 import { AgentStore } from "@/app/agent/store";
+import XSeaA from "../xseaa";
 
 const Welcome = () => {
   const chatStore = useChatStore();
@@ -12,6 +13,16 @@ const Welcome = () => {
         🦄 嗨，很高兴见到你，我是 <b>XSea智能体</b>，我可以帮助你解决各种问题
       </div>
       <div className={styles.buttons}>
+        <XSeaA
+          data={{
+            type: "SCRIPT",
+            scriptId: "1",
+            scriptName: "测试联想脚本",
+            productId: "2",
+            productName: "22",
+          }}
+          emoji
+        />
         <div className={styles.summary}>
           <b>试着说</b> 😊
           <ul className={styles.try_to_say}>
