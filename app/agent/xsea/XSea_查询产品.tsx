@@ -71,6 +71,9 @@ class _Agent extends Agent {
         脚本: "XSea_创建脚本",
         压测: "XSea_执行压测",
       },
+      修改: {
+        脚本: "XSea_创建脚本",
+      },
       执行: {
         压测: "XSea_执行压测",
       },
