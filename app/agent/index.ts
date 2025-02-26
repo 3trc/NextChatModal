@@ -147,6 +147,7 @@ export default class Agent {
       const switcher = await this.onBeforeSendMessage(message);
 
       if (message.toLowerCase().includes("下")) {
+        let flag = false;
         if (message.includes("东")) {
           if (message.includes("登录")) {
             SessionJSON.selected_product = {
@@ -162,6 +163,7 @@ export default class Agent {
                 url: "/822313712173449216/product/business/849903850940473344/script?scriptId=841406834943479808",
               },
             ];
+            flag = true;
           } else {
             SessionJSON.selected_product = {
               id: "849903850940473344",
@@ -176,6 +178,7 @@ export default class Agent {
                 url: "/822313712173449216/product/business/849903850940473344/script?scriptId=724647819989913600",
               },
             ];
+            flag = true;
           }
         }
         if (message.includes("移")) {
@@ -192,29 +195,32 @@ export default class Agent {
               url: "/822313712173449216/product/business/905025758354444288/script?scriptId=783639651470839810",
             },
           ];
+          flag = true;
         }
 
-        // 临时加上Loading
-        await new Promise<void>((resolve) => {
-          setTimeout(() => {
-            resolve();
-          }, 1000);
-        });
+        if (flag) {
+          // 临时加上Loading
+          await new Promise<void>((resolve) => {
+            setTimeout(() => {
+              resolve();
+            }, 1000);
+          });
 
-        this.chatStore.AppendRoleMessageList(
-          [
-            {
-              role: "user",
-              content: message,
-            },
-            {
-              role: "assistant",
-              content: "",
-              component: "@ui-ScriptSelectorBye",
-            },
-          ],
-          false,
-        );
+          this.chatStore.AppendRoleMessageList(
+            [
+              {
+                role: "user",
+                content: message,
+              },
+              {
+                role: "assistant",
+                content: "",
+                component: "@ui-ScriptSelectorBye",
+              },
+            ],
+            false,
+          );
+        }
         return this;
       }
 
