@@ -168,11 +168,11 @@ const ProductSelector = (props: { search: string }) => {
                   });
                 } else if (SessionJSON.background === "XSea_创建脚本") {
                   AgentStore.get("XSea_查询产品").SwitchAgent({
-                    agentName: "XSea_查询脚本",
+                    agentName: "XSea_创建脚本",
                     bridgeMessages: [
                       {
                         role: "system",
-                        content: "列出脚本",
+                        content: "请帮我创建一个脚本",
                       },
                     ],
                   });
