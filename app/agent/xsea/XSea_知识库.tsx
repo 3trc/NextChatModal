@@ -13,7 +13,7 @@ class _Agent extends Agent {
         name: "XSea_知识库",
         context: [],
         modelConfig: {
-          model: "perfma-gpt-14b:latest",
+          model: "microsoft/phi-4",
           max_tokens: 16384,
           topK: 1,
           top_p: 0.5,

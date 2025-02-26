@@ -64,7 +64,7 @@ export const DEFAULT_CONFIG = {
   models: DEFAULT_MODELS as any as LLMModel[],
 
   modelConfig: {
-    model: "perfma-gpt-14b:latest" as ModelType,
+    model: "microsoft/phi-4" as ModelType,
     providerName: "OpenAI" as ServiceProvider,
     temperature: undefined as unknown as number,
     top_p: undefined as unknown as number,

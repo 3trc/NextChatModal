@@ -466,7 +466,7 @@ export const VISION_MODEL_REGEXES = [
 export const EXCLUDE_VISION_MODEL_REGEXES = [/claude-3-5-haiku-20241022/];
 
 export const CUSTOM_MODEL_LIST = [
-  "perfma-gpt-14b:latest",
+  "microsoft/phi-4",
   "MFDoom/deepseek-r1-tool-calling:14b-qwen-distill-q4_K_M",
   "mistral-small:24b-instruct-2501-q4_K_M",
   "anthropic/claude-3.5-sonnet",
@@ -487,7 +487,7 @@ export const CUSTOM_MODEL_LIST = [
 
 export const PRIVATE_MODEL_LIST = [
   "mistral-small:24b-instruct-2501-q4_K_M",
-  "perfma-gpt-14b:latest",
+  "microsoft/phi-4",
   "deepseek-r1:14b",
   "deepseek-r1:32b",
 ];

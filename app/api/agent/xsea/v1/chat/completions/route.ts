@@ -24,7 +24,7 @@ export async function POST(request: NextRequest, { params }: { params: any }) {
           id: chatId,
           object: "chat.completion.chunk",
           created: created,
-          model: "perfma-gpt-14b:latest",
+          model: "microsoft/phi-4",
           system_fingerprint: "fp_ollama",
           choices: [
             {
@@ -49,7 +49,7 @@ export async function POST(request: NextRequest, { params }: { params: any }) {
         id: chatId,
         object: "chat.completion.chunk",
         created: created,
-        model: "perfma-gpt-14b:latest",
+        model: "microsoft/phi-4",
         system_fingerprint: "fp_ollama",
         choices: [
           {

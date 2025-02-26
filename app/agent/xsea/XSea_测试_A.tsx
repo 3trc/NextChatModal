@@ -19,7 +19,7 @@ class _Agent extends Agent {
           },
         ],
         modelConfig: {
-          model: "perfma-gpt-14b:latest",
+          model: "microsoft/phi-4",
           max_tokens: 16384,
           topK: 1,
           top_p: 0.5,
