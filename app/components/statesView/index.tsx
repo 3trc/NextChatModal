@@ -107,6 +107,44 @@ const StatesView = () => {
                     </ul>
                   ),
                 },
+                {
+                  status: "process",
+                  title: (
+                    <Button
+                      onClick={() =>
+                        AgentStore.get("XSea_执行压测").SendMessage(
+                          "列出全部产品",
+                        )
+                      }
+                    >
+                      选择计划
+                    </Button>
+                  ),
+                  description: product.name ? (
+                    <a href="javascript:;">{product.name}</a>
+                  ) : (
+                    "暂未选择"
+                  ),
+                },
+                {
+                  status: "process",
+                  title: (
+                    <Button
+                      onClick={() =>
+                        AgentStore.get("XSea_执行压测").SendMessage(
+                          "列出全部产品",
+                        )
+                      }
+                    >
+                      选择目标
+                    </Button>
+                  ),
+                  description: product.name ? (
+                    <a href="javascript:;">{product.name}</a>
+                  ) : (
+                    "暂未选择"
+                  ),
+                },
                 ...(product.id && scripts.length > 0
                   ? [
                       {
