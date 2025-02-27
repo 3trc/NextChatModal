@@ -2,9 +2,11 @@ import http from "@/app/api/simplifier/http";
 import { NextRequest, NextResponse } from "next/server";
 import nodejieba from "nodejieba";
 
-export const querySearch = async (query: string, limit = 50) => {
-  query = query.toLowerCase();
-  const words = nodejieba.extract(query, 10);
+export const querySearch = async (querys: string[], limit = 50) => {
+  querys = querys
+    .map((query) => query.toLowerCase().trim())
+    .filter((query) => query);
+  const words = nodejieba.extract(querys.join("|"), 12);
   const [scriptRes, goalRes] = await Promise.all([
     http.post(`http://10.10.30.103:8081/api/xsea/script/queryScriptRel`),
     http.post(`http://10.10.30.103:8081/api/xsea/plan/goal/queryGoalRel`),
@@ -29,17 +31,17 @@ export const querySearch = async (query: string, limit = 50) => {
         .map((value) => value.toString().trim().toLowerCase())
         .join(",");
       let score = 0;
-      words.forEach((word) => {
-        if (allValueText.includes(word.word)) {
-          score += word.weight;
+      querys.forEach((query, index) => {
+        const attention = (index + 1) * 2;
+        words.forEach((word) => {
+          if (allValueText.includes(word.word)) {
+            score += word.weight;
+          }
+        });
+        if (allValueText.includes(query)) {
+          score *= 1.2;
         }
-        // score += (allValueText.split(word.word).length - 1) * word.weight;
-      });
-      query.split("|").forEach((querySeg) => {
-        const seg = querySeg.trim();
-        if (seg && allValueText.includes(seg)) {
-          score *= 1.1;
-        }
+        score *= attention;
       });
       return { ...item, score };
     })
@@ -63,7 +65,7 @@ export async function GET(request: NextRequest) {
     const query = searchParams.get("query") || "";
     const limit = Number(searchParams.get("limit") || "10");
     const showWords = !!searchParams.get("words");
-    const { list, words } = await querySearch(query, limit);
+    const { list, words } = await querySearch(query.split("|"), limit);
     return NextResponse.json(
       {
         query,
