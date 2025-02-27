@@ -19,6 +19,13 @@ const Targets = () => {
       {list.length > 0 && (
         <div className={styles.table}>
           <Table
+            rowKey={(row) => {
+              if (row.type === "PRODUCT") return row.productId;
+              if (row.type === "SCRIPT") return row.scriptId ?? "";
+              if (row.type === "PLAN") return row.planId ?? "";
+              if (row.type === "GOAL") return row.goalId ?? "";
+              return "";
+            }}
             size="small"
             showHeader={false}
             columns={[
