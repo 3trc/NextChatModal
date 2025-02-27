@@ -131,8 +131,8 @@ const StatesView = () => {
                   title: (
                     <Button
                       onClick={() =>
-                        AgentStore.get("XSea_执行压测").SendMessage(
-                          "列出全部产品",
+                        AgentStore.get("XSea_智能体").SendMessage(
+                          "列出全部目标",
                         )
                       }
                     >
