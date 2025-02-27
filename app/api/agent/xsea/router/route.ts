@@ -19,7 +19,7 @@ export async function POST(request: NextRequest) {
   const entities = ["产品", "脚本", "计划", "压测", "记录", "概念", "其他"];
   try {
     const json = await request.json();
-    // json.question = "";
+    json.question = undefined;
     const jsonText = JSON.stringify(json, null, 2);
     const [result, objects] = await Promise.all([
       openrouterGenerate([
@@ -29,12 +29,10 @@ export async function POST(request: NextRequest) {
 你是一个精确的意图分类器，用户会向你发送如下格式的JSON：
 {
   "scene": "xxx",
-  "question": "xxx",
   "answer": "xxx"
 }
 
 - scene: 代表当前已存在的对话场景
-- question: 代表对话中助手的问题
 - answer: 代表对话中用户的回答
 
 你需要从以下两个维度把用户回答的意图分类到对应编号：
