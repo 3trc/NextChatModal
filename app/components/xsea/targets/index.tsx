@@ -16,12 +16,7 @@ const Targets = () => {
       {list.length === 0 && (
         <div>好像没找到相关内容呢，尝试描述清楚一些？😊</div>
       )}
-      {list.length === 1 && (
-        <div>
-          <XSeaA data={list[0]} emoji />
-        </div>
-      )}
-      {list.length > 1 && (
+      {list.length > 0 && (
         <div className={styles.table}>
           <Table
             size="small"
@@ -34,10 +29,14 @@ const Targets = () => {
                 },
               },
             ]}
-            pagination={{
-              pageSize: 5,
-              showSizeChanger: false,
-            }}
+            pagination={
+              list.length <= 5
+                ? false
+                : {
+                    pageSize: 5,
+                    showSizeChanger: false,
+                  }
+            }
           />
         </div>
       )}
