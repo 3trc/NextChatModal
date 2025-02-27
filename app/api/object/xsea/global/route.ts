@@ -2,7 +2,7 @@ import http from "@/app/api/simplifier/http";
 import { NextRequest, NextResponse } from "next/server";
 import nodejieba from "nodejieba";
 
-const querySearch = async (query: string, limit = 10) => {
+export const querySearch = async (query: string, limit = 1000) => {
   const words = nodejieba
     .extract(query, 5)
     .filter((word) => word.weight >= 8)

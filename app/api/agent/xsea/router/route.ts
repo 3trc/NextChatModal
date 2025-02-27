@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { openrouterGenerate } from "../model";
+import { querySearch } from "@/app/api/object/xsea/global/route";
 
 export async function POST(request: NextRequest) {
   const actions = [
@@ -99,6 +100,7 @@ export async function POST(request: NextRequest) {
       },
       { role: "user", content: jsonText },
     ]);
+    const objects = await querySearch(json.question);
     const response = result.text as string;
     let actionIndex = actions.length;
     let entityIndex = entities.length;
@@ -120,6 +122,7 @@ export async function POST(request: NextRequest) {
         intention: action + entity,
         request: json,
         response,
+        objects,
       },
       {
         status: 200,
