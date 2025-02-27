@@ -31,7 +31,7 @@ export async function POST(request: NextRequest) {
 - question: 代表对话中助手的问题
 - answer: 代表对话中用户的回答
 
-你需要从以下两个维度把【answer】的意图分类到对应编号
+你需要从以下两个维度把对话的意图分类到对应编号
 
 【行为】有如下分类编号
 1. 肯定
@@ -107,8 +107,6 @@ export async function POST(request: NextRequest) {
 注意事项
 - 退出的优先级最高
 - 否定|肯定的优先级低于其他行为
-- 如果对话中有多个意图，以最后一个意图为准
-- 如果【question】意图与【answer】意图不一致，以【answer】意图为准
 
 输出检查
 - 确保回答内容在8个字符以内
