@@ -1,3 +1,10 @@
 .com {
   font-size: 14px;
+  .table {
+    :global {
+      .ant-pagination {
+        margin-bottom: 0px;
+      }
+    }
+  }
 }

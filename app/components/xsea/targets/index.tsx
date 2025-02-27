@@ -22,18 +22,24 @@ const Targets = () => {
         </div>
       )}
       {list.length > 1 && (
-        <Table
-          size="small"
-          showHeader={false}
-          dataSource={list}
-          columns={[
-            {
-              render: (row) => {
-                return <XSeaA data={row} emoji />;
+        <div className={styles.table}>
+          <Table
+            size="small"
+            showHeader={false}
+            dataSource={list}
+            columns={[
+              {
+                render: (row) => {
+                  return <XSeaA data={row} emoji />;
+                },
               },
-            },
-          ]}
-        />
+            ]}
+            pagination={{
+              pageSize: 5,
+              showSizeChanger: false,
+            }}
+          />
+        </div>
       )}
     </div>
   );
