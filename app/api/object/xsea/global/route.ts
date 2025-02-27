@@ -27,10 +27,12 @@ export const querySearch = async (query: string, limit = 50) => {
         .filter((value) => value != null)
         .map((value) => value.toString().trim().toLowerCase())
         .join(",");
-      const score = words.filter((word) =>
-        allValueText.includes(word.word),
-      ).length;
-      // 1 / allValueText.length;
+      let score = 0;
+      words.forEach((word) => {
+        if (allValueText.includes(word.word)) {
+          score += word.weight;
+        }
+      });
       return { ...item, score };
     })
     .filter((item) => item.score > 0);
