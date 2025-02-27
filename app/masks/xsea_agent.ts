@@ -177,7 +177,7 @@ export const XSEA_AGENTS: BuiltinMask[] = [
       },
     ],
     modelConfig: {
-      model: "microsoft/phi-4",
+      model: "qwen/qwen-2-72b-instruct",
       max_tokens: 16384,
     },
     lang: "cn",
@@ -303,7 +303,7 @@ export const XSEA_AGENTS: BuiltinMask[] = [
       },
     ],
     modelConfig: {
-      model: "microsoft/phi-4",
+      model: "qwen/qwen-2-72b-instruct",
       max_tokens: 16384,
       topK: 6,
       top_p: 0.6,
@@ -408,7 +408,7 @@ export const XSEA_AGENTS: BuiltinMask[] = [
       },
     ],
     modelConfig: {
-      model: "microsoft/phi-4",
+      model: "qwen/qwen-2-72b-instruct",
       max_tokens: 16384,
     },
     lang: "cn",
@@ -504,7 +504,7 @@ XSea性能测试平台的测试计划选择助手，你需要做如下事情
       },
     ],
     modelConfig: {
-      model: "microsoft/phi-4",
+      model: "qwen/qwen-2-72b-instruct",
       max_tokens: 16384,
     },
     lang: "cn",
@@ -600,7 +600,7 @@ XSea性能测试平台的目标选择助手，你需要做如下事情
       },
     ],
     modelConfig: {
-      model: "microsoft/phi-4",
+      model: "qwen/qwen-2-72b-instruct",
       max_tokens: 16384,
     },
     lang: "cn",
@@ -696,7 +696,7 @@ XSea性能测试平台的压测记录选择助手，你需要做如下事情
       },
     ],
     modelConfig: {
-      model: "microsoft/phi-4",
+      model: "qwen/qwen-2-72b-instruct",
       max_tokens: 16384,
     },
     lang: "cn",
@@ -881,7 +881,7 @@ Assistant: 您是要确认吗？
       },
     ],
     modelConfig: {
-      model: "microsoft/phi-4",
+      model: "qwen/qwen-2-72b-instruct",
       max_tokens: 16384,
     },
     lang: "cn",
@@ -1111,7 +1111,7 @@ Assistant: 配置如下：
       },
     ],
     modelConfig: {
-      model: "microsoft/phi-4",
+      model: "qwen/qwen-2-72b-instruct",
       max_tokens: 16384,
     },
     lang: "cn",
@@ -1200,7 +1200,7 @@ Assistant: 配置如下：
       },
     ],
     modelConfig: {
-      model: "microsoft/phi-4",
+      model: "qwen/qwen-2-72b-instruct",
       max_tokens: 16384,
     },
     lang: "cn",
@@ -1563,7 +1563,7 @@ CI/CD流程集成
       // },
     ],
     modelConfig: {
-      model: "microsoft/phi-4",
+      model: "qwen/qwen-2-72b-instruct",
       max_tokens: 16384,
     },
     lang: "cn",
@@ -1678,7 +1678,7 @@ CI/CD流程集成
       },
     ],
     modelConfig: {
-      model: "microsoft/phi-4",
+      model: "qwen/qwen-2-72b-instruct",
       max_tokens: 16384,
     },
     lang: "cn",
@@ -1860,7 +1860,7 @@ CI/CD流程集成
   //       },
   //     ],
   //     modelConfig: {
-  //       model: "microsoft/phi-4",
+  //       model: "qwen/qwen-2-72b-instruct",
   //       max_tokens: 16384,
   //     },
   //     lang: "cn",

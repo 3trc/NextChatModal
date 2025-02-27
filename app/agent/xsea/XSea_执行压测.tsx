@@ -23,7 +23,7 @@ XSea是一个性能测试平台
           },
         ],
         modelConfig: {
-          model: "microsoft/phi-4",
+          model: "qwen/qwen-2-72b-instruct",
           max_tokens: 16384,
           topK: 1,
           top_p: 0.5,
