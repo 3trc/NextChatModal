@@ -294,15 +294,6 @@ export default class Agent {
             name: target.goalName,
             url: `/822313712173449216/product/business/${target.productId}/plan/target?id=${target.planId}&goalId=${target.goalId}`,
           };
-          return {
-            bridgeMessages: [
-              {
-                role: "assistant",
-                content: "",
-                component: "@ui-target",
-              },
-            ],
-          };
         }
         SessionJSON.target = [target];
         return {
