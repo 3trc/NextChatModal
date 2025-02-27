@@ -251,7 +251,7 @@ export default class Agent {
       const prevMessages = session.messages;
       const maskName = this.chatStore.currentSession().mask.name;
       const dialogue = {
-        scene: maskName.split("_")[1] ?? maskName,
+        // scene: maskName.split("_")[1] ?? maskName,
         question:
           prevMessages[prevMessages.length - 1]?.content &&
           !(prevMessages[prevMessages.length - 1].content as string).startsWith(
@@ -282,6 +282,14 @@ export default class Agent {
               url: `/822313712173449216/product/business/${target.productId}/script?scriptId=${target.scriptId}`,
             },
           ];
+          return {
+            bridgeMessages: [
+              {
+                role: "assistant",
+                content: target.scriptName!,
+              },
+            ],
+          };
         }
         if (target.type === "GOAL") {
           SessionJSON.selected_product = {
@@ -293,6 +301,14 @@ export default class Agent {
             id: target.goalId,
             name: target.goalName,
             url: `/822313712173449216/product/business/${target.productId}/plan/target?id=${target.planId}&goalId=${target.goalId}`,
+          };
+          return {
+            bridgeMessages: [
+              {
+                role: "assistant",
+                content: target.goalName!,
+              },
+            ],
           };
         }
       } else {
