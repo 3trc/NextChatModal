@@ -264,8 +264,10 @@ export default class Agent {
       const res = await axios.post(`/api/agent/xsea/router`, dialogue);
       const { action, entity, intention, objects } = res.data;
 
-      console.log("objects", objects);
-      if (objects.precise) {
+      const precise =
+        objects.list.length === 1 ||
+        objects.list[1]?.score < objects.list[0]?.score;
+      if (precise) {
         const target: XSeaObject = objects.list[0];
         if (target.type === "SCRIPT") {
           SessionJSON.selected_product = {
