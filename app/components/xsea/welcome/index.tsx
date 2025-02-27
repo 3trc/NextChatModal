@@ -1,8 +1,8 @@
 import React from "react";
 import styles from "./index.module.scss";
-import { Button } from "antd";
 import { useChatStore } from "@/app/store";
 import { AgentStore } from "@/app/agent/store";
+import XSeaA from "../xseaa";
 
 const Welcome = () => {
   const chatStore = useChatStore();
@@ -10,15 +10,67 @@ const Welcome = () => {
   return (
     <div className={styles.com}>
       <div>
-        🦄 嗨，很高兴见到你，我是 <b>XSea智能体</b>
+        🦄 嗨，很高兴见到你，我是 <b>XSea智能体</b>，我可以帮助你解决各种问题
       </div>
       <div className={styles.buttons}>
+        <XSeaA
+          data={{
+            type: "SCRIPT",
+            scriptId: "1",
+            scriptName: "测试联想脚本",
+            productId: "2",
+            productName: "22",
+          }}
+          emoji
+        />
         <div className={styles.summary}>
-          &nbsp;试着说 <b>“帮我压测 xxx 下的 xxx 脚本”</b>，
-          <b>“帮我分析 xxx 报告”</b>，<b>“帮我解释 xxx 脚本是做什么的”</b>
-          &nbsp;等
+          <b>试着说</b> 😊
+          <ul className={styles.try_to_say}>
+            <li
+              onClick={() => {
+                AgentStore.get(
+                  chatStore.currentSession().mask.name,
+                ).SendMessage("开始压测东航下航班相关的脚本");
+              }}
+            >
+              <span>帮我压测 xxx 下的 xxx 脚本</span>
+            </li>
+            <li>
+              <span>帮我分析 xxx 报告</span>
+            </li>
+            <li
+              onClick={() => {
+                AgentStore.get(
+                  chatStore.currentSession().mask.name,
+                ).SendMessage("请开始压测");
+              }}
+            >
+              <span>现在就开始压测吧！</span>
+            </li>
+            <li
+              onClick={() => {
+                AgentStore.get(
+                  chatStore.currentSession().mask.name,
+                ).SendMessage("帮我创建一个JMeter脚本");
+              }}
+            >
+              <span>帮我编写一个JMeter脚本吧</span>
+            </li>
+            <li>
+              <span>帮我解释 xxx 脚本是做什么的</span>
+            </li>
+            <li
+              onClick={() => {
+                AgentStore.get(
+                  chatStore.currentSession().mask.name,
+                ).SendMessage("怎么样安装探针");
+              }}
+            >
+              <span>怎么样安装探针</span>
+            </li>
+          </ul>
         </div>
-        <ul>
+        {/* <ul>
           <li>
             <div>
               <Button
@@ -97,7 +149,7 @@ const Welcome = () => {
               </span>
             </div>
           </li>
-        </ul>
+        </ul> */}
         {/* <Space>
           <Button
             type="primary"
