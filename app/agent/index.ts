@@ -248,7 +248,9 @@ export default class Agent {
     try {
       const session = this.chatStore.currentSession();
       const prevMessages = session.messages;
+      const maskName = this.chatStore.currentSession().mask.name;
       const dialogue = {
+        scene: maskName.split("_")[1] ?? maskName,
         question:
           prevMessages[prevMessages.length - 1]?.content &&
           !(prevMessages[prevMessages.length - 1].content as string).startsWith(
