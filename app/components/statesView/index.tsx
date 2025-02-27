@@ -23,6 +23,7 @@ const StatesView = () => {
     );
     setProduct(SessionJSON.selected_product ?? {});
     setScripts(SessionJSON.selected_scripts ?? []);
+    setGoal(SessionJSON.selected_goal ?? {});
     setTests(SessionJSON.tests ?? []);
     if (!oldShow && newShow) {
       document.documentElement.style.setProperty("--tools-width", "240px");
