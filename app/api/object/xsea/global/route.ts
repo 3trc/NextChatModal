@@ -8,7 +8,17 @@ export const querySearch = async (query: string, limit = 1000) => {
     .filter((word) => word.weight >= 8)
     .filter(
       (word) =>
-        !["产品", "脚本", "计划", "目标", "压测", "执行"].includes(word.word),
+        ![
+          "产品",
+          "脚本",
+          "计划",
+          "目标",
+          "压测",
+          "执行",
+          "报告",
+          "记录",
+          "定时",
+        ].includes(word.word),
     );
   const [scriptRes, goalRes] = await Promise.all([
     http.post(`http://10.10.30.103:8081/api/xsea/script/queryScriptRel`),
