@@ -298,7 +298,8 @@ export default class Agent {
             bridgeMessages: [
               {
                 role: "assistant",
-                content: target.goalName!,
+                content: "",
+                component: "@ui-target",
               },
             ],
           };
