@@ -284,6 +284,18 @@ export default class Agent {
           ];
         }
         if (target.type === "GOAL") {
+          SessionJSON.selected_product = {
+            id: target.productId,
+            name: target.productName,
+            url: `/822313712173449216/product/business/${target.productId}/overview?tab=0`,
+          };
+          SessionJSON.selected_goal = [
+            {
+              id: target.goalId,
+              name: target.goalName,
+              url: `/822313712173449216/product/business/${target.productId}/plan/target?id=${target.planId}&goalId=${target.goalId}`,
+            },
+          ];
         }
       } else {
       }
