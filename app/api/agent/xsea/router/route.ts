@@ -101,7 +101,7 @@ export async function POST(request: NextRequest) {
         },
         { role: "user", content: jsonText },
       ]),
-      querySearch(json.question),
+      querySearch(json.answer),
     ]);
     const response = result.text as string;
     let actionIndex = actions.length;
