@@ -39,7 +39,7 @@ export const querySearch = async (query: string, limit = 1000) => {
     .filter((item) => item.score > 0);
   allList.sort((a, b) => b.score - a.score);
   allList.splice(limit, Infinity);
-  const precise = allList.length === 1 || allList[1].score < allList[0].score;
+  const precise = allList.length === 1 || allList[1]?.score < allList[0]?.score;
   return { precise, list: allList, words };
 };
 
