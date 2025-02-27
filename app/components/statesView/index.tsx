@@ -9,6 +9,7 @@ import FastTest from "../xsea/fastTest";
 const StatesView = () => {
   const [expand, setExpand] = useState<boolean>(true);
   const [product, setProduct] = useState<any>({});
+  const [goal, setGoal] = useState<any>({});
   const [scripts, setScripts] = useState<any[]>([]);
   const [tests, setTests] = useState<any[]>([]);
 
@@ -139,8 +140,8 @@ const StatesView = () => {
                       选择目标
                     </Button>
                   ),
-                  description: product.name ? (
-                    <a href="javascript:;">{product.name}</a>
+                  description: goal.name ? (
+                    <a href="javascript:;">{goal.name}</a>
                   ) : (
                     "暂未选择"
                   ),
