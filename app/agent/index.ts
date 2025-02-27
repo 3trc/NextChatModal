@@ -8,6 +8,7 @@ import { AgentStore } from "./store";
 import { nanoid } from "nanoid";
 import axios from "axios";
 import { SessionJSON } from "../components/xsea/localJSON";
+import { XSeaObject } from "../components/xsea/xseaa";
 
 export interface ChatMessageX {
   role: "system" | "user" | "assistant";
@@ -264,6 +265,26 @@ export default class Agent {
       const { action, entity, intention, objects } = res.data;
 
       console.log("objects", objects);
+      if (objects.precise) {
+        const target: XSeaObject = objects.list[0];
+        if (target.type === "SCRIPT") {
+          SessionJSON.selected_product = {
+            id: target.productId,
+            name: target.productName,
+            url: `/822313712173449216/product/business/${target.productId}/overview?tab=0`,
+          };
+          SessionJSON.selected_scripts = [
+            {
+              id: target.scriptId,
+              name: target.scriptName,
+              url: `/822313712173449216/product/business/${target.productId}/script?scriptId=${target.scriptId}`,
+            },
+          ];
+        }
+        if (target.type === "GOAL") {
+        }
+      } else {
+      }
 
       const routeMap = this.RouteMap();
       let switcher: MaybeAgentSwitcher = null;
