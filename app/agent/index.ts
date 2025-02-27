@@ -282,14 +282,6 @@ export default class Agent {
               url: `/822313712173449216/product/business/${target.productId}/script?scriptId=${target.scriptId}`,
             },
           ];
-          return {
-            bridgeMessages: [
-              {
-                role: "assistant",
-                content: target.scriptName!,
-              },
-            ],
-          };
         }
         if (target.type === "GOAL") {
           SessionJSON.selected_product = {
@@ -311,6 +303,16 @@ export default class Agent {
             ],
           };
         }
+        SessionJSON.target = [target];
+        return {
+          bridgeMessages: [
+            {
+              role: "assistant",
+              content: "",
+              component: "@ui-target",
+            },
+          ],
+        };
       } else {
       }
 
