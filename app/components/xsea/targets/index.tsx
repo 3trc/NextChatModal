@@ -21,7 +21,20 @@ const Targets = () => {
           <XSeaA data={list[0]} emoji />
         </div>
       )}
-      {list.length > 1 && <Table showHeader={false} dataSource={list} />}
+      {list.length > 1 && (
+        <Table
+          size="small"
+          showHeader={false}
+          dataSource={list}
+          columns={[
+            {
+              render: (row) => {
+                return <XSeaA data={row} emoji />;
+              },
+            },
+          ]}
+        />
+      )}
     </div>
   );
 };

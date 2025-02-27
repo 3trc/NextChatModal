@@ -3,7 +3,7 @@ import { NextRequest, NextResponse } from "next/server";
 import nodejieba from "nodejieba";
 
 export const querySearch = async (query: string, limit = 1000) => {
-  const words = nodejieba.extract(query, 5).filter((word) => word.weight >= 6);
+  const words = nodejieba.extract(query, 5).filter((word) => word.weight >= 4);
   // .filter(
   //   (word) =>
   //     ![
