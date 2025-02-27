@@ -3,23 +3,21 @@ import { NextRequest, NextResponse } from "next/server";
 import nodejieba from "nodejieba";
 
 export const querySearch = async (query: string, limit = 1000) => {
-  const words = nodejieba
-    .extract(query, 5)
-    .filter((word) => word.weight >= 8)
-    .filter(
-      (word) =>
-        ![
-          "产品",
-          "脚本",
-          "计划",
-          "目标",
-          "压测",
-          "执行",
-          "报告",
-          "记录",
-          "定时",
-        ].includes(word.word),
-    );
+  const words = nodejieba.extract(query, 5).filter((word) => word.weight >= 6);
+  // .filter(
+  //   (word) =>
+  //     ![
+  //       "产品",
+  //       "脚本",
+  //       "计划",
+  //       "目标",
+  //       "压测",
+  //       "执行",
+  //       "报告",
+  //       "记录",
+  //       "定时",
+  //     ].includes(word.word),
+  // );
   const [scriptRes, goalRes] = await Promise.all([
     http.post(`http://10.10.30.103:8081/api/xsea/script/queryScriptRel`),
     http.post(`http://10.10.30.103:8081/api/xsea/plan/goal/queryGoalRel`),
@@ -32,7 +30,10 @@ export const querySearch = async (query: string, limit = 1000) => {
     type: "GOAL",
     ...item,
   }));
-  const allList = [...scriptList, ...goalList]
+  const allList = [
+    ...scriptList.map((item) => ({ ...item, _name: "脚本" })),
+    ...goalList.map((item) => ({ ...item, _name: "目标" })),
+  ]
     .map((item) => {
       const allValueText = Object.keys(item)
         .filter((key) => key.toLowerCase().includes("name"))
