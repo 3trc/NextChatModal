@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { openrouterGenerate } from "../model";
 import { querySearch } from "@/app/api/object/xsea/global/route";
+import { XSeaObject } from "@/app/components/xsea/xseaa";
 
 export async function POST(request: NextRequest) {
   const actions = [
@@ -117,6 +118,15 @@ export async function POST(request: NextRequest) {
     }
     const action = actions[actionIndex - 1] ?? "其他";
     const entity = entities[entityIndex - 1] ?? "其他";
+
+    const list = (objects.list ?? []) as XSeaObject[];
+    if (entity === "脚本") {
+      objects.list = list.filter((item) => item.type === "SCRIPT");
+    }
+    if (entity === "目标") {
+      objects.list = list.filter((item) => item.type === "GOAL");
+    }
+
     return NextResponse.json(
       {
         action,
