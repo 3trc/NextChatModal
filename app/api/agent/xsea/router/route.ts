@@ -152,12 +152,12 @@ export async function POST(request: NextRequest) {
     const entity = entities[entityIndex - 1] ?? "其他";
 
     const list = (objects.list ?? []) as XSeaObject[];
-    // if (entity === "脚本") {
-    //   objects.list = list.filter((item) => item.type === "SCRIPT");
-    // }
-    // if (entity === "压测") {
-    //   objects.list = list.filter((item) => item.type === "GOAL");
-    // }
+    if (entity === "脚本") {
+      objects.list = list.filter((item) => item.type === "SCRIPT");
+    }
+    if (entity === "压测") {
+      objects.list = list.filter((item) => item.type === "GOAL");
+    }
     // if (entity === "产品") {
     //   objects.list = list.filter((item) => item.type === "PRODUCT");
     // }
