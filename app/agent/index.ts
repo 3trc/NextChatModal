@@ -305,7 +305,16 @@ export default class Agent {
             },
           ],
         };
-      } else {
+      } else if (objects.list.length > 1) {
+        return {
+          bridgeMessages: [
+            {
+              role: "assistant",
+              content: "",
+              component: "@ui-target",
+            },
+          ],
+        };
       }
 
       const routeMap = this.RouteMap();
