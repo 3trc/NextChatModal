@@ -41,8 +41,16 @@ export const querySearch = async (query: string, limit = 50) => {
     })
     .filter((item) => item.score > 0);
   allList.sort((a, b) => b.score - a.score);
-  allList.splice(limit, Infinity);
-  return { list: allList, words };
+  const resultList: any[] = [];
+  while (
+    allList.length !== 0 &&
+    (resultList.length === 0 ||
+      allList[0].score === resultList[resultList.length - 1].score)
+  ) {
+    resultList.push(allList.shift());
+  }
+  resultList.splice(limit, Infinity);
+  return { list: resultList, words };
 };
 
 export async function GET(request: NextRequest) {
