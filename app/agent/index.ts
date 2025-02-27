@@ -261,7 +261,9 @@ export default class Agent {
         answer: message,
       };
       const res = await axios.post(`/api/agent/xsea/router`, dialogue);
-      const { action, entity, intention } = res.data;
+      const { action, entity, intention, objects } = res.data;
+
+      console.log("objects", objects);
 
       const routeMap = this.RouteMap();
       let switcher: MaybeAgentSwitcher = null;
