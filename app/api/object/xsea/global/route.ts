@@ -33,9 +33,12 @@ export const querySearch = async (query: string, limit = 50) => {
           score += word.weight;
         }
       });
-      if (allValueText.includes(query.trim())) {
-        score *= 1.5;
-      }
+      query.split("|").forEach((querySeg) => {
+        const seg = querySeg.trim();
+        if (seg && allValueText.includes(seg)) {
+          score *= 1.1;
+        }
+      });
       return { ...item, score };
     })
     .filter((item) => item.score > 0);
