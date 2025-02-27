@@ -3,6 +3,7 @@ import { NextRequest, NextResponse } from "next/server";
 import nodejieba from "nodejieba";
 
 export const querySearch = async (query: string, limit = 50) => {
+  query = query.toLowerCase();
   const words = nodejieba.extract(query, 10);
   const [scriptRes, goalRes] = await Promise.all([
     http.post(`http://10.10.30.103:8081/api/xsea/script/queryScriptRel`),
