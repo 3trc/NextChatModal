@@ -20,10 +20,11 @@ export async function POST(request: NextRequest) {
     const json = await request.json();
     // json.question = "";
     const jsonText = JSON.stringify(json, null, 2);
-    const result = await openrouterGenerate([
-      {
-        role: "system",
-        content: `
+    const [result, objects] = await Promise.all([
+      openrouterGenerate([
+        {
+          role: "system",
+          content: `
 你是一个精确的意图分类器，用户会向你发送如下格式的JSON：
 {
   "scene": "xxx",
@@ -96,11 +97,12 @@ export async function POST(request: NextRequest) {
 - 不包含解释、说明或额外信息
 
 确保回答严格遵循以上格式，不添加任何解释或额外内容。
-      `.trim(),
-      },
-      { role: "user", content: jsonText },
+        `.trim(),
+        },
+        { role: "user", content: jsonText },
+      ]),
+      querySearch(json.question),
     ]);
-    const objects = await querySearch(json.question);
     const response = result.text as string;
     let actionIndex = actions.length;
     let entityIndex = entities.length;
