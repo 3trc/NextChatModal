@@ -126,6 +126,18 @@ export async function POST(request: NextRequest) {
     if (entity === "目标") {
       objects.list = list.filter((item) => item.type === "GOAL");
     }
+    if (entity === "产品") {
+      objects.list = list.filter((item) => item.type === "PRODUCT");
+    }
+    if (entity === "计划") {
+      objects.list = list.filter((item) => item.type === "PLAN");
+    }
+    if (entity === "记录") {
+      objects.list = list.filter((item) => item.type === "RECORD");
+    }
+    if (entity === "报告") {
+      objects.list = list.filter((item) => item.type === "REPORT");
+    }
 
     return NextResponse.json(
       {
