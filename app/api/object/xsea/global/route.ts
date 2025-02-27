@@ -29,7 +29,10 @@ export const querySearch = async (query: string, limit = 50) => {
         .join(",");
       let score = 0;
       words.forEach((word) => {
-        score += (allValueText.split(word.word).length - 1) * word.weight;
+        if (allValueText.includes(word.word)) {
+          score += word.weight;
+        }
+        // score += (allValueText.split(word.word).length - 1) * word.weight;
       });
       query.split("|").forEach((querySeg) => {
         const seg = querySeg.trim();
