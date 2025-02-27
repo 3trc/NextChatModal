@@ -33,6 +33,9 @@ export const querySearch = async (query: string, limit = 50) => {
           score += word.weight;
         }
       });
+      if (allValueText.includes(query.trim())) {
+        score *= 1.5;
+      }
       return { ...item, score };
     })
     .filter((item) => item.score > 0);
