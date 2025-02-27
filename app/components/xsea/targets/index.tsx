@@ -21,7 +21,6 @@ const Targets = () => {
           <Table
             size="small"
             showHeader={false}
-            dataSource={list}
             columns={[
               {
                 render: (row) => {
@@ -29,6 +28,7 @@ const Targets = () => {
                 },
               },
             ]}
+            dataSource={list}
             pagination={
               list.length <= 5
                 ? false
