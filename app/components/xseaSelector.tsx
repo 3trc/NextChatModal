@@ -7,6 +7,7 @@ import Welcome from "./xsea/welcome";
 import ProductSelectorBye from "./xsea/productSelector/bye";
 import ScriptSelectorBye from "./xsea/scriptSelector/bye";
 import StateConfirm from "./xsea/stateConfirm";
+import Targets from "./xsea/targets";
 
 const workspaceId = "920951261988982784";
 const planId = "841675362774847488";
@@ -52,6 +53,9 @@ const XSeaSelector = (props: { message: string }) => {
   }
   if (props.message.startsWith("@ui-StateConfirm")) {
     return <StateConfirm />;
+  }
+  if (props.message.startsWith("@ui-target")) {
+    return <Targets />;
   }
   return props.message;
 };
