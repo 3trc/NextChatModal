@@ -6,7 +6,7 @@ export const querySearch = async (querys: string[], limit = 50) => {
   querys = querys
     .map((query) => query.toLowerCase().trim())
     .filter((query) => query);
-  const words = nodejieba.extract(querys.join("|"), 12);
+  const wordsList = querys.map((query) => nodejieba.extract(query, 10));
   const [scriptRes, goalRes] = await Promise.all([
     http.post(`http://10.10.30.103:8081/api/xsea/script/queryScriptRel`),
     http.post(`http://10.10.30.103:8081/api/xsea/plan/goal/queryGoalRel`),
@@ -32,8 +32,8 @@ export const querySearch = async (querys: string[], limit = 50) => {
         .join(",");
       let score = 0;
       querys.forEach((query, index) => {
-        const attention = (index + 1) * 2;
-        words.forEach((word) => {
+        const attention = (index + 1) * 5;
+        wordsList[index].forEach((word) => {
           if (allValueText.includes(word.word)) {
             score += word.weight;
           }
@@ -47,16 +47,16 @@ export const querySearch = async (querys: string[], limit = 50) => {
     })
     .filter((item) => item.score > 0);
   allList.sort((a, b) => b.score - a.score);
-  const resultList: any[] = [];
-  while (
-    allList.length !== 0 &&
-    (resultList.length === 0 ||
-      allList[0].score === resultList[resultList.length - 1].score)
-  ) {
-    resultList.push(allList.shift());
-  }
-  resultList.splice(limit, Infinity);
-  return { list: resultList, words };
+  // const resultList: any[] = [];
+  // while (
+  //   allList.length !== 0 &&
+  //   (resultList.length === 0 ||
+  //     allList[0].score === resultList[resultList.length - 1].score)
+  // ) {
+  //   resultList.push(allList.shift());
+  // }
+  // resultList.splice(limit, Infinity);
+  return { list: allList, wordsList };
 };
 
 export async function GET(request: NextRequest) {
