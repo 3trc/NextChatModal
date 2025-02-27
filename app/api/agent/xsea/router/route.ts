@@ -123,7 +123,7 @@ export async function POST(request: NextRequest) {
     if (entity === "脚本") {
       objects.list = list.filter((item) => item.type === "SCRIPT");
     }
-    if (entity === "目标") {
+    if (entity === "压测") {
       objects.list = list.filter((item) => item.type === "GOAL");
     }
     // if (entity === "产品") {
