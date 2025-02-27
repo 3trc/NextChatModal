@@ -172,6 +172,9 @@ class _Agent extends Agent {
         脚本: "XSea_查询脚本",
       },
       询问: "XSea_知识库",
+      陈述: {
+        产品: "XSea_创建产品",
+      },
       创建: {
         产品: "XSea_创建产品",
         压测: "XSea_执行压测",
