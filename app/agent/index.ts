@@ -270,6 +270,7 @@ export default class Agent {
       const list = objects?.list ?? [];
       SessionJSON.targets = list;
       if (list.length === 1) {
+        SessionJSON.target = list[0];
         return {
           bridgeMessages: [
             {
