@@ -69,7 +69,7 @@ export const querySearch = async (querys: string[], limit = 50) => {
           queryScore *= 1.5;
         }
         // 这里乘以注意力权重
-        queryScore *= (index + 1) * 1;
+        queryScore *= (index + 1) * (index + 1);
         score += queryScore;
       });
       return { ...item, score };
