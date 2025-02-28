@@ -64,6 +64,8 @@ export const querySearch = async (querys: string[], limit = 50) => {
             queryScore += word.weight;
           }
         });
+        // 这里乘以注意力权重
+        queryScore *= (index + 1) * 1;
         score += queryScore;
       });
       return { ...item, score };
