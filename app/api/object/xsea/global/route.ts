@@ -81,16 +81,16 @@ export const querySearch = async (querys: string[], limit = 50) => {
     .filter((item) => item.score > 0);
   // 数据排序
   allList.sort((a, b) => b.score - a.score);
-  // const resultList: any[] = [];
-  // while (
-  //   allList.length !== 0 &&
-  //   (resultList.length === 0 ||
-  //     allList[0].score === resultList[resultList.length - 1].score)
-  // ) {
-  //   resultList.push(allList.shift());
-  // }
-  // resultList.splice(limit, Infinity);
-  return { list: allList, wordsList };
+  const resultList: any[] = [];
+  while (
+    allList.length !== 0 &&
+    (resultList.length === 0 ||
+      allList[0].score === resultList[resultList.length - 1].score)
+  ) {
+    resultList.push(allList.shift());
+  }
+  resultList.splice(limit, Infinity);
+  return { list: resultList, wordsList };
 };
 
 export async function GET(request: NextRequest) {
