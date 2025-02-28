@@ -268,27 +268,39 @@ export default class Agent {
       const res = await axios.post(`/api/agent/xsea/router`, dialogue);
       const { action, entity, intention, objects } = res.data;
 
-      let target = SessionJSON.target as XSeaObject | null;
+      // 如果是有副作用的行为，则存储
+      if (["压测"].includes(action)) {
+        SessionJSON.background = action;
+      }
+
       const targets: XSeaObject[] = objects?.list ?? [];
       SessionJSON.targets = targets;
       if (targets.length === 1) {
-        target = targets[0];
-        SessionJSON.target = target;
+        SessionJSON.target = targets[0];
       } else if (targets.length > 1) {
         return {
           bridgeMessages: [
             {
               role: "assistant",
               content: `你需要${action}的${entity}是什么？`,
-              // content: "",
               component: "@ui-target",
+            },
+          ],
+        };
+      } else {
+        return {
+          bridgeMessages: [
+            {
+              role: "system",
+              content: "提示引导用户描述更清楚的描述需求",
             },
           ],
         };
       }
 
+      const target = SessionJSON.target;
       if (target) {
-        if (action === "压测") {
+        if (SessionJSON.background === "压测") {
           if (target.type === "SCRIPT") {
             SessionJSON.selected_product = {
               id: target.productId,
