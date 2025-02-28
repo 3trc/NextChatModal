@@ -288,11 +288,21 @@ export default class Agent {
       if (target) {
         if (action === "压测") {
           if (target.type === "SCRIPT") {
+            SessionJSON.selected_product = {
+              id: target.productId,
+              name: target.productName,
+            };
+            SessionJSON.selected_scripts = [
+              {
+                id: target.scriptId,
+                name: target.scriptName,
+              },
+            ];
             return {
               bridgeMessages: [
                 {
                   role: "assistant",
-                  content: "压测脚本",
+                  content: "@ui-ScriptSelectorBye",
                 },
               ],
             };
