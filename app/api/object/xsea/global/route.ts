@@ -7,7 +7,7 @@ export const querySearch = async (querys: string[], limit = 1000) => {
   querys = querys
     .map((query) => query.toLowerCase().trim())
     .filter((query) => query)
-    .slice(-2);
+    .slice(-1);
   if (querys.length === 0) {
     throw new Error("没有正确的查询");
   }
