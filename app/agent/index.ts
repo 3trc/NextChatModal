@@ -293,7 +293,7 @@ export default class Agent {
       if (target) {
         if (SessionJSON.background === "压测") {
           if (target.type === "SCRIPT") {
-            if (action === "肯定" || action === "压测") {
+            if (action === "肯定") {
               const script_list = [
                 {
                   id: target.scriptId,
