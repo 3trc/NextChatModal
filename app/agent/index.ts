@@ -302,21 +302,22 @@ export default class Agent {
       if (target) {
         if (SessionJSON.background === "压测") {
           if (target.type === "SCRIPT") {
-            SessionJSON.selected_product = {
-              id: target.productId,
-              name: target.productName,
-            };
-            SessionJSON.selected_scripts = [
-              {
-                id: target.scriptId,
-                name: target.scriptName,
-              },
-            ];
             return {
               bridgeMessages: [
                 {
-                  role: "assistant",
-                  content: "@ui-ScriptSelectorBye",
+                  role: "system",
+                  content: `
+请询问用户是否压测 ${JSON.stringify(target, null, 2)} 脚本
+确保直接询问用户是否确认
+确保以markdown回答
+确保加粗名称信息
+确保以专业语气回答用户
+避免透露JSON格式的内容
+避免透露寻找过程
+避免确认其他信息
+避免在名称处使用引号
+避免长篇大论
+                  `.trim(),
                 },
               ],
             };
@@ -324,8 +325,19 @@ export default class Agent {
             return {
               bridgeMessages: [
                 {
-                  role: "assistant",
-                  content: "压测目标",
+                  role: "system",
+                  content: `
+请询问用户是否压测 ${JSON.stringify(target, null, 2)} 目标
+确保直接询问用户是否确认
+确保以markdown回答
+确保加粗名称信息
+确保以专业语气回答用户
+避免透露JSON格式的内容
+避免透露寻找过程
+避免确认其他信息
+避免在名称处使用引号
+避免长篇大论
+                  `.trim(),
                 },
               ],
             };
