@@ -661,6 +661,8 @@ export function ChatActions(props: {
             SessionJSON.selected_scripts = [];
             SessionJSON.background = "";
             SessionJSON.tests = [];
+            SessionJSON.targets = [];
+            SessionJSON.target = null;
             AgentStore.get("XSea_智能体").Create([], true);
           }}
         />
