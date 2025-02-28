@@ -12,7 +12,19 @@ export const querySearch = async (querys: string[], limit = 50) => {
     .map((query) => nodejieba.extract(query, 10))
     .map((words) =>
       words.filter(
-        (word) => !["压测", "执行", "调试", "开始"].includes(word.word),
+        (word) =>
+          ![
+            "产品",
+            "脚本",
+            "计划",
+            "目标",
+            "记录",
+            "报告",
+            "压测",
+            "执行",
+            "调试",
+            "开始",
+          ].includes(word.word),
       ),
     );
   // 尝试进行关键字对齐
