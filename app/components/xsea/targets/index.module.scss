@@ -1,9 +1,30 @@
 .com {
   font-size: 14px;
+  min-width: 280px;
+  max-width: 380px;
   .table {
     :global {
       .ant-pagination {
         margin-bottom: 0px;
+      }
+    }
+  }
+  .recommend {
+    margin-top: 0.4rem;
+    .next_list {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      li {
+        color: #666666;
+        width: fit-content;
+        border: solid 1px #dddddd;
+        padding: 0.3rem 0.5rem;
+        border-radius: 8px;
+        margin-top: 0.3rem;
+        margin-right: 0.2rem;
+        cursor: pointer;
       }
     }
   }
