@@ -15,6 +15,10 @@ export const querySearch = async (querys: string[], limit = 50) => {
         (word) => !["压测", "执行", "调试", "开始"].includes(word.word),
       ),
     );
+  const maxWordsLength = Math.max(...wordsList.map((words) => words.length));
+  wordsList.forEach((words, index) => {
+    wordsList[index] = Array(10).fill(words).flat().slice(0, maxWordsLength);
+  });
   // 数据获取
   const [scriptRes, goalRes] = await Promise.all([
     http.post(`http://10.10.30.103:8081/api/xsea/script/queryScriptRel`),
