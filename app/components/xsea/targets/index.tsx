@@ -33,10 +33,10 @@ const Targets = () => {
           ]);
         } else if (item.type === "GOAL") {
           question = pickRandom([
-            `请解释 ${item.goalName} 这个目标的意义`,
+            `请解释 ${item.goalName} 这个目标的意义？`,
             `压测 ${item.goalName} 目标`,
+            `${item.goalName} 这个目标有哪些压测记录？`,
             `请帮我新增一个目标`,
-            `5`,
           ]);
         } else {
           question = pickRandom([`1`, `2`, `3`, `4`]);
