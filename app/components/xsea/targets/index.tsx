@@ -19,28 +19,33 @@ const Targets = () => {
     const targets: XSeaObject[] = SessionJSON.targets;
     setList(targets);
     setNextList(() => {
-      return Array(5)
-        .fill(0)
-        .map(() => {
-          const item = pickRandom(targets.slice(0, 5));
-          if (item.type === "SCRIPT") {
-            return pickRandom([
-              `请解释 ${item.scriptName} 脚本是干什么的？`,
-              `帮我执行 ${item.scriptName} 脚本看看调试结果`,
-              `开始压测 ${item.scriptName} 脚本`,
-              `请帮我解决 ${item.scriptName} 脚本的Bug`,
-              `我想新建一个 JMeter 脚本`,
-            ]);
-          }
-          if (item.type === "GOAL") {
-            return pickRandom([
-              `请解释 ${item.goalName} 这个目标的意义`,
-              `压测 ${item.goalName} 目标`,
-              `请帮我新增一个目标`,
-            ]);
-          }
-          return "你好";
-        });
+      const result: string[] = [];
+      while (result.length < 4) {
+        let question = "";
+        const item = pickRandom(targets.slice(0, 5));
+        if (item.type === "SCRIPT") {
+          question = pickRandom([
+            `请解释 ${item.scriptName} 脚本是干什么的？`,
+            `帮我执行 ${item.scriptName} 脚本看看调试结果`,
+            `开始压测 ${item.scriptName} 脚本`,
+            `请帮我解决 ${item.scriptName} 脚本的Bug`,
+            `我想新建一个 JMeter 脚本`,
+          ]);
+        } else if (item.type === "GOAL") {
+          question = pickRandom([
+            `请解释 ${item.goalName} 这个目标的意义`,
+            `压测 ${item.goalName} 目标`,
+            `请帮我新增一个目标`,
+            `5`,
+          ]);
+        } else {
+          question = pickRandom([`1`, `2`, `3`, `4`]);
+        }
+        if (question && result.every((item) => item !== question)) {
+          result.push(question);
+        }
+      }
+      return result;
     });
   }, []);
 
