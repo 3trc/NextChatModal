@@ -14,12 +14,12 @@ export const querySearch = async (querys: string[], limit = 50) => {
       words.filter(
         (word) =>
           ![
-            "产品",
-            "脚本",
-            "计划",
-            "目标",
-            "记录",
-            "报告",
+            // "产品",
+            // "脚本",
+            // "计划",
+            // "目标",
+            // "记录",
+            // "报告",
             "压测",
             "执行",
             "调试",
