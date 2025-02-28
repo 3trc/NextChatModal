@@ -310,6 +310,7 @@ export default class Agent {
                 );
               } catch (error) {}
               const data = res.data ?? {};
+              SessionJSON.target = null;
               if (
                 data.executeRecord?.id &&
                 typeof data.executeRecord.id === "string"
