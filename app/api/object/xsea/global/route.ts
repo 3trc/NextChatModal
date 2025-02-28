@@ -65,7 +65,7 @@ export const querySearch = async (querys: string[], limit = 1000) => {
         let queryScore = 0;
         wordsList[index].forEach((word) => {
           if (allValueText.includes(word.word)) {
-            queryScore += word.weight;
+            queryScore += 1;
           }
         });
         // 精准匹配的加成
@@ -73,7 +73,7 @@ export const querySearch = async (querys: string[], limit = 1000) => {
           queryScore *= 1.5;
         }
         // 这里乘以注意力权重
-        queryScore *= (index + 1) * (index + 1);
+        queryScore *= (index + 1) * (index + 1) * (index + 1);
         score += queryScore;
       });
       return { ...item, score };
