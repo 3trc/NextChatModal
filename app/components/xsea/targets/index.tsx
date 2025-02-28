@@ -16,7 +16,8 @@ const Targets = () => {
   };
 
   useEffect(() => {
-    setList(SessionJSON.targets);
+    const targets = SessionJSON.targets;
+    setList(targets);
   }, []);
 
   return (
