@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./index.module.scss";
 import XSeaA, { XSeaObject } from "../xseaa";
 import { SessionJSON } from "../localJSON";
@@ -7,10 +7,13 @@ import { Table } from "antd";
 const Targets = () => {
   const [list, setList] = useState<XSeaObject[]>([]);
 
-  const pickRandom = useCallback(() => {
+  const pickRandom = (list: XSeaObject[]) => {
+    if (list.length === 0) {
+      throw new Error("随机选择列表为空");
+    }
     const page = list.slice(0, 5);
     return page[Math.floor(Math.random() * page.length)];
-  }, [list]);
+  };
 
   useEffect(() => {
     setList(SessionJSON.targets);
