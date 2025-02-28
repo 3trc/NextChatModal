@@ -279,7 +279,8 @@ export default class Agent {
           bridgeMessages: [
             {
               role: "assistant",
-              content: "@ui-target",
+              content: `这里有一些可供【${intention}】的对象`,
+              component: "@ui-target",
             },
           ],
         };
