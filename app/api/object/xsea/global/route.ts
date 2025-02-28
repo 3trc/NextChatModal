@@ -8,7 +8,16 @@ export const querySearch = async (querys: string[], limit = 50) => {
     .map((query) => query.toLowerCase().trim())
     .filter((query) => query);
   // 从每一个查询中提取关键词
-  const wordsList = querys.map((query) => nodejieba.extract(query, 10));
+  const wordsList = querys
+    .map((query) => nodejieba.extract(query, 10))
+    .map((words) =>
+      words.filter(
+        (word) =>
+          !["产品", "脚本", "计划", "目标", "记录", "报告", "压测"].includes(
+            word.word,
+          ),
+      ),
+    );
   // 执行数据获取
   const [scriptRes, goalRes] = await Promise.all([
     http.post(`http://10.10.30.103:8081/api/xsea/script/queryScriptRel`),
@@ -34,16 +43,11 @@ export const querySearch = async (querys: string[], limit = 50) => {
         .join(",");
       let score = 0;
       querys.forEach((query, index) => {
-        const attention = (index + 1) * 5;
         wordsList[index].forEach((word) => {
           if (allValueText.includes(word.word)) {
             score += word.weight;
           }
         });
-        if (allValueText.includes(query)) {
-          score *= 1.2;
-        }
-        score *= attention;
       });
       return { ...item, score };
     })
