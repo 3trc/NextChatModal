@@ -274,12 +274,13 @@ export default class Agent {
       if (targets.length === 1) {
         target = targets[0];
         SessionJSON.target = target;
-      } else if (targets.length > 1) {
+      } else {
         return {
           bridgeMessages: [
             {
               role: "assistant",
-              content: `这里有一些可供【${intention}】的对象`,
+              // content: `这里有一些可供【${intention}】的对象`,
+              content: "",
               component: "@ui-target",
             },
           ],
