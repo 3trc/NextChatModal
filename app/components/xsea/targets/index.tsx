@@ -8,7 +8,7 @@ const Targets = () => {
   const [list, setList] = useState<XSeaObject[]>([]);
 
   useEffect(() => {
-    setList(SessionJSON.target);
+    setList(SessionJSON.targets);
   }, []);
 
   return (

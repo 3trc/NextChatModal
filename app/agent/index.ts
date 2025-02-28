@@ -8,7 +8,6 @@ import { AgentStore } from "./store";
 import { nanoid } from "nanoid";
 import axios from "axios";
 import { SessionJSON } from "../components/xsea/localJSON";
-import { XSeaObject } from "../components/xsea/xseaa";
 
 export interface ChatMessageX {
   role: "system" | "user" | "assistant";
@@ -260,63 +259,24 @@ export default class Agent {
             ? prevMessages[prevMessages.length - 1].content
             : "你好，有什么可以帮你的吗？",
         answer: message,
+        querys: [
+          prevMessages.findLast((item) => item.role === "user")?.content ?? "",
+          message,
+        ],
       };
       const res = await axios.post(`/api/agent/xsea/router`, dialogue);
       const { action, entity, intention, objects } = res.data;
 
-      const precise =
-        objects.list.length === 1 ||
-        objects.list[1]?.score < objects.list[0]?.score;
-      if (precise) {
-        const target: XSeaObject = objects.list[0];
-        if (target.type === "SCRIPT") {
-          SessionJSON.selected_product = {
-            id: target.productId,
-            name: target.productName,
-            url: `/822313712173449216/product/business/${target.productId}/overview?tab=0`,
-          };
-          SessionJSON.selected_scripts = [
-            {
-              id: target.scriptId,
-              name: target.scriptName,
-              url: `/822313712173449216/product/business/${target.productId}/script?scriptId=${target.scriptId}`,
-            },
-          ];
-        }
-        if (target.type === "GOAL") {
-          SessionJSON.selected_product = {
-            id: target.productId,
-            name: target.productName,
-            url: `/822313712173449216/product/business/${target.productId}/overview?tab=0`,
-          };
-          SessionJSON.selected_goal = {
-            id: target.goalId,
-            name: target.goalName,
-            url: `/822313712173449216/product/business/${target.productId}/plan/target?id=${target.planId}&goalId=${target.goalId}`,
-          };
-        }
-        SessionJSON.target = [target];
-        return {
-          bridgeMessages: [
-            {
-              role: "assistant",
-              content: "",
-              component: "@ui-target",
-            },
-          ],
-        };
-      } else if (objects.list.length > 1) {
-        SessionJSON.target = objects.list;
-        return {
-          bridgeMessages: [
-            {
-              role: "assistant",
-              content: "",
-              component: "@ui-target",
-            },
-          ],
-        };
-      }
+      const list = objects?.list ?? [];
+      SessionJSON.targets = list;
+      return {
+        bridgeMessages: [
+          {
+            role: "assistant",
+            content: "@ui-target",
+          },
+        ],
+      };
 
       const routeMap = this.RouteMap();
       let switcher: MaybeAgentSwitcher = null;
