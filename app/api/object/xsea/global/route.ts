@@ -15,7 +15,7 @@ export const querySearch = async (querys: string[], limit = 50) => {
         (word) => !["压测", "执行", "调试", "开始"].includes(word.word),
       ),
     );
-  // 执行数据获取
+  // 数据获取
   const [scriptRes, goalRes] = await Promise.all([
     http.post(`http://10.10.30.103:8081/api/xsea/script/queryScriptRel`),
     http.post(`http://10.10.30.103:8081/api/xsea/plan/goal/queryGoalRel`),
@@ -30,6 +30,7 @@ export const querySearch = async (querys: string[], limit = 50) => {
     type: "GOAL",
     _name: "目标",
   }));
+  // 数据打分
   const allList = [...scriptList, ...goalList]
     .map((item) => {
       const allValueText = Object.keys(item)
@@ -49,6 +50,7 @@ export const querySearch = async (querys: string[], limit = 50) => {
       return { ...item, score };
     })
     .filter((item) => item.score > 0);
+  // 数据排序
   allList.sort((a, b) => b.score - a.score);
   // const resultList: any[] = [];
   // while (
