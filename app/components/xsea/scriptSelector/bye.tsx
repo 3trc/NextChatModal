@@ -1,21 +1,18 @@
-import { AgentStore } from "@/app/agent/store";
-import { Button, Space } from "antd";
 import React from "react";
 import { SessionJSON } from "../localJSON";
-import FastTest from "../fastTest";
 
 const ScriptSelectorBye = () => {
   return (
     <div className="text-rows">
       <div>
-        👍🏻 当前，我们已经在{" "}
+        请确认是否开始压测{" "}
         <a
           target="_blank"
           href={`http://192.168.8.139:8080${SessionJSON.selected_product?.url}`}
         >
           {SessionJSON.selected_product?.name}
         </a>{" "}
-        产品下选择了如下脚本
+        产品下的
       </div>
       <div>
         <ul>
@@ -34,8 +31,8 @@ const ScriptSelectorBye = () => {
           )}
         </ul>
       </div>
-      <div>接下来你需要快速压测吗？或者任意其他事情 😊</div>
-      <div>
+      {/* <div>接下来你需要快速压测吗？或者任意其他事情 😊</div> */}
+      {/* <div>
         <Space>
           <FastTest />
           <Button
@@ -53,7 +50,7 @@ const ScriptSelectorBye = () => {
             更换产品
           </Button>
         </Space>
-      </div>
+      </div> */}
     </div>
   );
 };
