@@ -292,7 +292,7 @@ export default class Agent {
           bridgeMessages: [
             {
               role: "system",
-              content: "提示引导用户描述更清楚的描述需求",
+              content: "请引导用户更清晰的描述需求",
             },
           ],
         };
