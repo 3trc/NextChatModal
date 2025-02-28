@@ -269,14 +269,25 @@ export default class Agent {
 
       const list = objects?.list ?? [];
       SessionJSON.targets = list;
-      return {
-        bridgeMessages: [
-          {
-            role: "assistant",
-            content: "@ui-target",
-          },
-        ],
-      };
+      if (list.length === 1) {
+        return {
+          bridgeMessages: [
+            {
+              role: "assistant",
+              content: "@ui-target",
+            },
+          ],
+        };
+      } else if (list.length > 1) {
+        return {
+          bridgeMessages: [
+            {
+              role: "assistant",
+              content: "@ui-target",
+            },
+          ],
+        };
+      }
 
       const routeMap = this.RouteMap();
       let switcher: MaybeAgentSwitcher = null;
