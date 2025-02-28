@@ -12,7 +12,8 @@ export async function POST(request: NextRequest) {
     "查询",
     "询问",
     "修改",
-    "执行",
+    "压测",
+    "运行",
     "其他",
   ];
   const entities = ["产品", "脚本", "计划", "压测", "记录", "概念", "其他"];
@@ -44,7 +45,7 @@ export async function POST(request: NextRequest) {
 3. 退出|放弃
 4. 陈述
 5. 新建
-6. 查看|选择|绑定|更换
+6. 查看|选择|绑定|更换|列出
 7. 询问
 8. 修改|优化
 9. 压测
