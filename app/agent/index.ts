@@ -8,6 +8,7 @@ import { AgentStore } from "./store";
 import { nanoid } from "nanoid";
 import axios from "axios";
 import { SessionJSON } from "../components/xsea/localJSON";
+import { XSeaObject } from "../components/xsea/xseaa";
 
 export interface ChatMessageX {
   role: "system" | "user" | "assistant";
@@ -270,7 +271,8 @@ export default class Agent {
       const list = objects?.list ?? [];
       SessionJSON.targets = list;
       if (list.length === 1) {
-        SessionJSON.target = list[0];
+        const target: XSeaObject = list[0];
+        SessionJSON.target = target;
         return {
           bridgeMessages: [
             {
