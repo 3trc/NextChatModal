@@ -64,6 +64,10 @@ export const querySearch = async (querys: string[], limit = 50) => {
             queryScore += word.weight;
           }
         });
+        // 精准匹配的加成
+        if (allValueText.includes(query)) {
+          queryScore *= 1.5;
+        }
         // 这里乘以注意力权重
         queryScore *= (index + 1) * 1;
         score += queryScore;
