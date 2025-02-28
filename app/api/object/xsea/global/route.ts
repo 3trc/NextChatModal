@@ -46,11 +46,13 @@ export const querySearch = async (querys: string[], limit = 50) => {
         .join(",");
       let score = 0;
       querys.forEach((query, index) => {
+        let queryScore = 0;
         wordsList[index].forEach((word) => {
           if (allValueText.includes(word.word)) {
-            score += word.weight;
+            queryScore += word.weight;
           }
         });
+        score += queryScore;
       });
       return { ...item, score };
     })
