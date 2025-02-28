@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { openrouterGenerate } from "../model";
-import { querySearch } from "@/app/api/object/xsea/global/route";
+import { querySearch } from "@/app/api/object/xsea/global/querySearch";
 
 export async function POST(request: NextRequest) {
   const actions = [
