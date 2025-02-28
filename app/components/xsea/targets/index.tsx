@@ -56,35 +56,38 @@ const Targets = () => {
           <div>好像没找到相关内容呢，尝试描述清楚一些？😊</div>
         )}
         {list.length > 0 && (
-          <div className={styles.table}>
-            <Table
-              rowKey={(row) => {
-                if (row.type === "PRODUCT") return row.productId;
-                if (row.type === "SCRIPT") return row.scriptId ?? "";
-                if (row.type === "PLAN") return row.planId ?? "";
-                if (row.type === "GOAL") return row.goalId ?? "";
-                return "";
-              }}
-              size="small"
-              showHeader={false}
-              columns={[
-                {
-                  render: (row) => {
-                    return <XSeaA data={row} emoji />;
+          <>
+            <div className={styles.tips}>😊 好的，为你找到以下脚本</div>
+            <div className={styles.table}>
+              <Table
+                rowKey={(row) => {
+                  if (row.type === "PRODUCT") return row.productId;
+                  if (row.type === "SCRIPT") return row.scriptId ?? "";
+                  if (row.type === "PLAN") return row.planId ?? "";
+                  if (row.type === "GOAL") return row.goalId ?? "";
+                  return "";
+                }}
+                size="small"
+                showHeader={false}
+                columns={[
+                  {
+                    render: (row) => {
+                      return <XSeaA data={row} emoji />;
+                    },
                   },
-                },
-              ]}
-              dataSource={list}
-              pagination={
-                list.length <= 5
-                  ? false
-                  : {
-                      pageSize: 5,
-                      showSizeChanger: false,
-                    }
-              }
-            />
-          </div>
+                ]}
+                dataSource={list}
+                pagination={
+                  list.length <= 5
+                    ? false
+                    : {
+                        pageSize: 5,
+                        showSizeChanger: false,
+                      }
+                }
+              />
+            </div>
+          </>
         )}
       </div>
       <div className={styles.recommend}>
