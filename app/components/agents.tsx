@@ -15,7 +15,6 @@ import XSea_Gatling专家 from "../agent/xsea/XSea_Gatling专家";
 import XSea_Shell专家 from "../agent/xsea/XSea_Shell专家";
 import { SessionJSON } from "./xsea/localJSON";
 import XSea_内存分析 from "../agent/xsea/XSea_内存分析";
-import XSea_智能体2 from "../agent/xsea/XSea_智能体2";
 
 const Agents = () => {
   const receiveMessage = (data: any) => {
@@ -102,7 +101,7 @@ const Agents = () => {
   return (
     <>
       <XSea_智能体 />
-      <XSea_智能体2 />
+      {/* <XSea_智能体2 /> */}
       <XSea_JMeter专家 />
       <XSea_Gatling专家 />
       <XSea_Shell专家 />
