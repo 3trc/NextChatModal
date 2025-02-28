@@ -268,11 +268,13 @@ export default class Agent {
       const res = await axios.post(`/api/agent/xsea/router`, dialogue);
       const { action, entity, intention, objects } = res.data;
 
-      const list = objects?.list ?? [];
-      SessionJSON.targets = list;
-      if (list.length === 1) {
-        const target: XSeaObject = list[0];
+      let target = SessionJSON.target as XSeaObject | null;
+      const targets: XSeaObject[] = objects?.list ?? [];
+      SessionJSON.targets = targets;
+      if (targets.length === 1) {
+        target = targets[0];
         SessionJSON.target = target;
+      } else if (targets.length > 1) {
         return {
           bridgeMessages: [
             {
@@ -281,15 +283,30 @@ export default class Agent {
             },
           ],
         };
-      } else if (list.length > 1) {
-        return {
-          bridgeMessages: [
-            {
-              role: "assistant",
-              content: "@ui-target",
-            },
-          ],
-        };
+      }
+
+      if (target) {
+        if (action === "压测") {
+          if (target.type === "SCRIPT") {
+            return {
+              bridgeMessages: [
+                {
+                  role: "assistant",
+                  content: "压测脚本",
+                },
+              ],
+            };
+          } else if (target.type === "GOAL") {
+            return {
+              bridgeMessages: [
+                {
+                  role: "assistant",
+                  content: "压测目标",
+                },
+              ],
+            };
+          }
+        }
       }
 
       const routeMap = this.RouteMap();
