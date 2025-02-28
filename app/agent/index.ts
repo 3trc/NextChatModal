@@ -274,7 +274,7 @@ export default class Agent {
       if (targets.length === 1) {
         target = targets[0];
         SessionJSON.target = target;
-      } else {
+      } else if (targets.length > 1) {
         return {
           bridgeMessages: [
             {
