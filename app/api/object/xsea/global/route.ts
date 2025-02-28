@@ -3,7 +3,7 @@ import { NextRequest, NextResponse } from "next/server";
 import nodejieba from "nodejieba";
 
 export const querySearch = async (querys: string[], limit = 1000) => {
-  // 切分查询，并且截取最后三个查询
+  // 切分查询，并且截取最后2个查询
   querys = querys
     .map((query) => query.toLowerCase().trim())
     .filter((query) => query)
