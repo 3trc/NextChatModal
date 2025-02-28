@@ -4,26 +4,42 @@ import XSeaA, { XSeaObject } from "../xseaa";
 import { SessionJSON } from "../localJSON";
 import { Table } from "antd";
 
+export function pickRandom<T>(list: T[]) {
+  if (list.length === 0) {
+    throw new Error("随机选择列表为空");
+  }
+  return list[Math.floor(Math.random() * list.length)];
+}
+
 const Targets = () => {
   const [list, setList] = useState<XSeaObject[]>([]);
   const [nextList, setNextList] = useState<string[]>([]);
 
-  const pickRandom = (list: XSeaObject[]) => {
-    if (list.length === 0) {
-      throw new Error("随机选择列表为空");
-    }
-    const page = list.slice(0, 5);
-    return page[Math.floor(Math.random() * page.length)];
-  };
-
   useEffect(() => {
-    const targets = SessionJSON.targets;
+    const targets: XSeaObject[] = SessionJSON.targets;
     setList(targets);
     setNextList(() => {
       return Array(5)
         .fill(0)
         .map(() => {
-          return "1234";
+          const item = pickRandom(targets.slice(0, 5));
+          if (item.type === "SCRIPT") {
+            return pickRandom([
+              `请解释 ${item.scriptName} 脚本是干什么的？`,
+              `帮我执行 ${item.scriptName} 脚本看看调试结果`,
+              `开始压测 ${item.scriptName} 脚本`,
+              `请帮我解决 ${item.scriptName} 脚本的Bug`,
+              `我想新建一个 JMeter 脚本`,
+            ]);
+          }
+          if (item.type === "GOAL") {
+            return pickRandom([
+              `请解释 ${item.goalName} 这个目标的意义`,
+              `压测 ${item.goalName} 目标`,
+              `请帮我新增一个目标`,
+            ]);
+          }
+          return "你好";
         });
     });
   }, []);
