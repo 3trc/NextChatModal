@@ -3,26 +3,28 @@ import { NextRequest, NextResponse } from "next/server";
 import nodejieba from "nodejieba";
 
 export const querySearch = async (querys: string[], limit = 50) => {
+  // 切分查询
   querys = querys
     .map((query) => query.toLowerCase().trim())
     .filter((query) => query);
+  // 从每一个查询中提取关键词
   const wordsList = querys.map((query) => nodejieba.extract(query, 10));
+  // 执行数据获取
   const [scriptRes, goalRes] = await Promise.all([
     http.post(`http://10.10.30.103:8081/api/xsea/script/queryScriptRel`),
     http.post(`http://10.10.30.103:8081/api/xsea/plan/goal/queryGoalRel`),
   ]);
   const scriptList: any[] = (scriptRes.data.object ?? []).map((item: any) => ({
-    type: "SCRIPT",
     ...item,
+    type: "SCRIPT",
+    _name: "脚本",
   }));
   const goalList: any[] = (goalRes.data.object ?? []).map((item: any) => ({
-    type: "GOAL",
     ...item,
+    type: "GOAL",
+    _name: "目标",
   }));
-  const allList = [
-    ...scriptList.map((item) => ({ ...item, _name: "脚本" })),
-    ...goalList.map((item) => ({ ...item, _name: "目标" })),
-  ]
+  const allList = [...scriptList, ...goalList]
     .map((item) => {
       const allValueText = Object.keys(item)
         .filter((key) => key.toLowerCase().includes("name"))
@@ -65,11 +67,11 @@ export async function GET(request: NextRequest) {
     const query = searchParams.get("query") || "";
     const limit = Number(searchParams.get("limit") || "10");
     const showWords = !!searchParams.get("words");
-    const { list, words } = await querySearch(query.split("|"), limit);
+    const { list, wordsList } = await querySearch(query.split("|"), limit);
     return NextResponse.json(
       {
         query,
-        ...(showWords ? { words } : {}),
+        ...(showWords ? { wordsList } : {}),
         list,
       },
       {
