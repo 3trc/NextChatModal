@@ -405,40 +405,40 @@ ${JSON.stringify(data.executeRecord?.id, null, 2)}
         ],
       };
 
-      const routeMap = this.RouteMap();
-      let switcher: MaybeAgentSwitcher = null;
-      if (typeof routeMap === "object") {
-        const layer1 = routeMap[action];
-        if (typeof layer1 === "object") {
-          const layer2 = layer1[entity];
-          if (typeof layer2 === "string") {
-            switcher = { agentName: layer2 };
-          } else if (typeof layer2 === "function") {
-            switcher = await layer2();
-          }
-        } else if (typeof layer1 === "string") {
-          switcher = { agentName: layer1 };
-        } else if (typeof layer1 === "function") {
-          switcher = await layer1();
-        }
-      } else if (typeof routeMap === "string") {
-        switcher = { agentName: routeMap };
-      } else if (typeof routeMap === "function") {
-        switcher = await routeMap();
-      }
+      // const routeMap = this.RouteMap();
+      // let switcher: MaybeAgentSwitcher = null;
+      // if (typeof routeMap === "object") {
+      //   const layer1 = routeMap[action];
+      //   if (typeof layer1 === "object") {
+      //     const layer2 = layer1[entity];
+      //     if (typeof layer2 === "string") {
+      //       switcher = { agentName: layer2 };
+      //     } else if (typeof layer2 === "function") {
+      //       switcher = await layer2();
+      //     }
+      //   } else if (typeof layer1 === "string") {
+      //     switcher = { agentName: layer1 };
+      //   } else if (typeof layer1 === "function") {
+      //     switcher = await layer1();
+      //   }
+      // } else if (typeof routeMap === "string") {
+      //   switcher = { agentName: routeMap };
+      // } else if (typeof routeMap === "function") {
+      //   switcher = await routeMap();
+      // }
 
-      if (switcher?.agentName) {
-        const agentName = switcher.agentName;
-        if (
-          ["XSea_执行压测", "XSea_创建脚本", "XSea_创建产品"].includes(
-            agentName,
-          )
-        ) {
-          SessionJSON.background = agentName;
-        }
-      }
-      console.log("【Intention】:", intention, "【Switcher】", switcher);
-      return switcher;
+      // if (switcher?.agentName) {
+      //   const agentName = switcher.agentName;
+      //   if (
+      //     ["XSea_执行压测", "XSea_创建脚本", "XSea_创建产品"].includes(
+      //       agentName,
+      //     )
+      //   ) {
+      //     SessionJSON.background = agentName;
+      //   }
+      // }
+      // console.log("【Intention】:", intention, "【Switcher】", switcher);
+      // return switcher;
     } catch (error) {
       console.error(error);
     }
