@@ -11,12 +11,7 @@ export const querySearch = async (querys: string[], limit = 50) => {
   const wordsList = querys
     .map((query) => nodejieba.extract(query, 10))
     .map((words) =>
-      words.filter(
-        (word) =>
-          !["产品", "脚本", "计划", "目标", "记录", "报告", "压测"].includes(
-            word.word,
-          ),
-      ),
+      words.filter((word) => !["压测", "执行", "开始"].includes(word.word)),
     );
   // 执行数据获取
   const [scriptRes, goalRes] = await Promise.all([
