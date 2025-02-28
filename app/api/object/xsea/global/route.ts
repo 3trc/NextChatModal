@@ -3,10 +3,14 @@ import { NextRequest, NextResponse } from "next/server";
 import nodejieba from "nodejieba";
 
 export const querySearch = async (querys: string[], limit = 50) => {
-  // 切分查询
+  // 切分查询，并且截取最后三个查询
   querys = querys
     .map((query) => query.toLowerCase().trim())
-    .filter((query) => query);
+    .filter((query) => query)
+    .slice(-3);
+  if (querys.length === 0) {
+    throw new Error("没有正确的查询");
+  }
   // 从每一个查询中提取关键词
   const wordsList = querys
     .map((query) => nodejieba.extract(query, 10))
