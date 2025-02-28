@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { openrouterGenerate } from "../model";
 import { querySearch } from "@/app/api/object/xsea/global/route";
-import { XSeaObject } from "@/app/components/xsea/xseaa";
 
 export async function POST(request: NextRequest) {
   const actions = [
@@ -19,6 +18,8 @@ export async function POST(request: NextRequest) {
   const entities = ["产品", "脚本", "计划", "压测", "记录", "概念", "其他"];
   try {
     const json = await request.json();
+    const querys: string[] = json.querys ?? [];
+    json.querys = undefined;
     // json.question = undefined;
     // json.scene = undefined;
     const jsonText = JSON.stringify(json, null, 2);
@@ -134,7 +135,7 @@ export async function POST(request: NextRequest) {
         },
         { role: "user", content: jsonText },
       ]),
-      querySearch(json.answer),
+      querySearch(querys),
     ]);
     const response = result.text as string;
     let actionIndex = actions.length;
@@ -150,26 +151,6 @@ export async function POST(request: NextRequest) {
     }
     const action = actions[actionIndex - 1] ?? "其他";
     const entity = entities[entityIndex - 1] ?? "其他";
-
-    const list = (objects.list ?? []) as XSeaObject[];
-    // if (entity === "脚本") {
-    //   objects.list = list.filter((item) => item.type === "SCRIPT");
-    // }
-    // if (entity === "压测") {
-    //   objects.list = list.filter((item) => item.type === "GOAL");
-    // }
-    // if (entity === "产品") {
-    //   objects.list = list.filter((item) => item.type === "PRODUCT");
-    // }
-    // if (entity === "计划") {
-    //   objects.list = list.filter((item) => item.type === "PLAN");
-    // }
-    // if (entity === "记录") {
-    //   objects.list = list.filter((item) => item.type === "RECORD");
-    // }
-    // if (entity === "报告") {
-    //   objects.list = list.filter((item) => item.type === "REPORT");
-    // }
 
     return NextResponse.json(
       {
