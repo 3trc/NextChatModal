@@ -6,6 +6,7 @@ import { Table } from "antd";
 
 const Targets = () => {
   const [list, setList] = useState<XSeaObject[]>([]);
+  const [nextList, setNextList] = useState<string[]>([]);
 
   const pickRandom = (list: XSeaObject[]) => {
     if (list.length === 0) {
@@ -18,6 +19,13 @@ const Targets = () => {
   useEffect(() => {
     const targets = SessionJSON.targets;
     setList(targets);
+    setNextList(() => {
+      return Array(5)
+        .fill(0)
+        .map(() => {
+          return "1234";
+        });
+    });
   }, []);
 
   return (
@@ -60,9 +68,9 @@ const Targets = () => {
       </div>
       <div className={styles.recommend}>
         <ul className={styles.next_list}>
-          <li>解释一下83脚本</li>
-          <li>鸡毛目标是干什么的</li>
-          <li>帮我重新编写一个JMeter脚本吧</li>
+          {nextList.map((next) => (
+            <li key={next}>{next}</li>
+          ))}
         </ul>
       </div>
     </div>
