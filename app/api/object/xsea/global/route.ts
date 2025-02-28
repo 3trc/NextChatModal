@@ -2,7 +2,7 @@ import http from "@/app/api/simplifier/http";
 import { NextRequest, NextResponse } from "next/server";
 import nodejieba from "nodejieba";
 
-export const querySearch = async (querys: string[], limit = 50) => {
+export const querySearch = async (querys: string[], limit = 1000) => {
   // 切分查询，并且截取最后三个查询
   querys = querys
     .map((query) => query.toLowerCase().trim())
@@ -97,7 +97,7 @@ export async function GET(request: NextRequest) {
   try {
     const searchParams = request.nextUrl.searchParams;
     const query = searchParams.get("query") || "";
-    const limit = Number(searchParams.get("limit") || "10");
+    const limit = Number(searchParams.get("limit") || "1000");
     const showWords = !!searchParams.get("words");
     const { list, wordsList } = await querySearch(query.split("|"), limit);
     return NextResponse.json(
