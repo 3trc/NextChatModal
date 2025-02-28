@@ -29,7 +29,7 @@ export async function POST(request: NextRequest) {
         {
           role: "system",
           content: `
-你是一个对话场景分类器，用户会向你发送如下格式的JSON
+你是一个意图分类器，用户会向你发送如下格式的JSON
 {
   "question": "xxx",
   "answer": "xxx"
@@ -37,7 +37,7 @@ export async function POST(request: NextRequest) {
 - question: 代表对话中助手的问题
 - answer: 代表对话中用户的回答
 
-你需要从以下两个维度把对话场景分类到对应编号
+你需要从以下两个维度把【answer】的意图分类到对应编号
 
 【行为】有如下分类编号
 1. 肯定
@@ -73,7 +73,7 @@ export async function POST(request: NextRequest) {
   "question": "看来你已经选择了脚本，现在可以进行一次JMeter压测了吗？",
   "answer": "什么是Jmeter"
 } -> [陈述,脚本]
-错误原因: 1.返回了中文而非数字序号，2.这里用户的场景是询问概念，应为[7,6]
+错误原因: 1.返回了中文而非数字序号，2.这里用户的意图是询问概念，应为[7,6]
 
 {
   "question": "你想立即新建产品吗",
