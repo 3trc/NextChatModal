@@ -23,12 +23,14 @@ const Agents = () => {
     if (message.from === "ai_parent" && message.expertName) {
       if (message.problem) {
         AgentStore.get(message.expertName).Create(
-          [
-            {
-              role: "system",
-              content: `${message.problem}`,
-            },
-          ],
+          typeof message.problem === "string"
+            ? [
+                {
+                  role: "system",
+                  content: `${message.problem}`,
+                },
+              ]
+            : message.problem,
           true,
         );
       } else {
