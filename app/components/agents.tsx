@@ -18,6 +18,7 @@ import XSea_内存分析 from "../agent/xsea/XSea_内存分析";
 import XSky_分析 from "../agent/xsea/XSky_分析";
 import XWind_分析 from "../agent/xsea/XWind_分析";
 import XWind_知识库 from "../agent/xsea/XWind_知识库";
+import XSky_知识库 from "../agent/xsea/XSky_知识库";
 
 const Agents = () => {
   const receiveMessage = (data: any) => {
@@ -120,6 +121,7 @@ const Agents = () => {
       <XSea_当下引导 />
       <XSea_知识库 />
       <XWind_知识库 />
+      <XSky_知识库 />
       <XSky_分析 />
       <XWind_分析 />
       <XSea_摸摸鱼 />
