@@ -365,7 +365,7 @@ export function SideBar(props: { className?: string }) {
             icon={<AddIcon />}
             text={shouldNarrow ? undefined : Locale.Home.NewChat}
             onClick={() => {
-              AgentStore.get("XSea_智能体").Create([], true);
+              AgentStore.get("XSky_知识库").Create([], true);
               // if (config.dontShowMaskSplashScreen) {
               //   chatStore.newSession();
               //   navigate(Path.Chat);
