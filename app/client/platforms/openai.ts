@@ -310,13 +310,24 @@ export class ChatGPTApi implements LLMApi {
           // parseSSE
           (text: string, runTools: ChatMessageTool[]) => {
             // console.log("parseSSE", text, runTools);
-            const json = JSON.parse(text);
+            let json = JSON.parse(text);
+            if (json.data) {
+              json = json.data;
+            }
+            // const t = {"code":"0000","msg":"交易成功","data":{"model":"Qwen-32b","object":"chat.completion.chunk","choices":[{"index":"0","delta":{"role":null,"content":"您好"},"message":null,"finish_reason":null}]}};
             const choices = json.choices as Array<{
               delta: {
                 content: string;
                 tool_calls: ChatMessageTool[];
               };
             }>;
+            // choices.forEach((choice: any) => {
+            //   choice.delta.role = null;
+            // });
+            // delete json.id;
+            // delete json.created;
+            // delete json.provider;
+            // console.log("pf", json, t.data);
             const tool_calls = choices[0]?.delta?.tool_calls;
             if (tool_calls?.length > 0) {
               const id = tool_calls[0]?.id;
