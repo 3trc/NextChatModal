@@ -9,6 +9,9 @@ export class AgentConnector {
   }
 
   public get(name: string) {
+    if (name === "新的聊天") {
+      name = "XSky_知识库";
+    }
     const agent = this.store.get(name);
     if (!agent) {
       const errorMessage = `AgentStore: Can not find agent ${name}!`;
