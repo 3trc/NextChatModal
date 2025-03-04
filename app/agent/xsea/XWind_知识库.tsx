@@ -8,7 +8,7 @@ class _Agent extends Agent {
   public constructor(chatStore: ChatStore, navigate: NavigateFunction) {
     super(
       {
-        avatar: "🔄",
+        avatar: "📚",
         name: "XWind_知识库",
         context: [
           {
