@@ -11,7 +11,18 @@ class _Agent extends Agent {
       {
         avatar: "📚",
         name: "XWind_知识库",
-        context: [],
+        context: [
+          {
+            role: "system",
+            content: `
+XWind是一个性能风险巡检与诊断平台
+你需要回答与此相关的问题
+避免回答其他非相关的问题
+            `.trim(),
+            id: "",
+            date: "",
+          },
+        ],
         modelConfig: {
           model: "qwen/qwen-2-72b-instruct",
           max_tokens: 16384,
