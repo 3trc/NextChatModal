@@ -192,7 +192,7 @@ export class ChatGPTApi implements LLMApi {
       },
     };
 
-    let requestPayload: RequestPayload | DalleRequestPayload;
+    let requestPayload: RequestPayload | DalleRequestPayload | any;
 
     const isDalle3 = _isDalle3(options.config.model);
     const isO1OrO3 =
@@ -227,18 +227,35 @@ export class ChatGPTApi implements LLMApi {
 
       // O1 not support image, tools (plugin in ChatGPTNextWeb) and system, stream, logprobs, temperature, top_p, n, presence_penalty, frequency_penalty yet.
       requestPayload = {
+        // 正常的参数暂时注释掉
         messages,
-        stream: options.config.stream,
-        model: modelConfig.model,
-        temperature: !isO1OrO3 ? modelConfig.temperature : 1,
-        presence_penalty: !isO1OrO3 ? modelConfig.presence_penalty : 0,
-        frequency_penalty: !isO1OrO3 ? modelConfig.frequency_penalty : 0,
-        top_p: !isO1OrO3 ? modelConfig.top_p : 1,
-        ...{
-          topK: modelConfig.topK,
-          top_k: modelConfig.topK,
-          repetition_penalty: 1,
-        },
+        // stream: options.config.stream,
+        // model: modelConfig.model,
+        // temperature: !isO1OrO3 ? modelConfig.temperature : 1,
+        // presence_penalty: !isO1OrO3 ? modelConfig.presence_penalty : 0,
+        // frequency_penalty: !isO1OrO3 ? modelConfig.frequency_penalty : 0,
+        // top_p: !isO1OrO3 ? modelConfig.top_p : 1,
+        // ...{
+        //   topK: modelConfig.topK,
+        //   top_k: modelConfig.topK,
+        //   repetition_penalty: 1,
+        // },
+
+        // 以下是邮储专属参数
+        ...({
+          area: "2",
+          channel: "1",
+          history: [],
+          prompt: "",
+          query: "",
+          responseMode: "1",
+          role: "user",
+          temperature: 0,
+          model: "6",
+          type: "9",
+        } as any),
+        // 邮储专属参数
+
         // max_tokens: Math.max(modelConfig.max_tokens, 1024),
         // Please do not ask me why not send max_tokens, no reason, this param is just shit, I dont want to explain anymore.
       };
