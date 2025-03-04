@@ -21,7 +21,7 @@ export class AgentConnector {
   public MaskList() {
     return [
       ...Array.from(this.store.values()).map((agent) => agent.Mask),
-      ...CN_MASKS,
+      // ...CN_MASKS,
     ];
   }
 }

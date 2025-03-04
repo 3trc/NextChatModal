@@ -1,20 +1,6 @@
 import React, { useEffect, useRef } from "react";
-import XSea_智能体 from "../agent/xsea/XSea_智能体";
-import XSea_摸摸鱼 from "../agent/xsea/XSea_摸摸鱼";
-import XSea_创建产品 from "../agent/xsea/XSea_创建产品";
-import XSea_创建脚本 from "../agent/xsea/XSea_创建脚本";
-import XSea_查询产品 from "../agent/xsea/XSea_查询产品";
-import XSea_查询脚本 from "../agent/xsea/XSea_查询脚本";
-import XSea_执行压测 from "../agent/xsea/XSea_执行压测";
-import XSea_调用栈分析 from "../agent/xsea/XSea_调用栈分析";
 import { AgentStore } from "../agent/store";
-import XSea_知识库 from "../agent/xsea/XSea_知识库";
-import XSea_当下引导 from "../agent/xsea/XSea_当下引导";
-import XSea_JMeter专家 from "../agent/xsea/XSea_JMeter专家";
-import XSea_Gatling专家 from "../agent/xsea/XSea_Gatling专家";
-import XSea_Shell专家 from "../agent/xsea/XSea_Shell专家";
 import { SessionJSON } from "./xsea/localJSON";
-import XSea_内存分析 from "../agent/xsea/XSea_内存分析";
 import XSky_分析 from "../agent/xsea/XSky_分析";
 import XWind_分析 from "../agent/xsea/XWind_分析";
 import XWind_知识库 from "../agent/xsea/XWind_知识库";
@@ -106,9 +92,9 @@ const Agents = () => {
 
   return (
     <>
-      <XSea_智能体 />
+      {/* <XSea_智能体 /> */}
       {/* <XSea_智能体2 /> */}
-      <XSea_JMeter专家 />
+      {/* <XSea_JMeter专家 />
       <XSea_Gatling专家 />
       <XSea_Shell专家 />
       <XSea_创建产品 />
@@ -119,12 +105,12 @@ const Agents = () => {
       <XSea_调用栈分析 />
       <XSea_内存分析 />
       <XSea_当下引导 />
-      <XSea_知识库 />
+      <XSea_知识库 /> */}
       <XWind_知识库 />
       <XSky_知识库 />
       <XSky_分析 />
       <XWind_分析 />
-      <XSea_摸摸鱼 />
+      {/* <XSea_摸摸鱼 /> */}
     </>
   );
 };
