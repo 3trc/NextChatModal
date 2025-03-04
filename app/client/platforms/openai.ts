@@ -225,6 +225,14 @@ export class ChatGPTApi implements LLMApi {
           messages.push({ role: v.role, content });
       }
 
+      const psbcQuery = (messages[messages.length - 1].content ||
+        "你好") as string;
+      const psbcHistory = messages.slice(0, messages.length - 1);
+      let psbcPrompt = "";
+      if (psbcHistory.length >= 2 && psbcHistory[0].role === "system") {
+        psbcPrompt = (psbcHistory.shift()?.content ?? "") as string;
+      }
+
       // O1 not support image, tools (plugin in ChatGPTNextWeb) and system, stream, logprobs, temperature, top_p, n, presence_penalty, frequency_penalty yet.
       requestPayload = {
         // 正常的参数暂时注释掉
@@ -245,9 +253,9 @@ export class ChatGPTApi implements LLMApi {
         ...({
           area: "2",
           channel: "1",
-          history: [],
-          prompt: "",
-          query: "",
+          history: psbcHistory,
+          prompt: psbcPrompt,
+          query: psbcQuery,
           responseMode: "1",
           role: "user",
           temperature: 0,
