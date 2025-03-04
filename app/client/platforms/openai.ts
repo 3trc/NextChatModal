@@ -214,7 +214,7 @@ export class ChatGPTApi implements LLMApi {
       };
     } else {
       const visionModel = isVisionModel(options.config.model);
-      const messages: ChatOptions["messages"] = [];
+      let messages: ChatOptions["messages"] = [];
       for (const v of options.messages.filter(
         (message: any) => !message.noLLM,
       )) {
@@ -225,18 +225,30 @@ export class ChatGPTApi implements LLMApi {
           messages.push({ role: v.role, content });
       }
 
+      messages = messages.filter(
+        (message) =>
+          !message.content
+            .toString()
+            .startsWith("这是历史聊天总结作为前情提要："),
+      );
       const psbcQuery = (messages[messages.length - 1].content ||
         "你好") as string;
-      const psbcHistory = messages.slice(0, messages.length - 1);
+      const allHistory = messages.slice(0, messages.length - 1);
+      const psbcHistory = allHistory.filter((item) => item.role !== "system");
+      const systemHistory = allHistory.filter((item) => item.role === "system");
       let psbcPrompt = "";
-      if (psbcHistory.length >= 2 && psbcHistory[0].role === "system") {
-        psbcPrompt = (psbcHistory.shift()?.content ?? "") as string;
+      if (systemHistory.length === 1) {
+        psbcPrompt = systemHistory[0].content as string;
+      } else if (systemHistory.length > 1) {
+        psbcPrompt = `${systemHistory[0].content}\n\n\n${
+          systemHistory[systemHistory.length - 1].content
+        }`;
       }
 
       // O1 not support image, tools (plugin in ChatGPTNextWeb) and system, stream, logprobs, temperature, top_p, n, presence_penalty, frequency_penalty yet.
       requestPayload = {
         // 正常的参数暂时注释掉
-        messages,
+        // messages,
         // stream: options.config.stream,
         // model: modelConfig.model,
         // temperature: !isO1OrO3 ? modelConfig.temperature : 1,
