@@ -231,8 +231,13 @@ export class ChatGPTApi implements LLMApi {
             .toString()
             .startsWith("这是历史聊天总结作为前情提要："),
       );
-      const psbcQuery = (messages[messages.length - 1].content ||
+      let psbcQuery = (messages[messages.length - 1].content ||
         "你好") as string;
+      const psbcQueryDiff = 30000 - psbcQuery.length;
+      if (psbcQueryDiff > 0) {
+        psbcQuery = psbcQuery.slice(0, psbcQuery.length - psbcQueryDiff);
+      }
+
       const allHistory = messages.slice(0, messages.length - 1);
       const psbcHistory = allHistory.filter((item) => item.role !== "system");
       const systemHistory = allHistory.filter((item) => item.role === "system");
