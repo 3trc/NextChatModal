@@ -245,6 +245,11 @@ export class ChatGPTApi implements LLMApi {
         }`;
       }
 
+      const psbcPromptDiff = psbcPrompt.length - 2000;
+      if (psbcPromptDiff > 0) {
+        psbcPrompt = psbcPrompt.slice(0, psbcPrompt.length - psbcPromptDiff);
+      }
+
       // O1 not support image, tools (plugin in ChatGPTNextWeb) and system, stream, logprobs, temperature, top_p, n, presence_penalty, frequency_penalty yet.
       requestPayload = {
         // 正常的参数暂时注释掉
