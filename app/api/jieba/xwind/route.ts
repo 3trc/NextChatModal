@@ -6,7 +6,7 @@ export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
     const text = body.message;
-    const limit = body.limit ?? 10;
+    const limit = body.limit ?? 5;
     const words = nodejieba
       .tag(text)
       .filter((tag) =>
