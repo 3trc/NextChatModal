@@ -23,7 +23,7 @@ XSea是一个性能测试平台
           },
         ],
         modelConfig: {
-          model: "perfma-gpt-14b:latest",
+          model: "qwen2-72b-int4",
           max_tokens: 16384,
           topK: 1,
           top_p: 0.5,
