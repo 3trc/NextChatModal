@@ -1,8 +1,8 @@
 import { ChatOllama } from "@langchain/ollama";
 
 const model = new ChatOllama({
-  baseUrl: "http://111.9.7.102:31131",
-  model: "perfma-gpt-json-14b:latest",
+  baseUrl: "http://20.200.110.20:8011",
+  model: "qwen2-72b-int4",
   numCtx: 16384,
   keepAlive: "10000h",
   streaming: true,
