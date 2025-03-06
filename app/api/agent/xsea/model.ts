@@ -1,9 +1,11 @@
 import { ChatOllama } from "@langchain/ollama";
-import { createOpenRouter } from "@openrouter/ai-sdk-provider";
+import { createOpenAICompatible } from "@ai-sdk/openai-compatible";
 import { CoreMessage, generateText } from "ai";
 
-const openrouter = createOpenRouter({
+const openrouter = createOpenAICompatible({
+  name: "psbc-qwen2",
   apiKey: process.env.OPENAI_API_KEY,
+  baseURL: "http://20.200.110.20:8011/v1",
 });
 
 const openrouterModel = openrouter("microsoft/phi-4");
