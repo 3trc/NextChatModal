@@ -1,15 +1,19 @@
 import React, { useEffect } from "react";
 import styles from "./next.module.scss";
 import { useChatStore } from "../store";
+import axios from "axios";
 
 const Next = () => {
   const chatStore = useChatStore();
 
   useEffect(() => {
-    const messages = chatStore.currentSession().messages.slice(10).map((item) => ({
-      role: item.role, content: item.content,
-    }));
-    console.log(messages);
+    (async () => {
+      const messages = chatStore.currentSession().messages.slice(-4).map((item) => ({
+        role: item.role, content: item.content,
+      }));
+      const res = await axios.post(`/api/agent/xsea/next`, messages);
+      console.log(res);
+    })();
   }, []);
 
   return <ul className={styles.com}>
