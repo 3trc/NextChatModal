@@ -1,0 +1,17 @@
+.com {
+  display: flex;
+  font-size: 12px;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  li {
+    width: fit-content;
+    color: #666666;
+    padding: 0.3rem 0.5rem;
+    border-radius: 8px;
+    border: solid 1px #dddddd;
+    margin-bottom: 0.3rem;
+    margin-right: 0.3rem;
+    cursor: pointer;
+  }
+}

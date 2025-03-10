@@ -109,6 +109,7 @@ import { ChatMessageX } from "../agent";
 import { AgentStore } from "../agent/store";
 import BottomConfirm from "./bottomConfirm";
 import { SessionJSON } from "./xsea/localJSON";
+import Next from "./next";
 
 const localStorage = safeLocalStorage();
 
@@ -2116,6 +2117,8 @@ function _Chat() {
                           <div className={styles["chat-message-action-date"]}>
                             {isContext ? "" : message.date.toLocaleString()}
                           </div>
+
+                          {i === messages.length - 1 && <Next />}
                         </div>
                       </div>
                       {shouldShowClearContextDivider && <ClearContextDivider />}
