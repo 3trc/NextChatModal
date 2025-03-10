@@ -6,6 +6,7 @@ import { useChatStore } from "@/app/store";
 import { AgentStore } from "@/app/agent/store";
 
 export const isConfirmMessage = (message: string) => {
+  return false;
   if (message.includes("```")) return false;
   const lines = message
     .split("\n")
