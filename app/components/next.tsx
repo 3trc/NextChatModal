@@ -23,7 +23,9 @@ const Next = () => {
   }, []);
 
   return <ul className={styles.com}>
-    {list.map((q) => <li>{q}</li>)}
+    {list.map((q) => <li onClick={() => {
+      chatStore.SendMessage(q);
+    }}>{q}</li>)}
   </ul>;
 }
 
