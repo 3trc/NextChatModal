@@ -11,6 +11,7 @@ export async function POST(request: NextRequest) {
     const jsonStartIndex = jsonText.indexOf('[');
     const jsonEndIndex = jsonText.indexOf(']');
     const newJsonText = jsonText.slice(jsonStartIndex, jsonEndIndex + 1);
+    console.log(1234, res.data.text);
     let result: string[] = [];
     try {
       result = JSON.parse(newJsonText);
