@@ -21,11 +21,11 @@ export async function GET(request: NextRequest) {
         },
       },
     );
-  } catch (error) {
+  } catch (error: any) {
     return NextResponse.json(
       {
         code: 500,
-        message: "Internal Server Error",
+        message: error.message || "Internal Server Error",
       },
       {
         status: 500,
