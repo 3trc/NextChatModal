@@ -79,9 +79,8 @@ export async function POST(request: NextRequest) {
         await writer.abort(error);
       }
     }
-    
-    // 处理单行数据
-    async function processLine(line: any) {
+
+    async function processLine(line: string) { // 明确类型为 string
       const trimmedLine = line.trim();
       if (!trimmedLine) return;
       
@@ -105,9 +104,12 @@ export async function POST(request: NextRequest) {
           // 提取内容部分 - 格式为 0:"内容"
           const match = trimmedLine.match(/0:"(.*)"/);
           if (match && match[1] !== undefined) {
-            const content = match[1];
-            
-            // 创建OpenAI格式的SSE消息
+            let content = match[1];
+            // 处理转义的换行符，将 \\n 替换为 \n
+            content = content.replace(/\\n/g, '\n');
+            // 如果内容包含 Markdown 语法，可以选择保留原始格式
+            // 或者在此处对 Markdown 进行预处理（视需求而定）
+
             const message = {
               id: messageId,
               object: 'chat.completion.chunk',
