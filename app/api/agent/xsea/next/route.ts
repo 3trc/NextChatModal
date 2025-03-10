@@ -7,9 +7,16 @@ export async function POST(request: NextRequest) {
     const res = await axios.post(`http://localhost:4111/api/agents/XSea推荐询问/generate`, {
       messages,
     });
-    const jsonText = ((res.data.text ?? "[]") as string).replace('```json', '').replace('```', '');
-    console.log(1234, jsonText);
-    const result = JSON.parse(jsonText);
+    const jsonText = (res.data.text ?? "[]") as string;
+    const jsonStartIndex = jsonText.indexOf('[');
+    const jsonEndIndex = jsonText.indexOf(']');
+    const newJsonText = jsonText.slice(jsonStartIndex, jsonEndIndex + 1);
+    let result: string[] = [];
+    try {
+      result = JSON.parse(newJsonText);
+    } catch (error) {
+      console.error(error);
+    }
     return NextResponse.json(
       result,
       {
