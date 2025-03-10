@@ -2,11 +2,16 @@ import { NextRequest, NextResponse } from 'next/server';
 
 export async function POST(request: NextRequest) {
   try {
-    const body = await request.json();
-    body.resourceId = 'XSea智能体';
-    body.runId = 'XSea智能体';
-    body.threadId = body.threadId || '15946957-4180-4f92-a68f-ae9e9cde2134';
-    body.stream = true;
+    const body1 = await request.json();
+    const body = {
+      messages: body1.messages,
+      resourceId: 'XSea智能体',
+      runId: 'XSea智能体',
+      threadId: body1.threadId || '15946957-4180-4f92-a68f-ae9e9cde2134',
+      stream: true,
+    };
+
+    console.log('SSE代理请求', body);
 
     // 从您的接口获取数据
     const response = await fetch('http://localhost:4111/api/agents/XSea智能体/stream', {
