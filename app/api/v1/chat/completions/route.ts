@@ -8,7 +8,7 @@ export async function POST(request: NextRequest) {
       messages: [lastMessage],
       resourceId: 'XSea智能体',
       runId: 'XSea智能体',
-      threadId: body1.threadId || 'b71f8289-42ae-4598-b25d-e1bfff91b969',
+      threadId: body1.threadId || 'common',
       stream: true,
     };
 
