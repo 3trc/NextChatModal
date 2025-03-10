@@ -2118,7 +2118,7 @@ function _Chat() {
                             {isContext ? "" : message.date.toLocaleString()}
                           </div>
 
-                          {i === messages.length - 1 && <Next />}
+                          {i === messages.length - 1 && !message.streaming && <Next />}
                         </div>
                       </div>
                       {shouldShowClearContextDivider && <ClearContextDivider />}
