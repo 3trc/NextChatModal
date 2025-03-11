@@ -1,4 +1,19 @@
 import { ChatOllama } from "@langchain/ollama";
+import { createOpenRouter } from "@openrouter/ai-sdk-provider";
+import { CoreMessage, generateText } from "ai";
+
+const openrouter = createOpenRouter({
+  apiKey: process.env.OPENAI_API_KEY,
+});
+
+const openrouterModel = openrouter("qwen/qwen-2-72b-instruct");
+
+export const openrouterGenerate = async (messages: CoreMessage[]) => {
+  return await generateText({
+    model: openrouterModel,
+    messages: messages,
+  });
+};
 
 const model = new ChatOllama({
   baseUrl: "http://183.220.36.102:31311",
