@@ -5,7 +5,7 @@ import { CoreMessage, generateText } from "ai";
 const openrouter = createOpenAICompatible({
   name: 'openai_compatible',
   apiKey: process.env.OPENAI_API_KEY,
-  baseURL: process.env.BASE_URL!,
+  baseURL: process.env.BASE_URL! + '/v1',
 });
 
 const openrouterModel = openrouter("qwen/qwen-2-72b-instruct");

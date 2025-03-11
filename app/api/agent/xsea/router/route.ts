@@ -131,7 +131,6 @@ export async function POST(request: NextRequest) {
       { role: "user", content: jsonText },
     ]);
     const response = result.text as string;
-    console.log(1234, response);
     let actionIndex = actions.length;
     let entityIndex = entities.length;
     try {
