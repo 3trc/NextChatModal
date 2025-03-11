@@ -11,7 +11,7 @@ const ScriptSelectorBye = () => {
         👍🏻 当前，我们已经在{" "}
         <a
           target="_blank"
-          href={`http://192.168.8.139:8080${SessionJSON.selected_product?.url}`}
+          href={`${localStorage.xseaUrl}${SessionJSON.selected_product?.url}`}
         >
           {SessionJSON.selected_product?.name}
         </a>{" "}
@@ -25,7 +25,7 @@ const ScriptSelectorBye = () => {
                 <span>{`${index + 1}.`}</span>{" "}
                 <a
                   target="_blank"
-                  href={`http://192.168.8.139:8080${script?.url}`}
+                  href={`${localStorage.xseaUrl}${script?.url}`}
                 >
                   {script.name}
                 </a>

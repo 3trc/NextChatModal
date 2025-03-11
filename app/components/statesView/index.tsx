@@ -129,7 +129,7 @@ const StatesView = () => {
                       <a
                         href="javascript:;"
                         onClick={() => {
-                          // window.top?.open(`http://192.168.8.139:8080${test.executeRecord.url}`);
+                          // window.top?.open(`${localStorage.xseaUrl}${test.executeRecord.url}`);
                         }}
                       >
                         {test.goal.name ?? "-"}
