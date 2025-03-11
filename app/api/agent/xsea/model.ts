@@ -1,9 +1,11 @@
 import { ChatOllama } from "@langchain/ollama";
-import { createOpenRouter } from "@openrouter/ai-sdk-provider";
+import { createOpenAICompatible } from "@ai-sdk/openai-compatible";
 import { CoreMessage, generateText } from "ai";
 
-const openrouter = createOpenRouter({
+const openrouter = createOpenAICompatible({
+  name: 'openai_compatible',
   apiKey: process.env.OPENAI_API_KEY,
+  baseURL: process.env.BASE_URL!,
 });
 
 const openrouterModel = openrouter("qwen/qwen-2-72b-instruct");
