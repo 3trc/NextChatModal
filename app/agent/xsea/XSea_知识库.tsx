@@ -11,7 +11,14 @@ class _Agent extends Agent {
       {
         avatar: "📚",
         name: "XSea_知识库",
-        context: [],
+        context: [
+          {
+            role: "user",
+            content: "你是XSea的知识库，可以帮助用户回答各种XSea相关的问题",
+            id: "",
+            date: "",
+          },
+        ],
         modelConfig: {
           model: "phi4:14b",
           max_tokens: 16384,
