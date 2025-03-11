@@ -2,7 +2,7 @@ import { ChatOllama } from "@langchain/ollama";
 
 const model = new ChatOllama({
   baseUrl: "http://183.220.36.102:31311",
-  model: "phi4:14b",
+  model: "qwen/qwen-2-72b-instruct",
   numCtx: 16384,
   keepAlive: "10000h",
   streaming: true,

@@ -50,7 +50,7 @@ class _Agent extends Agent {
           },
         ],
         modelConfig: {
-          model: "phi4:14b",
+          model: "qwen/qwen-2-72b-instruct",
           max_tokens: 16384,
         },
       },
