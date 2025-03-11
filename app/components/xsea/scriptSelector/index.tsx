@@ -73,7 +73,7 @@ const ScriptSelector = (props: { search: string }) => {
           <span>📝</span>&nbsp;
           <span>
             <a
-              href={`${"http://192.168.8.139:8080"}${SessionJSON
+              href={`http://192.168.8.139:8080${SessionJSON
                 .selected_product?.url}`}
               className={styles.a_product}
             >
@@ -136,7 +136,7 @@ const ScriptSelector = (props: { search: string }) => {
               render: (_, row: any) => {
                 return (
                   <a
-                    href={`${"http://192.168.8.139:8080"}${row.url}`}
+                    href={`http://192.168.8.139:8080${row.url}`}
                     target="_blank"
                     className={styles.a_name}
                   >
