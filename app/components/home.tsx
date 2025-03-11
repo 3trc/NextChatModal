@@ -33,6 +33,12 @@ import { initializeMcpSystem } from "../mcp/actions";
 import StatesView from "./statesView";
 import Agents from "./agents";
 
+const url = new URL(location.href);
+const parentUrl = url.searchParams.get('parentUrl');
+if (parentUrl) {
+  localStorage.xseaUrl = parentUrl;
+}
+
 export function Loading(props: { noLogo?: boolean }) {
   return (
     <div className={clsx("no-dark", styles["loading-content"])}>
