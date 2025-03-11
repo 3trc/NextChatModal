@@ -13,7 +13,7 @@ class _Agent extends Agent {
         name: "XSea_知识库",
         context: [
           {
-            role: "user",
+            role: "system",
             content: "你是XSea的知识库，可以帮助用户回答各种XSea相关的问题",
             id: "",
             date: "",
