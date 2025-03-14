@@ -2117,7 +2117,7 @@ function _Chat() {
                           <div className={styles["chat-message-action-date"]}>
                             {isContext ? "" : message.date.toLocaleString()}
                           </div>
-                          {i === messages.filter((message) => message.role !== 'system').length - 1 && !message.streaming && <Next />}
+                          {/* {i === messages.filter((message) => message.role !== 'system').length - 1 && !message.streaming && <Next />} */}
                         </div>
                       </div>
                       {shouldShowClearContextDivider && <ClearContextDivider />}
