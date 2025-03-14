@@ -246,6 +246,7 @@ export default class Agent {
   public async onBeforeSendMessage(
     message: string,
   ): Promise<MaybeAgentSwitcher> {
+    return null;
     try {
       const session = this.chatStore.currentSession();
       const prevMessages = session.messages;

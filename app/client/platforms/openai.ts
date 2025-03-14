@@ -192,7 +192,7 @@ export class ChatGPTApi implements LLMApi {
       },
     };
 
-    let requestPayload: RequestPayload | DalleRequestPayload;
+    let requestPayload: RequestPayload | DalleRequestPayload | any;
 
     const isDalle3 = _isDalle3(options.config.model);
     const isO1OrO3 =
@@ -229,15 +229,15 @@ export class ChatGPTApi implements LLMApi {
       requestPayload = {
         messages,
         stream: options.config.stream,
-        model: modelConfig.model,
-        temperature: !isO1OrO3 ? modelConfig.temperature : 1,
-        presence_penalty: !isO1OrO3 ? modelConfig.presence_penalty : 0,
-        frequency_penalty: !isO1OrO3 ? modelConfig.frequency_penalty : 0,
-        top_p: !isO1OrO3 ? modelConfig.top_p : 1,
+        // model: modelConfig.model,
+        // temperature: !isO1OrO3 ? modelConfig.temperature : 1,
+        // presence_penalty: !isO1OrO3 ? modelConfig.presence_penalty : 0,
+        // frequency_penalty: !isO1OrO3 ? modelConfig.frequency_penalty : 0,
+        // top_p: !isO1OrO3 ? modelConfig.top_p : 1,
         ...{
-          topK: modelConfig.topK,
-          top_k: modelConfig.topK,
-          repetition_penalty: 1,
+          // topK: modelConfig.topK,
+          // top_k: modelConfig.topK,
+          // repetition_penalty: 1,
           threadId: useChatStore.getState().currentSession().id,
         },
         // max_tokens: Math.max(modelConfig.max_tokens, 1024),
