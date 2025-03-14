@@ -228,7 +228,8 @@ export class ChatGPTApi implements LLMApi {
       // O1 not support image, tools (plugin in ChatGPTNextWeb) and system, stream, logprobs, temperature, top_p, n, presence_penalty, frequency_penalty yet.
       requestPayload = {
         query: messages.findLast((message) => message.role === 'user')?.content ?? '你好',
-        stream: options.config.stream,
+        threadId: useChatStore.getState().currentSession().id,
+        // stream: options.config.stream,
         // model: modelConfig.model,
         // temperature: !isO1OrO3 ? modelConfig.temperature : 1,
         // presence_penalty: !isO1OrO3 ? modelConfig.presence_penalty : 0,
@@ -238,7 +239,7 @@ export class ChatGPTApi implements LLMApi {
           // topK: modelConfig.topK,
           // top_k: modelConfig.topK,
           // repetition_penalty: 1,
-          threadId: useChatStore.getState().currentSession().id,
+          // threadId: useChatStore.getState().currentSession().id,
         },
         // max_tokens: Math.max(modelConfig.max_tokens, 1024),
         // Please do not ask me why not send max_tokens, no reason, this param is just shit, I dont want to explain anymore.
