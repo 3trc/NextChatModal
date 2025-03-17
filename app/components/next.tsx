@@ -4,23 +4,11 @@ import { useChatStore } from "../store";
 import axios from "axios";
 
 const Next = () => {
-  const first = useRef<boolean>(false);
-  const [list, setList] = useState<string[]>([]);
+  const [list, setList] = useState<string[]>([
+    '问题1',
+    '问题2',
+  ]);
   const chatStore = useChatStore();
-
-  useEffect(() => {
-    if (first.current) {
-      return;
-    }
-    first.current = true;
-    (async () => {
-      const messages = chatStore.currentSession().messages.slice(-4).map((item) => ({
-        role: item.role, content: item.content,
-      }));
-      const res = await axios.post(`/api/agent/xsea/next`, messages);
-      setList(res.data ?? []);
-    })();
-  }, []);
 
   return <ul className={styles.com}>
     {list.map((q) => <li onClick={() => {
