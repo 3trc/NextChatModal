@@ -2107,7 +2107,12 @@ function _Chat() {
                                 )}
                               </div>
                             )}
-                            <Next />
+                            {
+                              i !== 0 &&
+                              i === messages.filter((message) => message.role !== 'system').findLastIndex((message) => message.role === 'assistant') &&
+                              !message.streaming &&
+                              <Next />
+                            }
                           </div>
                           {message?.audio_url && (
                             <div className={styles["chat-message-audio"]}>
