@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
-import styles from "./next.module.scss";
 import { useChatStore } from "../store";
 import axios from "axios";
+import styles from "./next.module.scss";
 
 const Next = (props: { message: any }) => {
   const first = useRef<boolean>(true);
@@ -9,8 +9,12 @@ const Next = (props: { message: any }) => {
   const chatStore = useChatStore();
 
   const updateNext = async (context: string) => {
-    const { data } = await axios.get(`/api/next/xsea`, { params: { context } });
-    setList(data ?? []);
+    try {
+      const { data } = await axios.get(`/api/next/xsea`, { params: { context } });
+      setList(data ?? []);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   useEffect(() => {
@@ -23,7 +27,7 @@ const Next = (props: { message: any }) => {
   return <ul className={styles.com}>
     {list.map((q) => <li onClick={() => {
       chatStore.SendMessage(q);
-    }}>{q.replaceAll('A', '某').replaceAll('B', '某').replaceAll('C', '某')}</li>)}
+    }}>{q.replace('A', '某').replace('B', '某').replace('C', '某')}</li>)}
   </ul>;
 }
 
