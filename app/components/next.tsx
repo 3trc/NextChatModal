@@ -5,23 +5,25 @@ import axios from "axios";
 
 const Next = (props: { message: any }) => {
   const first = useRef<boolean>(true);
-  const [list, setList] = useState<string[]>([
-    '快速压测鸡毛脚本',
-    '每日测试脚本模拟了什么样的性能测试场景',
-  ]);
+  const [list, setList] = useState<string[]>([]);
   const chatStore = useChatStore();
+
+  const updateNext = async (context: string) => {
+    const { data } = await axios.get(`/api/next/xsea`, { params: { context } });
+    setList(data ?? []);
+  };
 
   useEffect(() => {
     if (first.current) {
       first.current = false;
-      console.log(1234, props.message);
+      updateNext(props.message.content);
     }
   }, [props.message]);
 
   return <ul className={styles.com}>
     {list.map((q) => <li onClick={() => {
       chatStore.SendMessage(q);
-    }}>{q}</li>)}
+    }}>{q.replaceAll('A', '某').replaceAll('B', '某').replaceAll('C', '某')}</li>)}
   </ul>;
 }
 
