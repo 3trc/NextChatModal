@@ -2110,8 +2110,10 @@ function _Chat() {
                             {
                               i !== 0 &&
                               i === messages.filter((message) => message.role !== 'system').findLastIndex((message) => message.role === 'assistant') &&
-                              !message.streaming &&
-                              <Next />
+                              message.streaming === false &&
+                              message.preview !== true &&
+                              message.content.length > 4 &&
+                              <Next message={message} />
                             }
                           </div>
                           {message?.audio_url && (
