@@ -5,8 +5,8 @@ import axios from "axios";
 
 const Next = () => {
   const [list, setList] = useState<string[]>([
-    '问题1',
-    '问题2',
+    '快速压测鸡毛脚本',
+    '每日测试脚本模拟了什么样的性能测试场景',
   ]);
   const chatStore = useChatStore();
 
