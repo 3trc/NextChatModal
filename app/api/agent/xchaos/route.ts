@@ -13,7 +13,7 @@ export async function POST(request: NextRequest) {
       {
         headers: {
           cookie:
-            process.env.XCHAOS_AUTH!,
+            'sys_token=707fae3eaaa4493198e59f1734533f10; sys_env_id=694456073411100672; sys_env_code=Init',
           ["Content-Type"]: "application/json",
         },
       },
