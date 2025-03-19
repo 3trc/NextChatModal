@@ -5,7 +5,7 @@ export async function POST(request: NextRequest) {
   try {
     const json = await request.json();
     await axios.post(
-      `http://10.10.224.24:8089/api/xchaos/taskinstance/executeTask`,
+      process.env.XCHAOS_API_URL!,
       {
         taskId: json.taskId,
         ignore: false,
@@ -13,7 +13,7 @@ export async function POST(request: NextRequest) {
       {
         headers: {
           cookie:
-            "sys_token=ee1734bce6e248668f9bcfac309aed50; sys_env_id=977046101482688512; sys_env_code=AI_DEMO",
+            process.env.XCHAOS_AUTH!,
           ["Content-Type"]: "application/json",
         },
       },
