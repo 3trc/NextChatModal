@@ -13,7 +13,7 @@ const ProductSelectorBye = () => {
         👍🏻 当前，你已经成功选择了一个产品{" "}
         <a
           target="_blank"
-          href={`http://192.168.8.139:8080${SessionJSON.selected_product?.url}`}
+          href={`http://10.10.30.103:8081${SessionJSON.selected_product?.url}`}
         >
           {SessionJSON.selected_product?.name}
         </a>

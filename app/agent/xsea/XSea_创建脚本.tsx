@@ -155,7 +155,7 @@ class _Agent extends Agent {
                 content:
                   "我将会清空脚本名称，清空脚本类型，清空搜集到的需求，回到步骤1",
                 component: `
-✨ 已为你成功在 **[${SessionJSON.selected_product?.name}](http://192.168.8.139:8080${SessionJSON.selected_product?.url})** 下，创建脚本 **[${name}](http://192.168.8.139:8080${url})**
+✨ 已为你成功在 **[${SessionJSON.selected_product?.name}](http://10.10.30.103:8081${SessionJSON.selected_product?.url})** 下，创建脚本 **[${name}](http://10.10.30.103:8081${url})**
 想使用此脚本进行压测吗，试着说“开始压测吧”，我们将一起执行一次压测
 当然你也可以让我帮你执行其他任务，或者随意聊聊天
                 `.trim(),

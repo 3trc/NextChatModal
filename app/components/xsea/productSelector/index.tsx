@@ -112,7 +112,7 @@ const ProductSelector = (props: { search: string }) => {
               render: (_, row: any) => {
                 return (
                   <a
-                    href={`${"http://192.168.8.139:8080"}${row.url}`}
+                    href={`${"http://10.10.30.103:8081"}${row.url}`}
                     target="_blank"
                     className={styles.a_name}
                   >
