@@ -4,7 +4,7 @@ import { NextRequest, NextResponse } from "next/server";
 export async function POST(request: NextRequest) {
   try {
     const json = await request.json();
-    await axios.post(
+    const { data } = await axios.post(
       `http://10.10.224.24:8089/api/xchaos/taskinstance/executeTask`,
       {
         taskId: json.taskId,
@@ -19,9 +19,7 @@ export async function POST(request: NextRequest) {
       },
     );
     return NextResponse.json(
-      {
-        success: true,
-      },
+      data,
       {
         status: 200,
         headers: {
@@ -29,11 +27,11 @@ export async function POST(request: NextRequest) {
         },
       },
     );
-  } catch (error) {
+  } catch (error: any) {
     return NextResponse.json(
       {
         code: 500,
-        message: "Internal Server Error",
+        message: error.message || "Internal Server Error",
       },
       {
         status: 500,
