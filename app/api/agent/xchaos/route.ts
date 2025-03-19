@@ -5,7 +5,7 @@ export async function POST(request: NextRequest) {
   try {
     const json = await request.json();
     await axios.post(
-      process.env.XCHAOS_API_URL!,
+      `http://10.10.224.24:8089/api/xchaos/taskinstance/executeTask`,
       {
         taskId: json.taskId,
         ignore: false,
