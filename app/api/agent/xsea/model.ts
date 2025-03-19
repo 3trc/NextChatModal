@@ -1,7 +1,7 @@
 import { ChatOllama } from "@langchain/ollama";
 
 const model = new ChatOllama({
-  baseUrl: "http://183.220.36.102:31311",
+  baseUrl: process.env.BASE_URL_2,
   model: "phi4:14b",
   numCtx: 16384,
   keepAlive: "10000h",
