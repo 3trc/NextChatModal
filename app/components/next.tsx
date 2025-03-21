@@ -14,18 +14,18 @@ const Next = (props: { message: any }) => {
       const session = chatStore.currentSession();
       const mask = session.mask;
       const { data } = await axios.post(`/api/openai/v1/chat/completions`, {
-        messages: '接下来我可以问怎么问题呢',
+        messages: '请你结合上下文分析接下来我有可能会问什么问题',
         agentName: mask.agentName,
         runId: mask.agentName,
         resourceId: mask.agentName,
         threadId: session.id,
         stream: false,
         output: z.tuple([
-          z.string().max(20),
-          z.string().max(20),
-          z.string().max(20),
-          z.string().max(20),
-        ]).describe('自动推荐出的下一个用户消息，一共四个'),
+          z.string(),
+          z.string(),
+          z.string(),
+          z.string(),
+        ]).describe('用户接下来可能会发送的四条消息'),
       });
       setList(data.object ?? []);
     } catch (error) {
