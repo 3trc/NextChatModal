@@ -1173,7 +1173,7 @@ function _Chat() {
       const stopTiming = Date.now() - REQUEST_TIMEOUT_MS;
       session.messages.forEach((m) => {
         // check if should stop all stale messages
-        if (m.isError || new Date(m.date).getTime() < stopTiming) {
+        if (m.isError || new Date(m.date!).getTime() < stopTiming) {
           if (m.streaming) {
             m.streaming = false;
           }
@@ -1904,7 +1904,7 @@ function _Chat() {
                                       text={Locale.Chat.Actions.Stop}
                                       icon={<StopIcon />}
                                       onClick={() =>
-                                        onUserStop(message.id ?? i)
+                                        onUserStop(message.id! ?? i)
                                       }
                                     />
                                   ) : (
@@ -1919,7 +1919,7 @@ function _Chat() {
                                         text={Locale.Chat.Actions.Delete}
                                         icon={<DeleteIcon />}
                                         onClick={() =>
-                                          onDelete(message.id ?? i)
+                                          onDelete(message.id! ?? i)
                                         }
                                       />
 
@@ -2123,7 +2123,7 @@ function _Chat() {
                           )}
 
                           <div className={styles["chat-message-action-date"]}>
-                            {isContext ? "" : message.date.toLocaleString()}
+                            {isContext ? "" : message.date?.toLocaleString()}
                           </div>
                         </div>
                       </div>
