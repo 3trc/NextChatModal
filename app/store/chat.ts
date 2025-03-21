@@ -57,10 +57,10 @@ export type ChatMessageTool = {
 };
 
 export type ChatMessage = RequestMessage & {
-  date: string;
+  date?: string;
   streaming?: boolean;
   isError?: boolean;
-  id: string;
+  id?: string;
   model?: ModelType;
   tools?: ChatMessageTool[];
   audio_url?: string;
