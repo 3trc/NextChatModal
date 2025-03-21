@@ -110,6 +110,7 @@ import { AgentStore } from "../agent/store";
 import BottomConfirm from "./bottomConfirm";
 import { SessionJSON } from "./xsea/localJSON";
 import Next from "./next";
+import { nanoid } from "nanoid";
 
 const localStorage = safeLocalStorage();
 
@@ -657,14 +658,15 @@ export function ChatActions(props: {
                 session.clearContextIndex = session.messages.length;
                 session.memoryPrompt = ""; // will clear memory
               }
+              session.id = nanoid();
             });
-            SessionJSON.selected_product = null;
-            SessionJSON.selected_scripts = [];
-            SessionJSON.background = "";
-            SessionJSON.tests = [];
-            SessionJSON.targets = [];
-            SessionJSON.target = null;
-            AgentStore.get("XSea智能体").Create([], true);
+            // SessionJSON.selected_product = null;
+            // SessionJSON.selected_scripts = [];
+            // SessionJSON.background = "";
+            // SessionJSON.tests = [];
+            // SessionJSON.targets = [];
+            // SessionJSON.target = null;
+            // AgentStore.get("XSea智能体").Create([], true);
           }}
         />
 
