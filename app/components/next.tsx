@@ -5,7 +5,7 @@ import styles from "./next.module.scss";
 
 const Next = (props: { message: any }) => {
   const first = useRef<boolean>(true);
-  const [list, setList] = useState<string[]>([]);
+  const [list, setList] = useState<string[]>(['问题1', '问题2', '问题3']);
   const chatStore = useChatStore();
 
   const updateNext = async (context: string) => {
