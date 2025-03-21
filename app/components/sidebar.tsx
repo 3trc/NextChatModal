@@ -28,7 +28,7 @@ import { isIOS, useMobileScreen } from "../utils";
 import dynamic from "next/dynamic";
 import { Selector, showConfirm } from "./ui-lib";
 import clsx from "clsx";
-import { AgentStore } from "../agent/store";
+import { AgentStore, CN_MASKS } from "../agent/store";
 
 const DISCOVERY = [
   { name: Locale.Plugin.Name, path: Path.Plugins },
@@ -365,7 +365,9 @@ export function SideBar(props: { className?: string }) {
             icon={<AddIcon />}
             text={shouldNarrow ? undefined : Locale.Home.NewChat}
             onClick={() => {
-              AgentStore.get("XSea智能体").Create([], true);
+              chatStore.newSession(CN_MASKS.find((mask) => mask.name === "XSea智能体") as any);
+              navigate(Path.Chat);
+              // AgentStore.get("XSea智能体").Create([], true);
               // if (config.dontShowMaskSplashScreen) {
               //   chatStore.newSession();
               //   navigate(Path.Chat);
