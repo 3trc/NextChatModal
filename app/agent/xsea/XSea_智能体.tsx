@@ -9,35 +9,17 @@ class _Agent extends Agent {
     super(
       {
         avatar: "🤖",
-        name: "XSea_智能体",
+        name: "XSea智能体",
         agentName: "xsea_agent",
         context: [
           {
             id: "",
             role: "system",
-            content: `
-你是XSea智能体，你可以帮助用户做以下任务
-
-1. 创建产品
-2. 创建脚本
-3. 查询产品
-4. 查询脚本
-5. 执行压测
-
-请用拟人化的语气引导用户执行以上任务
-
-避免表达生硬
-            `.trim(),
+            content: "",
             date: "",
           },
         ],
-        modelConfig: {
-          model: "qwen/qwen-2-72b-instruct",
-          max_tokens: 16384,
-          topK: 1,
-          top_p: 0.5,
-          temperature: 0.1,
-        },
+        modelConfig: { },
       },
       chatStore,
       navigate,
