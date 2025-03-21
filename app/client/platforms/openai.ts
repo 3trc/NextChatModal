@@ -225,13 +225,15 @@ export class ChatGPTApi implements LLMApi {
           messages.push({ role: v.role, content });
       }
 
+      const mask = useChatStore.getState().currentSession().mask;
+
       // O1 not support image, tools (plugin in ChatGPTNextWeb) and system, stream, logprobs, temperature, top_p, n, presence_penalty, frequency_penalty yet.
       requestPayload = {
         messages: messages.filter((message) => message.role === 'user').slice(-1),
         threadId: useChatStore.getState().currentSession().id,
-        agentName: 'xsea_agent',
-        runId: 'xsea_agent',
-        resourceId: 'xsea_agent',
+        agentName: mask.agentName,
+        runId: mask.agentName,
+        resourceId: mask.agentName,
         // stream: options.config.stream,
         // model: modelConfig.model,
         // temperature: !isO1OrO3 ? modelConfig.temperature : 1,
