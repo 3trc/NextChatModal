@@ -24,6 +24,7 @@ const Next = (props: { message: any }) => {
     }
   }, [props.message]);
 
+  if (list.length === 0) return null;
   return <ul className={styles.com}>
     {list.map((q) => <li onClick={() => {
       chatStore.SendMessage(q);
