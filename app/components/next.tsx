@@ -14,12 +14,16 @@ const Next = () => {
     try {
       const session = chatStore.currentSession();
       const mask = session.mask;
-      const messages = session.messages.slice(-2);
+      const messages = session.messages.slice(-1);
       console.log(messages);
       const { data } = await axios.post(`/api/openai/v1/chat/completions`, {
-        messages: `
-请你结合上下文分析接下来用户有可能会问什么问题
-        `.trim(),
+        messages: messages.map((message) => ({
+          role: message.role,
+          content: message.content,
+        })).concat({
+          role: "system",
+          content: "请你结合上下文分析接下来用户有可能会问什么问题",
+        }),
         agentName: mask.agentName,
         runId: mask.agentName,
         resourceId: mask.agentName,
