@@ -1097,9 +1097,9 @@ function _Chat() {
     }
   };
 
-  const _doSubmit = async (
+  const doSubmit = async (
     userInput: string,
-    preCheck?: (message: string) => any,
+    // preCheck?: (message: string) => any,
   ) => {
     if (userInput.trim() === "" && isEmpty(attachImages)) {
       return;
@@ -1113,21 +1113,21 @@ function _Chat() {
     }
     setIsLoading(true);
 
-    try {
-      const result = await preCheck?.(userInput);
-      if (result) {
-        setIsLoading(false);
-        setAttachImages([]);
-        chatStore.setLastInput(userInput);
-        setUserInput("");
-        setPromptHints([]);
-        if (!isMobileScreen) inputRef.current?.focus();
-        setAutoScroll(true);
-        return;
-      }
-    } catch (error) {
-      console.error(error);
-    }
+    // try {
+    //   const result = await preCheck?.(userInput);
+    //   if (result) {
+    //     setIsLoading(false);
+    //     setAttachImages([]);
+    //     chatStore.setLastInput(userInput);
+    //     setUserInput("");
+    //     setPromptHints([]);
+    //     if (!isMobileScreen) inputRef.current?.focus();
+    //     setAutoScroll(true);
+    //     return;
+    //   }
+    // } catch (error) {
+    //   console.error(error);
+    // }
 
     chatStore
       .onUserInput(userInput, attachImages)
@@ -1139,12 +1139,12 @@ function _Chat() {
     if (!isMobileScreen) inputRef.current?.focus();
     setAutoScroll(true);
   };
-  window._doSubmit = _doSubmit;
-  const doSubmit = (userInput: string) => {
-    if (isLoading) return;
-    const mask = chatStore.currentSession().mask;
-    AgentStore.get(mask.name).SendMessage(userInput);
-  };
+  // window._doSubmit = _doSubmit;
+  // const doSubmit = (userInput: string) => {
+  //   if (isLoading) return;
+  //   const mask = chatStore.currentSession().mask;
+  //   AgentStore.get(mask.name).SendMessage(userInput);
+  // };
 
   const onPromptSelect = (prompt: RenderPrompt) => {
     setTimeout(() => {
