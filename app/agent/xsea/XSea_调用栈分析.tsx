@@ -119,7 +119,7 @@ stackDatas包含:
           },
         ],
         modelConfig: {
-          model: "qwen/qwen-2-72b-instruct",
+          model: "perfma-gpt",
           max_tokens: 16384,
           topK: 1,
           top_p: 0.5,
