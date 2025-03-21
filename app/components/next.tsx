@@ -1,11 +1,12 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useChatStore } from "../store";
+import { z } from 'zod';
 import axios from "axios";
 import styles from "./next.module.scss";
 
 const Next = (props: { message: any }) => {
   const first = useRef<boolean>(true);
-  const [list, setList] = useState<string[]>(['问题1', '问题2', '问题3']);
+  const [list, setList] = useState<string[]>([]);
   const chatStore = useChatStore();
 
   const updateNext = async (context: string) => {
@@ -19,9 +20,14 @@ const Next = (props: { message: any }) => {
         resourceId: mask.agentName,
         threadId: session.id,
         stream: false,
+        output: z.tuple([
+          z.string().max(20),
+          z.string().max(20),
+          z.string().max(20),
+          z.string().max(20),
+        ]).describe('自动推荐出的下一个用户消息，一共四个'),
       });
-      console.log(data);
-      // setList(data ?? []);
+      setList(data.object ?? []);
     } catch (error) {
       console.error(error);
     }
