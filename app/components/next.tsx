@@ -10,8 +10,18 @@ const Next = (props: { message: any }) => {
 
   const updateNext = async (context: string) => {
     try {
-      const { data } = await axios.get(`/api/next/xsea`, { params: { context } });
-      setList(data ?? []);
+      const session = chatStore.currentSession();
+      const mask = session.mask;
+      const { data } = await axios.post(`/api/openai/v1/chat/completions`, {
+        messages: '接下来我可以问怎么问题呢',
+        agentName: mask.agentName,
+        runId: mask.agentName,
+        resourceId: mask.agentName,
+        threadId: session.id,
+        stream: false,
+      });
+      console.log(data);
+      // setList(data ?? []);
     } catch (error) {
       console.error(error);
     }
