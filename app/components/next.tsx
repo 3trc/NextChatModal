@@ -30,7 +30,7 @@ const Next = (props: { message: any }) => {
           z.string(),
         ]).describe('用户接下来可能会发送的四条消息'),
       });
-      setList(data.object ?? []);
+      setList(() => Array.isArray(data.object) ? data.object : []);
     } catch (error) {
       console.error(error);
     }
