@@ -17,42 +17,38 @@ const Welcome = () => {
           <ul className={styles.try_to_say}>
             <li
               onClick={() => {
-                AgentStore.get(
-                  chatStore.currentSession().mask.name,
-                ).SendMessage("开始压测东航下航班相关的脚本");
+                chatStore.onUserInput("开始压测东航下航班相关的脚本");
               }}
             >
               <span>帮我压测 xxx 下的 xxx 脚本</span>
             </li>
-            <li>
+            <li onClick={() => {
+                chatStore.onUserInput("帮我分析一个报告吧");
+              }}>
               <span>帮我分析 xxx 报告</span>
             </li>
             <li
               onClick={() => {
-                AgentStore.get(
-                  chatStore.currentSession().mask.name,
-                ).SendMessage("请开始压测");
+                chatStore.onUserInput("我想压测某些脚本");
               }}
             >
               <span>现在就开始压测吧！</span>
             </li>
             <li
               onClick={() => {
-                AgentStore.get(
-                  chatStore.currentSession().mask.name,
-                ).SendMessage("帮我创建一个JMeter脚本");
+                chatStore.onUserInput("帮我创建一个JMeter脚本吧");
               }}
             >
               <span>帮我编写一个JMeter脚本吧</span>
             </li>
-            <li>
+            <li onClick={() => {
+                chatStore.onUserInput("我想你帮我解释某一个脚本");
+              }}>
               <span>帮我解释 xxx 脚本是做什么的</span>
             </li>
             <li
               onClick={() => {
-                AgentStore.get(
-                  chatStore.currentSession().mask.name,
-                ).SendMessage("怎么样安装探针");
+                chatStore.onUserInput("XSea之中怎么样安装探针");
               }}
             >
               <span>怎么样安装探针</span>
