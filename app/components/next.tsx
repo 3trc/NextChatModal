@@ -14,7 +14,9 @@ const Next = (props: { message: any }) => {
       const session = chatStore.currentSession();
       const mask = session.mask;
       const { data } = await axios.post(`/api/openai/v1/chat/completions`, {
-        messages: '请你结合上下文分析接下来我有可能会问什么问题',
+        messages: `
+请你结合上下文分析接下来用户有可能会问什么问题
+        `.trim(),
         agentName: mask.agentName,
         runId: mask.agentName,
         resourceId: mask.agentName,
