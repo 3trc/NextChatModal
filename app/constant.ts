@@ -170,7 +170,7 @@ export const Anthropic = {
 };
 
 export const OpenaiPath = {
-  ChatPath: "agent/xsea_agent",
+  ChatPath: "v1/chat/completions",
   SpeechPath: "v1/audio/speech",
   ImagePath: "v1/images/generations",
   UsagePath: "dashboard/billing/usage",

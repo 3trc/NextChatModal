@@ -227,8 +227,11 @@ export class ChatGPTApi implements LLMApi {
 
       // O1 not support image, tools (plugin in ChatGPTNextWeb) and system, stream, logprobs, temperature, top_p, n, presence_penalty, frequency_penalty yet.
       requestPayload = {
-        query: messages.filter((message) => message.role !== 'system' && message.content).slice(-20),
+        messages: messages.filter((message) => message.role === 'user').slice(-1),
         threadId: useChatStore.getState().currentSession().id,
+        agentName: 'xsea_agent',
+        runId: 'xsea_agent',
+        resourceId: 'xsea_agent',
         // stream: options.config.stream,
         // model: modelConfig.model,
         // temperature: !isO1OrO3 ? modelConfig.temperature : 1,
