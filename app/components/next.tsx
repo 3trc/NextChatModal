@@ -17,13 +17,11 @@ const Next = () => {
       const messages = session.messages.slice(-1);
       console.log(messages);
       const { data } = await axios.post(`/api/openai/v1/chat/completions`, {
-        messages: messages.map((message) => ({
-          role: message.role,
-          content: message.content,
-        })).concat({
-          role: "system",
-          content: "请你结合上下文分析接下来用户有可能会问什么问题",
-        }),
+        messages: `
+## 最后一条历史消息是：【${messages[0].content}】
+
+## 请你结合最后一条历史消息，预测用户接下来可能会发送的四条消息
+        `.trim(),
         agentName: mask.agentName,
         runId: mask.agentName,
         resourceId: mask.agentName,
@@ -52,7 +50,7 @@ const Next = () => {
   if (list.length === 0) return null;
   return <ul className={styles.com}>
     {list.map((q) => <li onClick={() => {
-      chatStore.SendMessage(q);
+      chatStore.onUserInput(q);
     }}>{q.replace('A', '某').replace('B', '某').replace('C', '某')}</li>)}
   </ul>;
 }
