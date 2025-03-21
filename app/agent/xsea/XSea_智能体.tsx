@@ -10,6 +10,7 @@ class _Agent extends Agent {
       {
         avatar: "🤖",
         name: "XSea_智能体",
+        agentName: "xsea_agent",
         context: [
           {
             id: "",
