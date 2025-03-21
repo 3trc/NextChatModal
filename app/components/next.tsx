@@ -15,11 +15,10 @@ const Next = () => {
       const session = chatStore.currentSession();
       const mask = session.mask;
       const messages = session.messages.slice(-1);
-      console.log(messages);
-      const { data } = await axios.post(`/api/openai/v1/chat/completions`, {
-        messages: `
-## 请你结合最后一条历史消息，预测用户接下来可能会发送的四条消息
-
+      const context = messages[0].content as string;
+      let prompt = '## 请你结合最后一条历史消息，预测用户接下来可能会发送的四条消息\n\n';
+      if (context.includes('| 序号 |')) {
+        prompt += `
 ## 你的工作步骤如下
 1. 选取类型T（T为上下文最新讨论的对象类型，必须为以下之一）
 - 产品
@@ -81,9 +80,19 @@ const Next = () => {
 - 避免回答使用代码块标记
 
 ## 【重要】避免回答超过150个字符
+        `.trim();
+      } else {
+        prompt += `
+## 确保预测结果和最后一条历史消息相关
+## 确保预测结果对于用户来说是有用的
+## 避免预测结果为询问操作流程
+## 避免预测结果为询问概念
+        `.trim();
+      }
+      prompt += `\n\n## 最后一条历史消息是:【${context}】`;
 
-## 最后一条历史消息是：【${messages[0].content}】
-        `.trim(),
+      const { data } = await axios.post(`/api/openai/v1/chat/completions`, {
+        messages: prompt,
         agentName: mask.agentName,
         runId: mask.agentName,
         resourceId: mask.agentName,
