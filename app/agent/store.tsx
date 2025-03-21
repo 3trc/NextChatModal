@@ -34,34 +34,28 @@ export const CN_MASKS: BuiltinMask[] = [
   {
     avatar: "🤖",
     name: "XSea智能体",
-    context: [],
+    context: [
+      {
+        role: "assistant",
+        content: "你好",
+        component: "@ui-welcome",
+      },
+    ],
   },
   {
     avatar: "😄",
     name: "JMeter专家",
     context: [],
-    modelConfig: { },
-    lang: "cn",
-    builtin: true,
-    createdAt: 1699599480510,
   },
   {
     avatar: "😄",
     name: "Gatling专家",
     context: [],
-    modelConfig: { },
-    lang: "cn",
-    builtin: true,
-    createdAt: 1699599480510,
   },
   {
     avatar: "😄",
     name: "Shell专家",
     context: [],
-    modelConfig: { },
-    lang: "cn",
-    builtin: true,
-    createdAt: 1699599480510,
   },
   {
     avatar: "📮",
