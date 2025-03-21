@@ -44,17 +44,17 @@ export const CN_MASKS: BuiltinMask[] = [
     ],
   },
   {
-    avatar: "😄",
+    avatar: "👨‍💻",
     name: "JMeter专家",
     context: [],
   },
   {
-    avatar: "😄",
+    avatar: "👨‍💻",
     name: "Gatling专家",
     context: [],
   },
   {
-    avatar: "😄",
+    avatar: "👩‍💻",
     name: "Shell专家",
     context: [],
   },
