@@ -50,7 +50,7 @@ const StateConfirm = () => {
           <Button
             onClick={() => {
               AgentStore.get("XSea_执行压测").SwitchAgent({
-                agentName: "XSea_智能体",
+                agentName: "XSea智能体",
                 bridgeMessages: [
                   {
                     role: "assistant",

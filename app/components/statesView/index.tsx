@@ -133,7 +133,7 @@ const StatesView = () => {
                   title: (
                     <Button
                       onClick={() =>
-                        AgentStore.get("XSea_智能体").SendMessage(
+                        AgentStore.get("XSea智能体").SendMessage(
                           "列出全部目标",
                         )
                       }

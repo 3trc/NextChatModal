@@ -34,7 +34,7 @@ const FastTest = () => {
           }
           SessionJSON.tests = newTests;
           AgentStore.get(chatStore.currentSession().mask.name).SwitchAgent({
-            agentName: "XSea_智能体",
+            agentName: "XSea智能体",
             bridgeMessages: [
               {
                 role: "assistant",
@@ -55,7 +55,7 @@ _如有更多问题，请随时联系我_
           });
         } else {
           AgentStore.get(chatStore.currentSession().mask.name).SwitchAgent({
-            agentName: "XSea_智能体",
+            agentName: "XSea智能体",
             bridgeMessages: [
               {
                 role: "system",

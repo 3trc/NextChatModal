@@ -9,7 +9,7 @@ class _Agent extends Agent {
     super(
       {
         avatar: "🤖",
-        name: "XSea_智能体2",
+        name: "XSea智能体2",
         context: [
           {
             id: "",

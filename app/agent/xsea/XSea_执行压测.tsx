@@ -158,7 +158,7 @@ ${JSON.stringify(data.executeRecord?.id, null, 2)}
           typeof data.executeRecord.id === "string"
         ) {
           return {
-            agentName: "XSea_智能体",
+            agentName: "XSea智能体",
             bridgeMessages: [
               {
                 role: "assistant",
@@ -179,7 +179,7 @@ _如有更多问题，请随时联系我_
           };
         } else {
           return {
-            agentName: "XSea_智能体",
+            agentName: "XSea智能体",
             bridgeMessages: [
               {
                 role: "system",

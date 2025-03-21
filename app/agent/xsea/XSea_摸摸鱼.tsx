@@ -61,11 +61,11 @@ class _Agent extends Agent {
 
   public RouteMap(): AgentRouteMap {
     return {
-      终止: "XSea_智能体",
-      创建: "XSea_智能体",
-      查询: "XSea_智能体",
-      修改: "XSea_智能体",
-      执行: "XSea_智能体",
+      终止: "XSea智能体",
+      创建: "XSea智能体",
+      查询: "XSea智能体",
+      修改: "XSea智能体",
+      执行: "XSea智能体",
     };
   }
 }
