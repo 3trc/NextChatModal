@@ -3,6 +3,7 @@ import { useChatStore } from "../store";
 import { z } from 'zod';
 import axios from "axios";
 import styles from "./next.module.scss";
+import { nanoid } from "nanoid";
 
 const Next = (props: { message: any }) => {
   const first = useRef<boolean>(true);
@@ -20,7 +21,7 @@ const Next = (props: { message: any }) => {
         agentName: mask.agentName,
         runId: mask.agentName,
         resourceId: mask.agentName,
-        threadId: session.id,
+        threadId: session.id + nanoid(),
         stream: false,
         output: z.tuple([
           z.string(),
