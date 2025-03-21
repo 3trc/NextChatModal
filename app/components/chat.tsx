@@ -2115,7 +2115,7 @@ function _Chat() {
                               message.streaming === false &&
                               message.preview !== true &&
                               message.content.length > 4 &&
-                              <Next message={message} />
+                              <Next />
                             }
                           </div>
                           {message?.audio_url && (

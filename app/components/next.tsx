@@ -1,19 +1,21 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useChatStore } from "../store";
-import { z } from 'zod';
+import { z } from "zod";
 import axios from "axios";
 import styles from "./next.module.scss";
 import { nanoid } from "nanoid";
 
-const Next = (props: { message: any }) => {
+const Next = () => {
   const first = useRef<boolean>(true);
   const [list, setList] = useState<string[]>([]);
   const chatStore = useChatStore();
 
-  const updateNext = async (context: string) => {
+  const updateNext = async () => {
     try {
       const session = chatStore.currentSession();
       const mask = session.mask;
+      const messages = session.messages.slice(-2);
+      console.log(messages);
       const { data } = await axios.post(`/api/openai/v1/chat/completions`, {
         messages: `
 请你结合上下文分析接下来用户有可能会问什么问题
@@ -39,9 +41,9 @@ const Next = (props: { message: any }) => {
   useEffect(() => {
     if (first.current) {
       first.current = false;
-      updateNext(props.message.content);
+      updateNext();
     }
-  }, [props.message]);
+  }, []);
 
   if (list.length === 0) return null;
   return <ul className={styles.com}>
