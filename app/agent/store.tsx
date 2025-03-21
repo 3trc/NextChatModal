@@ -32,6 +32,11 @@ export const AgentStore = agentStore;
 
 export const CN_MASKS: BuiltinMask[] = [
   {
+    avatar: "🤖",
+    name: "XSea智能体",
+    context: [],
+  },
+  {
     avatar: "😄",
     name: "JMeter专家",
     context: [],

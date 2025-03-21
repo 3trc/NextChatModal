@@ -14,7 +14,7 @@ export interface AgentSwitcher {
 
 export type Mask = {
   id: string;
-  createdAt: number;
+  createdAt?: number;
   avatar: string;
   name: string;
   agentName?: string;
@@ -22,8 +22,8 @@ export type Mask = {
   context: ChatMessage[];
   syncGlobalConfig?: boolean;
   modelConfig: ModelConfig;
-  lang: Lang;
-  builtin: boolean;
+  lang?: Lang;
+  builtin?: boolean;
   plugin?: string[];
   enableArtifacts?: boolean;
   enableCodeFold?: boolean;

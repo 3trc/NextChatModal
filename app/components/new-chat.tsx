@@ -177,7 +177,8 @@ export function NewChat() {
               key={index}
               mask={mask}
               onClick={() => {
-                AgentStore.get(mask.name).Create([], true);
+                startChat(mask);
+                // AgentStore.get(mask.name).Create([], true);
               }}
             />
           ))}
