@@ -102,7 +102,7 @@ const Agents = () => {
     <>
       <XSea_智能体 />
       {/* <XSea_智能体2 /> */}
-      <XSea_JMeter专家 />
+      {/* <XSea_JMeter专家 />
       <XSea_Gatling专家 />
       <XSea_Shell专家 />
       <XSea_创建产品 />
@@ -114,7 +114,7 @@ const Agents = () => {
       <XSea_内存分析 />
       <XSea_当下引导 />
       <XSea_知识库 />
-      <XSea_摸摸鱼 />
+      <XSea_摸摸鱼 /> */}
     </>
   );
 };
