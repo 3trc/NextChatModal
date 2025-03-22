@@ -534,7 +534,7 @@ export const useChatStore = createPersistStore(
               botMessage.date = new Date().toLocaleString();
               get().onNewMessage(botMessage, session);
             }
-            ChatControllerPool.remove(session.id, botMessage.id);
+            ChatControllerPool.remove(session.id, botMessage.id!);
           },
           onBeforeTool(tool: ChatMessageTool) {
             (botMessage.tools = botMessage?.tools || []).push(tool);
@@ -568,7 +568,7 @@ export const useChatStore = createPersistStore(
             });
             ChatControllerPool.remove(
               session.id,
-              botMessage.id ?? messageIndex,
+              botMessage.id! ?? messageIndex,
             );
 
             console.error("[Chat] failed ", error);
@@ -577,7 +577,7 @@ export const useChatStore = createPersistStore(
             // collect controller for stop/retry
             ChatControllerPool.addController(
               session.id,
-              botMessage.id ?? messageIndex,
+              botMessage.id! ?? messageIndex,
               controller,
             );
           },
@@ -597,7 +597,7 @@ export const useChatStore = createPersistStore(
         let userMessage: ChatMessage = createMessage({
           ...message,
           content: mContent,
-        });
+        } as any);
 
         const botMessage: ChatMessage = createMessage({
           role: "assistant",
@@ -647,7 +647,7 @@ export const useChatStore = createPersistStore(
               botMessage.date = new Date().toLocaleString();
               get().onNewMessage(botMessage, session);
             }
-            ChatControllerPool.remove(session.id, botMessage.id);
+            ChatControllerPool.remove(session.id, botMessage.id!);
           },
           onBeforeTool(tool: ChatMessageTool) {
             (botMessage.tools = botMessage?.tools || []).push(tool);
@@ -681,7 +681,7 @@ export const useChatStore = createPersistStore(
             });
             ChatControllerPool.remove(
               session.id,
-              botMessage.id ?? messageIndex,
+              botMessage.id! ?? messageIndex,
             );
 
             console.error("[Chat] failed ", error);
@@ -690,7 +690,7 @@ export const useChatStore = createPersistStore(
             // collect controller for stop/retry
             ChatControllerPool.addController(
               session.id,
-              botMessage.id ?? messageIndex,
+              botMessage.id! ?? messageIndex,
               controller,
             );
           },
@@ -738,7 +738,7 @@ export const useChatStore = createPersistStore(
               botMessage.date = new Date().toLocaleString();
               get().onNewMessage(botMessage, session);
             }
-            ChatControllerPool.remove(session.id, botMessage.id);
+            ChatControllerPool.remove(session.id, botMessage.id!);
           },
           onBeforeTool(tool: ChatMessageTool) {
             (botMessage.tools = botMessage?.tools || []).push(tool);
@@ -771,7 +771,7 @@ export const useChatStore = createPersistStore(
             });
             ChatControllerPool.remove(
               session.id,
-              botMessage.id ?? messageIndex,
+              botMessage.id! ?? messageIndex,
             );
 
             console.error("[Chat] failed ", error);
@@ -780,7 +780,7 @@ export const useChatStore = createPersistStore(
             // collect controller for stop/retry
             ChatControllerPool.addController(
               session.id,
-              botMessage.id ?? messageIndex,
+              botMessage.id! ?? messageIndex,
               controller,
             );
           },
@@ -814,7 +814,7 @@ export const useChatStore = createPersistStore(
           createMessage({
             ...message,
             content: fillTemplateWith(message.content, modelConfig),
-          }),
+          } as any),
         );
 
         const botMessage: ChatMessage = createMessage({
@@ -868,7 +868,7 @@ export const useChatStore = createPersistStore(
               botMessage.date = new Date().toLocaleString();
               get().onNewMessage(botMessage, session);
             }
-            ChatControllerPool.remove(session.id, botMessage.id);
+            ChatControllerPool.remove(session.id, botMessage.id!);
           },
           onBeforeTool(tool: ChatMessageTool) {
             (botMessage.tools = botMessage?.tools || []).push(tool);
@@ -904,7 +904,7 @@ export const useChatStore = createPersistStore(
             });
             ChatControllerPool.remove(
               session.id,
-              botMessage.id ?? messageIndex,
+              botMessage.id! ?? messageIndex,
             );
 
             console.error("[Chat] failed ", error);
@@ -913,7 +913,7 @@ export const useChatStore = createPersistStore(
             // collect controller for stop/retry
             ChatControllerPool.addController(
               session.id,
-              botMessage.id ?? messageIndex,
+              botMessage.id! ?? messageIndex,
               controller,
             );
           },
