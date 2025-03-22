@@ -87,7 +87,7 @@ const Next = () => {
   - 我想新建一个定时任务
   - C定时任务的执行配置合适吗？
 
-5. 把T，A，B，C替换成你选取的值
+5. 把T，A，B，C替换成你选取的值，并且润色文本
 
 ## 确保回答遵循以下格式的JSON文本，避免解释
 ${parser.getFormatInstructions()}
