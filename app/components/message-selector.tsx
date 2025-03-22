@@ -191,7 +191,7 @@ export function MessageSelector(props: {
       <div className={styles["messages"]}>
         {messages.map((m, i) => {
           if (!isInSearchResult(m.id!)) return null;
-          const id = m.id ?? i;
+          const id = m.id! ?? i;
           const isSelected = props.selection.has(id);
 
           return (
@@ -219,7 +219,7 @@ export function MessageSelector(props: {
               </div>
               <div className={styles["body"]}>
                 <div className={styles["date"]}>
-                  {new Date(m.date).toLocaleString()}
+                  {new Date(m.date!).toLocaleString()}
                 </div>
                 <div className={clsx(styles["content"], "one-line")}>
                   {getMessageTextContent(m)}
