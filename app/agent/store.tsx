@@ -65,7 +65,7 @@ export const CN_MASKS: BuiltinMask[] = [
     context: [
       {
         role: "assistant",
-        content: "😄 休闲一下吧",
+        content: "嘿嘿 🐶",
       },
     ],
   },
