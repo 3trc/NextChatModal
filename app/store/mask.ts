@@ -118,7 +118,7 @@ export const useMaskStore = createPersistStore(
     },
     getAll() {
       const userMasks = Object.values(get().masks).sort(
-        (a, b) => b.createdAt - a.createdAt,
+        (a, b) => b.createdAt! - a.createdAt!,
       );
       const config = useAppConfig.getState();
       if (config.hideBuiltinMasks) return userMasks;
