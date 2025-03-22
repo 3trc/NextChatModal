@@ -641,7 +641,7 @@ export function MaskPage() {
       {editingMask && (
         <div className="modal-mask">
           <Modal
-            title={Locale.Mask.EditModal.Title(editingMask?.builtin)}
+            title={Locale.Mask.EditModal.Title(editingMask?.builtin!)}
             onClose={closeMaskModal}
             actions={[
               <IconButton
