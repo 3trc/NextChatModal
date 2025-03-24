@@ -7,13 +7,20 @@ import axios from "axios";
 const Welcome = () => {
   const chatStore = useChatStore();
   const [loading, setLoading] = useState<boolean>(true);
+  const [script, setScript] = useState<any>({ });
+  const [record, setRecord] = useState<any>({ });
 
   const updateObjects = async () => {
     setLoading(true);
     try {
-      const a = await Promise.all([
-        axios.post(`/xsea/api/xsea/vector/query`, { type: 'SCRIPT', text: '脚本', topK: 1, filterScore: true }),
+      const [{ data: scriptData }, { data: recordData }] = await Promise.all([
+        axios.post(`/xsea/api/xsea/vector/query`, { type: 'SCRIPT', text: Math.random().toString(), topK: 1 }),
+        axios.post(`/xsea/api/xsea/vector/query`, { type: 'RECORD', text: Math.random().toString(), topK: 1 }),
       ]);
+      const script = JSON.parse(scriptData.object?.[0]?.data ?? "{ }");
+      const record = JSON.parse(recordData.object?.[0]?.data ?? "{ }");
+      setScript(script);
+      setRecord(record);
     } catch (error) {
       console.error(error);
     } finally {
@@ -40,12 +47,12 @@ const Welcome = () => {
                   chatStore.onUserInput("开始压测东航下航班相关的脚本");
                 }}
               >
-                <span>帮我压测 xxx 下的 xxx 脚本</span>
+                <span>帮我压测 {script.productName} 下的 {script.scriptName} 脚本</span>
               </li>
               <li onClick={() => {
                   chatStore.onUserInput("帮我分析一个报告吧");
                 }}>
-                <span>我想分析一下 xxx 压测记录</span>
+                <span>我想分析一下 {record.recordName} 压测记录</span>
               </li>
               <li
                 onClick={() => {
@@ -64,7 +71,7 @@ const Welcome = () => {
               <li onClick={() => {
                   chatStore.onUserInput("我想你帮我解释某一个脚本");
                 }}>
-                <span>解释一下 xxx 脚本是做什么的</span>
+                <span>解释一下 {script.scriptName} 脚本是做什么的</span>
               </li>
               <li
                 onClick={() => {
