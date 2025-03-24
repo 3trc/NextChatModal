@@ -17,14 +17,8 @@ const Next = () => {
       const mask = session.mask;
       const messages = session.messages.slice(-1);
       const context = messages[0].content as string;
-      const parser = StructuredOutputParser.fromZodSchema(z.tuple([
-        z.string(),
-        z.string(),
-        z.string(),
-        z.string(),
-      ]).describe('用户接下来可能会发送的四个消息'));
       const prompt = `
-## 请你结合最后一条历史消息，预测用户接下来可能会发送的四个消息\n\n
+## 请你结合最后一条历史消息，预测用户接下来可能会发送的四个消息
 
 ## 最后一条历史消息是
 【${context}】
@@ -88,9 +82,6 @@ const Next = () => {
   - C定时任务的执行配置合适吗？
 
 5. 把T，A，B，C替换成你选取的值，并且润色文本
-
-## 确保回答遵循以下格式的JSON文本，避免解释
-${parser.getFormatInstructions()}
       `.trim();
       const { data } = await axios.post(`/api/openai/v1/chat/completions`, {
         messages: prompt,
@@ -99,9 +90,14 @@ ${parser.getFormatInstructions()}
         resourceId: mask.agentName,
         threadId: session.id + nanoid(),
         stream: false,
+        output: z.tuple([
+          z.string(),
+          z.string(),
+          z.string(),
+          z.string(),
+        ]).describe('用户接下来可能会发送的四个消息'),
       });
-      const list = await parser.parse(data.text);
-      setList(() => Array.isArray(list) ? list : []);
+      setList(() => Array.isArray(data) ? data : []);
     } catch (error) {
       console.error(error);
     }
