@@ -113,9 +113,17 @@ const Next = () => {
 
   if (list.length === 0) return null;
   return <ul className={styles.com}>
-    {list.map((q) => <li onClick={() => {
+    {list.map((q, index) => <li onClick={() => {
       chatStore.onUserInput(q);
-    }}>{q.replace('A', '某').replace('B', '某').replace('C', '某')}</li>)}
+    }}>
+      <span className={styles.cup_span}>
+        {index === 0 && <img src="/cup1.svg" />}
+        {index === 1 && <img src="/cup2.svg" />}
+        {index === 2 && <img src="/cup3.svg" />}
+        {index === 3 && <img className={styles.hidden} src="/cup3.svg" />}
+      </span>
+      <span>{q.replace('A', '某').replace('B', '某').replace('C', '某')}</span>
+    </li>)}
   </ul>;
 }
 

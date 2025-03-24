@@ -19,5 +19,14 @@
       background-color: var(--second);
       border-color: var(--second);
     }
+    .cup_span {
+      img {
+        margin-bottom: -0.2rem;
+        margin-right: 0.3rem;
+      }
+      .hidden {
+        visibility: hidden;
+      }
+    }
   }
 }
