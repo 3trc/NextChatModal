@@ -13,12 +13,14 @@ const Welcome = () => {
   const updateObjects = async () => {
     setLoading(true);
     try {
+      const topK = 20;
       const [{ data: scriptData }, { data: recordData }] = await Promise.all([
-        axios.post(`/xsea/api/xsea/vector/query`, { type: 'SCRIPT', text: Math.random().toString(), topK: 1 }),
-        axios.post(`/xsea/api/xsea/vector/query`, { type: 'RECORD', text: Math.random().toString(), topK: 1 }),
+        axios.post(`/xsea/api/xsea/vector/query`, { type: 'SCRIPT', text: Math.random().toString(), topK }),
+        axios.post(`/xsea/api/xsea/vector/query`, { type: 'RECORD', text: Math.random().toString(), topK }),
       ]);
-      const script = JSON.parse(scriptData.object?.[0]?.data ?? "{ }");
-      const record = JSON.parse(recordData.object?.[0]?.data ?? "{ }");
+      const index = Math.floor((Math.random() * topK));
+      const script = JSON.parse(scriptData.object?.[index]?.data ?? "{ }");
+      const record = JSON.parse(recordData.object?.[index]?.data ?? "{ }");
       setScript(script);
       setRecord(record);
     } catch (error) {
