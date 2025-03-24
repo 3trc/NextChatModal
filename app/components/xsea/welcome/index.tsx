@@ -44,13 +44,13 @@ const Welcome = () => {
             <ul className={styles.try_to_say}>
               <li
                 onClick={() => {
-                  chatStore.onUserInput("开始压测东航下航班相关的脚本");
+                  chatStore.onUserInput(`帮我压测 ${script.productName} 下的 ${script.scriptName} 脚本`);
                 }}
               >
                 <span>帮我压测 {script.productName} 下的 {script.scriptName} 脚本</span>
               </li>
               <li onClick={() => {
-                  chatStore.onUserInput("帮我分析一个报告吧");
+                  chatStore.onUserInput(`我想分析一下 ${record.recordName} 压测记录`);
                 }}>
                 <span>我想分析一下 {record.recordName} 压测记录</span>
               </li>
@@ -69,7 +69,7 @@ const Welcome = () => {
                 <span>帮我创建一个JMeter脚本吧</span>
               </li>
               <li onClick={() => {
-                  chatStore.onUserInput("我想你帮我解释某一个脚本");
+                  chatStore.onUserInput(`解释一下 ${script.scriptName} 脚本是做什么的`);
                 }}>
                 <span>解释一下 {script.scriptName} 脚本是做什么的</span>
               </li>
