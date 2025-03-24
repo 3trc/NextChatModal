@@ -18,6 +18,7 @@ const Welcome = () => {
         axios.post(`/xsea/api/xsea/vector/query`, { type: 'SCRIPT', text: Math.random().toString(), topK }),
         axios.post(`/xsea/api/xsea/vector/query`, { type: 'RECORD', text: Math.random().toString(), topK }),
       ]);
+      // 这里有Bug
       const index = Math.floor((Math.random() * topK));
       const script = JSON.parse(scriptData.object?.[index]?.data ?? "{ }");
       const record = JSON.parse(recordData.object?.[index]?.data ?? "{ }");
