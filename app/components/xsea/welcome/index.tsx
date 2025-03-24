@@ -1,7 +1,6 @@
 import React from "react";
 import styles from "./index.module.scss";
 import { useChatStore } from "@/app/store";
-import { AgentStore } from "@/app/agent/store";
 
 const Welcome = () => {
   const chatStore = useChatStore();
@@ -55,125 +54,6 @@ const Welcome = () => {
             </li>
           </ul>
         </div>
-        {/* <ul>
-          <li>
-            <div>
-              <Button
-                size="small"
-                type="primary"
-                onClick={() => {
-                  AgentStore.get(
-                    chatStore.currentSession().mask.name,
-                  ).SendMessage("请开始快速压测");
-                }}
-              >
-                快速压测
-              </Button>
-              <span>:</span>
-              <span>
-                ⚡ 以更 <b>简单</b> 的方式 <b>快速</b>{" "}
-                发起一次压测，验证已有系统。
-              </span>
-            </div>
-          </li>
-          <li>
-            <div>
-              <Button
-                size="small"
-                onClick={() => {
-                  AgentStore.get(
-                    chatStore.currentSession().mask.name,
-                  ).SendMessage("请帮我创建一个脚本");
-                }}
-              >
-                创建脚本
-              </Button>
-              <span>:</span>
-              <span>
-                📜 需要我帮助你编写一些 <b>压测脚本</b> 吗？无论是 <b>JMeter</b>{" "}
-                还是 <b>Gatling</b> 亦或是 <b>Shell</b>
-                ，我都可以协助你一起完成！
-              </span>
-            </div>
-          </li>
-          <li>
-            <div>
-              <Button
-                size="small"
-                onClick={() => {
-                  AgentStore.get(
-                    chatStore.currentSession().mask.name,
-                  ).SendMessage("请列出所有脚本");
-                }}
-              >
-                查询脚本
-              </Button>
-              <span>:</span>
-              <span>
-                📜 需要查询平台上的 <b>已有脚本</b>{" "}
-                吗，通常我们选择了一些脚本就可以立即快速压测了哦！
-              </span>
-            </div>
-          </li>
-          <li>
-            <div>
-              <Button
-                size="small"
-                onClick={() => {
-                  AgentStore.get(
-                    chatStore.currentSession().mask.name,
-                  ).SendMessage("什么是XSea");
-                }}
-              >
-                学习XSea性能测试平台
-              </Button>
-              <span>:</span>
-              <span>
-                📚 使用XSea的过程中遇到了难以解决的问题，试着与 <b>知识库</b>{" "}
-                对话，解答你的一切疑惑。
-              </span>
-            </div>
-          </li>
-        </ul> */}
-        {/* <Space>
-          <Button
-            type="primary"
-            onClick={() => {
-              AgentStore.get(chatStore.currentSession().mask.name).SendMessage(
-                "开始压测",
-              );
-            }}
-          >
-            开始压测
-          </Button>
-          <Button
-            onClick={() => {
-              AgentStore.get(chatStore.currentSession().mask.name).SendMessage(
-                "创建JMeter脚本",
-              );
-            }}
-          >
-            编写脚本
-          </Button>
-          <Button
-            onClick={() => {
-              AgentStore.get(chatStore.currentSession().mask.name).SendMessage(
-                "列出全部产品",
-              );
-            }}
-          >
-            查看产品
-          </Button>
-          <Button
-            onClick={() => {
-              AgentStore.get(chatStore.currentSession().mask.name).SendMessage(
-                "XSea是什么",
-              );
-            }}
-          >
-            学习XSea性能测试平台
-          </Button>
-        </Space> */}
       </div>
     </div>
   );
