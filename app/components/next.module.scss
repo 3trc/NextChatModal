@@ -11,8 +11,13 @@
     padding: 0.3rem 0.5rem;
     border: var(--border-in-light);
     cursor: pointer;
+    transition: background-color 0.2s;
     &:not(:last-child) {
       margin-bottom: 0.3rem;
+    }
+    &:hover {
+      background-color: var(--second);
+      border-color: var(--second);
     }
   }
 }
