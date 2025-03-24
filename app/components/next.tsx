@@ -5,6 +5,7 @@ import axios from "axios";
 import styles from "./next.module.scss";
 import { nanoid } from "nanoid";
 import { StructuredOutputParser } from "langchain/output_parsers";
+import { zerialize } from 'zodex';
 
 const Next = () => {
   const first = useRef<boolean>(true);
@@ -90,12 +91,12 @@ const Next = () => {
         resourceId: mask.agentName,
         threadId: session.id + nanoid(),
         stream: false,
-        output: z.tuple([
+        output: zerialize(z.tuple([
           z.string(),
           z.string(),
           z.string(),
           z.string(),
-        ]).describe('用户接下来可能会发送的四个消息'),
+        ]).describe('用户接下来可能会发送的四个消息')),
       });
       setList(() => Array.isArray(data) ? data : []);
     } catch (error) {
