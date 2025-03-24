@@ -47,12 +47,12 @@ const Welcome = () => {
                   chatStore.onUserInput(`帮我压测 ${script.productName} 下的 ${script.scriptName} 脚本`);
                 }}
               >
-                <span>帮我压测 {script.productName} 下的 {script.scriptName} 脚本</span>
+                <span>帮我压测 <b>{script.productName}</b> 下的 <b>{script.scriptName}</b> 脚本</span>
               </li>
               <li onClick={() => {
                   chatStore.onUserInput(`我想分析一下 ${record.recordName} 压测记录`);
                 }}>
-                <span>我想分析一下 {record.recordName} 压测记录</span>
+                <span>我想分析一下 <b>{record.recordName}</b> 压测记录</span>
               </li>
               <li
                 onClick={() => {
@@ -71,7 +71,7 @@ const Welcome = () => {
               <li onClick={() => {
                   chatStore.onUserInput(`解释一下 ${script.scriptName} 脚本是做什么的`);
                 }}>
-                <span>解释一下 {script.scriptName} 脚本是做什么的</span>
+                <span>解释一下 <b>{script.scriptName}</b> 脚本是做什么的</span>
               </li>
               <li
                 onClick={() => {
