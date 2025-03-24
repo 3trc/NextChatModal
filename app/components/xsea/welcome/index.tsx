@@ -25,7 +25,7 @@ const Welcome = () => {
             <li onClick={() => {
                 chatStore.onUserInput("帮我分析一个报告吧");
               }}>
-              <span>帮我分析 xxx 报告</span>
+              <span>我想分析一下 xxx 压测记录</span>
             </li>
             <li
               onClick={() => {
@@ -39,19 +39,19 @@ const Welcome = () => {
                 chatStore.onUserInput("帮我创建一个JMeter脚本吧");
               }}
             >
-              <span>帮我编写一个JMeter脚本吧</span>
+              <span>帮我创建一个JMeter脚本吧</span>
             </li>
             <li onClick={() => {
                 chatStore.onUserInput("我想你帮我解释某一个脚本");
               }}>
-              <span>帮我解释 xxx 脚本是做什么的</span>
+              <span>解释一下 xxx 脚本是做什么的</span>
             </li>
             <li
               onClick={() => {
                 chatStore.onUserInput("XSea之中怎么样安装探针");
               }}
             >
-              <span>怎么样安装探针</span>
+              <span>XSea之中怎么样安装探针</span>
             </li>
           </ul>
         </div>
