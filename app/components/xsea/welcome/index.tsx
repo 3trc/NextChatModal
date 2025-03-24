@@ -1,11 +1,29 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./index.module.scss";
 import { useChatStore } from "@/app/store";
 import { Spin } from "antd";
+import axios from "axios";
 
 const Welcome = () => {
   const chatStore = useChatStore();
   const [loading, setLoading] = useState<boolean>(true);
+
+  const updateObjects = async () => {
+    setLoading(true);
+    try {
+      const a = await Promise.all([
+        axios.post(`/xsea/api/xsea/vector/query`, { type: 'SCRIPT', text: '脚本', topK: 1, filterScore: true }),
+      ]);
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    updateObjects();
+  }, []);
 
   return (
     <div className={styles.com}>
