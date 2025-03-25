@@ -59,10 +59,10 @@ const Welcome = () => {
               </li>
               <li
                 onClick={() => {
-                  chatStore.onUserInput("我想压测某些脚本");
+                  chatStore.onUserInput("有哪些产品？");
                 }}
               >
-                <span>现在就开始压测吧！</span>
+                <span>有哪些产品可以压测？</span>
               </li>
               <li
                 onClick={() => {
