@@ -7,7 +7,7 @@ import XSea_查询产品 from "../agent/xsea/XSea_查询产品";
 import XSea_查询脚本 from "../agent/xsea/XSea_查询脚本";
 import XSea_执行压测 from "../agent/xsea/XSea_执行压测";
 import XSea_调用栈分析 from "../agent/xsea/XSea_调用栈分析";
-import { AgentStore } from "../agent/store";
+import { AgentStore, CN_MASKS } from "../agent/store";
 import XSea_知识库 from "../agent/xsea/XSea_知识库";
 import XSea_当下引导 from "../agent/xsea/XSea_当下引导";
 import XSea_JMeter专家 from "../agent/xsea/XSea_JMeter专家";
@@ -15,24 +15,36 @@ import XSea_Gatling专家 from "../agent/xsea/XSea_Gatling专家";
 import XSea_Shell专家 from "../agent/xsea/XSea_Shell专家";
 import { SessionJSON } from "./xsea/localJSON";
 import XSea_内存分析 from "../agent/xsea/XSea_内存分析";
+import { useChatStore } from "../store";
+import { Mask } from "../store/mask";
+import { Path } from "../constant";
+import { useNavigate } from "react-router-dom";
 
 const Agents = () => {
+  const navigate = useNavigate();
+  const chatShore = useChatStore();
   const receiveMessage = (data: any) => {
     const message = data.data ?? {};
     // console.log(message);
     if (message.from === "ai_parent" && message.expertName) {
+      const expertName = ((message.expertName ?? '') as string).replace('_', '');
       if (message.problem) {
-        AgentStore.get(message.expertName).Create(
-          [
-            {
-              role: "system",
-              content: `${message.problem}`,
-            },
-          ],
-          true,
-        );
+        const mask = CN_MASKS.find((mask) => mask.name === expertName) as Mask;
+        chatShore.newSession(mask);
+        navigate(Path.Chat);
+        // AgentStore.get(message.expertName).Create(
+        //   [
+        //     {
+        //       role: "system",
+        //       content: `${message.problem}`,
+        //     },
+        //   ],
+        //   true,
+        // );
       } else {
-        AgentStore.get(message.expertName).Create([], true);
+        const mask = CN_MASKS.find((mask) => mask.name === expertName) as Mask;
+        chatShore.newSession(mask);
+        navigate(Path.Chat);
       }
     } else {
       if (message.type === "发送异常") {
