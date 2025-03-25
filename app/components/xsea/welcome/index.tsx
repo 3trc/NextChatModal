@@ -20,8 +20,8 @@ const Welcome = () => {
       ]);
       // 这里有Bug
       const index = Math.floor((Math.random() * topK));
-      const script = JSON.parse(scriptData.object?.[index]?.data ?? "{ }");
-      const record = JSON.parse(recordData.object?.[index]?.data ?? "{ }");
+      const script = scriptData.object?.[index]?.data ?? { };
+      const record = recordData.object?.[index]?.data ?? { };
       setScript(script);
       setRecord(record);
     } catch (error) {
