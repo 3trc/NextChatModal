@@ -312,7 +312,7 @@ export const useChatStore = createPersistStore(
         const session = createEmptySession();
 
         (async () => {
-          await axios.post('/xsea/api/xsea/threadCookie', { threadId: session.id, cookie: '1234' });
+          await axios.post('/xsea/api/xsea/threadCookie', { threadId: session.id, cookie: localStorage.getItem('currentCookie') });
         })();
 
         session.messages.push(...messages);
