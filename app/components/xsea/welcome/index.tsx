@@ -14,9 +14,14 @@ const Welcome = () => {
     setLoading(true);
     try {
       const topK = 20;
+      const searchParams = { threadId: chatStore.currentSession().id };
       const [{ data: scriptData }, { data: recordData }] = await Promise.all([
-        axios.post(`/xsea/api/xsea/vector/query`, { type: 'SCRIPT', text: Math.random().toString(), topK }),
-        axios.post(`/xsea/api/xsea/vector/query`, { type: 'RECORD', text: Math.random().toString(), topK }),
+        axios.post(`/xsea/api/xsea/vector/query`, { type: 'SCRIPT', text: Math.random().toString(), topK }, {
+          params: searchParams,
+        }),
+        axios.post(`/xsea/api/xsea/vector/query`, { type: 'RECORD', text: Math.random().toString(), topK }, {
+          params: searchParams,
+        }),
       ]);
       // 这里有Bug
       const index = Math.floor((Math.random() * topK));
