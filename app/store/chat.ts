@@ -40,6 +40,7 @@ import { executeMcpAction, getAllTools } from "../mcp/actions";
 import { extractMcpJson, isMcpJson } from "../mcp/utils";
 import { CN_MASKS } from "../masks/cn";
 import { ChatMessageX } from "../agent";
+import axios from "axios";
 
 const localStorage = safeLocalStorage();
 
@@ -309,6 +310,10 @@ export const useChatStore = createPersistStore(
 
       newSession(mask?: Mask, messages: ChatMessage[] = []) {
         const session = createEmptySession();
+
+        (async () => {
+          await axios.post('/xsea/api/xsea/threadCookie', { threadId: session.id, cookie: '1234' });
+        })();
 
         session.messages.push(...messages);
 
