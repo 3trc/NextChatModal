@@ -308,12 +308,10 @@ export const useChatStore = createPersistStore(
         });
       },
 
-      newSession(mask?: Mask, messages: ChatMessage[] = []) {
+      async newSession(mask?: Mask, messages: ChatMessage[] = []) {
         const session = createEmptySession();
 
-        (async () => {
-          await axios.post('/xsea/api/xsea/threadCookie', { threadId: session.id, cookie: localStorage.getItem('currentCookie') });
-        })();
+        await axios.post('/xsea/api/xsea/threadCookie', { threadId: session.id, cookie: localStorage.getItem('currentCookie') });
 
         session.messages.push(...messages);
 

@@ -269,7 +269,7 @@ export default class Agent {
 
   public async Create(prevMessage: ChatMessageX[] = [], trigger = false) {
     // 新建好一个独立的Session
-    this.chatStore.newSession(this.Mask);
+    await this.chatStore.newSession(this.Mask);
     this.navigate(Path.Chat);
 
     // 发送不会触发请求的前置消息

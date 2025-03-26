@@ -1634,8 +1634,8 @@ function _Chat() {
         event.key.toLowerCase() === "o"
       ) {
         event.preventDefault();
-        setTimeout(() => {
-          chatStore.newSession();
+        setTimeout(async () => {
+          await chatStore.newSession();
           navigate(Path.Chat);
         }, 10);
       }

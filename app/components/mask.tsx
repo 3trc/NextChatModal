@@ -601,8 +601,8 @@ export function MaskPage() {
                   <IconButton
                     icon={<AddIcon />}
                     text={Locale.Mask.Item.Chat}
-                    onClick={() => {
-                      chatStore.newSession(m);
+                    onClick={async () => {
+                      await chatStore.newSession(m);
                       navigate(Path.Chat);
                       // AgentStore.get(m.name).Create([], false);
                     }}

@@ -23,14 +23,14 @@ import { useNavigate } from "react-router-dom";
 const Agents = () => {
   const navigate = useNavigate();
   const chatShore = useChatStore();
-  const receiveMessage = (data: any) => {
+  const receiveMessage = async (data: any) => {
     const message = data.data ?? {};
     // console.log(message);
     if (message.from === "ai_parent" && message.expertName) {
       const expertName = ((message.expertName ?? '') as string).replace('_', '');
       if (message.problem) {
         const mask = CN_MASKS.find((mask) => mask.name === expertName) as Mask;
-        chatShore.newSession(mask);
+        await chatShore.newSession(mask);
         navigate(Path.Chat);
         // AgentStore.get(message.expertName).Create(
         //   [
@@ -43,7 +43,7 @@ const Agents = () => {
         // );
       } else {
         const mask = CN_MASKS.find((mask) => mask.name === expertName) as Mask;
-        chatShore.newSession(mask);
+        await chatShore.newSession(mask);
         navigate(Path.Chat);
       }
     } else {
