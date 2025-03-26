@@ -26,6 +26,12 @@ const Agents = () => {
   const receiveMessage = async (data: any) => {
     const message = data.data ?? {};
     // console.log(message);
+
+    if (message.from === "ai_parent" && message.cookie) {
+      localStorage.setItem('currentCookie', message.cookie);
+      return;
+    }
+
     if (message.from === "ai_parent" && message.expertName) {
       const expertName = ((message.expertName ?? '') as string).replace('_', '');
       if (message.problem) {
