@@ -13,7 +13,7 @@ export async function POST(request: NextRequest) {
       {
         headers: {
           cookie:
-            'sys_token=932e6369f81b45a5823bc6060e8d9874; sys_env_id=977046101482688512; sys_env_code=AI_DEMO; X-XSHELTER-ACCESS-TOKEN=9cf1c1b7-e9fc-4636-b0ec-3ec6ed44556c',
+            'sys_token=5c533addcc864a0198235a150affa79d; sys_env_id=977046101482688512; sys_env_code=AI_DEMO; X-XSHELTER-ACCESS-TOKEN=9cf1c1b7-e9fc-4636-b0ec-3ec6ed44556c',
           ["Content-Type"]: "application/json",
         },
       },
